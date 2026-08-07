@@ -1,0 +1,144 @@
+import { useEffect, useRef } from 'react'
+import { ArrowRight, Check } from 'lucide-react'
+import { brand, hero, productCategories } from '../../data/siteContent'
+import Button from '../ui/Button'
+import { gsap, prefersReducedMotion } from '../../lib/gsap'
+
+const featured = productCategories[0]
+
+export default function Hero() {
+  const sectionRef = useRef(null)
+  const imgRef = useRef(null)
+  const markerRef = useRef(null)
+  const headingRef = useRef(null)
+  const copyRef = useRef(null)
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    if (prefersReducedMotion) return
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+      tl.fromTo(imgRef.current, { scale: 1.15 }, { scale: 1, duration: 1.6, ease: 'power2.out' })
+        .fromTo(markerRef.current, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3)
+        .fromTo(
+          headingRef.current.children,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.9, stagger: 0.1 },
+          0.5
+        )
+        .fromTo(copyRef.current.children, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.08 }, 0.8)
+        .fromTo(
+          cardRef.current,
+          { opacity: 0, y: 30, scale: 0.92 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.6)' },
+          0.9
+        )
+
+      gsap.to(imgRef.current, {
+        yPercent: 12,
+        ease: 'none',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
+      })
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative -mt-20 flex min-h-screen flex-col overflow-hidden"
+    >
+      <div className="absolute inset-0 -z-20 overflow-hidden">
+        <img
+          ref={imgRef}
+          src={hero.image}
+          alt={hero.imageAlt}
+          className="h-full w-full scale-110 object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-navy-deep/80 via-navy-deep/45 to-navy-deep/85" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+      <div className="flex flex-1 flex-col pt-20">
+        <div
+          ref={markerRef}
+          className="container-px mx-auto mt-8 flex w-full max-w-container items-center justify-between border-b border-white/20 pb-4 text-white/70"
+        >
+          <span className="eyebrow">Est. {brand.founded}</span>
+          <span className="eyebrow hidden sm:inline">{brand.ports.join(' · ')}</span>
+          <span className="eyebrow text-gold">Spice &amp; Export Trading</span>
+        </div>
+
+        <div className="container-px mx-auto mt-auto w-full max-w-container pb-14 pt-16 md:pb-20">
+          <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <h1
+                ref={headingRef}
+                className="font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
+              >
+                <span className="block">We export more</span>
+                <span className="block">
+                  than spices — we export <span className="text-gold-gradient">trust.</span>
+                </span>
+              </h1>
+
+              <div ref={copyRef} className="mt-6">
+                <p className="max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
+                  {hero.subheading}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                  {hero.points.map((p) => (
+                    <li key={p} className="flex items-center gap-2 text-sm font-medium text-white">
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold-gradient">
+                        <Check size={12} className="text-navy-deep" strokeWidth={3} />
+                      </span>
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7 flex flex-wrap gap-4">
+                  <Button to={hero.primaryCta.to} variant="primary">
+                    {hero.primaryCta.label}
+                  </Button>
+                  <Button
+                    to={hero.secondaryCta.to}
+                    variant="outline"
+                    className="border-white/30 text-white hover:border-gold hover:text-gold"
+                  >
+                    {hero.secondaryCta.label}
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              ref={cardRef}
+              className="w-full max-w-xs shrink-0 rounded-2xl bg-surface p-5 shadow-card md:w-80"
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-xs text-muted">01/{String(productCategories.length).padStart(2, '0')}</span>
+                <span className="eyebrow text-muted">Our Products</span>
+              </div>
+              <div className="my-4 h-px bg-line" />
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="font-display text-lg font-semibold text-ink">{featured.name}</p>
+                  <p className="mt-1 text-xs text-muted">{featured.description}</p>
+                </div>
+                <Button
+                  to={`/products/${featured.slug}`}
+                  variant="primary"
+                  className="!h-10 !w-10 shrink-0 !rounded-full !p-0"
+                  aria-label={`Explore ${featured.name}`}
+                >
+                  <ArrowRight size={16} />
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

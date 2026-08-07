@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface: 255 255 255;
+  --bg: 253 252 249;
+  --bg-muted: 238 229 211;
+  --ink: 28 20 16;
+  --muted: 58 51 44;
+  --line: 221 210 187;
+}
+
+.dark {
+  --surface: 15 46 82;
+  --bg: 2 16 35;
+  --bg-muted: 11 36 66;
+  --ink: 245 242 235;
+  --muted: 201 194 180;
+  --line: 28 58 94;
+}
+
+.dark.theme-black {
+  --surface: 10 10 10;
+  --bg: 0 0 0;
+  --bg-muted: 15 15 15;
+  --ink: 245 245 245;
+  --muted: 163 163 163;
+  --line: 38 38 38;
+}
+
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+.custom-cursor-active input,
+.custom-cursor-active textarea,
+.custom-cursor-active select,
+.custom-cursor-active [contenteditable] {
+  cursor: auto !important;
+}
+
+* {
+  border-color: rgb(var(--line) / 1);
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--ink));
+  font-family: 'Red Hat Text', ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: rgb(224 176 90 / 0.35);
+  color: rgb(var(--ink));
+}
+
+.container-px {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-px {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 500;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #d4a24c, #e0b05a, #ffbf00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
