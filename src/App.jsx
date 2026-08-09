@@ -1,13 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
+import About from './pages/About'
+import PartnerWithUs from './pages/PartnerWithUs'
 import PlaceholderPage from './pages/PlaceholderPage'
 
 const placeholderRoutes = [
-  { path: '/about', title: 'About Mavio Global', blurb: 'Our full company story, leadership and timeline — page in progress.' },
   { path: '/products', title: 'Products', blurb: 'A browsable catalogue of every category we export — page in progress.' },
   { path: '/products/:slug', title: 'Product Category', blurb: 'Detailed specs, grades and origin info for this category — page in progress.' },
-  { path: '/partner-with-us', title: 'Partner With Us', blurb: 'How to start a buyer or supplier relationship with Mavio — page in progress.' },
   { path: '/capabilities/why-mavio', title: 'Why Mavio', blurb: 'What sets our sourcing and export process apart — page in progress.' },
   { path: '/capabilities/quality-compliance', title: 'Quality & Compliance', blurb: 'Our QC process and certification standards — page in progress.' },
   { path: '/capabilities/supply-chain-visibility', title: 'Supply Chain Visibility', blurb: 'How buyers and suppliers track shipments end to end — page in progress.' },
@@ -24,6 +24,8 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/partner-with-us" element={<PartnerWithUs />} />
         {placeholderRoutes.map((r) => (
           <Route key={r.path} path={r.path} element={<PlaceholderPage title={r.title} blurb={r.blurb} />} />
         ))}

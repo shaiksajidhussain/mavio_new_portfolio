@@ -9,6 +9,7 @@ const icons = { Sprout, ShieldCheck, Package, FileCheck2, Truck, PackageCheck }
 
 export default function SupplyChainShowcase() {
   const sectionRef = useRef(null)
+  const wrapRef = useRef(null)
   const pinRef = useRef(null)
   const trackRef = useRef(null)
 
@@ -25,20 +26,26 @@ export default function SupplyChainShowcase() {
         0
       )
 
+      if (wrapRef.current) {
+        wrapRef.current.style.height = `${pinRef.current.offsetHeight + total}px`
+      }
+
       const tween = gsap.to(track, {
         x: -total,
         ease: 'none',
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: wrapRef.current,
           start: 'top top',
           end: () => `+=${total}`,
           scrub: 0.8,
-          pin: true,
           invalidateOnRefresh: true,
         },
       })
 
-      return () => tween.scrollTrigger?.kill()
+      return () => {
+        tween.scrollTrigger?.kill()
+        if (wrapRef.current) wrapRef.current.style.height = ''
+      }
     })
 
     return () => mm.revert()
@@ -64,7 +71,7 @@ export default function SupplyChainShowcase() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-bg themeblack:bg-black">
+    <section ref={sectionRef} className="relative bg-bg themeblack:bg-black">
       <div className="container-px relative mx-auto max-w-container pt-16 md:pt-24">
         <Reveal stagger={0}>
           <SectionLabel>Supply Chain Showcase</SectionLabel>
@@ -75,48 +82,50 @@ export default function SupplyChainShowcase() {
         </Reveal>
       </div>
 
-      <div ref={pinRef} className="mt-10 overflow-x-auto pb-10 scrollbar-hide md:mt-14 lg:overflow-hidden lg:pb-0">
-        <div
-          ref={trackRef}
-          className="container-px mx-auto flex max-w-container items-start gap-6 pr-10 md:gap-10 lg:min-h-[520px]"
-        >
-          {supplyChainSteps.map((s, i) => {
-            const Icon = icons[s.icon]
-            return (
-              <div
-                key={s.step}
-                data-panel
-                className="group relative flex w-[78vw] shrink-0 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 p-7 sm:w-[52vw] md:w-[380px] md:p-8 lg:h-[62vh] lg:min-h-[440px]"
-              >
-                <img
-                  src={s.image}
-                  alt={s.label}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-navy-deep/10" />
-
-                <span
-                  className="pointer-events-none absolute -top-4 right-4 font-display text-[7rem] font-black leading-none text-transparent md:text-[9rem]"
-                  style={{ WebkitTextStroke: '2px rgba(255,191,0,0.9)' }}
+      <div ref={wrapRef} className="relative mt-10 md:mt-14 lg:mt-0">
+        <div ref={pinRef} className="overflow-x-auto pb-10 scrollbar-hide lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:overflow-hidden lg:pb-0">
+          <div
+            ref={trackRef}
+            className="container-px mx-auto flex max-w-container items-start gap-6 pr-10 md:gap-10 lg:min-h-[520px]"
+          >
+            {supplyChainSteps.map((s, i) => {
+              const Icon = icons[s.icon]
+              return (
+                <div
+                  key={s.step}
+                  data-panel
+                  className="group relative flex w-[78vw] shrink-0 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 p-7 sm:w-[52vw] md:w-[380px] md:p-8 lg:h-[62vh] lg:min-h-[440px]"
                 >
-                  {String(s.step).padStart(2, '0')}
-                </span>
+                  <img
+                    src={s.image}
+                    alt={s.label}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-navy-deep/10" />
 
-                <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-                  <Icon size={22} />
-                </span>
+                  <span
+                    className="pointer-events-none absolute -top-4 right-4 font-display text-[7rem] font-black leading-none text-transparent md:text-[9rem]"
+                    style={{ WebkitTextStroke: '2px rgba(255,191,0,0.9)' }}
+                  >
+                    {String(s.step).padStart(2, '0')}
+                  </span>
 
-                <h3 className="relative mt-6 font-display text-2xl font-bold text-white">{s.label}</h3>
-                <p className="relative mt-3 max-w-xs text-sm leading-relaxed text-white/70">
-                  {s.description}
-                </p>
+                  <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
+                    <Icon size={22} />
+                  </span>
 
-                {i < supplyChainSteps.length - 1 && (
-                  <span className="relative mt-6 h-[3px] w-10 rounded-full bg-gold-gradient" />
-                )}
-              </div>
-            )
-          })}
+                  <h3 className="relative mt-6 font-display text-2xl font-bold text-white">{s.label}</h3>
+                  <p className="relative mt-3 max-w-xs text-sm leading-relaxed text-white/70">
+                    {s.description}
+                  </p>
+
+                  {i < supplyChainSteps.length - 1 && (
+                    <span className="relative mt-6 h-[3px] w-10 rounded-full bg-gold-gradient" />
+                  )}
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

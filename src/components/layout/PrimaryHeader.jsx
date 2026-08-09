@@ -8,14 +8,14 @@ import { ScrollTrigger } from '../../lib/gsap'
 
 export default function PrimaryHeader() {
   const { pathname } = useLocation()
-  const isHome = pathname === '/'
+  const hasDarkHero = pathname === '/' || pathname === '/partner-with-us'
   const [scrolled, setScrolled] = useState(false)
   const [progress, setProgress] = useState(0)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
   const closeTimer = useRef(null)
 
-  const transparent = isHome && !scrolled && !mobileOpen
+  const transparent = hasDarkHero && !scrolled && !mobileOpen
 
   useEffect(() => {
     const st = ScrollTrigger.create({
@@ -49,16 +49,12 @@ export default function PrimaryHeader() {
     >
       <div className="relative">
         <div className="container-px mx-auto flex h-20 max-w-container items-center justify-between">
-          <Link
-            to="/"
-            className={`font-display text-xl font-semibold leading-tight transition-colors ${
-              transparent ? 'text-white' : 'text-navy dark:text-white'
-            }`}
-          >
-            MAVIO
-            <span className="block text-xs font-body font-medium tracking-[0.2em] text-gold">
-              GLOBAL
-            </span>
+          <Link to="/" className="shrink-0">
+            <img
+              src="https://www.mavioglobal.com/assets/mavio-logo-DO_QIWb2.png"
+              alt="Mavio Global"
+              className="h-10 w-auto md:h-11"
+            />
           </Link>
 
           <nav className="hidden items-center gap-7 lg:flex">

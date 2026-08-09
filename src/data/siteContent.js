@@ -201,6 +201,36 @@ export const about = {
   imageAlt: 'Sacks of spices and bulk goods at a market',
 }
 
+export const aboutPage = {
+  hero: {
+    eyebrow: 'About Mavio Global',
+    heading: 'Four decades of trade, built one relationship at a time.',
+    body: 'From a single pepper warehouse on the Kochi waterfront to a multi-category export house serving 40+ countries — the throughline has always been trust, traceability and relationships built to last generations.',
+    image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1800&q=80',
+  },
+  visionMission: {
+    vision: {
+      title: 'Vision',
+      body: 'To be the most trusted name in traceable agricultural and specialty exports from India — where every shipment can be traced back to the hands that grew it.',
+      image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1400&q=80',
+    },
+    mission: {
+      title: 'Mission',
+      body: 'To connect Indian farms and processors directly with global buyers through transparent sourcing, rigorous quality control, and export logistics that never leave a customer guessing.',
+      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1400&q=80',
+    },
+  },
+  milestones: [
+    { year: '1987', title: 'Founded in Kochi', description: 'Started as a single-warehouse pepper trading desk on the Kochi waterfront.' },
+    { year: '1998', title: 'Whole spice expansion', description: 'Added cardamom, turmeric and chilli to the export line, alongside pepper.' },
+    { year: '2005', title: 'Seafood division opens', description: 'MPEDA certification secured; began exporting shrimp and marine produce.' },
+    { year: '2012', title: 'Tuticorin operations', description: 'Opened a second port operation and entered Middle East markets directly.' },
+    { year: '2018', title: 'Specialty chemicals', description: 'Launched a REACH & ISO-certified chemicals export division.' },
+    { year: '2023', title: '40+ export markets', description: 'Crossed 40 countries served with full lot-level traceability rolled out.' },
+    { year: 'Today', title: 'Multi-category export house', description: '50+ direct farm partnerships across spices, seafood, produce and chemicals.' },
+  ],
+}
+
 export const whyChooseMavio = {
   buyer: {
     heading: 'Why most buyers choose us',
@@ -219,6 +249,75 @@ export const whyChooseMavio = {
       'On-time settlement, every consignment',
       'Agronomic and post-harvest support from our field team',
     ],
+  },
+}
+
+export const partnerPage = {
+  hero: {
+    eyebrow: 'Partner With Us',
+    heading: 'Partner with a team that treats every shipment like its own.',
+    subheading:
+      'Whether you’re sourcing export-grade produce or looking for a buyer who pays on time and communicates clearly — Mavio Global has been building those relationships since 1987.',
+  },
+  competitiveAdvantage: {
+    heading: 'Our competitive advantage',
+    subheading: 'What sets us apart from other trading houses and brokers.',
+    items: [
+      {
+        icon: 'Sprout',
+        title: 'Farm-direct sourcing',
+        description: 'No layers of middlemen between origin and export — pricing and quality stay honest.',
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'In-house quality control',
+        description: 'Every lot is tested and graded in our own labs before it leaves the warehouse.',
+      },
+      {
+        icon: 'Timer',
+        title: 'On-time, every time',
+        description: 'Consistent lead times and proactive updates — the reason buyers renew year after year.',
+      },
+      {
+        icon: 'Handshake',
+        title: 'Long-term relationships',
+        description: 'We build multi-year partnerships with farms and buyers, not one-off transactions.',
+      },
+    ],
+  },
+  industries: {
+    heading: 'Industries we’ve collaborated with',
+    subheading: 'Sector coverage across the global food and specialty trade landscape.',
+    items: [
+      { icon: 'UtensilsCrossed', name: 'Food & Beverage Retail' },
+      { icon: 'Building2', name: 'Hospitality & Foodservice' },
+      { icon: 'Pill', name: 'Pharmaceutical & Nutraceutical' },
+      { icon: 'Factory', name: 'Agro Processing' },
+      { icon: 'Ship', name: 'Import Distribution' },
+      { icon: 'Tag', name: 'Private Label Manufacturing' },
+    ],
+  },
+  commitment: {
+    heading: 'Our commitment to every procurement',
+    subheading: 'The same service promise, whether it’s your first container or your hundredth.',
+    points: [
+      { icon: 'ClipboardCheck', title: 'Consistent quality', description: 'Every lot graded against the same standard, shipment after shipment.' },
+      { icon: 'MessageCircle', title: 'Transparent communication', description: 'Status updates without having to chase — no black-box logistics.' },
+      { icon: 'Truck', title: 'On-time delivery', description: 'Realistic timelines, proactively flagged the moment anything changes.' },
+      { icon: 'Headphones', title: 'Dedicated support', description: 'A named point of contact for every account, from quote to delivery.' },
+    ],
+  },
+  cta: {
+    buyer: {
+      heading: 'Ready to source with confidence?',
+      body: 'Talk to our team about your next shipment — sample requests, MOQs and lead times, sorted in one call.',
+      primaryCta: { label: 'Request a Quote', to: '/contact' },
+    },
+    supplier: {
+      heading: 'Ready to grow with a long-term partner?',
+      body: 'If you grow, process or manufacture export-grade produce, seafood or specialty chemicals, we want to hear from you.',
+      primaryCta: { label: 'Become a Supplier', to: '/contact' },
+    },
   },
 }
 
