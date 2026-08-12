@@ -3,6 +3,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import PrimaryHeader from './PrimaryHeader'
 import Footer from './Footer'
 import CustomCursor from '../ui/CustomCursor'
+import EnquiryModal from '../products/EnquiryModal'
+import { EnquiryModalProvider } from '../../context/EnquiryModalContext'
 import { useSmoothScroll } from '../../hooks/useSmoothScroll'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
@@ -17,7 +19,7 @@ export default function Layout() {
   }, [location.pathname])
 
   return (
-    <>
+    <EnquiryModalProvider>
       <CustomCursor />
 
       <div className="fixed inset-x-0 top-0 z-50">
@@ -28,6 +30,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <Footer />
-    </>
+      <EnquiryModal />
+    </EnquiryModalProvider>
   )
 }

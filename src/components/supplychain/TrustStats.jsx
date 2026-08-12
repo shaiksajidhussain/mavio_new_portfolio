@@ -1,0 +1,81 @@
+import { useEffect, useRef } from 'react'
+import { supplyChainVisibilityPage, trustStats } from '../../data/siteContent'
+import SectionLabel from '../ui/SectionLabel'
+import Reveal from '../ui/Reveal'
+import { gsap, prefersReducedMotion } from '../../lib/gsap'
+
+const { heading, subheading } = supplyChainVisibilityPage.trust
+
+export default function TrustStats() {
+  const gridRef = useRef(null)
+  const numberRefs = useRef([])
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      numberRefs.current.forEach((el, i) => {
+        if (el) el.textContent = trustStats[i].value
+      })
+      return
+    }
+
+    const ctx = gsap.context(() => {
+      const cards = gridRef.current.querySelectorAll('[data-card]')
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true, fastScrollEnd: true },
+        }
+      )
+
+      numberRefs.current.forEach((el, i) => {
+        if (!el) return
+        const target = Number(trustStats[i].value.replace(/,/g, ''))
+        const counter = { val: 0 }
+        gsap.to(counter, {
+          val: target,
+          duration: 1.8,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: gridRef.current, start: 'top 82%', once: true, fastScrollEnd: true },
+          onUpdate: () => {
+            el.textContent = Math.round(counter.val).toLocaleString('en-US')
+          },
+        })
+      })
+    }, gridRef)
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section className="bg-navy py-16 dark:bg-navy-deep themeblack:bg-black md:py-24">
+      <div className="container-px mx-auto max-w-container">
+        <Reveal stagger={0}>
+          <SectionLabel tone="onDark">Why Businesses Trust Mavio</SectionLabel>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-white md:text-4xl">{heading}</h2>
+          <p className="mt-2 max-w-xl text-sm text-white/70 md:text-base">{subheading}</p>
+        </Reveal>
+
+        <div ref={gridRef} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {trustStats.map((stat, i) => (
+            <div
+              key={stat.label}
+              data-card
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm md:text-left"
+            >
+              <p className="font-mono text-4xl font-black text-gold md:text-5xl">
+                <span ref={(el) => (numberRefs.current[i] = el)}>0</span>
+                {stat.suffix}
+              </p>
+              <p className="mt-2 text-sm text-white/70">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

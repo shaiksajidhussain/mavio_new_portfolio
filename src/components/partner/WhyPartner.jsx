@@ -11,6 +11,7 @@ export default function WhyPartner() {
   const content = whyChooseMavio[role === 'supplier' ? 'supplier' : 'buyer']
   const headingRef = useRef(null)
   const gridRef = useRef(null)
+  const cardsRef = useRef([])
   const firstRun = useRef(true)
 
   useEffect(() => {
@@ -40,6 +41,28 @@ export default function WhyPartner() {
     gsap.fromTo(cards, fromVars, { ...toVars, duration: 0.5, stagger: 0.08, overwrite: 'auto' })
   }, [role])
 
+  const handleTiltMove = (e, i) => {
+    if (prefersReducedMotion) return
+    const card = cardsRef.current[i]
+    if (!card) return
+    const rect = card.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width
+    const py = (e.clientY - rect.top) / rect.height
+    gsap.to(card, {
+      rotateX: (py - 0.5) * -12,
+      rotateY: (px - 0.5) * 12,
+      duration: 0.4,
+      ease: 'power2.out',
+      transformPerspective: 700,
+    })
+  }
+
+  const handleTiltLeave = (i) => {
+    const card = cardsRef.current[i]
+    if (!card) return
+    gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' })
+  }
+
   return (
     <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
       <div className="container-px mx-auto max-w-container">
@@ -57,16 +80,20 @@ export default function WhyPartner() {
         </Reveal>
 
         <div ref={gridRef} className="mt-10 grid gap-4 sm:grid-cols-2">
-          {content.points.map((p) => (
-            <div
-              key={p}
-              data-card
-              className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 shadow-card"
-            >
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
-                <Check size={16} />
-              </span>
-              <p className="text-sm leading-relaxed text-ink">{p}</p>
+          {content.points.map((p, i) => (
+            <div key={p} style={{ perspective: 700 }}>
+              <div
+                data-card
+                ref={(el) => (cardsRef.current[i] = el)}
+                onMouseMove={(e) => handleTiltMove(e, i)}
+                onMouseLeave={() => handleTiltLeave(i)}
+                className="flex items-start gap-3 rounded-2xl border border-line bg-surface p-5 shadow-card will-change-transform"
+              >
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
+                  <Check size={16} />
+                </span>
+                <p className="text-sm leading-relaxed text-ink">{p}</p>
+              </div>
             </div>
           ))}
         </div>

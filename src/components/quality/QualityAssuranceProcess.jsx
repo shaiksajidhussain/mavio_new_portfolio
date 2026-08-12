@@ -1,14 +1,14 @@
 import { useEffect, useRef } from 'react'
-import { Building2, Factory, Pill, Ship, Tag, UtensilsCrossed } from 'lucide-react'
-import { partnerPage } from '../../data/siteContent'
+import { BarChart3, FileCheck2, FlaskConical, PackageCheck, TestTubes } from 'lucide-react'
+import { qualityCompliancePage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
-const icons = { UtensilsCrossed, Building2, Pill, Factory, Ship, Tag }
-const { heading, subheading, items } = partnerPage.industries
+const icons = { TestTubes, FlaskConical, BarChart3, FileCheck2, PackageCheck }
+const { heading, subheading, steps } = qualityCompliancePage.qualityAssurance
 
-export default function Industries() {
+export default function QualityAssuranceProcess() {
   const sectionRef = useRef(null)
   const wrapRef = useRef(null)
   const pinRef = useRef(null)
@@ -56,13 +56,14 @@ export default function Industries() {
     if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        gsap.utils.toArray('[data-industry-panel]'),
-        { clipPath: 'inset(0% 100% 0% 0% round 24px)' },
+        gsap.utils.toArray('[data-qa-panel]'),
+        { opacity: 0, y: 30 },
         {
-          clipPath: 'inset(0% 0% 0% 0% round 0px)',
-          duration: 0.9,
-          stagger: 0.1,
-          ease: 'power3.inOut',
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power3.out',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true, fastScrollEnd: true },
         }
       )
@@ -71,43 +72,51 @@ export default function Industries() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative bg-bg-muted themeblack:bg-black">
+    <section ref={sectionRef} className="relative bg-bg themeblack:bg-black">
       <div className="container-px relative mx-auto max-w-container pt-16 md:pt-24">
         <Reveal stagger={0}>
-          <SectionLabel>Industries We've Collaborated With</SectionLabel>
+          <SectionLabel>Quality Assurance</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
-          <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
+          <p className="mt-2 max-w-2xl text-sm text-muted">{subheading}</p>
         </Reveal>
       </div>
 
       <div ref={wrapRef} className="relative mt-10 md:mt-14 lg:mt-0">
-        <div
-          ref={pinRef}
-          className="overflow-x-auto pb-10 scrollbar-hide lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:overflow-hidden lg:pb-0"
-        >
+        <div className="overflow-x-auto pb-10 scrollbar-hide lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:overflow-hidden lg:pb-0" ref={pinRef}>
           <div
             ref={trackRef}
-            className="container-px mx-auto flex max-w-container items-stretch gap-6 pr-10 md:gap-8"
+            className="container-px mx-auto flex max-w-container items-start gap-6 pr-10 md:gap-10 lg:min-h-[520px]"
           >
-            {items.map((item) => {
-              const Icon = icons[item.icon]
+            {steps.map((s, i) => {
+              const Icon = icons[s.icon]
               return (
                 <div
-                  key={item.name}
-                  data-industry-panel
-                  className="group relative flex w-[78vw] shrink-0 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 p-7 sm:w-[46vw] md:w-[320px] lg:h-[56vh] lg:min-h-[400px]"
+                  key={s.step}
+                  data-qa-panel
+                  className="group relative flex w-[78vw] shrink-0 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 p-7 sm:w-[52vw] md:w-[380px] md:p-8 lg:h-[62vh] lg:min-h-[440px]"
                 >
                   <img
-                    src={item.image}
-                    alt={item.name}
+                    src={s.image}
+                    alt={s.label}
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-navy-deep/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-navy-deep/10" />
+
+                  <span
+                    className="pointer-events-none absolute -top-4 right-4 font-display text-[7rem] font-black leading-none text-transparent md:text-[9rem]"
+                    style={{ WebkitTextStroke: '2px rgba(255,191,0,0.9)' }}
+                  >
+                    {String(s.step).padStart(2, '0')}
+                  </span>
 
                   <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
                     <Icon size={22} />
                   </span>
-                  <h3 className="relative mt-5 font-display text-xl font-bold text-white">{item.name}</h3>
+
+                  <h3 className="relative mt-6 font-display text-2xl font-bold text-white">{s.label}</h3>
+                  <p className="relative mt-3 max-w-xs text-sm leading-relaxed text-white/70">{s.description}</p>
+
+                  {i < steps.length - 1 && <span className="relative mt-6 h-[3px] w-10 rounded-full bg-gold-gradient" />}
                 </div>
               )
             })}

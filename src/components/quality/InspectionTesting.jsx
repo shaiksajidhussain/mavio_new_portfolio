@@ -1,15 +1,15 @@
 import { useEffect, useRef } from 'react'
-import { ClipboardCheck, Headphones, MessageCircle, Truck } from 'lucide-react'
-import { partnerPage } from '../../data/siteContent'
+import { Droplets, FlaskConical, PackageCheck, Ruler } from 'lucide-react'
+import { qualityCompliancePage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
-const icons = { ClipboardCheck, MessageCircle, Truck, Headphones }
-const { heading, subheading, points } = partnerPage.commitment
+const icons = { Droplets, FlaskConical, Ruler, PackageCheck }
+const { heading, subheading, points } = qualityCompliancePage.inspectionTesting
 const positions = [12.5, 37.5, 62.5, 87.5]
 
-function CommitmentPoint({ point }) {
+function CheckpointCard({ point }) {
   const Icon = icons[point.icon]
   return (
     <>
@@ -22,12 +22,10 @@ function CommitmentPoint({ point }) {
   )
 }
 
-export default function Commitment() {
+export default function InspectionTesting() {
   const sectionRef = useRef(null)
   const diagramRef = useRef(null)
   const pathsRef = useRef([])
-  const hubRef = useRef(null)
-  const hubRingRef = useRef(null)
 
   useEffect(() => {
     if (prefersReducedMotion) return
@@ -51,7 +49,7 @@ export default function Commitment() {
       })
 
       gsap.fromTo(
-        hubRef.current,
+        '[data-inspect-hub]',
         { opacity: 0, scale: 0.5 },
         {
           opacity: 1,
@@ -61,12 +59,6 @@ export default function Commitment() {
           scrollTrigger: { trigger: diagramRef.current, start: 'top 95%', once: true, fastScrollEnd: true },
         }
       )
-
-      gsap.to(hubRingRef.current, {
-        rotate: 360,
-        ease: 'none',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: true },
-      })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -74,17 +66,13 @@ export default function Commitment() {
   return (
     <section ref={sectionRef} className="container-px mx-auto max-w-container py-16 md:py-24">
       <Reveal stagger={0}>
-        <SectionLabel>Our Commitment To Every Procurement</SectionLabel>
+        <SectionLabel>Inspection & Testing</SectionLabel>
         <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 
       <div ref={diagramRef} className="relative mt-20 hidden pb-8 lg:block" style={{ height: 300 }}>
-        <svg
-          viewBox="0 0 100 60"
-          preserveAspectRatio="none"
-          className="absolute inset-0 h-[240px] w-full overflow-visible"
-        >
+        <svg viewBox="0 0 100 60" preserveAspectRatio="none" className="absolute inset-0 h-[240px] w-full overflow-visible">
           {positions.map((x, i) => (
             <path
               key={x}
@@ -100,15 +88,11 @@ export default function Commitment() {
           ))}
         </svg>
 
-        <div ref={hubRef} className="absolute left-1/2 top-0 -translate-x-1/2">
-          <div
-            ref={hubRingRef}
-            className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-dashed border-gold/50"
-          >
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gold-gradient text-center shadow-card">
-              <span className="font-display text-[10px] font-bold leading-tight text-navy-deep">MAVIO</span>
-            </div>
-          </div>
+        <div
+          data-inspect-hub
+          className="absolute left-1/2 top-0 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full bg-gold-gradient text-center shadow-card"
+        >
+          <span className="font-display text-[10px] font-bold leading-tight text-navy-deep">QC LAB</span>
         </div>
 
         {points.map((p, i) => (
@@ -117,7 +101,7 @@ export default function Commitment() {
             className="absolute top-[190px] w-56 -translate-x-1/2 rounded-2xl border border-line bg-surface p-5 shadow-card"
             style={{ left: `${positions[i]}%` }}
           >
-            <CommitmentPoint point={p} />
+            <CheckpointCard point={p} />
           </div>
         ))}
       </div>
@@ -125,7 +109,7 @@ export default function Commitment() {
       <Reveal as="div" stagger={0.1} className="mt-10 grid gap-5 sm:grid-cols-2 lg:hidden">
         {points.map((p) => (
           <div key={p.title} className="rounded-2xl border border-line bg-surface p-5 shadow-card">
-            <CommitmentPoint point={p} />
+            <CheckpointCard point={p} />
           </div>
         ))}
       </Reveal>

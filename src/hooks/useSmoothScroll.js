@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../lib/gsap'
+import { setLenisInstance } from '../lib/lenis'
 
 export function useSmoothScroll() {
   const lenisRef = useRef(null)
@@ -18,6 +19,7 @@ export function useSmoothScroll() {
       touchMultiplier: 1.4,
     })
     lenisRef.current = lenis
+    setLenisInstance(lenis)
 
     lenis.on('scroll', ScrollTrigger.update)
 
@@ -29,6 +31,7 @@ export function useSmoothScroll() {
       gsap.ticker.remove(tickerCallback)
       lenis.destroy()
       lenisRef.current = null
+      setLenisInstance(null)
     }
   }, [])
 

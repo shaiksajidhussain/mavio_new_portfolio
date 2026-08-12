@@ -3,20 +3,20 @@ import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
 import PartnerWithUs from './pages/PartnerWithUs'
+import QualityCompliance from './pages/QualityCompliance'
+import SupplyChainVisibility from './pages/SupplyChainVisibility'
+import ExportLogistics from './pages/ExportLogistics'
+import Faq from './pages/Faq'
+import Accreditations from './pages/Accreditations'
+import DownloadCentre from './pages/DownloadCentre'
+import Sustainability from './pages/Sustainability'
+import Contact from './pages/Contact'
+import Products from './pages/Products'
+import ProductDetail from './pages/ProductDetail'
 import PlaceholderPage from './pages/PlaceholderPage'
 
 const placeholderRoutes = [
-  { path: '/products', title: 'Products', blurb: 'A browsable catalogue of every category we export — page in progress.' },
-  { path: '/products/:slug', title: 'Product Category', blurb: 'Detailed specs, grades and origin info for this category — page in progress.' },
   { path: '/capabilities/why-mavio', title: 'Why Mavio', blurb: 'What sets our sourcing and export process apart — page in progress.' },
-  { path: '/capabilities/quality-compliance', title: 'Quality & Compliance', blurb: 'Our QC process and certification standards — page in progress.' },
-  { path: '/capabilities/supply-chain-visibility', title: 'Supply Chain Visibility', blurb: 'How buyers and suppliers track shipments end to end — page in progress.' },
-  { path: '/capabilities/export-logistics', title: 'Export & Logistics', blurb: 'Ports, carriers and documentation handling — page in progress.' },
-  { path: '/resources/faq', title: 'FAQ', blurb: 'Answers to common sourcing and export questions — page in progress.' },
-  { path: '/resources/accreditations', title: 'Accreditations & Certifications', blurb: 'Full certification documentation — page in progress.' },
-  { path: '/resources/download-centre', title: 'Download Centre', blurb: 'Brochures, spec sheets and compliance documents — page in progress.' },
-  { path: '/sustainability', title: 'Sustainability', blurb: 'Our approach to farm-level and environmental sustainability — page in progress.' },
-  { path: '/contact', title: 'Contact', blurb: 'Reach the Mavio Global team directly — page in progress.' },
 ]
 
 export default function App() {
@@ -26,6 +26,17 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/partner-with-us" element={<PartnerWithUs />} />
+        <Route path="/capabilities/quality-compliance" element={<QualityCompliance />} />
+        <Route path="/capabilities/supply-chain-visibility" element={<SupplyChainVisibility />} />
+        <Route path="/capabilities/export-logistics" element={<ExportLogistics />} />
+        <Route path="/resources/faq" element={<Faq />} />
+        <Route path="/resources/accreditations" element={<Accreditations />} />
+        <Route path="/resources/download-centre" element={<DownloadCentre />} />
+        <Route path="/sustainability" element={<Sustainability />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:categorySlug" element={<Products />} />
+        <Route path="/products/:categorySlug/:productSlug" element={<ProductDetail />} />
         {placeholderRoutes.map((r) => (
           <Route key={r.path} path={r.path} element={<PlaceholderPage title={r.title} blurb={r.blurb} />} />
         ))}

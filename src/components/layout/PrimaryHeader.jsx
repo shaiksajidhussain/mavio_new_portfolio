@@ -8,7 +8,14 @@ import { ScrollTrigger } from '../../lib/gsap'
 
 export default function PrimaryHeader() {
   const { pathname } = useLocation()
-  const hasDarkHero = pathname === '/' || pathname === '/partner-with-us'
+  const isProductDetail = /^\/products\/[^/]+\/[^/]+$/.test(pathname)
+  const hasDarkHero =
+    [
+      '/',
+      '/partner-with-us',
+      '/capabilities/quality-compliance',
+      '/capabilities/supply-chain-visibility',
+    ].includes(pathname) || isProductDetail
   const [scrolled, setScrolled] = useState(false)
   const [progress, setProgress] = useState(0)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -51,7 +58,7 @@ export default function PrimaryHeader() {
         <div className="container-px mx-auto flex h-20 max-w-container items-center justify-between">
           <Link to="/" className="shrink-0">
             <img
-              src="https://www.mavioglobal.com/assets/mavio-logo-DO_QIWb2.png"
+              src="https://www.mavioglobal.com/assets/SVG_Logo-header-CTSoE-ST.svg"
               alt="Mavio Global"
               className="h-10 w-auto md:h-11"
             />
@@ -75,7 +82,7 @@ export default function PrimaryHeader() {
                     <ChevronDown size={14} />
                   </button>
                   {openDropdown === item.label && (
-                    <div className="absolute left-0 top-full w-64 rounded-xl border border-line bg-surface p-2 shadow-card">
+                    <div className="absolute left-0 top-full z-20 w-64 rounded-xl border border-line bg-surface p-2 shadow-card">
                       {item.children.map((c) => (
                         <Link
                           key={c.to}

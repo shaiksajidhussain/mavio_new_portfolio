@@ -6,11 +6,21 @@ import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const featured = productCategories[0]
 
+const line1Words = ['We', 'export', 'more']
+const line2Words = [
+  { text: 'than' },
+  { text: 'spices' },
+  { text: '—' },
+  { text: 'we' },
+  { text: 'export' },
+  { text: 'trust.', gold: true },
+]
+
 export default function Hero() {
   const sectionRef = useRef(null)
   const imgRef = useRef(null)
   const markerRef = useRef(null)
-  const headingRef = useRef(null)
+  const wordsRef = useRef([])
   const copyRef = useRef(null)
   const cardRef = useRef(null)
 
@@ -22,9 +32,9 @@ export default function Hero() {
       tl.fromTo(imgRef.current, { scale: 1.15 }, { scale: 1, duration: 1.6, ease: 'power2.out' })
         .fromTo(markerRef.current, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3)
         .fromTo(
-          headingRef.current.children,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.9, stagger: 0.1 },
+          wordsRef.current,
+          { opacity: 0, y: '60%', filter: 'blur(10px)' },
+          { opacity: 1, y: '0%', filter: 'blur(0px)', duration: 0.8, stagger: 0.045, ease: 'power3.out' },
           0.5
         )
         .fromTo(copyRef.current.children, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, stagger: 0.08 }, 0.8)
@@ -73,13 +83,27 @@ export default function Hero() {
         <div className="container-px mx-auto mt-auto w-full max-w-container pb-14 pt-16 md:pb-20">
           <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <h1
-                ref={headingRef}
-                className="font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
-              >
-                <span className="block">We export more</span>
+              <h1 className="font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
                 <span className="block">
-                  than spices — we export <span className="text-gold-gradient">trust.</span>
+                  {line1Words.map((text, i) => (
+                    <span key={text} className="mr-[0.28em] inline-block overflow-hidden pb-1 align-top">
+                      <span ref={(el) => (wordsRef.current[i] = el)} className="inline-block">
+                        {text}
+                      </span>
+                    </span>
+                  ))}
+                </span>
+                <span className="block">
+                  {line2Words.map((w, i) => (
+                    <span key={w.text} className="mr-[0.28em] inline-block overflow-hidden pb-1 align-top last:mr-0">
+                      <span
+                        ref={(el) => (wordsRef.current[line1Words.length + i] = el)}
+                        className={`inline-block ${w.gold ? 'text-gold-gradient' : ''}`}
+                      >
+                        {w.text}
+                      </span>
+                    </span>
+                  ))}
                 </span>
               </h1>
 
