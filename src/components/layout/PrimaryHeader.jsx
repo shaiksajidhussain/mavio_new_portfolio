@@ -12,6 +12,8 @@ export default function PrimaryHeader() {
   const hasDarkHero =
     [
       '/',
+      '/about',
+      '/contact',
       '/partner-with-us',
       '/capabilities/quality-compliance',
       '/capabilities/supply-chain-visibility',

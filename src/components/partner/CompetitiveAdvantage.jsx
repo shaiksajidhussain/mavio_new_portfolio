@@ -8,7 +8,7 @@ import { gsap, prefersReducedMotion } from '../../lib/gsap'
 const icons = { Sprout, ShieldCheck, Timer, Handshake }
 const { heading, subheading, items } = partnerPage.competitiveAdvantage
 const [featured, top, bottom, wide] = items
-const farmStat = trustStats.find((s) => s.label === 'Direct Farm Partnerships')
+const farmStat = trustStats.find((s) => s.label === 'Countries Served')
 
 export default function CompetitiveAdvantage() {
   const gridRef = useRef(null)

@@ -1,20 +1,11 @@
 import { useRef } from 'react'
-import {
-  ClipboardList,
-  FileCheck2,
-  Globe,
-  Navigation,
-  PackageCheck,
-  Ship,
-  Snowflake,
-  Warehouse,
-} from 'lucide-react'
+import { Boxes, Plane, Ship, Shuffle } from 'lucide-react'
 import { exportLogisticsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
-const icons = { ClipboardList, FileCheck2, Ship, Warehouse, Snowflake, Navigation, Globe, PackageCheck }
+const icons = { Ship, Plane, Shuffle, Boxes }
 const { heading, subheading, items } = exportLogisticsPage.capabilities
 
 export default function LogisticsCapabilities() {
@@ -50,7 +41,7 @@ export default function LogisticsCapabilities() {
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 
-      <Reveal as="div" stagger={0.06} className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+      <Reveal as="div" stagger={0.06} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item, i) => {
           const Icon = icons[item.icon]
           return (
@@ -65,6 +56,9 @@ export default function LogisticsCapabilities() {
                   <Icon size={22} />
                 </span>
                 <p className="font-display text-sm font-semibold text-ink">{item.label}</p>
+                {item.description && (
+                  <p className="text-xs leading-relaxed text-muted">{item.description}</p>
+                )}
               </div>
             </div>
           )

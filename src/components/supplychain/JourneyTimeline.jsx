@@ -134,7 +134,7 @@ export default function JourneyTimeline() {
                       {String(s.step).padStart(2, '0')}
                     </p>
                     <h3 className="mt-1 font-display text-lg font-bold text-ink">{s.label}</h3>
-                    <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-muted">{s.description}</p>
+                    <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-muted">{s.longDescription}</p>
                   </div>
                 )
               })}

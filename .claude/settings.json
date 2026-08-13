@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ' *)",
+      "Bash(timeout 90 npx --yes playwright install chromium --with-deps)",
+      "Bash(npx --yes playwright install chromium)",
+      "Bash(mkdir -p /private/tmp/claude-501/-Users-sanju-Desktop-sanju-space-Personal-Space-Work-mavio-new-portfolio/2612cf34-3aa5-4843-a851-1dd5b6298844/scratchpad)",
+      "Bash(npm ls *)",
+      "Bash(npm init *)",
+      "Bash(mkdir -p screenshots)",
+      "Bash(node verify.js)",
+      "Bash(lsof -ti:5174 -sTCP:LISTEN)",
+      "Bash(xargs -r kill)",
+      "Bash(lsof -ti:5175 -sTCP:LISTEN)"
+    ]
+  }
+}

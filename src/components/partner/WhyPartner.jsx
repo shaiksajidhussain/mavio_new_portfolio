@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Check } from 'lucide-react'
-import { whyChooseMavio } from '../../data/siteContent'
+import { partnerPage, whyChooseMavio } from '../../data/siteContent'
 import { usePartnerRole } from '../../context/PartnerRoleContext'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
@@ -9,6 +9,7 @@ import { gsap, prefersReducedMotion } from '../../lib/gsap'
 export default function WhyPartner() {
   const { role } = usePartnerRole()
   const content = whyChooseMavio[role === 'supplier' ? 'supplier' : 'buyer']
+  const intro = partnerPage.whyPartner[role === 'supplier' ? 'supplier' : 'buyer']
   const headingRef = useRef(null)
   const gridRef = useRef(null)
   const cardsRef = useRef([])
@@ -75,8 +76,16 @@ export default function WhyPartner() {
             ref={headingRef}
             className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl"
           >
-            {content.heading}
+            {intro.heading}
           </h2>
+        </Reveal>
+
+        <Reveal stagger={0} delay={0.08} className="mt-4 max-w-3xl space-y-3">
+          {intro.paragraphs.map((p) => (
+            <p key={p} className="text-sm leading-relaxed text-muted md:text-base">
+              {p}
+            </p>
+          ))}
         </Reveal>
 
         <div ref={gridRef} className="mt-10 grid gap-4 sm:grid-cols-2">

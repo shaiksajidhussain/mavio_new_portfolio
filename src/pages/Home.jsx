@@ -1,10 +1,12 @@
 import Hero from '../components/home/Hero'
-import TrustStrip from '../components/home/TrustStrip'
 import ProductCategories from '../components/home/ProductCategories'
+import OperationsGallery from '../components/home/OperationsGallery'
+import CTABanner from '../components/home/CTABanner'
 import SupplyChainShowcase from '../components/home/SupplyChainShowcase'
 import Traceability from '../components/home/Traceability'
 import AboutTeaser from '../components/home/AboutTeaser'
 import WhyChooseMavio from '../components/home/WhyChooseMavio'
+import TradeCapabilities from '../components/home/TradeCapabilities'
 import Accreditations from '../components/home/Accreditations'
 import Testimonials from '../components/home/Testimonials'
 import GlobalMap from '../components/home/GlobalMap'
@@ -16,16 +18,18 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustStrip />
-      <ProductCategories />
-     
-      <Traceability />
-       <SupplyChainShowcase />
       <AboutTeaser />
+      <ProductCategories />
+      <OperationsGallery />
+      <CTABanner />
+
+      <Traceability />
+      <SupplyChainShowcase />
+      <TradeCapabilities />
       <WhyChooseMavio />
       
-      <Accreditations />
       <Testimonials />
+      <Accreditations />
       <GlobalMap />
 
       <section className="container-px mx-auto max-w-container py-16 md:py-24">

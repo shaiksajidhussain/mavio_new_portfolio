@@ -1,19 +1,19 @@
 import { useEffect, useRef } from 'react'
-import { ArrowRight, Check } from 'lucide-react'
-import { brand, hero, productCategories } from '../../data/siteContent'
+import { ArrowRight, Award, Check, Globe2, MapPin, Radar } from 'lucide-react'
+import { brand, hero, productCategories, trustStats } from '../../data/siteContent'
 import Button from '../ui/Button'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const featured = productCategories[0]
+const statIcons = [Radar, MapPin, Globe2, Award]
 
-const line1Words = ['We', 'export', 'more']
+const line1Words = ["India's", 'Leading', 'and']
 const line2Words = [
-  { text: 'than' },
-  { text: 'spices' },
-  { text: '—' },
-  { text: 'we' },
-  { text: 'export' },
-  { text: 'trust.', gold: true },
+  { text: 'Trusted' },
+  { text: 'Gateway' },
+  { text: 'to' },
+  { text: 'Global' },
+  { text: 'Markets', gold: true },
 ]
 
 export default function Hero() {
@@ -23,9 +23,16 @@ export default function Hero() {
   const wordsRef = useRef([])
   const copyRef = useRef(null)
   const cardRef = useRef(null)
+  const statsRef = useRef(null)
+  const numberRefs = useRef([])
 
   useEffect(() => {
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion) {
+      numberRefs.current.forEach((el, i) => {
+        if (el) el.textContent = trustStats[i].value
+      })
+      return
+    }
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
@@ -44,6 +51,22 @@ export default function Hero() {
           { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.6)' },
           0.9
         )
+        .fromTo(statsRef.current, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7 }, 1.0)
+
+      numberRefs.current.forEach((el, i) => {
+        if (!el) return
+        const target = Number(trustStats[i].value.replace(/,/g, ''))
+        const counter = { val: 0 }
+        gsap.to(counter, {
+          val: target,
+          duration: 1.6,
+          ease: 'power2.out',
+          delay: 1.1,
+          onUpdate: () => {
+            el.textContent = Math.round(counter.val).toLocaleString('en-US')
+          },
+        })
+      })
 
       gsap.to(imgRef.current, {
         yPercent: 12,
@@ -57,7 +80,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-20 flex min-h-screen flex-col overflow-hidden"
+      className="relative -mt-20 flex min-h-screen flex-col overflow-hidden sm:-mt-[7.25rem]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <img
@@ -67,17 +90,17 @@ export default function Hero() {
           className="h-full w-full scale-110 object-cover"
         />
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-navy-deep/80 via-navy-deep/45 to-navy-deep/85" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/90 via-transparent to-navy-deep/30" />
 
-      <div className="flex flex-1 flex-col pt-20">
+      <div className="flex flex-1 flex-col pt-20 sm:pt-[7.25rem]">
         <div
           ref={markerRef}
           className="container-px mx-auto mt-8 flex w-full max-w-container items-center justify-between border-b border-white/20 pb-4 text-white/70"
         >
           <span className="eyebrow">Est. {brand.founded}</span>
           <span className="eyebrow hidden sm:inline">{brand.ports.join(' · ')}</span>
-          <span className="eyebrow text-gold">Spice &amp; Export Trading</span>
+          <span className="eyebrow text-gold">Global Trade &amp; Logistics</span>
         </div>
 
         <div className="container-px mx-auto mt-auto w-full max-w-container pb-14 pt-16 md:pb-20">
@@ -159,6 +182,28 @@ export default function Hero() {
                   <ArrowRight size={16} />
                 </Button>
               </div>
+            </div>
+          </div>
+
+          <div ref={statsRef} className="mt-10 w-full md:mt-12">
+            <div className="grid grid-cols-2 gap-6 rounded-2xl border border-white/15 bg-black/25 px-6 py-6 backdrop-blur-md sm:px-8 md:grid-cols-4 md:gap-4">
+              {trustStats.map((stat, i) => {
+                const Icon = statIcons[i]
+                return (
+                  <div key={stat.label} className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-gold">
+                      <Icon size={18} />
+                    </span>
+                    <div>
+                      <p className="font-mono text-xl font-semibold text-white sm:text-2xl">
+                        <span ref={(el) => (numberRefs.current[i] = el)}>0</span>
+                        {stat.suffix}
+                      </p>
+                      <p className="text-xs text-white/60">{stat.label}</p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>

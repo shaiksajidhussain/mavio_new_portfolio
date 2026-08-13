@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { ClipboardCheck, Headphones, MessageCircle, Truck } from 'lucide-react'
 import { partnerPage } from '../../data/siteContent'
+import { usePartnerRole } from '../../context/PartnerRoleContext'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { ClipboardCheck, MessageCircle, Truck, Headphones }
-const { heading, subheading, points } = partnerPage.commitment
+const { heading } = partnerPage.commitment
 const positions = [12.5, 37.5, 62.5, 87.5]
 
 function CommitmentPoint({ point }) {
@@ -23,6 +24,8 @@ function CommitmentPoint({ point }) {
 }
 
 export default function Commitment() {
+  const { role } = usePartnerRole()
+  const { subheading, points } = partnerPage.commitment[role === 'supplier' ? 'supplier' : 'buyer']
   const sectionRef = useRef(null)
   const diagramRef = useRef(null)
   const pathsRef = useRef([])

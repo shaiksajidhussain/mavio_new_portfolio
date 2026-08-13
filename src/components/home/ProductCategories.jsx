@@ -1,109 +1,134 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, FlaskConical, Gem, Package, Ship, Wheat } from 'lucide-react'
 import { productCategories } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 
+const icons = {
+  spices: Package,
+  seafood: Ship,
+  'fresh-produce': Wheat,
+  chemicals: FlaskConical,
+  minerals: Gem,
+  'industrial-metals': Package,
+}
+
 export default function ProductCategories() {
   const trackRef = useRef(null)
-  const [canPrev, setCanPrev] = useState(false)
-  const [canNext, setCanNext] = useState(true)
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const updateArrows = () => {
-    const el = trackRef.current
-    if (!el) return
-    setCanPrev(el.scrollLeft > 4)
-    setCanNext(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
-  }
-
-  useEffect(() => {
-    updateArrows()
-    const el = trackRef.current
-    if (!el) return
-    el.addEventListener('scroll', updateArrows, { passive: true })
-    window.addEventListener('resize', updateArrows)
-    return () => {
-      el.removeEventListener('scroll', updateArrows)
-      window.removeEventListener('resize', updateArrows)
-    }
-  }, [])
-
-  const scrollByCard = (dir) => {
+  const updateActive = () => {
     const el = trackRef.current
     if (!el) return
     const card = el.querySelector('[data-card]')
-    const amount = card ? card.getBoundingClientRect().width + 20 : el.clientWidth * 0.8
-    el.scrollBy({ left: dir * amount, behavior: 'smooth' })
+    if (!card) return
+    const cardWidth = card.getBoundingClientRect().width + 20
+    setActiveIndex(Math.round(el.scrollLeft / cardWidth))
+  }
+
+  useEffect(() => {
+    const el = trackRef.current
+    if (!el) return
+    el.addEventListener('scroll', updateActive, { passive: true })
+    window.addEventListener('resize', updateActive)
+    return () => {
+      el.removeEventListener('scroll', updateActive)
+      window.removeEventListener('resize', updateActive)
+    }
+  }, [])
+
+  const scrollToIndex = (i) => {
+    const el = trackRef.current
+    if (!el) return
+    const card = el.querySelector('[data-card]')
+    const amount = card ? card.getBoundingClientRect().width + 20 : 0
+    el.scrollTo({ left: i * amount, behavior: 'smooth' })
   }
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container-px mx-auto flex max-w-container items-end justify-between">
+      <div className="container-px mx-auto max-w-container text-center">
         <Reveal stagger={0}>
-          <SectionLabel>Product Categories</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
-            What we export
+          <div className="flex items-center justify-center gap-2 text-gold-deep">
+            <span className="h-px w-6 bg-gold-deep" />
+            <span className="eyebrow">Product Categories</span>
+            <Package size={14} />
+          </div>
+          <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+            What Do We{' '}
+            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
+              Trade?
+            </span>
           </h2>
+          <p className="mx-auto mt-3 max-w-lg text-sm text-muted md:text-base">
+            Here are the categories we work with closely — checked, handled, and ready to move.
+          </p>
         </Reveal>
-
-        <div className="hidden shrink-0 items-center gap-3 md:flex">
-          <button
-            type="button"
-            onClick={() => scrollByCard(-1)}
-            disabled={!canPrev}
-            aria-label="Previous"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-ink transition-colors disabled:opacity-30 enabled:hover:border-gold enabled:hover:text-gold"
-          >
-            <ArrowLeft size={18} />
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollByCard(1)}
-            disabled={!canNext}
-            aria-label="Next"
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-navy text-white transition-colors disabled:opacity-30 enabled:hover:bg-gold enabled:hover:text-navy-deep dark:bg-gold dark:text-navy-deep"
-          >
-            <ArrowRight size={18} />
-          </button>
-        </div>
       </div>
 
       <Reveal
         as="div"
         stagger={0.1}
         ref={trackRef}
-        className="container-px mx-auto mt-10 flex max-w-container snap-x snap-mandatory gap-5 overflow-x-auto pb-2 scrollbar-hide"
+        className="container-px mx-auto mt-14 flex max-w-container snap-x snap-mandatory gap-5 overflow-x-auto pb-4 scrollbar-hide"
       >
-        {productCategories.map((cat) => (
-          <Link
-            key={cat.slug}
-            data-card
-            to={`/products/${cat.slug}`}
-            className="group relative aspect-[3/4] w-[78vw] shrink-0 snap-start overflow-hidden rounded-2xl shadow-card sm:w-[46vw] md:w-[30vw] lg:w-[22vw]"
-          >
-            <img
-              src={cat.image}
-              alt={cat.name}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/85 via-navy-deep/15 to-transparent" />
-
-            <div className="relative flex h-full flex-col justify-between p-5">
-              <div>
-                <p className="eyebrow text-gold">{cat.name}</p>
-                <h3 className="mt-2 font-display text-xl font-bold leading-tight text-white">
-                  {cat.tagline}
-                </h3>
+        {productCategories.map((cat) => {
+          const Icon = icons[cat.slug] || Package
+          return (
+            <Link
+              key={cat.slug}
+              data-card
+              to={`/products/${cat.slug}`}
+              className="group w-[78vw] shrink-0 snap-start sm:w-[46vw] md:w-[30vw] lg:w-[22vw]"
+            >
+              <div className="relative h-56 overflow-hidden rounded-t-full">
+                <img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-              <ArrowUpRight
-                size={20}
-                className="self-end text-white/80 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold"
-              />
-            </div>
-          </Link>
-        ))}
+
+              <div className="relative -mt-7 flex flex-col items-center rounded-2xl border border-line bg-surface px-5 pb-6 pt-11 text-center shadow-card">
+                <span className="absolute -top-7 flex h-14 w-14 items-center justify-center rounded-full bg-gold-gradient text-navy-deep shadow-card">
+                  <Icon size={22} />
+                </span>
+                <h3 className="font-display text-lg font-bold text-ink">{cat.name}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{cat.description}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-deep">
+                  Read More
+                  <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+                <span className="mt-5 h-1 w-10 rounded-full bg-gold-gradient opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
+            </Link>
+          )
+        })}
       </Reveal>
+
+      <div className="mt-8 flex items-center justify-center gap-2">
+        {productCategories.map((cat, i) => (
+          <button
+            key={cat.slug}
+            type="button"
+            onClick={() => scrollToIndex(i)}
+            aria-label={`Go to ${cat.name}`}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              activeIndex === i ? 'w-6 bg-gold-gradient' : 'w-2 bg-line hover:bg-gold-deep/50'
+            }`}
+          />
+        ))}
+      </div>
+
+      <p className="container-px mx-auto mt-10 max-w-container text-center text-sm text-muted">
+        We’ve shipped one product today, another tomorrow, and something new the day after.{' '}
+        <br className="hidden sm:block" />
+        So if you don’t see yours here,{' '}
+        <Link to="/contact" className="font-semibold text-gold-deep hover:underline">
+          why not tell us what you need?
+        </Link>
+      </p>
     </section>
   )
 }

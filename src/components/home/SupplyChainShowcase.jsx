@@ -38,11 +38,13 @@ export default function SupplyChainShowcase() {
 
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
-          <SectionLabel>Supply Chain Showcase</SectionLabel>
+          <SectionLabel>Supply Pathway</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
-            The full journey, farm to freight
+            Supply Pathway
           </h2>
-          <p className="mt-2 text-sm text-muted">Scroll to follow a shipment through every stage.</p>
+          <p className="mt-2 text-sm text-muted">
+            A pathway tailored to deliver quality, safety, and compliance at every step.
+          </p>
         </Reveal>
 
         <div className="mt-10 overflow-hidden rounded-[2rem] border border-line/70 bg-surface/70 shadow-card backdrop-blur-2xl md:mt-14">

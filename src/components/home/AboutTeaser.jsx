@@ -1,15 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { Calendar, MapPin, Ship } from 'lucide-react'
-import { about, brand } from '../../data/siteContent'
-import SectionLabel from '../ui/SectionLabel'
+import { ArrowRight, CheckCircle2, Ship } from 'lucide-react'
+import { about, testimonials, trustStats } from '../../data/siteContent'
+import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
-const facts = [
-  { icon: Calendar, label: 'Founded', value: String(brand.founded) },
-  { icon: MapPin, label: 'Headquarters', value: brand.hq },
-  { icon: Ship, label: 'Export ports', value: brand.ports.join(' & ') },
-]
+const experienceStat = trustStats.find((s) => s.label === 'Years of Experience')
+const proofAvatars = testimonials.buyer.slice(0, 3)
 
 export default function AboutTeaser() {
   const imgWrapRef = useRef(null)
@@ -33,42 +30,90 @@ export default function AboutTeaser() {
 
   return (
     <section className="container-px mx-auto max-w-container pb-16 pt-24 md:pb-24 md:pt-32">
-      <Reveal stagger={0}>
-        <SectionLabel>Our Story</SectionLabel>
-        <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
-          About Mavio Global
-        </h2>
-      </Reveal>
-
-      <div className="mt-10 grid items-center gap-10 md:grid-cols-2 md:gap-14">
-        <div className="relative shadow-card">
-          <div ref={imgWrapRef} className="overflow-hidden rounded-3xl border border-line">
-            <img src={about.image} alt={about.imageAlt} className="aspect-[4/3] w-full object-cover" />
+      <div className="grid items-center gap-16 md:grid-cols-2 md:gap-10">
+        <Reveal stagger={0} className="relative">
+          <div aria-hidden className="absolute -left-4 -top-4 grid grid-cols-5 gap-1.5 opacity-40">
+            {Array.from({ length: 15 }).map((_, i) => (
+              <span key={i} className="h-1 w-1 rounded-full bg-gold-deep" />
+            ))}
           </div>
-          <Reveal delay={0.9} stagger={0} className="absolute bottom-4 left-4">
-            <div className="flex items-center gap-2 rounded-full bg-surface/90 px-4 py-2 shadow-card backdrop-blur-sm">
-              <Ship size={14} className="text-gold-deep" />
-              <span className="font-mono text-xs font-semibold text-ink">
-                Est. {brand.founded} &middot; {brand.hq}
-              </span>
+
+          <div className="relative">
+            <div ref={imgWrapRef} className="w-[80%] overflow-hidden rounded-3xl border-4 border-surface shadow-card">
+              <img src={about.image} alt={about.imageAlt} className="aspect-[4/5] w-full object-cover" />
             </div>
-          </Reveal>
-        </div>
+
+            <Reveal delay={0.3} stagger={0} className="absolute -right-2 bottom-16 w-[52%] sm:bottom-20">
+              <div className="overflow-hidden rounded-3xl border-4 border-surface shadow-card">
+                <img
+                  src={about.secondaryImage}
+                  alt={about.secondaryImageAlt}
+                  className="aspect-square w-full object-cover"
+                />
+              </div>
+            </Reveal>
+
+            {experienceStat && (
+              <Reveal delay={0.5} stagger={0} className="absolute -right-4 top-10 sm:top-14">
+                <div className="flex w-36 flex-col items-start gap-0.5 rounded-2xl bg-navy-deep p-4 text-left shadow-card sm:w-40">
+                  <Ship size={16} className="mb-1 text-gold" />
+                  <p className="font-display text-2xl font-bold text-white">
+                    {experienceStat.value}
+                    {experienceStat.suffix}
+                  </p>
+                  <p className="text-xs leading-tight text-white/70">{experienceStat.label}</p>
+                </div>
+              </Reveal>
+            )}
+          </div>
+        </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="font-display text-2xl font-semibold italic leading-snug text-gold-deep md:text-3xl">
-            {about.heading}
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">{about.body}</p>
+          <div className="flex items-center gap-2 text-gold-deep">
+            <span className="h-px w-6 bg-gold-deep" />
+            <span className="eyebrow">About Us</span>
+            <Ship size={14} />
+          </div>
 
-          <div className="mt-7 grid grid-cols-3 gap-4 border-t border-line pt-6">
-            {facts.map((f) => (
-              <div key={f.label}>
-                <f.icon size={16} className="text-gold-deep" />
-                <p className="mt-2 text-sm font-semibold text-ink">{f.value}</p>
-                <p className="text-xs text-muted">{f.label}</p>
+          <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
+            {about.heading}{' '}
+            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
+              {about.headingAccent}
+            </span>
+          </h2>
+
+          <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted md:text-base">{about.body}</p>
+
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+            {about.highlights.map((h) => (
+              <div key={h} className="flex items-center gap-2.5">
+                <CheckCircle2 size={18} className="shrink-0 text-gold-deep" />
+                <span className="text-sm font-medium text-ink">{h}</span>
               </div>
             ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center gap-6">
+            <Button to="/about" variant="primary">
+              Discover More
+              <ArrowRight size={16} />
+            </Button>
+
+            <div className="flex items-center gap-3">
+              <div className="flex -space-x-3">
+                {proofAvatars.map((t) => (
+                  <img
+                    key={t.avatar}
+                    src={t.avatar}
+                    alt=""
+                    className="h-9 w-9 rounded-full border-2 border-surface object-cover"
+                  />
+                ))}
+              </div>
+              <p className="max-w-[9rem] text-xs font-medium leading-snug text-muted">
+                Trusted across 25+ countries
+              </p>
+            </div>
           </div>
         </Reveal>
       </div>
