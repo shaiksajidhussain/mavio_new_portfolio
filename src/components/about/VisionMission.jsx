@@ -46,29 +46,34 @@ export default function VisionMission() {
           </h2>
         </Reveal>
 
-        <div ref={panelsRef} className="mt-10 grid gap-6 md:grid-cols-2">
-          {cards.map((c) => (
+        <div ref={panelsRef} className="mt-10 flex flex-col gap-6">
+          {cards.map((c, i) => (
             <div
               key={c.title}
               data-panel
-              className="group relative flex min-h-[440px] flex-col justify-end overflow-hidden rounded-3xl shadow-card md:min-h-[520px]"
+              className={`flex flex-col overflow-hidden rounded-3xl border border-line shadow-card md:min-h-[340px] ${
+                i % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'
+              }`}
             >
-              <img
-                src={c.image}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-navy-deep/10" />
-
-              <div className="relative p-8 md:p-10">
+              <div className="flex flex-col justify-center bg-surface p-8 md:w-1/2 md:p-12">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 text-gold">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full border border-gold-deep/40 text-gold-deep">
                     <c.icon size={18} />
                   </span>
                   <span className="font-mono text-sm tracking-wide text-gold-deep/80">{c.index}</span>
                 </div>
-                <h3 className="mt-6 font-display text-3xl font-bold text-white md:text-4xl">{c.title}</h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-white/75 md:text-base">{c.body}</p>
+                <h3 className="mt-6 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
+                  Our <span className="text-gold-gradient">{c.title}</span>
+                </h3>
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-muted md:text-base">{c.body}</p>
+              </div>
+
+              <div className="group relative min-h-[240px] overflow-hidden md:w-1/2">
+                <img
+                  src={c.image}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
             </div>
           ))}

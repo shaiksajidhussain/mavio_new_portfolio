@@ -3,6 +3,7 @@ import { Handshake, ShieldCheck, Sprout, Timer } from 'lucide-react'
 import { partnerPage, trustStats } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { Sprout, ShieldCheck, Timer, Handshake }
@@ -73,7 +74,8 @@ export default function CompetitiveAdvantage() {
   const WideIcon = icons[wide.icon]
 
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Our Competitive Advantage</SectionLabel>
         <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>

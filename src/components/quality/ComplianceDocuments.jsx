@@ -3,6 +3,7 @@ import { FileCheck2, FlaskConical, Globe, Leaf, ShieldCheck } from 'lucide-react
 import { qualityCompliancePage, trustStats } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { FileCheck2, Globe, Leaf, ShieldCheck, FlaskConical }
@@ -36,7 +37,8 @@ export default function ComplianceDocuments() {
   const FeaturedIcon = icons[featured.icon]
 
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground />
       <Reveal stagger={0}>
         <SectionLabel>Compliance Documents</SectionLabel>
         <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>

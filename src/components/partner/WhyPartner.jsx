@@ -4,6 +4,7 @@ import { partnerPage, whyChooseMavio } from '../../data/siteContent'
 import { usePartnerRole } from '../../context/PartnerRoleContext'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 export default function WhyPartner() {
@@ -65,7 +66,8 @@ export default function WhyPartner() {
   }
 
   return (
-    <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Why Partner With Mavio</SectionLabel>

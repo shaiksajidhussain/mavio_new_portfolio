@@ -1,118 +1,46 @@
-import { useEffect, useRef } from 'react'
 import { Building2, Factory, Pill, Ship, Tag, UtensilsCrossed } from 'lucide-react'
 import { partnerPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
-import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import RouteBackground from '../ui/RouteBackground'
 
 const icons = { UtensilsCrossed, Building2, Pill, Factory, Ship, Tag }
 const { heading, subheading, items } = partnerPage.industries
 
 export default function Industries() {
-  const sectionRef = useRef(null)
-  const wrapRef = useRef(null)
-  const pinRef = useRef(null)
-  const trackRef = useRef(null)
-
-  useEffect(() => {
-    if (prefersReducedMotion) return
-
-    const mm = gsap.matchMedia()
-
-    mm.add('(min-width: 1024px)', () => {
-      const track = trackRef.current
-      const lastPanel = track.lastElementChild
-      const total = Math.max(
-        lastPanel.getBoundingClientRect().right - pinRef.current.getBoundingClientRect().right + 40,
-        0
-      )
-
-      if (wrapRef.current) {
-        wrapRef.current.style.height = `${pinRef.current.offsetHeight + total}px`
-      }
-
-      const tween = gsap.to(track, {
-        x: -total,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: wrapRef.current,
-          start: 'top top',
-          end: () => `+=${total}`,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-        },
-      })
-
-      return () => {
-        tween.scrollTrigger?.kill()
-        if (wrapRef.current) wrapRef.current.style.height = ''
-      }
-    })
-
-    return () => mm.revert()
-  }, [])
-
-  useEffect(() => {
-    if (prefersReducedMotion) return
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        gsap.utils.toArray('[data-industry-panel]'),
-        { clipPath: 'inset(0% 100% 0% 0% round 24px)' },
-        {
-          clipPath: 'inset(0% 0% 0% 0% round 0px)',
-          duration: 0.9,
-          stagger: 0.1,
-          ease: 'power3.inOut',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', once: true, fastScrollEnd: true },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section ref={sectionRef} className="relative bg-bg-muted themeblack:bg-black">
-      <div className="container-px relative mx-auto max-w-container pt-16 md:pt-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
+      <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Industries We've Collaborated With</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
           <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
         </Reveal>
-      </div>
 
-      <div ref={wrapRef} className="relative mt-10 md:mt-14 lg:mt-0">
-        <div
-          ref={pinRef}
-          className="overflow-x-auto pb-10 scrollbar-hide lg:sticky lg:top-0 lg:flex lg:h-screen lg:flex-col lg:justify-center lg:overflow-hidden lg:pb-0"
-        >
-          <div
-            ref={trackRef}
-            className="container-px mx-auto flex max-w-container items-stretch gap-6 pr-10 md:gap-8"
-          >
-            {items.map((item) => {
-              const Icon = icons[item.icon]
-              return (
-                <div
-                  key={item.name}
-                  data-industry-panel
-                  className="group relative flex w-[78vw] shrink-0 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 p-7 sm:w-[46vw] md:w-[320px] lg:h-[56vh] lg:min-h-[400px]"
-                >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-navy-deep/10" />
+        <Reveal as="div" stagger={0.08} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item) => {
+            const Icon = icons[item.icon]
+            return (
+              <div
+                key={item.name}
+                className="group relative flex h-64 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 p-6"
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-navy-deep/10" />
 
-                  <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-                    <Icon size={22} />
-                  </span>
-                  <h3 className="relative mt-5 font-display text-xl font-bold text-white">{item.name}</h3>
-                </div>
-              )
-            })}
-          </div>
-        </div>
+                <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
+                  <Icon size={20} />
+                </span>
+                <h3 className="relative mt-4 font-display text-lg font-bold text-white">{item.name}</h3>
+              </div>
+            )
+          })}
+        </Reveal>
       </div>
     </section>
   )

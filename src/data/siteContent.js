@@ -496,7 +496,7 @@ export const whyChooseMavio = {
 export const partnerPage = {
   hero: {
     eyebrow: 'Partner With Us',
-    heading: 'Choose your role below to explore how we create reliable growth together.',
+    heading: 'Partner with us',
     subheading: 'Select your stream to see how we build long-term value together.',
     image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
     imageAlt: 'Container cranes loading freight at a busy port',
@@ -522,11 +522,6 @@ export const partnerPage = {
     subheading: 'What sets us apart from other trading houses and brokers.',
     items: [
       {
-        icon: 'Sprout',
-        title: 'Friction-Free Trade Growth',
-        description: 'Reach global markets and grow with confidence, while we take care of the complexities behind every shipment.',
-      },
-      {
         icon: 'ShieldCheck',
         title: 'On-Ground Quality Assurance',
         description: 'We check quality before loading, so the work put into your product is protected all the way to delivery.',
@@ -540,6 +535,11 @@ export const partnerPage = {
         icon: 'Handshake',
         title: 'Full End-to-End Ownership',
         description: 'From paperwork and customs to shipping, we handle the details so you don’t have to carry the burden.',
+      },
+      {
+        icon: 'Sprout',
+        title: 'Friction-Free Trade Growth',
+        description: 'Reach global markets and grow with confidence, while we take care of the complexities behind every shipment.',
       },
     ],
   },
@@ -602,6 +602,28 @@ export const qualityCompliancePage = {
   qualityCommitments: {
     heading: 'Our Quality Commitments',
     body: 'Every product has its own specifications, and every market has its own requirements. We understand both before we make any commitment, ensuring quality expectations are clear from the start. From product selection to final preparation, we maintain consistent quality at every stage. So every requirement is understood, followed, and delivered with confidence.',
+    points: [
+      {
+        icon: 'ClipboardList',
+        title: 'Every Product, Every Market',
+        description: 'Every product has its own specifications, and every market has its own requirements.',
+      },
+      {
+        icon: 'Eye',
+        title: 'Clarity From The Start',
+        description: 'We understand both before we make any commitment, ensuring quality expectations are clear from the start.',
+      },
+      {
+        icon: 'Layers',
+        title: 'Consistent At Every Stage',
+        description: 'From product selection to final preparation, we maintain consistent quality at every stage.',
+      },
+      {
+        icon: 'ShieldCheck',
+        title: 'Delivered With Confidence',
+        description: 'So every requirement is understood, followed, and delivered with confidence.',
+      },
+    ],
   },
   qualityAssurance: {
     heading: 'Quality Assurance',

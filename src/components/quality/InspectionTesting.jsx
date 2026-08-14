@@ -3,6 +3,7 @@ import { Droplets, FlaskConical, PackageCheck, Ruler } from 'lucide-react'
 import { qualityCompliancePage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { Droplets, FlaskConical, Ruler, PackageCheck }
@@ -64,7 +65,8 @@ export default function InspectionTesting() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section ref={sectionRef} className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Inspection & Testing</SectionLabel>
         <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>

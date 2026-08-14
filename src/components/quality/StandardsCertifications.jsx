@@ -3,6 +3,7 @@ import { ShieldCheck } from 'lucide-react'
 import { accreditations } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 export default function StandardsCertifications() {
@@ -17,13 +18,18 @@ export default function StandardsCertifications() {
   const loop = [...accreditations, ...accreditations]
 
   return (
-    <section className="border-y border-line bg-bg-muted py-16 themeblack:bg-black md:py-20">
+    <section className="relative overflow-hidden border-y border-line bg-bg-muted py-16 themeblack:bg-black md:py-20">
+      <RouteBackground />
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Standards & Certifications</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
             Held to every standard our buyers require
           </h2>
+          <p className="mt-2 max-w-xl text-sm text-muted md:text-base">
+            We align our operations with recognized global safety and trade standards. Holding these certifications
+            ensures smooth customs clearance and easy entry into international markets.
+          </p>
         </Reveal>
       </div>
 

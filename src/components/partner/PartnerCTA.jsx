@@ -4,17 +4,14 @@ import { ArrowRight } from 'lucide-react'
 import { accreditations, partnerPage } from '../../data/siteContent'
 import { usePartnerRole } from '../../context/PartnerRoleContext'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../../lib/gsap'
-
-const BLOB_A = 'M100,20 C150,20 180,60 180,100 C180,150 140,180 100,180 C50,180 20,140 20,100 C20,50 60,20 100,20 Z'
-const BLOB_B = 'M100,10 C160,30 190,70 170,110 C190,160 130,190 90,180 C40,190 10,140 30,90 C10,40 60,10 100,10 Z'
 
 export default function PartnerCTA() {
   const { role } = usePartnerRole()
   const content = partnerPage.cta[role === 'supplier' ? 'supplier' : 'buyer']
   const panelRef = useRef(null)
   const sectionRef = useRef(null)
-  const blobRef = useRef(null)
   const headingRef = useRef(null)
   const skewTo = useRef(null)
   const marqueeRef = useRef(null)
@@ -29,8 +26,6 @@ export default function PartnerCTA() {
   useEffect(() => {
     if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
-      gsap.to(blobRef.current, { attr: { d: BLOB_B }, duration: 5, ease: 'sine.inOut', yoyo: true, repeat: -1 })
-
       if (marqueeRef.current) {
         gsap.to(marqueeRef.current, { xPercent: -50, duration: 24, ease: 'none', repeat: -1 })
       }
@@ -70,7 +65,8 @@ export default function PartnerCTA() {
   const loop = [...accreditations, ...accreditations]
 
   return (
-    <section ref={sectionRef} className="container-px mx-auto max-w-container pb-16 md:pb-24">
+    <section ref={sectionRef} className="relative overflow-hidden container-px mx-auto max-w-container pb-16 pt-8 md:pb-24 md:pt-14">
+      <RouteBackground />
       <Reveal
         as="div"
         stagger={0}
@@ -85,14 +81,6 @@ export default function PartnerCTA() {
             maskImage: 'radial-gradient(ellipse 70% 100% at 50% 50%, black, transparent)',
           }}
         />
-
-        <svg
-          aria-hidden
-          viewBox="0 0 200 200"
-          className="pointer-events-none absolute -left-16 -top-16 h-72 w-72 text-gold opacity-[0.1] md:h-96 md:w-96"
-        >
-          <path ref={blobRef} d={BLOB_A} fill="currentColor" />
-        </svg>
 
         <div ref={panelRef} className="relative mx-auto max-w-xl">
           <h2 ref={headingRef} className="font-display text-3xl font-semibold text-white md:text-4xl">

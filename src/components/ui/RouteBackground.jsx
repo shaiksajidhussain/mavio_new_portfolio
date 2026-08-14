@@ -1,4 +1,4 @@
-import { Plane, MapPin, Ship } from 'lucide-react'
+import { Plane, MapPin, Ship, Truck } from 'lucide-react'
 
 export default function RouteBackground({ flip = false, className = '' }) {
   return (
@@ -60,6 +60,12 @@ export default function RouteBackground({ flip = false, className = '' }) {
         strokeWidth={1.5}
         className="absolute left-[18%] top-[50%] animate-float-slow text-navy"
         style={{ '--float-rotate': '-6deg' }}
+      />
+      <Truck
+        size={18}
+        strokeWidth={1.5}
+        className="absolute left-[73%] top-[86%] animate-float-fast text-navy"
+        style={{ '--float-rotate': '0deg' }}
       />
     </div>
   )
