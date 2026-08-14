@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { ShieldCheck } from 'lucide-react'
 import { accreditations } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 export default function Accreditations() {
@@ -21,7 +22,8 @@ export default function Accreditations() {
   const loop = [...accreditations, ...accreditations]
 
   return (
-    <section className="border-y border-line bg-bg-muted py-10">
+    <section className="relative border-y border-line bg-bg-muted py-10">
+      <RouteBackground />
       <div className="container-px mx-auto mb-5 max-w-container">
         <SectionLabel>Accreditations</SectionLabel>
       </div>

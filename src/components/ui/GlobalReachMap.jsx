@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
-import { MapPin, Plane } from 'lucide-react'
+import { MapPin, Plane, Ship } from 'lucide-react'
 import { brand, originCoords, regions } from '../../data/siteContent'
 import { useTheme } from '../../context/ThemeContext'
 import Button from './Button'
@@ -49,6 +49,15 @@ export default function GlobalReachMap({ className = '' }) {
           strokeWidth={1.5}
           className="animate-float text-gold-deep/50"
           style={{ '--float-rotate': '-25deg' }}
+        />
+      </span>
+      <span className="pointer-events-none absolute -bottom-5 right-10 z-30 hidden sm:block">
+        <Ship
+          aria-hidden
+          size={26}
+          strokeWidth={1.5}
+          className="animate-float-slow text-gold-deep/50"
+          style={{ '--float-rotate': '-4deg' }}
         />
       </span>
 

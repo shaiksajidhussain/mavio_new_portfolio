@@ -4,6 +4,7 @@ import DottedMap from 'dotted-map/without-countries'
 import worldMapData from '../../data/worldMap.json'
 import { testimonials, trustStats } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 const featured = testimonials.buyer[1]
 const experienceStat = trustStats.find((s) => s.label === 'Years of Experience')
@@ -33,6 +34,7 @@ export default function AboutTestimonial() {
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-70"
       />
+      <RouteBackground flip />
       <p
         aria-hidden
         className="pointer-events-none absolute -bottom-6 left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-display text-[5rem] font-black text-navy/5 dark:text-white/5 sm:text-[8rem]"

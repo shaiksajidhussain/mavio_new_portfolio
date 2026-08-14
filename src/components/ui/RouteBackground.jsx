@@ -1,4 +1,4 @@
-import { Plane, MapPin } from 'lucide-react'
+import { Plane, MapPin, Ship } from 'lucide-react'
 
 export default function RouteBackground({ flip = false, className = '' }) {
   return (
@@ -55,6 +55,12 @@ export default function RouteBackground({ flip = false, className = '' }) {
       />
       <MapPin size={20} strokeWidth={1.5} className="absolute left-[64%] top-[70%] text-navy" />
       <MapPin size={16} strokeWidth={1.5} className="absolute left-[30%] top-[14%] text-navy" />
+      <Ship
+        size={19}
+        strokeWidth={1.5}
+        className="absolute left-[18%] top-[50%] animate-float-slow text-navy"
+        style={{ '--float-rotate': '-6deg' }}
+      />
     </div>
   )
 }

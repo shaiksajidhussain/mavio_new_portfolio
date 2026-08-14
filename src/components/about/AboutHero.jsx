@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Plane } from 'lucide-react'
 import DottedMap from 'dotted-map/without-countries'
 import worldMapData from '../../data/worldMap.json'
 import { aboutPage } from '../../data/siteContent'
@@ -30,6 +30,25 @@ export default function AboutHero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
       />
+
+      <span className="pointer-events-none absolute right-[12%] top-[22%] hidden sm:block">
+        <Plane
+          aria-hidden
+          size={26}
+          strokeWidth={1.5}
+          className="animate-float-slow text-gold/70"
+          style={{ '--float-rotate': '35deg' }}
+        />
+      </span>
+      <span className="pointer-events-none absolute right-[22%] bottom-[18%] hidden md:block">
+        <Plane
+          aria-hidden
+          size={18}
+          strokeWidth={1.5}
+          className="animate-float text-gold/50"
+          style={{ '--float-rotate': '-20deg' }}
+        />
+      </span>
 
       <div className="container-px relative mx-auto w-full max-w-container pt-20 sm:pt-[7.25rem]">
         <Reveal stagger={0.08} className="border-l-2 border-gold-deep pl-6">
