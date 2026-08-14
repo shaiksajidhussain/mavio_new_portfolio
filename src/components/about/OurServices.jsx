@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, FlaskConical, Radar, Ship } from 'lucide-react'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 const services = [
   {
@@ -28,7 +29,8 @@ const services = [
 
 export default function OurServices() {
   return (
-    <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
       <div className="container-px mx-auto max-w-container text-center">
         <Reveal stagger={0}>
           <div className="flex items-center justify-center gap-2 text-gold-deep">
@@ -56,7 +58,7 @@ export default function OurServices() {
               </div>
               <div className="relative rounded-b-2xl border border-t-0 border-line bg-surface p-6 pr-20 shadow-card">
                 <span
-                  className="absolute -top-9 right-0 flex h-16 w-16 items-center justify-center bg-navy-deep text-gold"
+                  className="absolute -top-9 right-0 flex h-16 w-16 items-center justify-center bg-navy-deep text-gold transition-colors duration-300 group-hover:bg-gold-deep group-hover:text-navy-deep"
                   style={{ clipPath: 'polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
                 >
                   <s.icon size={22} />

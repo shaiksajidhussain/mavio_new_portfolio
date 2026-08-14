@@ -35,9 +35,24 @@ export default function RouteBackground({ flip = false, className = '' }) {
         />
       </svg>
 
-      <Plane size={22} strokeWidth={1.5} className="absolute left-[46%] top-[33%] -rotate-45 text-navy" />
-      <Plane size={18} strokeWidth={1.5} className="absolute left-[87%] top-[24%] rotate-[25deg] text-navy" />
-      <Plane size={16} strokeWidth={1.5} className="absolute left-[9%] top-[78%] -rotate-[15deg] text-navy" />
+      <Plane
+        size={22}
+        strokeWidth={1.5}
+        className="absolute left-[46%] top-[33%] animate-float text-navy"
+        style={{ '--float-rotate': '-45deg' }}
+      />
+      <Plane
+        size={18}
+        strokeWidth={1.5}
+        className="absolute left-[87%] top-[24%] animate-float-slow text-navy"
+        style={{ '--float-rotate': '25deg' }}
+      />
+      <Plane
+        size={16}
+        strokeWidth={1.5}
+        className="absolute left-[9%] top-[78%] animate-float-fast text-navy"
+        style={{ '--float-rotate': '-15deg' }}
+      />
       <MapPin size={20} strokeWidth={1.5} className="absolute left-[64%] top-[70%] text-navy" />
       <MapPin size={16} strokeWidth={1.5} className="absolute left-[30%] top-[14%] text-navy" />
     </div>

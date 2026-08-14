@@ -29,6 +29,14 @@
   --line: 38 38 38;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-float-fast {
+    animation: none;
+  }
+}
+
 .custom-cursor-active,
 .custom-cursor-active * {
   cursor: none !important;

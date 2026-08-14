@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Ship } from 'lucide-react'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 const heroImage = {
   src: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1600&q=80',
@@ -28,7 +29,8 @@ const rowImages = [
 
 export default function AboutGallery() {
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground flip />
       <Reveal as="div" stagger={0.08} className="grid gap-5 md:grid-cols-3">
         <div className="flex flex-col justify-center rounded-3xl border border-line bg-surface p-8 shadow-card md:p-10">
           <div className="flex items-center gap-2 text-gold-deep">

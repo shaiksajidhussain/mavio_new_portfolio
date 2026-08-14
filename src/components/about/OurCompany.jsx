@@ -2,6 +2,7 @@ import { ArrowRight, Globe2, Headphones, Phone, Ship } from 'lucide-react'
 import { about, aboutPage, brand, footer } from '../../data/siteContent'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 const features = [
   {
@@ -18,7 +19,8 @@ const features = [
 
 export default function OurCompany() {
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground />
       <div className="grid items-center gap-16 md:grid-cols-2 md:gap-10">
         <Reveal delay={0.1}>
           <div className="flex items-center gap-2 text-gold-deep">

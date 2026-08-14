@@ -1,11 +1,13 @@
 import { brand } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
-import WorldMapVisual from '../ui/WorldMapVisual'
+import RouteBackground from '../ui/RouteBackground'
+import GlobalReachMap from '../ui/GlobalReachMap'
 
 export default function GlobalNetwork() {
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Our Global Network</SectionLabel>
         <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
@@ -17,7 +19,7 @@ export default function GlobalNetwork() {
         </p>
       </Reveal>
 
-      <WorldMapVisual className="mt-10" />
+      <GlobalReachMap className="mt-10" />
     </section>
   )
 }

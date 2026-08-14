@@ -36,6 +36,17 @@ export default {
       boxShadow: {
         card: '0 1px 2px rgb(11 36 66 / 0.04), 0 8px 24px -12px rgb(11 36 66 / 0.12)',
       },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translate(0, 0) rotate(var(--float-rotate, 0deg))' },
+          '50%': { transform: 'translate(0, -14px) rotate(var(--float-rotate, 0deg))' },
+        },
+      },
+      animation: {
+        float: 'float 5s ease-in-out infinite',
+        'float-slow': 'float 7s ease-in-out infinite',
+        'float-fast': 'float 3.5s ease-in-out infinite',
+      },
     },
   },
   plugins: [

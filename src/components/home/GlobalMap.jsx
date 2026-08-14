@@ -1,7 +1,7 @@
 import { brand } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
-import WorldMapVisual from '../ui/WorldMapVisual'
+import GlobalReachMap from '../ui/GlobalReachMap'
 
 export default function GlobalMap() {
   return (
@@ -17,7 +17,7 @@ export default function GlobalMap() {
           </p>
         </Reveal>
 
-        <WorldMapVisual className="mt-10" />
+        <GlobalReachMap className="mt-10" />
       </div>
     </section>
   )

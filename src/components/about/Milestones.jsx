@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { aboutPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const count = aboutPage.milestones.length
@@ -99,6 +100,7 @@ export default function Milestones() {
       className="relative bg-bg-muted py-16 themeblack:bg-black md:py-0 md:min-h-[calc(100vh_+_var(--ms-scroll))]"
       style={{ '--ms-scroll': `${count * 260}px` }}
     >
+      <RouteBackground />
       <div className="container-px relative mx-auto max-w-container md:sticky md:top-0 md:flex md:h-screen md:flex-col md:justify-center md:py-20">
         <div className="flex items-end justify-between">
           <Reveal stagger={0}>
