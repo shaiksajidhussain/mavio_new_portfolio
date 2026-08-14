@@ -80,7 +80,7 @@ export default function Testimonials() {
             as="div"
             stagger={0.1}
             ref={trackRef}
-            className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 pr-1 scrollbar-hide"
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-8 pr-1 scrollbar-hide"
           >
             {items.map((t) => (
               <figure

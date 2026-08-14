@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { brand, footer } from '../../data/siteContent'
 
-export default function Footer() {
+export default function SecondaryFooter() {
   return (
-    <footer className="bg-navy-deep text-white/80">
+    <div className="bg-navy-deep text-white/80">
       <div className="container-px mx-auto grid max-w-container gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="font-display text-lg font-semibold text-white">
@@ -45,13 +45,6 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-
-      <div className="border-t border-white/10">
-        <div className="container-px mx-auto flex max-w-container flex-col items-center justify-between gap-2 py-5 text-xs text-white/40 sm:flex-row">
-          <span>© {new Date().getFullYear()} {brand.name}. All rights reserved.</span>
-          <span>Est. {brand.founded} · {brand.hq}</span>
-        </div>
-      </div>
-    </footer>
+    </div>
   )
 }

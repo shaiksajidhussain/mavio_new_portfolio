@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import SecondaryHeader from './SecondaryHeader'
 import PrimaryHeader from './PrimaryHeader'
-import Footer from './Footer'
+import SecondaryFooter from './SecondaryFooter'
+import PrimaryFooter from './PrimaryFooter'
 import CustomCursor from '../ui/CustomCursor'
 import EnquiryModal from '../products/EnquiryModal'
 import { EnquiryModalProvider } from '../../context/EnquiryModalContext'
@@ -31,7 +32,8 @@ export default function Layout() {
       <main ref={mainRef} className="pt-20 sm:pt-[7.25rem]">
         <Outlet />
       </main>
-      <Footer />
+      <SecondaryFooter />
+      <PrimaryFooter />
       <EnquiryModal />
     </EnquiryModalProvider>
   )

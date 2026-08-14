@@ -1,11 +1,10 @@
 import { useEffect, useRef } from 'react'
-import { ArrowRight, Award, Check, Globe2, MapPin, Radar } from 'lucide-react'
-import { brand, hero, productCategories, trustStats } from '../../data/siteContent'
+import { ArrowRight, Check } from 'lucide-react'
+import { brand, hero, productCategories } from '../../data/siteContent'
 import Button from '../ui/Button'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const featured = productCategories[0]
-const statIcons = [Radar, MapPin, Globe2, Award]
 
 const line1Words = ["India's", 'Leading', 'and']
 const line2Words = [
@@ -23,16 +22,9 @@ export default function Hero() {
   const wordsRef = useRef([])
   const copyRef = useRef(null)
   const cardRef = useRef(null)
-  const statsRef = useRef(null)
-  const numberRefs = useRef([])
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      numberRefs.current.forEach((el, i) => {
-        if (el) el.textContent = trustStats[i].value
-      })
-      return
-    }
+    if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
@@ -51,22 +43,6 @@ export default function Hero() {
           { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.6)' },
           0.9
         )
-        .fromTo(statsRef.current, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7 }, 1.0)
-
-      numberRefs.current.forEach((el, i) => {
-        if (!el) return
-        const target = Number(trustStats[i].value.replace(/,/g, ''))
-        const counter = { val: 0 }
-        gsap.to(counter, {
-          val: target,
-          duration: 1.6,
-          ease: 'power2.out',
-          delay: 1.1,
-          onUpdate: () => {
-            el.textContent = Math.round(counter.val).toLocaleString('en-US')
-          },
-        })
-      })
 
       gsap.to(imgRef.current, {
         yPercent: 12,
@@ -182,28 +158,6 @@ export default function Hero() {
                   <ArrowRight size={16} />
                 </Button>
               </div>
-            </div>
-          </div>
-
-          <div ref={statsRef} className="mt-10 w-full md:mt-12">
-            <div className="grid grid-cols-2 gap-6 rounded-2xl border border-white/15 bg-black/25 px-6 py-6 backdrop-blur-md sm:px-8 md:grid-cols-4 md:gap-4">
-              {trustStats.map((stat, i) => {
-                const Icon = statIcons[i]
-                return (
-                  <div key={stat.label} className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-gold">
-                      <Icon size={18} />
-                    </span>
-                    <div>
-                      <p className="font-mono text-xl font-semibold text-white sm:text-2xl">
-                        <span ref={(el) => (numberRefs.current[i] = el)}>0</span>
-                        {stat.suffix}
-                      </p>
-                      <p className="text-xs text-white/60">{stat.label}</p>
-                    </div>
-                  </div>
-                )
-              })}
             </div>
           </div>
         </div>
