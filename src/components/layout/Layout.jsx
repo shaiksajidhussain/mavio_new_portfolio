@@ -7,13 +7,17 @@ import PrimaryFooter from './PrimaryFooter'
 import CustomCursor from '../ui/CustomCursor'
 import EnquiryModal from '../products/EnquiryModal'
 import { EnquiryModalProvider } from '../../context/EnquiryModalContext'
-import { useSmoothScroll } from '../../hooks/useSmoothScroll'
-import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import { gsap, ScrollTrigger, prefersReducedMotion } from '../../lib/gsap'
 
 export default function Layout() {
-  useSmoothScroll()
   const location = useLocation()
   const mainRef = useRef(null)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh())
+    return () => cancelAnimationFrame(id)
+  }, [location.pathname])
 
   useEffect(() => {
     if (!mainRef.current || prefersReducedMotion) return

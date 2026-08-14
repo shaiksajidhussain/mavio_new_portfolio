@@ -1,10 +1,11 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, Check } from 'lucide-react'
 import { brand, hero, productCategories } from '../../data/siteContent'
 import Button from '../ui/Button'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const featured = productCategories[0]
+const SLIDE_INTERVAL = 3000
 
 const line1Words = ["India's", 'Leading', 'and']
 const line2Words = [
@@ -17,18 +18,26 @@ const line2Words = [
 
 export default function Hero() {
   const sectionRef = useRef(null)
-  const imgRef = useRef(null)
+  const imgWrapRef = useRef(null)
   const markerRef = useRef(null)
   const wordsRef = useRef([])
   const copyRef = useRef(null)
   const cardRef = useRef(null)
+  const [activeSlide, setActiveSlide] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveSlide((i) => (i + 1) % hero.images.length)
+    }, SLIDE_INTERVAL)
+    return () => clearInterval(id)
+  }, [])
 
   useEffect(() => {
     if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-      tl.fromTo(imgRef.current, { scale: 1.15 }, { scale: 1, duration: 1.6, ease: 'power2.out' })
+      tl.fromTo(imgWrapRef.current, { scale: 1.15 }, { scale: 1, duration: 1.6, ease: 'power2.out' })
         .fromTo(markerRef.current, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3)
         .fromTo(
           wordsRef.current,
@@ -44,7 +53,7 @@ export default function Hero() {
           0.9
         )
 
-      gsap.to(imgRef.current, {
+      gsap.to(imgWrapRef.current, {
         yPercent: 12,
         ease: 'none',
         scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
@@ -59,12 +68,18 @@ export default function Hero() {
       className="relative -mt-20 flex min-h-screen flex-col overflow-hidden sm:-mt-[7.25rem]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img
-          ref={imgRef}
-          src={hero.image}
-          alt={hero.imageAlt}
-          className="h-full w-full scale-110 object-cover"
-        />
+        <div ref={imgWrapRef} className="relative h-full w-full scale-110">
+          {hero.images.map((img, i) => (
+            <img
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              className={`absolute inset-0 h-full w-full object-cover transition-opacity ease-in-out ${
+                prefersReducedMotion ? 'duration-0' : 'duration-[1200ms]'
+              } ${i === activeSlide ? 'opacity-100' : 'opacity-0'}`}
+            />
+          ))}
+        </div>
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/90 via-transparent to-navy-deep/30" />

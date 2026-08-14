@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Quote, Ship, Star } from 'lucide-react'
 import { testimonials } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 export default function Testimonials() {
   const [role, setRole] = useState('buyer')
@@ -40,7 +41,8 @@ export default function Testimonials() {
   }
 
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground />
       <div className="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1fr)_2fr] md:gap-8">
         <Reveal stagger={0}>
           <div className="flex items-center gap-2 text-gold-deep">

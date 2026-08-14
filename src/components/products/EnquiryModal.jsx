@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CheckCircle2, X } from 'lucide-react'
 import { useEnquiryModal } from '../../context/EnquiryModalContext'
-import { startLenis, stopLenis } from '../../lib/lenis'
 import Button from '../ui/Button'
 
 const incoterms = ['FOB', 'CIF', 'CFR', 'EXW', 'DDP']
@@ -32,12 +31,10 @@ export default function EnquiryModal() {
   useEffect(() => {
     if (!mounted) return
     document.body.style.overflow = 'hidden'
-    stopLenis()
     const onKey = (e) => e.key === 'Escape' && closeEnquiry()
     window.addEventListener('keydown', onKey)
     return () => {
       document.body.style.overflow = ''
-      startLenis()
       window.removeEventListener('keydown', onKey)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

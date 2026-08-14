@@ -31,6 +31,7 @@ export const nav = [
       { label: 'Quality & Compliance', to: '/capabilities/quality-compliance' },
       { label: 'Supply Chain Visibility', to: '/capabilities/supply-chain-visibility' },
       { label: 'Export & Logistics', to: '/capabilities/export-logistics' },
+      { label: 'Sustainability', to: '/sustainability' },
     ],
   },
   {
@@ -41,7 +42,6 @@ export const nav = [
       { label: 'Download Centre', to: '/resources/download-centre' },
     ],
   },
-  { label: 'Sustainability', to: '/sustainability' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -53,9 +53,24 @@ export const hero = {
   points: ['100% Live Shipment Tracking', 'Strict Lab Quality Testing', 'Unlimited Product Sourcing Capacity'],
   primaryCta: { label: 'Explore Our Products', to: '/products' },
   secondaryCta: { label: 'Partner With Us', to: '/partner-with-us' },
-  image:
-    'https://images.unsplash.com/photo-1759272840538-ae4b07214c71?auto=format&fit=crop&w=2200&q=80',
-  imageAlt: 'Shipping containers stacked at port during golden hour',
+  images: [
+    {
+      src: 'https://images.unsplash.com/photo-1759272840538-ae4b07214c71?auto=format&fit=crop&w=2200&q=80',
+      alt: 'Shipping containers stacked at port during golden hour',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
+      alt: 'Container cranes loading freight at a busy port',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=2200&q=80',
+      alt: 'Sun-dried spices at a sorting yard',
+    },
+    {
+      src: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=2200&q=80',
+      alt: 'Cargo ship docked at a busy port terminal',
+    },
+  ],
   secondaryImage:
     'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=500&q=80',
   secondaryImageAlt: 'Sun-dried spices at a sorting yard',

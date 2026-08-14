@@ -3,6 +3,7 @@ import { Check } from 'lucide-react'
 import { whyChooseMavio } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 export default function WhyChooseMavio() {
@@ -20,7 +21,8 @@ export default function WhyChooseMavio() {
   }, [role])
 
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-20">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-20">
+      <RouteBackground flip />
       <SectionLabel>Why Choose Mavio</SectionLabel>
 
       <Reveal

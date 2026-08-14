@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, Ship } from 'lucide-react'
 import { about, testimonials, trustStats } from '../../data/siteContent'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const experienceStat = trustStats.find((s) => s.label === 'Years of Experience')
@@ -29,7 +30,8 @@ export default function AboutTeaser() {
   }, [])
 
   return (
-    <section className="container-px mx-auto max-w-container pb-16 pt-24 md:pb-24 md:pt-32">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container pb-16 pt-24 md:pb-24 md:pt-32">
+      <RouteBackground />
       <div className="grid items-center gap-16 md:grid-cols-2 md:gap-10">
         <Reveal stagger={0} className="relative">
           <div aria-hidden className="absolute -left-4 -top-4 grid grid-cols-5 gap-1.5 opacity-40">

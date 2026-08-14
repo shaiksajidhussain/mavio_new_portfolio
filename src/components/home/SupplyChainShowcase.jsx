@@ -3,6 +3,7 @@ import { FileCheck2, MapPin, Package, PackageCheck, Ship, ShieldCheck, Sprout, T
 import { supplyChainSteps, supplyChainVisibilityPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { Sprout, ShieldCheck, Package, FileCheck2, Truck, PackageCheck }
@@ -35,6 +36,7 @@ export default function SupplyChainShowcase() {
     <section ref={sectionRef} className="relative overflow-hidden bg-bg py-16 themeblack:bg-black md:py-24">
       <div className="pointer-events-none absolute -left-32 top-0 -z-10 h-96 w-96 rounded-full bg-gold/20 blur-[120px]" />
       <div className="pointer-events-none absolute -right-32 bottom-0 -z-10 h-96 w-96 rounded-full bg-navy/20 blur-[120px] dark:bg-blue-500/10" />
+      <RouteBackground />
 
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>

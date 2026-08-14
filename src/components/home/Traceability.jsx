@@ -3,6 +3,7 @@ import { ShoppingCart, Store, Truck } from 'lucide-react'
 import { traceability } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { Buyer: ShoppingCart, Seller: Store, Logistics: Truck }
@@ -63,7 +64,8 @@ export default function Traceability() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section ref={sectionRef} className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Traceability</SectionLabel>
         <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">

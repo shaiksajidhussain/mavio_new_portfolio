@@ -14,6 +14,7 @@ import LeadForm from '../components/home/LeadForm'
 // import CTABanner from '../components/home/CTABanner'
 // import TradeCapabilities from '../components/home/TradeCapabilities'
 import Reveal from '../components/ui/Reveal'
+import RouteBackground from '../components/ui/RouteBackground'
 
 export default function Home() {
   return (
@@ -49,7 +50,8 @@ export default function Home() {
       <GlobalMap />
 
       {/* 11 & 12. FAQ + Dynamic Lead Form */}
-      <section className="container-px mx-auto max-w-container py-16 md:py-24">
+      <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+        <RouteBackground flip />
         <Reveal as="div" stagger={0.15} className="grid gap-8 lg:grid-cols-2">
           <FAQ />
           <LeadForm />

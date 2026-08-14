@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { ChevronDown, Menu, X } from 'lucide-react'
 import { nav } from '../../data/siteContent'
 import Button from '../ui/Button'
@@ -7,24 +7,11 @@ import ThemeToggle from '../ui/ThemeToggle'
 import { ScrollTrigger } from '../../lib/gsap'
 
 export default function PrimaryHeader() {
-  const { pathname } = useLocation()
-  const isProductDetail = /^\/products\/[^/]+\/[^/]+$/.test(pathname)
-  const hasDarkHero =
-    [
-      '/',
-      '/about',
-      '/contact',
-      '/partner-with-us',
-      '/capabilities/quality-compliance',
-      '/capabilities/supply-chain-visibility',
-    ].includes(pathname) || isProductDetail
   const [scrolled, setScrolled] = useState(false)
   const [progress, setProgress] = useState(0)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
   const closeTimer = useRef(null)
-
-  const transparent = hasDarkHero && !scrolled && !mobileOpen
 
   useEffect(() => {
     const st = ScrollTrigger.create({
@@ -48,12 +35,8 @@ export default function PrimaryHeader() {
 
   return (
     <header
-      className={`transition-colors duration-300 ${
-        transparent
-          ? 'bg-transparent'
-          : scrolled || mobileOpen
-            ? 'border-b border-line bg-bg/90 backdrop-blur-md'
-            : 'bg-bg/60 backdrop-blur-sm'
+      className={`bg-navy-deep transition-shadow duration-300 ${
+        scrolled || mobileOpen ? 'shadow-lg shadow-black/20' : ''
       }`}
     >
       <div className="relative">
@@ -66,7 +49,7 @@ export default function PrimaryHeader() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex">
+          <nav className="hidden items-center gap-8 lg:flex">
             {nav.map((item) =>
               item.children ? (
                 <div
@@ -75,13 +58,13 @@ export default function PrimaryHeader() {
                   onMouseEnter={() => openMenu(item.label)}
                   onMouseLeave={scheduleClose}
                 >
-                  <button
-                    className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-gold ${
-                      transparent ? 'text-white/90' : 'text-ink dark:hover:text-gold'
-                    }`}
-                  >
+                  <button className="flex items-center gap-1 text-[15px] font-semibold text-white/90 transition-colors hover:text-gold">
                     {item.label}
-                    <ChevronDown size={14} />
+                    <ChevronDown
+                      size={15}
+                      strokeWidth={2.5}
+                      className={`transition-transform duration-200 ${openDropdown === item.label ? 'rotate-180' : ''}`}
+                    />
                   </button>
                   {openDropdown === item.label && (
                     <div className="absolute left-0 top-full z-20 w-64 rounded-xl border border-line bg-surface p-2 shadow-card">
@@ -103,12 +86,8 @@ export default function PrimaryHeader() {
                   to={item.to}
                   end={item.to === '/'}
                   className={({ isActive }) =>
-                    `text-sm font-medium transition-colors hover:text-gold ${
-                      isActive
-                        ? 'text-gold'
-                        : transparent
-                          ? 'text-white/90'
-                          : 'text-ink dark:hover:text-gold'
+                    `text-[15px] font-semibold transition-colors hover:text-gold ${
+                      isActive ? 'text-gold' : 'text-white/90'
                     }`
                   }
                 >
@@ -118,15 +97,13 @@ export default function PrimaryHeader() {
             )}
           </nav>
 
-          <div className="flex items-center gap-3">
-            <ThemeToggle tone={transparent ? 'light' : 'default'} className="hidden sm:flex" />
+          <div className="flex items-center gap-4 border-l border-white/15 pl-4">
+            <ThemeToggle tone="light" className="hidden sm:flex" />
             <Button to="/partner-with-us" variant="primary" className="hidden sm:inline-flex">
               Partner With Us
             </Button>
             <button
-              className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors lg:hidden ${
-                transparent ? 'border-white/30 text-white' : 'border-line text-ink'
-              }`}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white transition-colors lg:hidden"
               onClick={() => setMobileOpen((o) => !o)}
               aria-label="Toggle menu"
             >
@@ -139,18 +116,18 @@ export default function PrimaryHeader() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-line bg-bg px-5 py-4 lg:hidden">
+        <div className="border-t border-white/10 bg-navy-deep px-5 py-4 lg:hidden">
           <nav className="flex flex-col gap-1">
             {nav.map((item) =>
               item.children ? (
                 <div key={item.label} className="py-1">
-                  <p className="eyebrow py-2 text-muted">{item.label}</p>
+                  <p className="eyebrow py-2 text-white/50">{item.label}</p>
                   {item.children.map((c) => (
                     <Link
                       key={c.to}
                       to={c.to}
                       onClick={() => setMobileOpen(false)}
-                      className="block rounded-lg px-2 py-2 text-sm text-ink hover:bg-bg-muted"
+                      className="block rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10"
                     >
                       {c.label}
                     </Link>
@@ -161,7 +138,7 @@ export default function PrimaryHeader() {
                   key={item.to}
                   to={item.to}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-2 py-2 text-sm font-medium text-ink hover:bg-bg-muted"
+                  className="rounded-lg px-2 py-2 text-sm font-semibold text-white/90 hover:bg-white/10"
                 >
                   {item.label}
                 </Link>
@@ -169,7 +146,7 @@ export default function PrimaryHeader() {
             )}
           </nav>
           <div className="mt-4 flex items-center gap-3">
-            <ThemeToggle />
+            <ThemeToggle tone="light" />
             <Button to="/partner-with-us" variant="primary" onClick={() => setMobileOpen(false)}>
               Partner With Us
             </Button>

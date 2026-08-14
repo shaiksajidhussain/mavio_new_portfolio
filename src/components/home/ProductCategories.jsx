@@ -4,6 +4,7 @@ import { ArrowRight, FlaskConical, Gem, Package, Ship, Wheat } from 'lucide-reac
 import { productCategories } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 const icons = {
   spices: Package,
@@ -47,7 +48,8 @@ export default function ProductCategories() {
   }
 
   return (
-    <section className="py-16 md:py-24">
+    <section className="relative overflow-hidden py-16 md:py-24">
+      <RouteBackground />
       <div className="container-px mx-auto max-w-container text-center">
         <Reveal stagger={0}>
           <div className="flex items-center justify-center gap-2 text-gold-deep">
