@@ -3,6 +3,7 @@ import { FileCheck2, Globe, Leaf, ShieldCheck } from 'lucide-react'
 import { supplyChainVisibilityPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 const icons = { FileCheck2, Globe, Leaf, ShieldCheck }
 const { heading, subheading, documents } = supplyChainVisibilityPage.documentation
@@ -19,7 +20,8 @@ export default function DocumentationCompliance() {
   }
 
   return (
-    <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Documentation & Compliance</SectionLabel>

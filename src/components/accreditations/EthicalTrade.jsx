@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { accreditationsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const { heading, body } = accreditationsPage.ethical
@@ -28,8 +29,9 @@ export default function EthicalTrade() {
   }, [])
 
   return (
-    <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
-      <div className="container-px mx-auto grid max-w-container gap-10 md:grid-cols-2 md:items-center">
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground flip />
+      <div className="container-px relative mx-auto grid max-w-container gap-10 md:grid-cols-2 md:items-center">
         <Reveal stagger={0}>
           <SectionLabel>Commitment To Ethical Trade</SectionLabel>
           <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">

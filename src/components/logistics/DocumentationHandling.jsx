@@ -1,11 +1,12 @@
 import { useRef } from 'react'
-import { FileCheck2, Globe, Leaf, ShieldCheck } from 'lucide-react'
+import { BadgeCheck, FileCheck2, FlaskConical, Globe, Leaf, ShieldCheck } from 'lucide-react'
 import { exportLogisticsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
-const icons = { FileCheck2, Globe, ShieldCheck, Leaf }
+const icons = { FileCheck2, Globe, ShieldCheck, Leaf, BadgeCheck, FlaskConical }
 const { heading, subheading, documents } = exportLogisticsPage.documentation
 
 export default function DocumentationHandling() {
@@ -34,15 +35,16 @@ export default function DocumentationHandling() {
   }
 
   return (
-    <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
-      <div className="container-px mx-auto max-w-container">
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
+      <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Documentation & Compliance</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
-          <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
+          <p className="mt-2 max-w-2xl text-sm text-muted md:text-base">{subheading}</p>
         </Reveal>
 
-        <Reveal as="div" stagger={0.1} className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal as="div" stagger={0.1} className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {documents.map((doc, i) => {
             const Icon = icons[doc.icon]
             return (

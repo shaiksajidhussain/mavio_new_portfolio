@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Plane, Truck } from 'lucide-react'
 import { supplyChainVisibilityPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
@@ -46,6 +47,19 @@ export default function LogisticsCoordination() {
         <img src={backgroundImage} alt="" className="h-full w-full object-cover" />
       </div>
       <div className="absolute inset-0 -z-10 bg-navy-deep/75" />
+
+      <span className="pointer-events-none absolute right-[10%] top-[16%] hidden sm:block">
+        <Plane
+          aria-hidden
+          size={24}
+          strokeWidth={1.5}
+          className="animate-float-slow text-gold/60"
+          style={{ '--float-rotate': '30deg' }}
+        />
+      </span>
+      <span className="pointer-events-none absolute left-[8%] bottom-[18%] hidden md:block">
+        <Truck aria-hidden size={20} strokeWidth={1.5} className="animate-float-fast text-gold/50" />
+      </span>
 
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>

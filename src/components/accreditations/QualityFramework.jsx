@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { ShieldCheck } from 'lucide-react'
+import { Plane, Ship, ShieldCheck } from 'lucide-react'
 import { accreditationsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
@@ -38,9 +38,22 @@ export default function QualityFramework() {
       </div>
       <div className="absolute inset-0 -z-10 bg-navy-deep/80" />
 
+      <span className="pointer-events-none absolute right-[8%] top-[14%] hidden sm:block">
+        <Plane
+          aria-hidden
+          size={22}
+          strokeWidth={1.5}
+          className="animate-float-slow text-gold/50"
+          style={{ '--float-rotate': '30deg' }}
+        />
+      </span>
+      <span className="pointer-events-none absolute left-[6%] bottom-[16%] hidden md:block">
+        <Ship aria-hidden size={18} strokeWidth={1.5} className="animate-float text-gold/40" style={{ '--float-rotate': '-4deg' }} />
+      </span>
+
       <div className="container-px relative mx-auto grid max-w-container gap-10 md:grid-cols-[1fr_auto] md:items-center">
         <Reveal stagger={0}>
-          <SectionLabel tone="onDark">Our Framework</SectionLabel>
+          <SectionLabel tone="onDark">Quality &amp; Compliance</SectionLabel>
           <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold text-white md:text-4xl">{heading}</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">{body}</p>
         </Reveal>

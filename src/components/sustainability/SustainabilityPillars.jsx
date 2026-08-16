@@ -2,18 +2,20 @@ import { HandHeart, Sprout, Truck, Users } from 'lucide-react'
 import { sustainabilityPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 
 const icons = { Users, HandHeart, Sprout, Truck }
-const { heading, subheading, items } = sustainabilityPage.pillars
+const { subheading, items } = sustainabilityPage.pillars
 
 export default function SustainabilityPillars() {
   return (
-    <section className="container-px mx-auto max-w-container pb-16 pt-16 md:pb-24 md:pt-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container pb-16 pt-16 md:pb-24 md:pt-24">
+      <RouteBackground />
       <Reveal stagger={0}>
         <SectionLabel>Our Sustainability Pillars</SectionLabel>
-        <h1 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
-          {heading}
-        </h1>
+        <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+          Four commitments, one purpose
+        </h2>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 

@@ -3,6 +3,7 @@ import { Check } from 'lucide-react'
 import { accreditationsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const { heading, points } = accreditationsPage.benefits
@@ -33,10 +34,11 @@ export default function CertificationBenefits() {
   }
 
   return (
-    <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
-      <div className="container-px mx-auto max-w-container">
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
+      <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
-          <SectionLabel>What This Means For You</SectionLabel>
+          <SectionLabel>Certifications</SectionLabel>
           <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
             {heading}
           </h2>

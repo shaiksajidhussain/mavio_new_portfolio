@@ -3,6 +3,7 @@ import { Anchor, BadgeCheck, ClipboardCheck, FileCheck2, FlaskConical, Globe, Le
 import { accreditationsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { ShieldCheck, BadgeCheck, FileCheck2, Globe, Anchor, FlaskConical, ClipboardCheck, Leaf }
@@ -34,7 +35,9 @@ export default function AccreditationsGrid() {
   }
 
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden bg-bg py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
+      <div className="container-px relative mx-auto max-w-container">
       <Reveal stagger={0}>
         <SectionLabel>Our Accreditations</SectionLabel>
         <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
@@ -64,6 +67,7 @@ export default function AccreditationsGrid() {
           )
         })}
       </Reveal>
+      </div>
     </section>
   )
 }

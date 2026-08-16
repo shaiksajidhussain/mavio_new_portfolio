@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Plane, Ship } from 'lucide-react'
 import DottedMap from 'dotted-map/without-countries'
 import worldMapData from '../../data/worldMap.json'
-import { supplyChainVisibilityPage } from '../../data/siteContent'
+import { accreditationsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
-const { hero } = supplyChainVisibilityPage
+const { hero } = accreditationsPage
 
-export default function VisibilityHero() {
+export default function AccreditationsHero() {
   const sectionRef = useRef(null)
   const imgRef = useRef(null)
   const copyRef = useRef(null)
@@ -46,12 +46,12 @@ export default function VisibilityHero() {
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <img ref={imgRef} src={hero.image} alt={hero.imageAlt} className="h-full w-full object-cover" />
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/85 to-navy-deep/20" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
       <img
         src={mapSvgUri}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-40"
+        className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
       />
 
       <span className="pointer-events-none absolute right-[14%] top-[22%] hidden sm:block">
@@ -75,7 +75,7 @@ export default function VisibilityHero() {
 
       <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pt-20 sm:pt-[7.25rem]">
         <SectionLabel tone="onDark">{hero.eyebrow}</SectionLabel>
-        <h1 className="mt-4 max-w-xl font-display text-3xl font-bold leading-snug tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
+        <h1 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
           {hero.heading}
         </h1>
         <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
@@ -83,9 +83,9 @@ export default function VisibilityHero() {
             Home
           </Link>
           <ArrowRight size={14} />
-          <span className="text-white">Supply Chain Visibility</span>
+          <span className="text-white">Accreditations &amp; Certifications</span>
         </div>
-        <p className="mt-5 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">{hero.subheading}</p>
+        <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">{hero.subheading}</p>
       </div>
     </section>
   )

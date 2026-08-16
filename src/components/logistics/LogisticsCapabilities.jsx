@@ -3,6 +3,7 @@ import { Boxes, Plane, Ship, Shuffle } from 'lucide-react'
 import { exportLogisticsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { Ship, Plane, Shuffle, Boxes }
@@ -34,7 +35,8 @@ export default function LogisticsCapabilities() {
   }
 
   return (
-    <section className="container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+      <RouteBackground />
       <Reveal stagger={0}>
         <SectionLabel>Logistics Capabilities</SectionLabel>
         <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>

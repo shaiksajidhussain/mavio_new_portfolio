@@ -700,9 +700,14 @@ export const supplyChainVisibilityPage = {
     eyebrow: 'Supply Chain Visibility',
     heading: 'Total Operational Governance, End-to-End Visibility',
     subheading:
-      'Global trade without real-time visibility leads to operational bottlenecks, unrecorded fees, and broken communication lines. Mavio ensures total operational governance by providing end-to-end visibility throughout the entire shipping lifecycle — integrating buyers, suppliers, and transport networks into one seamless setup, and taking full ownership of backend logistics so you can trade with absolute peace of mind.',
+      'Integrating buyers, suppliers, and transport networks into one seamless setup — with full ownership of backend logistics.',
     image: 'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=2200&q=80',
     imageAlt: 'Trucks loading shipping containers at a freight yard',
+  },
+  intro: {
+    heading: 'Trade with absolute peace of mind',
+    body:
+      'Global trade without real-time visibility leads to operational bottlenecks, unrecorded fees, and broken communication lines. Disconnected documentation and uncoordinated logistics handoffs ultimately weaken partner trust and compromise schedule reliability. Mavio ensures total operational governance by providing end-to-end visibility throughout the entire shipping lifecycle — integrating buyers, suppliers, and transport networks into one seamless setup, and taking full ownership of backend logistics so you can trade with absolute peace of mind.',
   },
   journey: {
     heading: 'End-to-End Supply Chain Journey',
@@ -711,7 +716,7 @@ export const supplyChainVisibilityPage = {
   logistics: {
     heading: 'Logistics Coordination',
     subheading:
-      'Managing international shipments requires constant coordination among multiple vendors, customs agents, and shipping companies. Mavio serves as your centralized coordinator for all customs clearance, inland transport, and ocean freight operations — managing every stage of logistics execution so your cargo moves reliably and without operational disruption.',
+      'Managing international shipments requires constant coordination among multiple vendors, customs agents, and shipping companies, which often leads to administrative friction and transit bottlenecks. A single misstep in regulatory paperwork or carrier scheduling can delay your entire supply chain. Mavio serves as your centralized coordinator for all customs clearance, inland transport, and ocean freight operations. Our team manages every stage of logistics execution, ensuring your cargo moves reliably and without operational disruption.',
     backgroundImage: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
     origin: 'Kochi, India',
     destination: 'Rotterdam, Netherlands',
@@ -719,7 +724,7 @@ export const supplyChainVisibilityPage = {
   communication: {
     heading: 'Communication Throughout The Journey',
     subheading:
-      'When status inquiries go unanswered, businesses are left guessing about the actual location and progress of their cargo. Mavio eliminates this uncertainty by serving as a responsive, always-available coordination hub — proactively tracking every milestone and responding quickly, so you stay fully informed from pickup to final delivery.',
+      'Logistics operations become significantly more complex when communication breakdowns occur during transit. When status inquiries go unanswered, businesses are left guessing about the actual location and progress of their cargo. Mavio eliminates this uncertainty by serving as a responsive, always-available coordination hub. We proactively track every milestone on the ground and respond quickly to your messages, keeping your business fully informed and supported from pickup to final delivery.',
     touchpoints: [
       { icon: 'FileCheck2', title: 'Order Confirmation', description: 'Written confirmation of specs, pricing and timeline within 24 hours.' },
       { icon: 'ShieldCheck', title: 'QC Sign-off Alert', description: 'Notified the moment a lot clears quality assurance.' },
@@ -731,12 +736,12 @@ export const supplyChainVisibilityPage = {
   trust: {
     heading: 'Why Businesses Trust Mavio',
     subheading:
-      'Trust is built on absolute operational clarity, effortless logistics, and strong commercial partnerships. We give buyers rigorous quality assurance at the point of origin, continuous route monitoring, and straightforward business terms — while giving suppliers direct access to international markets and end-to-end visibility throughout the shipping lifecycle.',
+      'At Mavio, trust is built on absolute operational clarity, effortless logistics, and strong commercial partnerships. We provide buyers with rigorous quality assurance at the point of origin, continuous route monitoring, and straightforward business terms. At the same time, we give suppliers direct access to international markets, eliminating trade barriers and providing end-to-end visibility throughout the shipping lifecycle. By handling the operational heavy lifting and maintaining open, real-time communication, Mavio creates a frictionless trade environment where both buyers and suppliers can scale with complete confidence.',
   },
   documentation: {
     heading: 'Documentation & Compliance',
     subheading:
-      'Regulatory oversights and documentation errors can easily stall shipments and lead to expensive demurrage fees. Mavio takes complete ownership of your compliance lifecycle, preparing and auditing all essential commercial invoices, quality certificates, and import-export permits before cargo movement begins.',
+      'Regulatory oversights and documentation errors can easily stall shipments and lead to expensive demurrage fees. Mavio takes complete ownership of your compliance lifecycle, preparing and auditing all essential commercial invoices, quality certificates, and import-export permits before cargo movement begins. Our proactive approach ensures that every transaction fully satisfies local and international trade laws, giving buyers and suppliers total confidence in a compliant, delay-free supply chain.',
     documents: [
       { icon: 'FileCheck2', title: 'Certificate of Analysis', back: 'Lot-level lab results confirming moisture, purity and grade.' },
       { icon: 'Globe', title: 'Certificate of Origin', back: 'Confirms source for customs and preferential trade terms.' },
@@ -747,9 +752,17 @@ export const supplyChainVisibilityPage = {
 }
 
 export const exportLogisticsPage = {
+  hero: {
+    eyebrow: 'Export & Logistics',
+    heading: 'Export & Logistics',
+    subheading:
+      'From booking to final delivery, every shipment is coordinated, tracked, and moved on schedule across every mode of transport.',
+    image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
+    imageAlt: 'Container cranes loading freight at a busy port',
+  },
   process: {
     heading: 'Our Export Process',
-    subheading: 'Scroll to move through every stage between booking and final delivery.',
+    subheading: 'Every stage between booking and final delivery, coordinated end to end.',
     steps: [
       {
         step: 1,
@@ -802,18 +815,20 @@ export const exportLogisticsPage = {
       { icon: 'Ship', label: 'Sea Freight', description: 'Handles large shipments with planned schedules for cost-efficient international transport.' },
       { icon: 'Plane', label: 'Air Freight', description: 'Manages time-sensitive shipments requiring faster movement across international destinations.' },
       { icon: 'Shuffle', label: 'Multimodal Transport', description: 'Combines different transport modes when routes require flexible logistics planning.' },
-      { icon: 'Boxes', label: 'Container Options', description: 'Choose from 20FT, 40FT, and 40FT High Cube containers, with FCL, LCL, and temperature-controlled options available when needed.' },
+      { icon: 'Boxes', label: 'Container Options', description: 'The right container for every type of cargo. Choose from 20FT, 40FT, and 40FT High Cube containers, with FCL, LCL, and temperature-controlled options available when needed.' },
     ],
   },
   documentation: {
     heading: 'Documentation & Compliance',
     subheading:
-      'Every international shipment comes with specific documentation and compliance requirements. We coordinate the essential paperwork across commercial, customs, shipping, origin, quality, and product-specific requirements, ensuring each shipment is prepared in line with destination regulations and buyer specifications.',
+      'Every international shipment comes with specific documentation and compliance requirements. We coordinate the essential paperwork across commercial, customs, shipping, origin, quality, and product-specific requirements, ensuring each shipment is prepared in line with destination regulations and buyer specifications. From certificates of origin and inspection reports to phytosanitary, Halal, laboratory, and other applicable certifications, we manage the documentation required to support a smooth and compliant movement of goods across borders.',
     documents: [
       { icon: 'FileCheck2', title: 'Bill of Lading', description: 'Issued and verified against booking details before vessel departure.' },
       { icon: 'Globe', title: 'Certificate of Origin', description: 'Prepared for customs and preferential trade-tariff eligibility.' },
       { icon: 'ShieldCheck', title: 'Pre-Shipment Inspection Report', description: 'Independent verification completed before cargo departs.' },
       { icon: 'Leaf', title: 'Phytosanitary Certificate', description: 'Required clearance for plant-based cargo at destination customs.' },
+      { icon: 'BadgeCheck', title: 'Halal Certification', description: 'Required clearance for Halal-regulated destination markets.' },
+      { icon: 'FlaskConical', title: 'Certificate of Analysis', description: 'Lot-level lab results confirming quality, purity and grade.' },
     ],
   },
   trust: {
@@ -841,6 +856,14 @@ export const accreditations = [
 ]
 
 export const accreditationsPage = {
+  hero: {
+    eyebrow: 'Accreditations & Certifications',
+    heading: 'Accreditations & Certifications',
+    subheading:
+      'Every shipment prepared to meet the safety, quality, and documentation standards of its destination.',
+    image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=2200&q=80',
+    imageAlt: 'Quality inspection at a certified facility',
+  },
   commitment: {
     heading: 'Our Commitment To Global Standards',
     body: 'International trade comes with standards that need to be right at every step. Mavio Global carefully checks each process against international requirements, making sure products meet the necessary safety, quality, and documentation standards before they leave. We take care of the details that help shipments move smoothly across borders, giving you confidence that your product is compliant, properly prepared, and ready for its destination. Every shipment is prepared with the standards, documentation, and requirements of its destination in mind.',
@@ -1125,6 +1148,13 @@ export const contactPage = {
 }
 
 export const sustainabilityPage = {
+  hero: {
+    eyebrow: 'Sustainability',
+    heading: 'Sustainability',
+    subheading: 'Rooted in Care. Built on Trust. Traded with Purpose.',
+    image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=2200&q=80',
+    imageAlt: 'Farm worker harvesting produce at origin',
+  },
   pillars: {
     heading: 'Rooted in Care. Built on Trust. Traded with Purpose.',
     subheading: 'Sustainability at Mavio Global rests on four commitments — to people, to the planet, and to every partner along the way.',

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Plane, Ship } from 'lucide-react'
 import { supplyChainVisibilityPage, trustStats } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
@@ -52,8 +53,20 @@ export default function TrustStats() {
   }, [])
 
   return (
-    <section className="bg-navy py-16 dark:bg-navy-deep themeblack:bg-black md:py-24">
-      <div className="container-px mx-auto max-w-container">
+    <section className="relative overflow-hidden bg-navy py-16 dark:bg-navy-deep themeblack:bg-black md:py-24">
+      <span className="pointer-events-none absolute right-[8%] top-[14%] hidden sm:block">
+        <Plane
+          aria-hidden
+          size={24}
+          strokeWidth={1.5}
+          className="animate-float-slow text-gold/50"
+          style={{ '--float-rotate': '30deg' }}
+        />
+      </span>
+      <span className="pointer-events-none absolute left-[6%] bottom-[12%] hidden md:block">
+        <Ship aria-hidden size={20} strokeWidth={1.5} className="animate-float text-gold/40" style={{ '--float-rotate': '-4deg' }} />
+      </span>
+      <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel tone="onDark">Why Businesses Trust Mavio</SectionLabel>
           <h2 className="mt-3 font-display text-3xl font-semibold text-white md:text-4xl">{heading}</h2>
