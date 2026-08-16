@@ -4,16 +4,14 @@ import { ArrowRight, Plane, Ship, Truck } from 'lucide-react'
 import { partnerPage } from '../../data/siteContent'
 import { usePartnerRole } from '../../context/PartnerRoleContext'
 import SectionLabel from '../ui/SectionLabel'
+import SectionHeading from '../ui/SectionHeading'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
-
-const words = partnerPage.hero.heading.split(' ')
 
 export default function PartnerHero() {
   const { role, setRole } = usePartnerRole()
   const sectionRef = useRef(null)
   const imgRef = useRef(null)
-  const restRef = useRef(null)
-  const wordsRef = useRef([])
+  const copyRef = useRef(null)
   const toggleWrapRef = useRef(null)
   const tabRefs = useRef([])
   const indicatorRef = useRef(null)
@@ -22,19 +20,11 @@ export default function PartnerHero() {
     if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
       gsap.fromTo(imgRef.current, { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out' })
-
       gsap.fromTo(
-        wordsRef.current,
-        { opacity: 0, y: '60%', filter: 'blur(10px)' },
-        { opacity: 1, y: '0%', filter: 'blur(0px)', duration: 0.8, stagger: 0.06, ease: 'power3.out', delay: 0.2 }
+        copyRef.current.children,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.2 }
       )
-
-      gsap.fromTo(
-        restRef.current.children,
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out', delay: 0.2 + words.length * 0.06 + 0.15 }
-      )
-
       gsap.to(imgRef.current, {
         yPercent: 10,
         ease: 'none',
@@ -99,26 +89,15 @@ export default function PartnerHero() {
         />
       </span>
       <span className="pointer-events-none absolute left-[10%] bottom-[16%] hidden sm:block">
-        <Truck
-          aria-hidden
-          size={20}
-          strokeWidth={1.5}
-          className="animate-float-fast text-gold/50"
-        />
+        <Truck aria-hidden size={20} strokeWidth={1.5} className="animate-float-fast text-gold/50" />
       </span>
 
-      <div ref={restRef} className="container-px relative mx-auto w-full max-w-container pb-10 pt-24 sm:pt-[7.25rem] md:pb-14">
+      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pb-10 pt-24 sm:pt-[7.25rem] md:pb-14">
         <SectionLabel tone="onDark">{partnerPage.hero.eyebrow}</SectionLabel>
 
-        <h1 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
-          {words.map((word, wi) => (
-            <span key={wi} className="mr-[0.28em] inline-block overflow-hidden pb-1 align-top">
-              <span ref={(el) => (wordsRef.current[wi] = el)} className="inline-block">
-                {word}
-              </span>
-            </span>
-          ))}
-        </h1>
+        <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">
+          {partnerPage.hero.heading}
+        </SectionHeading>
 
         <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
           <Link to="/" className="font-medium text-gold hover:text-gold-bright">
@@ -132,22 +111,22 @@ export default function PartnerHero() {
           {partnerPage.hero.subheading}
         </p>
 
-        <div
-          ref={toggleWrapRef}
-          className="relative mt-8 inline-flex rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur-sm"
-        >
-          <div ref={indicatorRef} className="absolute top-1 h-[calc(100%-8px)] rounded-full bg-gold-gradient" />
+        <div ref={toggleWrapRef} className="relative mt-8 inline-flex rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur-sm">
+          <span
+            ref={indicatorRef}
+            className="pointer-events-none absolute top-1 bottom-1 rounded-full bg-gold-gradient transition-none"
+          />
           {['buyer', 'supplier'].map((r, i) => (
             <button
               key={r}
               ref={(el) => (tabRefs.current[i] = el)}
               type="button"
               onClick={() => handleSelect(i, r)}
-              className={`relative z-10 rounded-full px-6 py-2.5 text-sm font-medium capitalize transition-colors ${
+              className={`relative z-10 rounded-full px-6 py-2.5 text-sm font-semibold capitalize transition-colors ${
                 role === r ? 'text-navy-deep' : 'text-white/80 hover:text-white'
               }`}
             >
-              I'm a {r}
+              {r}
             </button>
           ))}
         </div>

@@ -3,6 +3,7 @@ import { about, aboutPage, brand, footer } from '../../data/siteContent'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const features = [
   {
@@ -29,9 +30,9 @@ export default function OurCompany() {
             <Ship size={14} />
           </div>
 
-          <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
+          <SectionHeading weight="bold" className="mt-4">
             {aboutPage.hero.heading}
-          </h2>
+          </SectionHeading>
 
           <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted md:text-base">
             {aboutPage.hero.body}

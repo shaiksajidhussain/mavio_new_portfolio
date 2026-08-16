@@ -7,6 +7,7 @@ import SectionLabel from '../components/ui/SectionLabel'
 import Button from '../components/ui/Button'
 import Reveal from '../components/ui/Reveal'
 import { gsap, prefersReducedMotion } from '../lib/gsap'
+import SectionHeading from '../components/ui/SectionHeading'
 
 export default function ProductDetail() {
   const { categorySlug, productSlug } = useParams()
@@ -33,9 +34,9 @@ export default function ProductDetail() {
     return (
       <section className="container-px mx-auto flex min-h-[50vh] max-w-container flex-col items-start justify-center py-20">
         <SectionLabel tone="pill">Not found</SectionLabel>
-        <h1 className="mt-4 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading as="h1" className="mt-4">
           Product not found
-        </h1>
+        </SectionHeading>
         <Button to="/products" variant="outline" className="mt-6">
           <ArrowLeft size={16} /> All products
         </Button>

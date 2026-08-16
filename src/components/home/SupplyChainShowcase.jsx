@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { Sprout, ShieldCheck, Package, FileCheck2, Truck, PackageCheck }
 const { origin, destination } = supplyChainVisibilityPage.logistics
@@ -82,9 +83,9 @@ export default function SupplyChainShowcase() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Supply Pathway</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+          <SectionHeading className="mt-3">
             Supply Pathway
-          </h2>
+          </SectionHeading>
           <p className="mt-2 text-sm text-muted">
             A pathway tailored to deliver quality, safety, and compliance at every step.
           </p>

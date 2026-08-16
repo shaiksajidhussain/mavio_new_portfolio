@@ -5,6 +5,7 @@ import DottedMap from 'dotted-map/without-countries'
 import worldMapData from '../../data/worldMap.json'
 import { testimonials, trustStats } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 const image = {
   src: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1400&q=80',
@@ -72,12 +73,9 @@ export default function TradeCapabilities() {
                 <Ship size={14} />
               </div>
 
-              <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-white md:text-4xl">
-                Trade Capabilities We Are Often{' '}
-                <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-                  Trusted For
-                </span>
-              </h2>
+              <SectionHeading tone="onDark" weight="bold" className="mt-4">
+                Trade Capabilities We Are Often Trusted For
+              </SectionHeading>
 
               <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70 md:text-base">
                 Mavio Global connects buyers and suppliers through a single, accountable trade

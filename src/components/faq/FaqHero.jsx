@@ -7,6 +7,7 @@ import { faqPage } from '../../data/siteContent'
 import { useFaqRole } from '../../context/FaqRoleContext'
 import SectionLabel from '../ui/SectionLabel'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const { hero } = faqPage
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80'
@@ -78,9 +79,9 @@ export default function FaqHero() {
 
       <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pb-8 pt-20 sm:pt-[7.25rem]">
         <SectionLabel tone="onDark">FAQ</SectionLabel>
-        <h1 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">
           {hero.heading}
-        </h1>
+        </SectionHeading>
         <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
           <Link to="/" className="font-medium text-gold hover:text-gold-bright">
             Home

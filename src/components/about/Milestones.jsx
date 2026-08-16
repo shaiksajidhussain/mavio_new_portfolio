@@ -4,6 +4,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const count = aboutPage.milestones.length
 
@@ -105,9 +106,9 @@ export default function Milestones() {
         <div className="flex items-end justify-between">
           <Reveal stagger={0}>
             <SectionLabel>Milestones</SectionLabel>
-            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-navy dark:text-white md:text-4xl">
+            <SectionHeading className="mt-3">
               Four decades, one step at a time
-            </h2>
+            </SectionHeading>
           </Reveal>
 
           <span

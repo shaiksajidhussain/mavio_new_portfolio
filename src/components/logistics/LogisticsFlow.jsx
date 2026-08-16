@@ -3,6 +3,7 @@ import { exportLogisticsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { ClipboardList, FileCheck2, Warehouse, Ship, Navigation, PackageCheck }
 const { heading, subheading, steps } = exportLogisticsPage.process
@@ -14,7 +15,7 @@ export default function LogisticsFlow() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Our Export Process</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
+          <SectionHeading className="mt-3">{heading}</SectionHeading>
           <p className="mt-2 max-w-2xl text-sm text-muted">{subheading}</p>
         </Reveal>
 

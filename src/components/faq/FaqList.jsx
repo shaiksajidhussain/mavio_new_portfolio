@@ -6,6 +6,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const roleLabels = {
   buyer: "Buyer's Perspective",
@@ -30,9 +31,9 @@ export default function FaqList() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>{roleLabels[role]}</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+          <SectionHeading className="mt-3">
             Frequently asked questions
-          </h2>
+          </SectionHeading>
         </Reveal>
 
         <div ref={listRef} className="relative mt-10 space-y-3">

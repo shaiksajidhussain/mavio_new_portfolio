@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { FileCheck2, Globe, ShieldCheck, Leaf, BadgeCheck, FlaskConical }
 const { heading, subheading, documents } = exportLogisticsPage.documentation
@@ -40,7 +41,7 @@ export default function DocumentationHandling() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Documentation & Compliance</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
+          <SectionHeading className="mt-3">{heading}</SectionHeading>
           <p className="mt-2 max-w-2xl text-sm text-muted md:text-base">{subheading}</p>
         </Reveal>
 

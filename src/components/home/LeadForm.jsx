@@ -4,6 +4,7 @@ import { leadFormConfig } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Button from '../ui/Button'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const fieldsByRole = {
   Buyer: [
@@ -28,7 +29,7 @@ const fieldsByRole = {
 }
 
 export default function LeadForm() {
-  const [role, setRole] = useState(null)
+  const [role, setRole] = useState('Buyer')
   const [step, setStep] = useState(0)
   const [answers, setAnswers] = useState({})
   const [draft, setDraft] = useState('')
@@ -66,7 +67,7 @@ export default function LeadForm() {
   }
 
   const reset = () => {
-    setRole(null)
+    setRole('Buyer')
     setStep(0)
     setAnswers({})
     setDraft('')
@@ -76,9 +77,9 @@ export default function LeadForm() {
   return (
     <div className="rounded-3xl border border-line bg-surface p-8 shadow-card md:p-10">
       <SectionLabel>Dynamic Lead Form</SectionLabel>
-      <h2 className="mt-3 font-display text-2xl font-semibold text-navy dark:text-white md:text-3xl">
+      <SectionHeading size="medium" className="mt-3">
         Tell us what you need
-      </h2>
+      </SectionHeading>
 
       {success ? (
         <div className="mt-8 flex flex-col items-start gap-3 rounded-2xl border border-line bg-bg-muted p-6">
@@ -102,7 +103,7 @@ export default function LeadForm() {
                   type="button"
                   onClick={() => selectRole(r)}
                   className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                    role === r ? 'bg-navy text-white' : 'border border-line text-muted hover:text-ink'
+                    role === r ? 'bg-gold-gradient text-navy-deep' : 'border border-line text-muted hover:text-ink'
                   }`}
                 >
                   {r}

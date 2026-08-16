@@ -4,6 +4,7 @@ import { supplyChainVisibilityPage, trustStats } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const { heading, subheading } = supplyChainVisibilityPage.trust
 
@@ -69,7 +70,7 @@ export default function TrustStats() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel tone="onDark">Why Businesses Trust Mavio</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-white md:text-4xl">{heading}</h2>
+          <SectionHeading tone="onDark" className="mt-3">{heading}</SectionHeading>
           <p className="mt-2 max-w-xl text-sm text-white/70 md:text-base">{subheading}</p>
         </Reveal>
 

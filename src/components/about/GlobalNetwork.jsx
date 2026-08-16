@@ -3,6 +3,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import GlobalReachMap from '../ui/GlobalReachMap'
+import SectionHeading from '../ui/SectionHeading'
 
 export default function GlobalNetwork() {
   return (
@@ -10,9 +11,9 @@ export default function GlobalNetwork() {
       <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Our Global Network</SectionLabel>
-        <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading className="mt-3">
           One HQ, {brand.marketsCount} markets
-        </h2>
+        </SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted">
           Every shipment traces back to {brand.hq} — routed through {brand.ports.join(' and ')} to buyers
           across every region we serve.

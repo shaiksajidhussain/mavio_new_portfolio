@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { ShieldCheck, BadgeCheck, FileCheck2, Globe, Anchor, FlaskConical, ClipboardCheck, Leaf }
 const { heading, subheading, items } = accreditationsPage.grid
@@ -40,9 +41,9 @@ export default function AccreditationsGrid() {
       <div className="container-px relative mx-auto max-w-container">
       <Reveal stagger={0}>
         <SectionLabel>Our Accreditations</SectionLabel>
-        <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading className="mt-3 max-w-xl">
           {heading}
-        </h2>
+        </SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 

@@ -1,152 +1,124 @@
 import { useEffect, useRef } from 'react'
 import { Handshake, ShieldCheck, Sprout, Timer } from 'lucide-react'
-import { partnerPage, trustStats } from '../../data/siteContent'
+import { partnerPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { Sprout, ShieldCheck, Timer, Handshake }
 const { heading, subheading, items } = partnerPage.competitiveAdvantage
-const [featured, top, bottom, wide] = items
-const farmStat = trustStats.find((s) => s.label === 'Countries Served')
 
 export default function CompetitiveAdvantage() {
   const gridRef = useRef(null)
-  const maskRef = useRef(null)
-  const numberRef = useRef(null)
+  const lineRef = useRef(null)
+  const iconsRef = useRef([])
 
   useEffect(() => {
     if (prefersReducedMotion || !gridRef.current) return
-    const cards = gridRef.current.querySelectorAll('[data-card]')
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        cards,
-        { opacity: 0, y: 40 },
+        iconsRef.current,
+        { scale: 0, rotate: -35 },
         {
-          opacity: 1,
-          y: 0,
+          scale: 1,
+          rotate: 0,
           duration: 0.7,
-          stagger: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: gridRef.current, start: 'top 80%', once: true, fastScrollEnd: true },
+          stagger: 0.12,
+          ease: 'back.out(2)',
+          delay: 0.15,
+          scrollTrigger: { trigger: gridRef.current, start: 'top 78%', once: true, fastScrollEnd: true },
         }
       )
 
-      if (farmStat && numberRef.current) {
-        const target = Number(farmStat.value.replace(/,/g, ''))
-        const counter = { val: 0 }
-        gsap.to(counter, {
-          val: target,
-          duration: 1.6,
-          ease: 'power2.out',
-          scrollTrigger: { trigger: gridRef.current, start: 'top 80%', once: true, fastScrollEnd: true },
-          onUpdate: () => {
-            if (!numberRef.current) return
-            numberRef.current.textContent = Math.round(counter.val).toLocaleString('en-US')
-          },
-        })
+      if (lineRef.current) {
+        gsap.fromTo(
+          lineRef.current,
+          { scaleX: 0 },
+          {
+            scaleX: 1,
+            duration: 1.1,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: gridRef.current, start: 'top 78%', once: true, fastScrollEnd: true },
+          }
+        )
       }
     }, gridRef)
     return () => ctx.revert()
   }, [])
 
-  useEffect(() => {
-    if (prefersReducedMotion || !maskRef.current) return
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        maskRef.current,
-        { xPercent: 0 },
-        {
-          xPercent: 101,
-          duration: 0.8,
-          ease: 'power3.inOut',
-          scrollTrigger: { trigger: maskRef.current, start: 'top 85%', once: true, fastScrollEnd: true },
-        }
-      )
-    }, maskRef)
-    return () => ctx.revert()
-  }, [])
+  const handleTiltMove = (e, i) => {
+    if (prefersReducedMotion) return
+    const card = e.currentTarget
+    const rect = card.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width
+    const py = (e.clientY - rect.top) / rect.height
+    gsap.to(card, {
+      rotateX: (py - 0.5) * -8,
+      rotateY: (px - 0.5) * 8,
+      duration: 0.4,
+      ease: 'power2.out',
+      transformPerspective: 700,
+    })
+    gsap.to(iconsRef.current[i], { scale: 1.12, rotate: 8, duration: 0.35, ease: 'power2.out' })
+  }
 
-  const FeaturedIcon = icons[featured.icon]
-  const TopIcon = icons[top.icon]
-  const BottomIcon = icons[bottom.icon]
-  const WideIcon = icons[wide.icon]
+  const handleTiltLeave = (i) => {
+    const card = iconsRef.current[i]?.closest('[data-tilt-card]')
+    if (card) gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.6, ease: 'power3.out' })
+    if (iconsRef.current[i]) {
+      gsap.to(iconsRef.current[i], { scale: 1, rotate: 0, duration: 0.5, ease: 'power3.out' })
+    }
+  }
 
   return (
-    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden bg-bg py-16 themeblack:bg-black md:py-24">
       <RouteBackground flip />
-      <Reveal stagger={0}>
-        <SectionLabel>Our Competitive Advantage</SectionLabel>
-        <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
-      </Reveal>
+      <div className="container-px relative mx-auto max-w-container">
+        <Reveal stagger={0} className="text-center">
+          <SectionLabel>Our Competitive Advantage</SectionLabel>
+          <SectionHeading className="mt-3">{heading}</SectionHeading>
+          <p className="mx-auto mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
+        </Reveal>
 
-      <div className="relative mt-2 inline-block max-w-xl overflow-hidden">
-        <p className="text-sm text-muted md:text-base">{subheading}</p>
-        <div ref={maskRef} className="absolute inset-0 bg-bg" />
-      </div>
-
-      <div ref={gridRef} className="mt-10 grid gap-5 md:grid-cols-2">
-        <div
-          data-card
-          className="relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-3xl bg-navy-deep p-8 shadow-card md:row-span-2 md:min-h-[380px]"
-        >
+        <div ref={gridRef} className="relative mt-16">
           <div
+            ref={lineRef}
             aria-hidden
-            className="pointer-events-none absolute -right-10 -top-10 text-gold/10"
-          >
-            <FeaturedIcon size={220} strokeWidth={1} />
-          </div>
+            className="absolute left-[12.5%] right-[12.5%] top-10 hidden h-px origin-left bg-gradient-to-r from-transparent via-gold-deep/50 to-transparent sm:block"
+          />
 
-          <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-            <FeaturedIcon size={24} />
-          </span>
+          <Reveal as="div" stagger={0.08} className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {items.map((item, i) => {
+              const Icon = icons[item.icon]
+              return (
+                <div
+                  key={item.title}
+                  data-tilt-card
+                  style={{ perspective: 700 }}
+                  onMouseMove={(e) => handleTiltMove(e, i)}
+                  onMouseLeave={() => handleTiltLeave(i)}
+                  className="group relative flex flex-col items-center rounded-2xl border border-line bg-surface px-5 pb-6 pt-8 text-center shadow-card transition-shadow duration-300 will-change-transform hover:shadow-xl hover:border-gold/50"
+                >
+                  <span className="absolute right-4 top-4 font-mono text-xs font-semibold text-line group-hover:text-gold-deep/60">
+                    0{i + 1}
+                  </span>
 
-          <div className="relative">
-            <h3 className="font-display text-2xl font-bold text-white md:text-3xl">{featured.title}</h3>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/70 md:text-base">
-              {featured.description}
-            </p>
+                  <span
+                    ref={(el) => (iconsRef.current[i] = el)}
+                    className="relative flex h-20 w-20 items-center justify-center rounded-full bg-gold-gradient text-navy-deep shadow-card will-change-transform"
+                  >
+                    <span className="absolute inset-0 -z-10 rounded-full bg-gold/30 blur-lg transition-opacity duration-300 group-hover:opacity-100 opacity-0" />
+                    <Icon size={30} strokeWidth={1.75} />
+                  </span>
 
-            {farmStat && (
-              <div className="mt-6 flex items-baseline gap-2 border-t border-white/10 pt-5">
-                <span className="font-display text-4xl font-black text-gold">
-                  <span ref={numberRef}>0</span>
-                  {farmStat.suffix}
-                </span>
-                <span className="text-sm text-white/60">{farmStat.label}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div data-card className="rounded-2xl border border-line bg-surface p-6 shadow-card">
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
-            <TopIcon size={20} />
-          </span>
-          <h3 className="mt-5 font-display text-lg font-bold text-ink">{top.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted">{top.description}</p>
-        </div>
-
-        <div data-card className="rounded-2xl border border-line bg-surface p-6 shadow-card">
-          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
-            <BottomIcon size={20} />
-          </span>
-          <h3 className="mt-5 font-display text-lg font-bold text-ink">{bottom.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted">{bottom.description}</p>
-        </div>
-
-        <div
-          data-card
-          className="flex flex-col gap-5 rounded-2xl border border-line bg-surface p-6 shadow-card sm:flex-row sm:items-center md:col-span-2"
-        >
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
-            <WideIcon size={20} />
-          </span>
-          <div>
-            <h3 className="font-display text-lg font-bold text-ink">{wide.title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted">{wide.description}</p>
-          </div>
+                  <h3 className="mt-5 font-display text-base font-bold text-ink md:text-lg">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">{item.description}</p>
+                </div>
+              )
+            })}
+          </Reveal>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { Buyer: ShoppingCart, Seller: Store, Logistics: Truck }
 const positions = [16.5, 50, 83.5]
@@ -68,9 +69,9 @@ export default function Traceability() {
       <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Traceability</SectionLabel>
-        <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading className="mt-3">
           {traceability.heading}
-        </h2>
+        </SectionHeading>
         <p className="mt-2 max-w-2xl text-sm text-muted md:text-base">{traceability.description}</p>
       </Reveal>
 

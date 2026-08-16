@@ -5,6 +5,7 @@ import DottedMap from 'dotted-map/without-countries'
 import worldMapData from '../../data/worldMap.json'
 import { aboutPage } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 export default function AboutHero() {
   const mapSvgUri = useMemo(() => {
@@ -52,7 +53,7 @@ export default function AboutHero() {
 
       <div className="container-px relative mx-auto w-full max-w-container pt-20 sm:pt-[7.25rem]">
         <Reveal stagger={0.08} className="border-l-2 border-gold-deep pl-6">
-          <h1 className="font-display text-4xl font-bold text-white md:text-5xl">About Us</h1>
+          <SectionHeading as="h1" tone="onDark" size="hero" weight="bold">About Us</SectionHeading>
           <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
             <Link to="/" className="font-medium text-gold hover:text-gold-bright">
               Home

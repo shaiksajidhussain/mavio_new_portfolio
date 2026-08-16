@@ -2,6 +2,7 @@ import { accreditationsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const { heading, body } = accreditationsPage.commitment
 
@@ -12,9 +13,9 @@ export default function StandardsCommitment() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Our Commitment</SectionLabel>
-          <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+          <SectionHeading className="mt-3 max-w-2xl">
             {heading}
-          </h2>
+          </SectionHeading>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted md:text-lg">{body}</p>
         </Reveal>
       </div>

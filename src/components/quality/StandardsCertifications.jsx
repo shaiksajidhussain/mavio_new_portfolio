@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 export default function StandardsCertifications() {
   const trackRef = useRef(null)
@@ -23,9 +24,9 @@ export default function StandardsCertifications() {
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Standards & Certifications</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+          <SectionHeading className="mt-3">
             Held to every standard our buyers require
-          </h2>
+          </SectionHeading>
           <p className="mt-2 max-w-xl text-sm text-muted md:text-base">
             We align our operations with recognized global safety and trade standards. Holding these certifications
             ensures smooth customs clearance and easy entry into international markets.

@@ -2,6 +2,7 @@ import { CheckCircle2, Plane, Ship } from 'lucide-react'
 import { exportLogisticsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 const { heading, subheading, points } = exportLogisticsPage.trust
 
@@ -23,7 +24,7 @@ export default function LogisticsStats() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel tone="onDark">Why Businesses Trust Our Logistics</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-white md:text-4xl">{heading}</h2>
+          <SectionHeading tone="onDark" className="mt-3">{heading}</SectionHeading>
           <p className="mt-2 max-w-xl text-sm text-white/70 md:text-base">{subheading}</p>
         </Reveal>
 

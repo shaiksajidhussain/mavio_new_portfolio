@@ -5,6 +5,7 @@ import worldMapData from '../../data/worldMap.json'
 import { about } from '../../data/siteContent'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 export default function CTABanner() {
   const mapSvgUri = useMemo(() => {
@@ -48,10 +49,9 @@ export default function CTABanner() {
         </div>
 
         <div className="relative max-w-lg">
-          <h2 className="font-display text-3xl font-bold leading-tight text-white md:text-4xl">
-            Recognized as a Trusted Partner in{' '}
-            <span className="text-gold-gradient">Global Trade</span>
-          </h2>
+          <SectionHeading tone="onDark" weight="bold">
+            Recognized as a Trusted Partner in Global Trade
+          </SectionHeading>
           <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70 md:text-base">
             A trade partner recognized for reliability, transparency, and on-time delivery across
             25+ countries.

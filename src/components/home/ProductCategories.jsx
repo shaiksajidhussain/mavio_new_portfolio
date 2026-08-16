@@ -5,6 +5,7 @@ import { productCategories } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = {
   spices: Package,
@@ -57,12 +58,7 @@ export default function ProductCategories() {
             <span className="eyebrow">Product Categories</span>
             <Package size={14} />
           </div>
-          <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
-            What Do We{' '}
-            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-              Trade?
-            </span>
-          </h2>
+          <SectionHeading className="mx-auto mt-3 max-w-xl">What Do We Trade?</SectionHeading>
           <p className="mx-auto mt-3 max-w-lg text-sm text-muted md:text-base">
             Here are the categories we work with closely — checked, handled, and ready to move.
           </p>

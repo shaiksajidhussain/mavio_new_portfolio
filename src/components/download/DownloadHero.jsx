@@ -3,6 +3,7 @@ import { downloadCentrePage } from '../../data/siteContent'
 import { useDownloadSearch } from '../../context/DownloadSearchContext'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 const { hero } = downloadCentrePage
 
@@ -13,9 +14,9 @@ export default function DownloadHero() {
     <section className="container-px mx-auto max-w-container pb-6 pt-16 md:pt-24">
       <Reveal stagger={0}>
         <SectionLabel>Download Centre</SectionLabel>
-        <h1 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading as="h1" className="mt-3 max-w-2xl">
           {hero.heading}
-        </h1>
+        </SectionHeading>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted md:text-base">{hero.subheading}</p>
       </Reveal>
 

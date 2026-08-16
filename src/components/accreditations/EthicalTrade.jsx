@@ -4,6 +4,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const { heading, body } = accreditationsPage.ethical
 const IMAGE = 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1400&q=80'
@@ -34,9 +35,9 @@ export default function EthicalTrade() {
       <div className="container-px relative mx-auto grid max-w-container gap-10 md:grid-cols-2 md:items-center">
         <Reveal stagger={0}>
           <SectionLabel>Commitment To Ethical Trade</SectionLabel>
-          <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+          <SectionHeading className="mt-3 max-w-xl">
             {heading}
-          </h2>
+          </SectionHeading>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted md:text-lg">{body}</p>
         </Reveal>
 

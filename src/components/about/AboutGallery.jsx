@@ -3,6 +3,7 @@ import { ArrowRight, Ship } from 'lucide-react'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const heroImage = {
   src: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1600&q=80',
@@ -38,12 +39,9 @@ export default function AboutGallery() {
             <span className="eyebrow">Behind Every Shipment</span>
             <Ship size={14} />
           </div>
-          <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
-            A Look Inside Our{' '}
-            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-              Trade Network
-            </span>
-          </h2>
+          <SectionHeading weight="bold" className="mt-4">
+            A Look Inside Our Trade Network
+          </SectionHeading>
           <Button to="/capabilities/supply-chain-visibility" variant="primary" className="mt-7 w-fit">
             See How We Operate
             <ArrowRight size={16} />

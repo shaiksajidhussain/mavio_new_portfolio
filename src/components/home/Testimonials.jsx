@@ -3,6 +3,7 @@ import { Quote, Ship, Star } from 'lucide-react'
 import { testimonials } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 export default function Testimonials() {
   const [role, setRole] = useState('buyer')
@@ -50,12 +51,9 @@ export default function Testimonials() {
             <span className="eyebrow">Client Testimonial</span>
             <Ship size={14} />
           </div>
-          <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
-            What Our Partners{' '}
-            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-              Are Saying
-            </span>
-          </h2>
+          <SectionHeading weight="bold" className="mt-4">
+            What Our Partners Are Saying
+          </SectionHeading>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted md:text-base">
             Real feedback from the buyers and suppliers we work with, shipment after shipment.
           </p>

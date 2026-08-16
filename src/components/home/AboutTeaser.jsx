@@ -4,6 +4,7 @@ import { about, testimonials, trustStats } from '../../data/siteContent'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const experienceStat = trustStats.find((s) => s.label === 'Years of Experience')
@@ -77,12 +78,9 @@ export default function AboutTeaser() {
             <Ship size={14} />
           </div>
 
-          <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
-            {about.heading}{' '}
-            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-              {about.headingAccent}
-            </span>
-          </h2>
+          <SectionHeading weight="bold" className="mt-4">
+            {`${about.heading} ${about.headingAccent}`}
+          </SectionHeading>
 
           <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted md:text-base">{about.body}</p>
 

@@ -3,6 +3,7 @@ import { supplyChainSteps, supplyChainVisibilityPage } from '../../data/siteCont
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { Sprout, ShieldCheck, Package, FileCheck2, Truck, PackageCheck }
 const { heading, subheading } = supplyChainVisibilityPage.journey
@@ -14,7 +15,7 @@ export default function JourneyTimeline() {
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>End-to-End Supply Chain Journey</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
+          <SectionHeading className="mt-3">{heading}</SectionHeading>
           <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
         </Reveal>
 

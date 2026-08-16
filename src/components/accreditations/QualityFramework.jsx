@@ -4,6 +4,7 @@ import { accreditationsPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const { heading, body } = accreditationsPage.framework
 const BG_IMAGE = 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=2200&q=80'
@@ -54,7 +55,7 @@ export default function QualityFramework() {
       <div className="container-px relative mx-auto grid max-w-container gap-10 md:grid-cols-[1fr_auto] md:items-center">
         <Reveal stagger={0}>
           <SectionLabel tone="onDark">Quality &amp; Compliance</SectionLabel>
-          <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold text-white md:text-4xl">{heading}</h2>
+          <SectionHeading tone="onDark" className="mt-3 max-w-xl">{heading}</SectionHeading>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/70 md:text-lg">{body}</p>
         </Reveal>
 

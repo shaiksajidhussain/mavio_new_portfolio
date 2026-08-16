@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { faqs } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
+import SectionHeading from '../ui/SectionHeading'
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0)
@@ -9,9 +10,9 @@ export default function FAQ() {
   return (
     <div>
       <SectionLabel>FAQ</SectionLabel>
-      <h2 className="mt-3 font-display text-2xl font-semibold text-navy dark:text-white md:text-3xl">
+      <SectionHeading size="medium" className="mt-3">
         Common questions
-      </h2>
+      </SectionHeading>
 
       <div className="mt-6 space-y-3">
         {faqs.map((item, i) => {

@@ -544,15 +544,17 @@ export const partnerPage = {
     ],
   },
   industries: {
+    eyebrow: 'Sector Coverage',
     heading: 'Industries we’ve collaborated with',
     subheading: 'We have no product boundaries. We source and export any item to match your exact trade requirements.',
+    cta: { label: 'See Our Capabilities', to: '/capabilities/export-logistics' },
     items: [
-      { icon: 'UtensilsCrossed', name: 'Food & Beverage Retail', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80' },
-      { icon: 'Building2', name: 'Hospitality & Foodservice', image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=1000&q=80' },
-      { icon: 'Pill', name: 'Pharmaceutical & Nutraceutical', image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1000&q=80' },
-      { icon: 'Factory', name: 'Agro Processing', image: 'https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1000&q=80' },
-      { icon: 'Ship', name: 'Import Distribution', image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1000&q=80' },
-      { icon: 'Tag', name: 'Private Label Manufacturing', image: 'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=1000&q=80' },
+      { icon: 'UtensilsCrossed', tag: 'Retail Sector', name: 'Food & Beverage Retail', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80' },
+      { icon: 'Building2', tag: 'Foodservice', name: 'Hospitality & Foodservice', image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=1000&q=80' },
+      { icon: 'Pill', tag: 'Health & Wellness', name: 'Pharmaceutical & Nutraceutical', image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1000&q=80' },
+      { icon: 'Factory', tag: 'Agro Industry', name: 'Agro Processing', image: 'https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1000&q=80' },
+      { icon: 'Ship', tag: 'Distribution', name: 'Import Distribution', image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1000&q=80' },
+      { icon: 'Tag', tag: 'Manufacturing', name: 'Private Label Manufacturing', image: 'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=1000&q=80' },
     ],
   },
   commitment: {

@@ -5,6 +5,7 @@ import { accreditations, partnerPage } from '../../data/siteContent'
 import { usePartnerRole } from '../../context/PartnerRoleContext'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../../lib/gsap'
 
 export default function PartnerCTA() {
@@ -83,9 +84,9 @@ export default function PartnerCTA() {
         />
 
         <div ref={panelRef} className="relative mx-auto max-w-xl">
-          <h2 ref={headingRef} className="font-display text-3xl font-semibold text-white md:text-4xl">
+          <SectionHeading ref={headingRef} tone="onDark" className="text-center">
             {content.heading}
-          </h2>
+          </SectionHeading>
           <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">{content.body}</p>
 
           <div className="mt-8 flex justify-center">

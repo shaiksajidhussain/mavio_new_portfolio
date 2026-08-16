@@ -4,6 +4,7 @@ import { supplyChainVisibilityPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { FileCheck2, Globe, Leaf, ShieldCheck }
 const { heading, subheading, documents } = supplyChainVisibilityPage.documentation
@@ -25,7 +26,7 @@ export default function DocumentationCompliance() {
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Documentation & Compliance</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
+          <SectionHeading className="mt-3">{heading}</SectionHeading>
           <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
         </Reveal>
 

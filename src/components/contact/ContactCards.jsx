@@ -2,6 +2,7 @@ import { Linkedin, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
 import { contactPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { Phone, Mail, Linkedin, MessageCircle, MapPin }
 
@@ -10,9 +11,9 @@ export default function ContactCards() {
     <section className="container-px mx-auto max-w-container pb-6 pt-16 md:pt-24">
       <Reveal stagger={0}>
         <SectionLabel>Get In Touch</SectionLabel>
-        <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading className="mt-3">
           Reach Us Any Way You Like
-        </h2>
+        </SectionHeading>
       </Reveal>
 
       <Reveal as="div" stagger={0.08} className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">

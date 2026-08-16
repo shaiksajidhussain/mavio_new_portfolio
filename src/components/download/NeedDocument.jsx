@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react'
 import { downloadCentrePage } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
 import Button from '../ui/Button'
+import SectionHeading from '../ui/SectionHeading'
 
 const { cta } = downloadCentrePage
 
@@ -24,7 +25,7 @@ export default function NeedDocument() {
         />
 
         <div className="relative mx-auto max-w-xl">
-          <h2 className="font-display text-3xl font-semibold text-white md:text-4xl">{cta.heading}</h2>
+          <SectionHeading tone="onDark">{cta.heading}</SectionHeading>
           <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">{cta.body}</p>
           <Button to="/contact" variant="primary" className="mt-8">
             {cta.buttonLabel} <ArrowRight size={16} />

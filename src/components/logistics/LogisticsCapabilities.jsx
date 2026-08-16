@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { Ship, Plane, Shuffle, Boxes }
 const { heading, subheading, items } = exportLogisticsPage.capabilities
@@ -39,7 +40,7 @@ export default function LogisticsCapabilities() {
       <RouteBackground />
       <Reveal stagger={0}>
         <SectionLabel>Logistics Capabilities</SectionLabel>
-        <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
+        <SectionHeading className="mt-3">{heading}</SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 

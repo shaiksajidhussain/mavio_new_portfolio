@@ -3,6 +3,7 @@ import { brand, contactPage, footer } from '../../data/siteContent'
 import LeadForm from '../home/LeadForm'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 export default function ContactFormSection() {
   return (
@@ -27,7 +28,7 @@ export default function ContactFormSection() {
         <Reveal as="div" stagger={0} delay={0.1}>
           <div className="rounded-3xl border border-line bg-surface p-8 shadow-card">
             <SectionLabel>Post-Submission Flow</SectionLabel>
-            <h2 className="mt-3 font-display text-xl font-bold text-ink">What happens next</h2>
+            <SectionHeading size="small" weight="bold" className="mt-3">What happens next</SectionHeading>
 
             <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-3">
               {contactPage.flow.map((f, i) => (

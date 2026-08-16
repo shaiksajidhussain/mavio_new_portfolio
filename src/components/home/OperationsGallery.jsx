@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Ship } from 'lucide-react'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
+import SectionHeading from '../ui/SectionHeading'
 
 const heroImage = {
   src: 'https://images.unsplash.com/photo-1759272840538-ae4b07214c71?auto=format&fit=crop&w=1600&q=80',
@@ -36,12 +37,9 @@ export default function OperationsGallery() {
             <span className="eyebrow">Our Operations</span>
             <Ship size={14} />
           </div>
-          <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
-            The Scale of Our{' '}
-            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-              Operations
-            </span>
-          </h2>
+          <SectionHeading weight="bold" className="mt-4">
+            The Scale of Our Operations
+          </SectionHeading>
           <Button to="/capabilities/export-logistics" variant="primary" className="mt-7 w-fit">
             View Our Capabilities
             <ArrowRight size={16} />

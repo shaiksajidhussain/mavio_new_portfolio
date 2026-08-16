@@ -5,6 +5,7 @@ import SectionLabel from '../components/ui/SectionLabel'
 import Reveal from '../components/ui/Reveal'
 import CategorySidebar from '../components/products/CategorySidebar'
 import ProductGrid from '../components/products/ProductGrid'
+import SectionHeading from '../components/ui/SectionHeading'
 
 export default function Products() {
   const { categorySlug } = useParams()
@@ -17,9 +18,9 @@ export default function Products() {
     <section className="container-px mx-auto max-w-container py-16 md:py-24">
       <Reveal stagger={0}>
         <SectionLabel>Product Layer</SectionLabel>
-        <h1 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading as="h1" className="mt-3">
           Products
-        </h1>
+        </SectionHeading>
       </Reveal>
 
       <div className="mt-10 grid gap-8 lg:grid-cols-[260px_1fr]">

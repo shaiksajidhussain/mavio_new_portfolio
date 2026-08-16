@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, FlaskConical, Radar, Ship } from 'lucide-react'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const services = [
   {
@@ -38,12 +39,9 @@ export default function OurServices() {
             <span className="eyebrow">Our Service</span>
             <Ship size={14} />
           </div>
-          <h2 className="mx-auto mt-3 max-w-xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
-            Trade Services We Deliver With{' '}
-            <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-              Confidence
-            </span>
-          </h2>
+          <SectionHeading className="mx-auto mt-3 max-w-xl">
+            Trade Services We Deliver With Confidence
+          </SectionHeading>
         </Reveal>
 
         <Reveal as="div" stagger={0.1} className="mt-12 grid gap-6 md:grid-cols-3">

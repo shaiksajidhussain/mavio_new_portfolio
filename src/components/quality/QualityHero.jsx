@@ -6,6 +6,7 @@ import worldMapData from '../../data/worldMap.json'
 import { qualityCompliancePage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const { hero } = qualityCompliancePage
 
@@ -75,9 +76,9 @@ export default function QualityHero() {
 
       <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pt-20 sm:pt-[7.25rem]">
         <SectionLabel tone="onDark">{hero.eyebrow}</SectionLabel>
-        <h1 className="mt-4 max-w-2xl font-display text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+        <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">
           {hero.heading}
-        </h1>
+        </SectionHeading>
         <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
           <Link to="/" className="font-medium text-gold hover:text-gold-bright">
             Home

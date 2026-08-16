@@ -5,6 +5,7 @@ import worldMapData from '../../data/worldMap.json'
 import { testimonials, trustStats } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const featured = testimonials.buyer[1]
 const experienceStat = trustStats.find((s) => s.label === 'Years of Experience')
@@ -50,12 +51,9 @@ export default function AboutTestimonial() {
               <span className="eyebrow">Client Testimonial</span>
               <Ship size={14} />
             </div>
-            <h2 className="mt-4 font-display text-3xl font-bold leading-tight text-navy dark:text-white md:text-4xl">
-              Hear From Our{' '}
-              <span className="text-gold-gradient underline decoration-gold-deep/40 underline-offset-4">
-                Trade Partners
-              </span>
-            </h2>
+            <SectionHeading weight="bold" className="mt-4">
+              Hear From Our Trade Partners
+            </SectionHeading>
 
             <div className="relative mt-8 rounded-2xl border-l-4 border-gold-deep bg-surface p-7 shadow-card">
               <span className="absolute -top-4 right-6 flex h-10 w-10 items-center justify-center rounded-full bg-gold-gradient text-navy-deep shadow-card">

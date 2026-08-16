@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const cards = [
   { ...aboutPage.visionMission.vision, index: '01', icon: Eye },
@@ -41,9 +42,9 @@ export default function VisionMission() {
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>
           <SectionLabel>Vision &amp; Mission</SectionLabel>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+          <SectionHeading className="mt-3">
             What drives the work
-          </h2>
+          </SectionHeading>
         </Reveal>
 
         <div ref={panelsRef} className="mt-10 flex flex-col gap-6">

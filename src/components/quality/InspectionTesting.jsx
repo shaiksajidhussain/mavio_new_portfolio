@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { Droplets, FlaskConical, Ruler, PackageCheck }
 const { heading, subheading, points } = qualityCompliancePage.inspectionTesting
@@ -69,7 +70,7 @@ export default function InspectionTesting() {
       <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Inspection & Testing</SectionLabel>
-        <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">{heading}</h2>
+        <SectionHeading className="mt-3">{heading}</SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 

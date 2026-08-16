@@ -3,6 +3,7 @@ import { sustainabilityPage } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { Users, HandHeart, Sprout, Truck }
 const { subheading, items } = sustainabilityPage.pillars
@@ -13,9 +14,9 @@ export default function SustainabilityPillars() {
       <RouteBackground />
       <Reveal stagger={0}>
         <SectionLabel>Our Sustainability Pillars</SectionLabel>
-        <h2 className="mt-3 max-w-2xl font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+        <SectionHeading className="mt-3 max-w-2xl">
           Four commitments, one purpose
-        </h2>
+        </SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 

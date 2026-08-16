@@ -15,8 +15,8 @@ const palettes = {
 }
 
 const markers = [
-  { name: `${brand.hq} · HQ`, coordinates: [originCoords.lng, originCoords.lat], isHq: true },
-  ...regions.map((r) => ({ name: `${r.flag} ${r.name}`, coordinates: [r.lng, r.lat], isHq: false })),
+  { name: `${brand.hq} · HQ`, flag: '🇮🇳', coordinates: [originCoords.lng, originCoords.lat], isHq: true },
+  ...regions.map((r) => ({ name: r.name, flag: r.flag, coordinates: [r.lng, r.lat], isHq: false })),
 ]
 
 export default function GlobalReachMap({ className = '' }) {
@@ -116,20 +116,22 @@ export default function GlobalReachMap({ className = '' }) {
               >
                 <g
                   style={{
-                    transform: isHovered ? 'scale(1.35) translateY(-2px)' : 'scale(1)',
+                    transform: isHovered ? 'scale(1.25) translateY(-2px)' : 'scale(1)',
                     transformOrigin: '0px 0px',
                     transition: 'transform 0.25s ease',
                   }}
                 >
-                  <ellipse cx={0} cy={2} rx={5} ry={1.6} fill="#000" opacity={0.18} />
+                  <ellipse cx={0} cy={2} rx={5.5} ry={1.8} fill="#000" opacity={0.2} />
                   <path
-                    d="M0,0 C-6,-9 -6,-17 0,-17 C6,-17 6,-9 0,0 Z"
-                    fill={isHovered ? '#ffbf00' : m.isHq ? '#ffbf00' : '#d4a24c'}
+                    d="M0,0 C0,0 -10,-13.5 -10,-21 A10,10 0 1,1 10,-21 C10,-13.5 0,0 0,0 Z"
+                    fill={isHovered ? '#ffbf00' : m.isHq ? '#ffbf00' : '#ffffff'}
                     stroke="#0b2442"
                     strokeWidth={1}
                     style={{ transition: 'fill 0.2s ease' }}
                   />
-                  <circle cx={0} cy={-12} r={3} fill="#0b2442" />
+                  <text textAnchor="middle" dominantBaseline="central" x={0} y={-20.5} fontSize={12}>
+                    {m.flag}
+                  </text>
                 </g>
                 {isHovered && (
                   <text textAnchor="middle" y={-26} fontSize={10} fontWeight={600} fill={p.text}>

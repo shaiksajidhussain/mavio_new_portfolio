@@ -5,6 +5,7 @@ import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionHeading from '../ui/SectionHeading'
 
 const icons = { ClipboardList, Eye, Layers, ShieldCheck }
 const { heading, body, points } = qualityCompliancePage.qualityCommitments
@@ -39,9 +40,9 @@ export default function QualityCommitments() {
         <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_1.4fr] md:gap-12">
           <Reveal stagger={0}>
             <SectionLabel>Our Quality Commitments</SectionLabel>
-            <h2 className="mt-3 font-display text-3xl font-semibold text-navy dark:text-white md:text-4xl">
+            <SectionHeading className="mt-3">
               {heading}
-            </h2>
+            </SectionHeading>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-muted md:text-base">{body}</p>
           </Reveal>
 
