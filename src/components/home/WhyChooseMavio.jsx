@@ -73,7 +73,10 @@ export default function WhyChooseMavio() {
           </div>
         </div>
 
-        <div ref={gridRef} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          ref={gridRef}
+          className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-5"
+        >
           {content.points.map((p, i) => {
             const { title, description } = splitPoint(p)
             const Icon = pointIcons[i % pointIcons.length]
@@ -81,7 +84,7 @@ export default function WhyChooseMavio() {
               <div
                 key={p}
                 data-card
-                className="relative overflow-hidden rounded-2xl border border-line bg-surface p-6 shadow-card"
+                className="relative flex min-h-[220px] w-[78%] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-line bg-surface p-5 shadow-card sm:w-auto sm:shrink"
               >
                 <span
                   aria-hidden
@@ -91,8 +94,8 @@ export default function WhyChooseMavio() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
 
-                <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-                  <Icon size={20} />
+                <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gold-gradient text-navy-deep shadow-lg ring-4 ring-gold-deep/15">
+                  <Icon size={28} />
                 </span>
                 <p className="relative mt-4 font-display text-base font-bold text-ink">{title}</p>
                 <p className="relative mt-1.5 text-sm leading-relaxed text-muted">{description}</p>
