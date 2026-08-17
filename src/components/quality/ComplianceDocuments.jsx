@@ -9,7 +9,6 @@ import SectionHeading from '../ui/SectionHeading'
 
 const icons = { FileCheck2, Globe, Leaf, ShieldCheck, FlaskConical }
 const { heading, subheading, closing, items } = qualityCompliancePage.complianceDocuments
-const [featured, ...rest] = items
 const certStat = trustStats.find((s) => s.label === 'Live Traceability')
 
 export default function ComplianceDocuments() {
@@ -35,8 +34,6 @@ export default function ComplianceDocuments() {
     return () => ctx.revert()
   }, [])
 
-  const FeaturedIcon = icons[featured.icon]
-
   return (
     <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
       <RouteBackground />
@@ -44,46 +41,39 @@ export default function ComplianceDocuments() {
         <SectionLabel>Compliance Documents</SectionLabel>
         <SectionHeading className="mt-3">{heading}</SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
+
+        {certStat && (
+          <p className="mt-3 flex items-baseline gap-2">
+            <span className="font-display text-2xl font-black text-gold-deep">
+              {certStat.value}
+              {certStat.suffix}
+            </span>
+            <span className="text-sm text-muted">{certStat.label}</span>
+          </p>
+        )}
       </Reveal>
 
-      <div ref={gridRef} className="mt-10 grid gap-5 md:grid-cols-3">
-        <div
-          data-card
-          className="relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-3xl bg-navy-deep p-8 shadow-card md:row-span-2 md:min-h-[380px]"
-        >
-          <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 text-gold/10">
-            <FeaturedIcon size={220} strokeWidth={1} />
-          </div>
-
-          <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-            <FeaturedIcon size={24} />
-          </span>
-
-          <div className="relative">
-            <h3 className="font-display text-2xl font-bold text-white md:text-3xl">{featured.title}</h3>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/70 md:text-base">{featured.description}</p>
-
-            {certStat && (
-              <div className="mt-6 flex items-baseline gap-2 border-t border-white/10 pt-5">
-                <span className="font-display text-4xl font-black text-gold">
-                  {certStat.value}
-                  {certStat.suffix}
-                </span>
-                <span className="text-sm text-white/60">{certStat.label}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {rest.map((item) => {
+      <div ref={gridRef} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {items.map((item, i) => {
           const Icon = icons[item.icon]
+          const reverse = i % 2 === 1
           return (
-            <div key={item.title} data-card className="rounded-2xl border border-line bg-surface p-6 shadow-card">
+            <div
+              key={item.title}
+              data-card
+              className={`flex min-h-[220px] flex-col justify-between border border-line bg-surface p-6 shadow-card ${
+                reverse
+                  ? 'rounded-tr-2xl rounded-bl-2xl md:rounded-tr-3xl md:rounded-bl-3xl'
+                  : 'rounded-tl-2xl rounded-br-2xl md:rounded-tl-3xl md:rounded-br-3xl'
+              }`}
+            >
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
                 <Icon size={20} />
               </span>
-              <h3 className="mt-5 font-display text-lg font-bold text-ink">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{item.description}</p>
+              <div>
+                <h3 className="mt-5 font-display text-lg font-bold text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{item.description}</p>
+              </div>
             </div>
           )
         })}

@@ -604,80 +604,20 @@ export const qualityCompliancePage = {
   qualityCommitments: {
     heading: 'Our Quality Commitments',
     body: 'Every product has its own specifications, and every market has its own requirements. We understand both before we make any commitment, ensuring quality expectations are clear from the start. From product selection to final preparation, we maintain consistent quality at every stage. So every requirement is understood, followed, and delivered with confidence.',
-    points: [
-      {
-        icon: 'ClipboardList',
-        title: 'Every Product, Every Market',
-        description: 'Every product has its own specifications, and every market has its own requirements.',
-      },
-      {
-        icon: 'Eye',
-        title: 'Clarity From The Start',
-        description: 'We understand both before we make any commitment, ensuring quality expectations are clear from the start.',
-      },
-      {
-        icon: 'Layers',
-        title: 'Consistent At Every Stage',
-        description: 'From product selection to final preparation, we maintain consistent quality at every stage.',
-      },
-      {
-        icon: 'ShieldCheck',
-        title: 'Delivered With Confidence',
-        description: 'So every requirement is understood, followed, and delivered with confidence.',
-      },
-    ],
+    image: 'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=1400&q=80',
+    imageAlt: 'Product specifications being checked and documented',
   },
   qualityAssurance: {
     heading: 'Quality Assurance',
-    subheading:
-      'What reaches you matters, so we take every step to make sure it meets the standards you expect. Regular checks help us identify concerns early and maintain consistency throughout the journey.',
-    steps: [
-      {
-        step: 1,
-        label: 'Specifications',
-        icon: 'TestTubes',
-        description: 'Every procurement is checked against agreed product specifications from the outset.',
-        image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80',
-      },
-      {
-        step: 2,
-        label: 'Fumigation',
-        icon: 'FlaskConical',
-        description: 'Fumigation carried out to protocol to keep every consignment free of contamination.',
-        image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1000&q=80',
-      },
-      {
-        step: 3,
-        label: 'Moisture Control',
-        icon: 'BarChart3',
-        description: 'Moisture levels monitored and controlled to protect quality across the journey.',
-        image: 'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=1000&q=80',
-      },
-      {
-        step: 4,
-        label: 'Handling & Packaging',
-        icon: 'FileCheck2',
-        description: 'Handled and packaged with care, sized and sealed to the cargo’s exact requirements.',
-        image: 'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=1000&q=80',
-      },
-      {
-        step: 5,
-        label: 'Container Hygiene',
-        icon: 'PackageCheck',
-        description: 'Container hygiene verified before loading so every shipment travels clean and secure.',
-        image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1000&q=80',
-      },
-    ],
+    body: 'What reaches you matters, so we take every step to make sure it meets the standards you expect. We ensure that every procurement goes through constant checks — from product specifications, fumigation, and moisture control to handling, packaging, and container hygiene. Regular checks help us identify concerns early and maintain consistency throughout the journey. So every shipment reaches you with the quality and care you expect.',
+    image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1400&q=80',
+    imageAlt: 'Fumigation and quality control check on packaged goods',
   },
   inspectionTesting: {
     heading: 'Inspection & Testing',
-    subheading: 'Every product receives a thorough inspection before it is approved — only products that meet the required standards move forward.',
-    points: [
-      { icon: 'Droplets', title: 'Quality', description: 'Tested against agreed specifications and quality standards before approval.' },
-      { icon: 'FlaskConical', title: 'Safety', description: 'Assessed against destination-market safety requirements at every stage.' },
-      { icon: 'Ruler', title: 'Composition', description: 'Key composition parameters carefully measured and verified.' },
-      { icon: 'PackageCheck', title: 'Consistency', description: 'Checked for consistency, lot after lot, before anything moves forward.' },
-    ],
+    body: 'Every product receives a thorough inspection before it is approved. We test each product against agreed specifications, quality standards, and destination requirements. Key parameters such as quality, safety, composition, and consistency are carefully assessed. Only products that meet the required standards move forward.',
+    image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1400&q=80',
+    imageAlt: 'Inspector testing and verifying product samples before approval',
   },
   complianceDocuments: {
     heading: 'Compliance Documents',

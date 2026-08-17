@@ -4,6 +4,7 @@ import { ChevronDown, Menu, X } from 'lucide-react'
 import { nav } from '../../data/siteContent'
 import Button from '../ui/Button'
 import ThemeToggle from '../ui/ThemeToggle'
+import FontSwitcher from '../ui/FontSwitcher'
 import { ScrollTrigger } from '../../lib/gsap'
 
 export default function PrimaryHeader() {
@@ -98,6 +99,7 @@ export default function PrimaryHeader() {
           </nav>
 
           <div className="flex items-center gap-4 border-l border-white/15 pl-4">
+            <FontSwitcher tone="light" className="hidden lg:flex" />
             <ThemeToggle tone="light" className="hidden sm:flex" />
             <Button to="/partner-with-us" variant="primary" className="hidden sm:inline-flex">
               Partner With Us
@@ -147,6 +149,7 @@ export default function PrimaryHeader() {
           </nav>
           <div className="mt-4 flex items-center gap-3">
             <ThemeToggle tone="light" />
+            <FontSwitcher tone="light" />
             <Button to="/partner-with-us" variant="primary" onClick={() => setMobileOpen(false)}>
               Partner With Us
             </Button>

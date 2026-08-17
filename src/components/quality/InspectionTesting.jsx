@@ -1,121 +1,25 @@
-import { useEffect, useRef } from 'react'
-import { Droplets, FlaskConical, PackageCheck, Ruler } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { qualityCompliancePage } from '../../data/siteContent'
-import SectionLabel from '../ui/SectionLabel'
-import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
-import { gsap, prefersReducedMotion } from '../../lib/gsap'
-import SectionHeading from '../ui/SectionHeading'
+import QualityFeatureRow from './QualityFeatureRow'
 
-const icons = { Droplets, FlaskConical, Ruler, PackageCheck }
-const { heading, subheading, points } = qualityCompliancePage.inspectionTesting
-const positions = [12.5, 37.5, 62.5, 87.5]
-
-function CheckpointCard({ point }) {
-  const Icon = icons[point.icon]
-  return (
-    <>
-      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
-        <Icon size={18} />
-      </span>
-      <p className="mt-3 font-display text-base font-bold text-ink">{point.title}</p>
-      <p className="mt-1.5 text-xs leading-relaxed text-muted">{point.description}</p>
-    </>
-  )
-}
+const { heading, body, image, imageAlt } = qualityCompliancePage.inspectionTesting
 
 export default function InspectionTesting() {
-  const sectionRef = useRef(null)
-  const diagramRef = useRef(null)
-  const pathsRef = useRef([])
-
-  useEffect(() => {
-    if (prefersReducedMotion) return
-    const ctx = gsap.context(() => {
-      pathsRef.current.forEach((path, i) => {
-        if (!path) return
-        gsap.fromTo(
-          path,
-          { strokeDashoffset: 150 },
-          {
-            strokeDashoffset: 0,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: diagramRef.current,
-              start: `top ${95 - i * 5}%`,
-              end: `top ${35 - i * 5}%`,
-              scrub: 0.4,
-            },
-          }
-        )
-      })
-
-      gsap.fromTo(
-        '[data-inspect-hub]',
-        { opacity: 0, scale: 0.5 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          ease: 'back.out(2)',
-          scrollTrigger: { trigger: diagramRef.current, start: 'top 95%', once: true, fastScrollEnd: true },
-        }
-      )
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
   return (
-    <section ref={sectionRef} className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
-      <RouteBackground flip />
-      <Reveal stagger={0}>
-        <SectionLabel>Inspection & Testing</SectionLabel>
-        <SectionHeading className="mt-3">{heading}</SectionHeading>
-        <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
-      </Reveal>
-
-      <div ref={diagramRef} className="relative mt-20 hidden pb-8 lg:block" style={{ height: 300 }}>
-        <svg viewBox="0 0 100 60" preserveAspectRatio="none" className="absolute inset-0 h-[240px] w-full overflow-visible">
-          {positions.map((x, i) => (
-            <path
-              key={x}
-              ref={(el) => (pathsRef.current[i] = el)}
-              d={`M 50 8 Q ${(50 + x) / 2} 26 ${x} 44`}
-              fill="none"
-              stroke="#e0b05a"
-              strokeOpacity="0.5"
-              strokeWidth="0.4"
-              strokeDasharray="150"
-              strokeDashoffset="150"
-            />
-          ))}
-        </svg>
-
-        <div
-          data-inspect-hub
-          className="absolute left-1/2 top-0 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full bg-gold-gradient text-center shadow-card"
-        >
-          <span className="font-display text-[10px] font-bold leading-tight text-navy-deep">QC LAB</span>
-        </div>
-
-        {points.map((p, i) => (
-          <div
-            key={p.title}
-            className="absolute top-[190px] w-56 -translate-x-1/2 rounded-2xl border border-line bg-surface p-5 shadow-card"
-            style={{ left: `${positions[i]}%` }}
-          >
-            <CheckpointCard point={p} />
-          </div>
-        ))}
+    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+      <RouteBackground />
+      <div className="container-px relative mx-auto max-w-container">
+        <QualityFeatureRow
+          index={3}
+          icon={Search}
+          heading={heading}
+          body={body}
+          image={image}
+          imageAlt={imageAlt}
+          reverse={false}
+        />
       </div>
-
-      <Reveal as="div" stagger={0.1} className="mt-10 grid gap-5 sm:grid-cols-2 lg:hidden">
-        {points.map((p) => (
-          <div key={p.title} className="rounded-2xl border border-line bg-surface p-5 shadow-card">
-            <CheckpointCard point={p} />
-          </div>
-        ))}
-      </Reveal>
     </section>
   )
 }

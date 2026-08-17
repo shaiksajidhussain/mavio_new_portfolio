@@ -4,7 +4,7 @@ export default function RouteBackground({ flip = false, className = '' }) {
   return (
     <div
       aria-hidden
-      className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-[0.06] dark:opacity-0 ${
+      className={`pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-[0.06] dark:opacity-[0.08] ${
         flip ? 'scale-x-[-1]' : ''
       } ${className}`}
     >
@@ -22,7 +22,7 @@ export default function RouteBackground({ flip = false, className = '' }) {
           strokeWidth="2"
           strokeDasharray="6 9"
           strokeLinecap="round"
-          className="text-navy"
+          className="text-navy dark:text-white"
         />
         <path
           d="M110 70 C 250 100, 330 50, 510 100 C 650 140, 750 70, 950 160"
@@ -31,40 +31,40 @@ export default function RouteBackground({ flip = false, className = '' }) {
           strokeWidth="2"
           strokeDasharray="6 9"
           strokeLinecap="round"
-          className="text-navy"
+          className="text-navy dark:text-white"
         />
       </svg>
 
       <Plane
         size={22}
         strokeWidth={1.5}
-        className="absolute left-[46%] top-[33%] animate-float text-navy"
+        className="absolute left-[46%] top-[33%] animate-float text-navy dark:text-white"
         style={{ '--float-rotate': '-45deg' }}
       />
       <Plane
         size={18}
         strokeWidth={1.5}
-        className="absolute left-[87%] top-[24%] animate-float-slow text-navy"
+        className="absolute left-[87%] top-[24%] animate-float-slow text-navy dark:text-white"
         style={{ '--float-rotate': '25deg' }}
       />
       <Plane
         size={16}
         strokeWidth={1.5}
-        className="absolute left-[9%] top-[78%] animate-float-fast text-navy"
+        className="absolute left-[9%] top-[78%] animate-float-fast text-navy dark:text-white"
         style={{ '--float-rotate': '-15deg' }}
       />
-      <MapPin size={20} strokeWidth={1.5} className="absolute left-[64%] top-[70%] text-navy" />
-      <MapPin size={16} strokeWidth={1.5} className="absolute left-[30%] top-[14%] text-navy" />
+      <MapPin size={20} strokeWidth={1.5} className="absolute left-[64%] top-[70%] text-navy dark:text-white" />
+      <MapPin size={16} strokeWidth={1.5} className="absolute left-[30%] top-[14%] text-navy dark:text-white" />
       <Ship
         size={19}
         strokeWidth={1.5}
-        className="absolute left-[18%] top-[50%] animate-float-slow text-navy"
+        className="absolute left-[18%] top-[50%] animate-float-slow text-navy dark:text-white"
         style={{ '--float-rotate': '-6deg' }}
       />
       <Truck
         size={18}
         strokeWidth={1.5}
-        className="absolute left-[73%] top-[86%] animate-float-fast text-navy"
+        className="absolute left-[73%] top-[86%] animate-float-fast text-navy dark:text-white"
         style={{ '--float-rotate': '0deg' }}
       />
     </div>

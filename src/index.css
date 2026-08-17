@@ -60,7 +60,7 @@ html {
 body {
   background-color: rgb(var(--bg));
   color: rgb(var(--ink));
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-family, 'DM Sans', sans-serif);
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -92,7 +92,7 @@ body {
 }
 
 .eyebrow {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-family, 'DM Sans', sans-serif);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.72rem;

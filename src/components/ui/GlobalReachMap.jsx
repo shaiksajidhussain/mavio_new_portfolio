@@ -14,9 +14,27 @@ const palettes = {
   black: { card: '#0a0a0a', country: '#1e1e1e', hover: '#292929', stroke: '#0a0a0a', text: '#ffffff' },
 }
 
+// flagcdn.com ISO-3166 alpha-2 codes for the representative country of each region
+// (Africa has no single-country flag, so it falls back to the 🌍 emoji marker)
+const regionIso = {
+  'Middle East': 'ae',
+  Europe: 'eu',
+  'North America': 'us',
+  'Southeast Asia': 'sg',
+  'East Asia': 'cn',
+  Africa: null,
+  Oceania: 'au',
+}
+
 const markers = [
-  { name: `${brand.hq} · HQ`, flag: '🇮🇳', coordinates: [originCoords.lng, originCoords.lat], isHq: true },
-  ...regions.map((r) => ({ name: r.name, flag: r.flag, coordinates: [r.lng, r.lat], isHq: false })),
+  { name: `${brand.hq} · HQ`, flag: '🇮🇳', iso: 'in', coordinates: [originCoords.lng, originCoords.lat], isHq: true },
+  ...regions.map((r) => ({
+    name: r.name,
+    flag: r.flag,
+    iso: regionIso[r.name] ?? null,
+    coordinates: [r.lng, r.lat],
+    isHq: false,
+  })),
 ]
 
 export default function GlobalReachMap({ className = '' }) {
@@ -104,8 +122,9 @@ export default function GlobalReachMap({ className = '' }) {
             }
           </Geographies>
 
-          {markers.map((m) => {
+          {markers.map((m, i) => {
             const isHovered = hovered === m.name
+            const clipId = `flag-clip-${i}`
             return (
               <Marker
                 key={m.name}
@@ -114,6 +133,12 @@ export default function GlobalReachMap({ className = '' }) {
                 onMouseLeave={() => setHovered(null)}
                 style={{ default: { cursor: 'pointer' } }}
               >
+                <defs>
+                  <clipPath id={clipId}>
+                    <circle cx={0} cy={-21} r={8.6} />
+                  </clipPath>
+                </defs>
+
                 <g
                   style={{
                     transform: isHovered ? 'scale(1.25) translateY(-2px)' : 'scale(1)',
@@ -123,15 +148,30 @@ export default function GlobalReachMap({ className = '' }) {
                 >
                   <ellipse cx={0} cy={2} rx={5.5} ry={1.8} fill="#000" opacity={0.2} />
                   <path
-                    d="M0,0 C0,0 -10,-13.5 -10,-21 A10,10 0 1,1 10,-21 C10,-13.5 0,0 0,0 Z"
+                    d="M0,0 C0,0 -11,-14.5 -11,-22.5 A11,11 0 1,1 11,-22.5 C11,-14.5 0,0 0,0 Z"
                     fill={isHovered ? '#ffbf00' : m.isHq ? '#ffbf00' : '#ffffff'}
                     stroke="#0b2442"
                     strokeWidth={1}
                     style={{ transition: 'fill 0.2s ease' }}
                   />
-                  <text textAnchor="middle" dominantBaseline="central" x={0} y={-20.5} fontSize={12}>
-                    {m.flag}
-                  </text>
+                  <circle cx={0} cy={-21} r={9.4} fill="#ffffff" />
+                  {m.iso ? (
+                    <image
+                      href={`https://flagcdn.com/w80/${m.iso}.png`}
+                      x={-9.7}
+                      y={-30.3}
+                      width={19.4}
+                      height={19.4}
+                      preserveAspectRatio="xMidYMid slice"
+                      clipPath={`url(#${clipId})`}
+                    />
+                  ) : (
+                    <text textAnchor="middle" dominantBaseline="central" x={0} y={-21} fontSize={13}>
+                      {m.flag}
+                    </text>
+                  )}
+                  <circle cx={0} cy={-21} r={8.6} fill="none" stroke="#ffffff" strokeWidth={1.4} />
+                  <circle cx={0} cy={-21} r={8.6} fill="none" stroke="#0b2442" strokeWidth={0.6} />
                 </g>
                 {isHovered && (
                   <text textAnchor="middle" y={-26} fontSize={10} fontWeight={600} fill={p.text}>
