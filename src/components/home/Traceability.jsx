@@ -22,16 +22,19 @@ export default function Traceability() {
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/0" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/15" />
 
-        <div className="relative flex h-full min-h-[420px] flex-col justify-end gap-6 p-8 md:min-h-[480px] md:p-12 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
-          <div className="max-w-md">
-            <SectionLabel tone="onDark">Traceability</SectionLabel>
-            <SectionHeading tone="onDark" className="mt-3">
+        <div className="relative flex h-full min-h-[420px] flex-col justify-end gap-8 p-8 md:min-h-[480px] md:p-12 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <SectionLabel tone="onDark" className="font-bold">
+              Traceability
+            </SectionLabel>
+            <SectionHeading tone="onDark" weight="bold" className="mt-3 max-w-md">
               {traceability.heading}
             </SectionHeading>
           </div>
-          <p className="max-w-md text-sm leading-relaxed text-white/85 md:text-base">
+
+          <p className="max-w-sm text-base leading-relaxed text-white/85 md:text-lg">
             {traceability.description}
           </p>
         </div>

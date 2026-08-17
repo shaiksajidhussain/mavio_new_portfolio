@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react'
-import { ClipboardCheck, Headphones, MessageCircle, Truck } from 'lucide-react'
 import { partnerPage } from '../../data/siteContent'
 import { usePartnerRole } from '../../context/PartnerRoleContext'
 import SectionLabel from '../ui/SectionLabel'
@@ -8,132 +7,115 @@ import RouteBackground from '../ui/RouteBackground'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 import SectionHeading from '../ui/SectionHeading'
 
-const icons = { ClipboardCheck, MessageCircle, Truck, Headphones }
 const { heading } = partnerPage.commitment
-const positions = [12.5, 37.5, 62.5, 87.5]
 
-function CommitmentPoint({ point }) {
-  const Icon = icons[point.icon]
+const roleImages = {
+  buyer: 'https://res.cloudinary.com/dgus6y6lm/image/upload/v1786964040/38c5d42e-4ec1-49ec-bd99-a5d48ff595f3.png',
+  supplier: 'https://res.cloudinary.com/dgus6y6lm/image/upload/v1786964340/598c9159-06b7-45d3-a308-b46a69d3a3ce.png',
+}
+
+function RoleToggle() {
+  const { role, setRole } = usePartnerRole()
+  const tabRefs = useRef([])
+  const indicatorRef = useRef(null)
+
+  const moveIndicator = (index, animate = true) => {
+    const btn = tabRefs.current[index]
+    const indicator = indicatorRef.current
+    if (!btn || !indicator) return
+    const { offsetLeft, offsetWidth } = btn
+    if (animate && !prefersReducedMotion) {
+      gsap.to(indicator, { left: offsetLeft, width: offsetWidth, duration: 0.4, ease: 'power3.out' })
+    } else {
+      indicator.style.left = `${offsetLeft}px`
+      indicator.style.width = `${offsetWidth}px`
+    }
+  }
+
+  useEffect(() => {
+    moveIndicator(role === 'buyer' ? 0 : 1, false)
+    const onResize = () => moveIndicator(role === 'buyer' ? 0 : 1, false)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
-    <>
-      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
-        <Icon size={18} />
-      </span>
-      <p className="mt-3 font-display text-base font-bold text-ink">{point.title}</p>
-      <p className="mt-1.5 text-xs leading-relaxed text-muted">{point.description}</p>
-    </>
+    <div className="relative mt-6 inline-flex rounded-full border border-line bg-bg-muted p-1">
+      <span ref={indicatorRef} className="pointer-events-none absolute top-1 bottom-1 rounded-full bg-gold-gradient transition-none" />
+      {['buyer', 'supplier'].map((r, i) => (
+        <button
+          key={r}
+          ref={(el) => (tabRefs.current[i] = el)}
+          type="button"
+          onClick={() => {
+            setRole(r)
+            moveIndicator(i)
+          }}
+          className={`relative z-10 rounded-full px-6 py-2.5 text-sm font-semibold capitalize transition-colors ${
+            role === r ? 'text-navy-deep' : 'text-muted hover:text-ink'
+          }`}
+        >
+          {r}
+        </button>
+      ))}
+    </div>
   )
 }
 
 export default function Commitment() {
   const { role } = usePartnerRole()
-  const { subheading, points } = partnerPage.commitment[role === 'supplier' ? 'supplier' : 'buyer']
-  const sectionRef = useRef(null)
-  const diagramRef = useRef(null)
-  const pathsRef = useRef([])
-  const hubRef = useRef(null)
-  const hubRingRef = useRef(null)
+  const activeRole = role === 'supplier' ? 'supplier' : 'buyer'
+  const { subheading } = partnerPage.commitment[activeRole]
+
+  const imgRef = useRef(null)
+  const mountedRef = useRef(false)
+
+  useEffect(() => {
+    const other = activeRole === 'buyer' ? roleImages.supplier : roleImages.buyer
+    const preload = new Image()
+    preload.src = other
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (prefersReducedMotion) return
-    const ctx = gsap.context(() => {
-      pathsRef.current.forEach((path, i) => {
-        if (!path) return
-        gsap.fromTo(
-          path,
-          { strokeDashoffset: 150 },
-          {
-            strokeDashoffset: 0,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: diagramRef.current,
-              start: `top ${95 - i * 5}%`,
-              end: `top ${35 - i * 5}%`,
-              scrub: 0.4,
-            },
-          }
-        )
-      })
-
-      gsap.fromTo(
-        hubRef.current,
-        { opacity: 0, scale: 0.5 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          ease: 'back.out(2)',
-          scrollTrigger: { trigger: diagramRef.current, start: 'top 95%', once: true, fastScrollEnd: true },
-        }
-      )
-
-      gsap.to(hubRingRef.current, {
-        rotate: 360,
-        ease: 'none',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top bottom', end: 'bottom top', scrub: true },
-      })
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
+    if (!mountedRef.current) {
+      mountedRef.current = true
+      return
+    }
+    gsap.fromTo(
+      imgRef.current,
+      { opacity: 0, scale: 0.97, y: 8 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+    )
+  }, [activeRole])
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
+    <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
       <RouteBackground flip />
       <Reveal stagger={0}>
         <SectionLabel>Our Commitment To Every Procurement</SectionLabel>
         <SectionHeading className="mt-3">{heading}</SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
+        <RoleToggle />
       </Reveal>
 
-      <div ref={diagramRef} className="relative mt-20 hidden pb-8 lg:block" style={{ height: 300 }}>
-        <svg
-          viewBox="0 0 100 60"
-          preserveAspectRatio="none"
-          className="absolute inset-0 h-[240px] w-full overflow-visible"
-        >
-          {positions.map((x, i) => (
-            <path
-              key={x}
-              ref={(el) => (pathsRef.current[i] = el)}
-              d={`M 50 8 Q ${(50 + x) / 2} 26 ${x} 44`}
-              fill="none"
-              stroke="#e0b05a"
-              strokeOpacity="0.5"
-              strokeWidth="0.4"
-              strokeDasharray="150"
-              strokeDashoffset="150"
-            />
-          ))}
-        </svg>
+      <Reveal as="div" stagger={0} delay={0.1} className="relative mx-auto mt-14 max-w-5xl">
+        <div className="absolute -inset-6 animate-pulse rounded-[40px] bg-gold-gradient opacity-25 blur-3xl" aria-hidden />
 
-        <div ref={hubRef} className="absolute left-1/2 top-0 -translate-x-1/2">
-          <div
-            ref={hubRingRef}
-            className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-dashed border-gold/50"
-          >
-            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gold-gradient text-center shadow-card">
-              <span className="font-display text-[10px] font-bold leading-tight text-navy-deep">MAVIO</span>
-            </div>
-          </div>
+        <div className="group relative overflow-hidden rounded-3xl border border-gold-deep/25 shadow-card">
+          <div className="pointer-events-none absolute -inset-1 rounded-[28px] bg-gold-gradient opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-40" />
+          <img
+            ref={imgRef}
+            key={activeRole}
+            src={roleImages[activeRole]}
+            alt={activeRole === 'buyer' ? 'Buyer procurement flow through Mavio Global' : 'Supplier procurement flow through Mavio Global'}
+            className="relative w-full"
+            loading="eager"
+            decoding="async"
+          />
         </div>
-
-        {points.map((p, i) => (
-          <div
-            key={p.title}
-            className="absolute top-[190px] w-56 -translate-x-1/2 rounded-2xl border border-line bg-surface p-5 shadow-card"
-            style={{ left: `${positions[i]}%` }}
-          >
-            <CommitmentPoint point={p} />
-          </div>
-        ))}
-      </div>
-
-      <Reveal as="div" stagger={0.1} className="mt-10 grid gap-5 sm:grid-cols-2 lg:hidden">
-        {points.map((p) => (
-          <div key={p.title} className="rounded-2xl border border-line bg-surface p-5 shadow-card">
-            <CommitmentPoint point={p} />
-          </div>
-        ))}
       </Reveal>
     </section>
   )
