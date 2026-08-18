@@ -1,0 +1,14 @@
+import { chromium } from 'playwright';
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1280, height: 1600 } });
+const errors = [];
+page.on('pageerror', err => errors.push(String(err)));
+page.on('console', msg => { if (msg.type() === 'error') errors.push(msg.text()); });
+await page.goto('http://localhost:5174/capabilities/supply-chain-visibility', { waitUntil: 'networkidle' });
+await page.waitForTimeout(500);
+const section = page.locator('text=End-to-End Supply Chain Journey').first();
+await section.scrollIntoViewIfNeeded();
+await page.waitForTimeout(1000);
+await page.screenshot({ path: 'journey.png', fullPage: false });
+console.log('ERRORS:', JSON.stringify(errors));
+await browser.close();

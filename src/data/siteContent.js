@@ -650,6 +650,8 @@ export const supplyChainVisibilityPage = {
     heading: 'Trade with absolute peace of mind',
     body:
       'Global trade without real-time visibility leads to operational bottlenecks, unrecorded fees, and broken communication lines. Disconnected documentation and uncoordinated logistics handoffs ultimately weaken partner trust and compromise schedule reliability. Mavio ensures total operational governance by providing end-to-end visibility throughout the entire shipping lifecycle — integrating buyers, suppliers, and transport networks into one seamless setup, and taking full ownership of backend logistics so you can trade with absolute peace of mind.',
+    image: 'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=1400&q=80',
+    imageAlt: 'Warehouse operations being coordinated and tracked',
   },
   journey: {
     heading: 'End-to-End Supply Chain Journey',
