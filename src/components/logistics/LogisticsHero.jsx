@@ -12,6 +12,7 @@ const { hero } = exportLogisticsPage
 
 export default function LogisticsHero() {
   const sectionRef = useRef(null)
+  const imgWrapRef = useRef(null)
   const imgRef = useRef(null)
   const copyRef = useRef(null)
 
@@ -29,12 +30,26 @@ export default function LogisticsHero() {
   useEffect(() => {
     if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
-      gsap.fromTo(imgRef.current, { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out' })
+      gsap.fromTo(
+        imgWrapRef.current,
+        { clipPath: 'inset(0 0 100% 0)' },
+        { clipPath: 'inset(0 0 0 0)', duration: 1.05, ease: 'power3.out' }
+      )
+      gsap.fromTo(
+        imgRef.current,
+        { scale: 1.12, opacity: 0.55 },
+        { scale: 1, opacity: 1, duration: 1.25, ease: 'power2.out' }
+      )
       gsap.fromTo(
         copyRef.current.children,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.2 }
+        { opacity: 0, y: 16, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.55, stagger: 0.06, ease: 'power3.out', delay: 0.18 }
       )
+      gsap.to(imgWrapRef.current, {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
+      })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -45,7 +60,9 @@ export default function LogisticsHero() {
       className="relative -mt-20 flex min-h-[420px] items-center overflow-hidden sm:-mt-[7.25rem] sm:min-h-[460px]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img ref={imgRef} src={hero.image} alt={hero.imageAlt} className="h-full w-full object-cover" />
+        <div ref={imgWrapRef} className="h-full w-full will-change-transform">
+          <img ref={imgRef} src={hero.image} alt={hero.imageAlt} className="h-full w-full object-cover" />
+        </div>
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
       <img
@@ -80,7 +97,10 @@ export default function LogisticsHero() {
           {hero.heading}
         </SectionHeading>
         <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
-          <Link to="/" className="font-medium text-gold hover:text-gold-bright">
+          <Link
+            to="/"
+            className="font-medium text-gold transition-[color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-gold-bright active:scale-[0.97]"
+          >
             Home
           </Link>
           <ArrowRight size={14} />

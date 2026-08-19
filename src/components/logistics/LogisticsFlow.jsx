@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 /* ------------------------------------------------------------------ *
  * Export-process steps. Icons are inline (Lucide-style) line paths.  *
@@ -107,8 +108,13 @@ function smoothPath(pts) {
 }
 
 export default function LogisticsFlow() {
+  const sectionRef = useRef(null)
   const arcRef = useRef(null)
+  const arcPathRef = useRef(null)
+  const orbitRef = useRef(null)
+  const coreRef = useRef(null)
   const [geo, setGeo] = useState(null)
+  const playedRef = useRef(false)
 
   useEffect(() => {
     const build = () => {
@@ -154,16 +160,173 @@ export default function LogisticsFlow() {
     }
   }, [])
 
+  useEffect(() => {
+    if (!geo || prefersReducedMotion) return
+
+    const ctx = gsap.context(() => {
+      const path = arcPathRef.current
+      if (path) {
+        const len = path.getTotalLength()
+        if (!playedRef.current) {
+          gsap.set(path, { strokeDasharray: len, strokeDashoffset: len })
+          gsap.to(path, {
+            strokeDashoffset: 0,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: arcRef.current,
+              start: 'top 80%',
+              end: 'top 28%',
+              scrub: 0.45,
+            },
+          })
+        } else {
+          gsap.set(path, { strokeDasharray: len, strokeDashoffset: 0 })
+        }
+      }
+
+      if (orbitRef.current) {
+        gsap.to(orbitRef.current, {
+          rotation: 360,
+          duration: 28,
+          ease: 'none',
+          repeat: -1,
+          svgOrigin: `${geo.circle.cx} ${geo.circle.cy}`,
+        })
+      }
+
+      if (playedRef.current) return
+
+      gsap.fromTo(
+        '[data-flow-core-label]',
+        { opacity: 0, xPercent: -50, yPercent: -50, scale: 0.96 },
+        {
+          opacity: 1,
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          duration: 0.5,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: arcRef.current, start: 'top 72%', once: true },
+        }
+      )
+
+      if (coreRef.current) {
+        gsap.fromTo(
+          coreRef.current,
+          { scale: 0.95, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.55,
+            ease: 'power3.out',
+            transformOrigin: '50% 50%',
+            scrollTrigger: { trigger: arcRef.current, start: 'top 72%', once: true },
+          }
+        )
+      }
+
+      gsap.fromTo(
+        '[data-flow-label]',
+        { opacity: 0, xPercent: -100, yPercent: -50, x: -12 },
+        {
+          opacity: 1,
+          xPercent: -100,
+          yPercent: -50,
+          x: 0,
+          duration: 0.45,
+          stagger: 0.06,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: arcRef.current, start: 'top 70%', once: true },
+        }
+      )
+      gsap.fromTo(
+        '[data-flow-icon]',
+        { opacity: 0, xPercent: -50, yPercent: -50, scale: 0.95 },
+        {
+          opacity: 1,
+          xPercent: -50,
+          yPercent: -50,
+          scale: 1,
+          duration: 0.45,
+          stagger: 0.06,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: arcRef.current, start: 'top 70%', once: true },
+        }
+      )
+      gsap.fromTo(
+        '[data-flow-copy]',
+        { opacity: 0, yPercent: -50, y: 10 },
+        {
+          opacity: 1,
+          yPercent: -50,
+          y: 0,
+          duration: 0.45,
+          stagger: 0.06,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: arcRef.current, start: 'top 70%', once: true },
+        }
+      )
+      gsap.fromTo(
+        '[data-flow-dot]',
+        { opacity: 0, scale: 0.95 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.35,
+          stagger: 0.05,
+          ease: 'power3.out',
+          transformOrigin: '50% 50%',
+          scrollTrigger: { trigger: arcRef.current, start: 'top 70%', once: true },
+        }
+      )
+
+      playedRef.current = true
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [geo])
+
+  useEffect(() => {
+    if (prefersReducedMotion) return
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '[data-flow-head]',
+        { opacity: 0, y: 12 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.05,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 82%', once: true },
+        }
+      )
+      gsap.fromTo(
+        '[data-flow-mobile]',
+        { opacity: 0, y: 12 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          stagger: 0.05,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 78%', once: true },
+        }
+      )
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className="container-px mx-auto max-w-container bg-white py-16 md:py-24">
+    <section ref={sectionRef} className="container-px mx-auto max-w-container bg-white py-16 md:py-24">
       {/* ---------- heading ---------- */}
-      <span className="text-[12px] font-semibold uppercase tracking-[2px] text-[#0a1020]/60">
+      <span data-flow-head className="text-[12px] font-semibold uppercase tracking-[2px] text-[#0a1020]/60">
         Our Export Process
       </span>
-      <h2 className="mt-2 text-[clamp(28px,4vw,44px)] font-bold tracking-tight text-[#0a1020]">
+      <h2 data-flow-head className="mt-2 text-[clamp(28px,4vw,44px)] font-bold tracking-tight text-[#0a1020]">
         Our Export <span className="text-[#c69a44] underline decoration-[#e8cd85] decoration-2 underline-offset-4">Process</span>
       </h2>
-      <p className="mt-3 max-w-[46ch] text-[14.5px] leading-relaxed text-[#5b6472]">
+      <p data-flow-head className="mt-3 max-w-[46ch] text-[14.5px] leading-relaxed text-[#5b6472]">
         Every stage between booking and final delivery, coordinated end to end.
       </p>
 
@@ -183,6 +346,7 @@ export default function LogisticsFlow() {
             >
               {/* the big thin arc */}
               <path
+                ref={arcPathRef}
                 d={geo.arc}
                 fill="none"
                 stroke="#d9dde5"
@@ -193,31 +357,34 @@ export default function LogisticsFlow() {
               <g>
                 <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r + 30} fill="none" stroke="#e6e8ee" strokeWidth="1" />
                 <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r + 16} fill="none" stroke="#eef0f4" strokeWidth="1" />
-                {[35, 120, 210, 300].map((deg, i) => {
-                  const rad = (deg * Math.PI) / 180
-                  const rr = geo.circle.r + (i % 2 ? 30 : 16)
-                  return (
-                    <circle
-                      key={deg}
-                      cx={geo.circle.cx + rr * Math.cos(rad)}
-                      cy={geo.circle.cy + rr * Math.sin(rad)}
-                      r={i % 2 ? 3 : 4.5}
-                      fill={i % 2 ? '#c69a44' : '#0a1020'}
-                    />
-                  )
-                })}
+                <g ref={orbitRef}>
+                  {[35, 120, 210, 300].map((deg, i) => {
+                    const rad = (deg * Math.PI) / 180
+                    const rr = geo.circle.r + (i % 2 ? 30 : 16)
+                    return (
+                      <circle
+                        key={deg}
+                        cx={geo.circle.cx + rr * Math.cos(rad)}
+                        cy={geo.circle.cy + rr * Math.sin(rad)}
+                        r={i % 2 ? 3 : 4.5}
+                        fill={i % 2 ? '#c69a44' : '#0a1020'}
+                      />
+                    )
+                  })}
+                </g>
                 {/* filled core */}
-                <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r} fill="#0a1020" />
+                <circle ref={coreRef} cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r} fill="#0a1020" />
               </g>
 
               {/* node dots on the arc */}
               {geo.nodes.map((nd) => (
-                <circle key={nd.n} cx={nd.x} cy={nd.y} r="4" fill="#c69a44" />
+                <circle data-flow-dot key={nd.n} cx={nd.x} cy={nd.y} r="4" fill="#c69a44" />
               ))}
             </svg>
 
             {/* central circle label */}
             <div
+              data-flow-core-label
               className="absolute flex flex-col items-center justify-center text-center"
               style={{
                 left: geo.circle.cx,
@@ -239,6 +406,7 @@ export default function LogisticsFlow() {
               <div key={nd.n}>
                 {/* number label (left of node) */}
                 <div
+                  data-flow-label
                   className="absolute text-right"
                   style={{
                     left: nd.x - 42,
@@ -255,6 +423,7 @@ export default function LogisticsFlow() {
 
                 {/* icon node */}
                 <div
+                  data-flow-icon
                   className="absolute flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-b from-[#f6e4a8] to-[#c69a44] shadow-[0_8px_18px_-8px_rgba(198,154,68,0.9)]"
                   style={{ left: nd.x, top: nd.y, transform: 'translate(-50%,-50%)' }}
                 >
@@ -273,6 +442,7 @@ export default function LogisticsFlow() {
 
                 {/* title + description (right of node) */}
                 <div
+                  data-flow-copy
                   className="absolute"
                   style={{
                     left: nd.x + 40,
@@ -297,7 +467,7 @@ export default function LogisticsFlow() {
       {/* ================= MOBILE: stacked list ================= */}
       <div className="mt-10 space-y-7 md:hidden">
         {steps.map((s) => (
-          <div key={s.n} className="flex gap-4">
+          <div key={s.n} data-flow-mobile className="flex gap-4">
             <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gradient-to-b from-[#f6e4a8] to-[#c69a44]">
               <svg
                 viewBox="0 0 24 24"
