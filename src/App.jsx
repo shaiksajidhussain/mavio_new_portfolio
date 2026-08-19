@@ -13,11 +13,6 @@ import Sustainability from './pages/Sustainability'
 import Contact from './pages/Contact'
 import Products from './pages/Products'
 import ProductDetail from './pages/ProductDetail'
-import PlaceholderPage from './pages/PlaceholderPage'
-
-const placeholderRoutes = [
-  { path: '/capabilities/why-mavio', title: 'Why Mavio', blurb: 'What sets our sourcing and export process apart — page in progress.' },
-]
 
 export default function App() {
   return (
@@ -37,9 +32,6 @@ export default function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:categorySlug" element={<Products />} />
         <Route path="/products/:categorySlug/:productSlug" element={<ProductDetail />} />
-        {placeholderRoutes.map((r) => (
-          <Route key={r.path} path={r.path} element={<PlaceholderPage title={r.title} blurb={r.blurb} />} />
-        ))}
       </Route>
     </Routes>
   )

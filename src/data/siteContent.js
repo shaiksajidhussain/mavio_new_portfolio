@@ -27,7 +27,6 @@ export const nav = [
   {
     label: 'Capabilities',
     children: [
-      { label: 'Why Mavio', to: '/capabilities/why-mavio' },
       { label: 'Quality & Compliance', to: '/capabilities/quality-compliance' },
       { label: 'Supply Chain Visibility', to: '/capabilities/supply-chain-visibility' },
       { label: 'Export & Logistics', to: '/capabilities/export-logistics' },

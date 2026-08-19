@@ -1,56 +1,330 @@
-import { ClipboardList, FileCheck2, Navigation, PackageCheck, Ship, Warehouse } from 'lucide-react'
-import { exportLogisticsPage } from '../../data/siteContent'
-import SectionLabel from '../ui/SectionLabel'
-import Reveal from '../ui/Reveal'
-import RouteBackground from '../ui/RouteBackground'
-import SectionHeading from '../ui/SectionHeading'
+import { useEffect, useRef, useState } from 'react'
 
-const icons = { ClipboardList, FileCheck2, Warehouse, Ship, Navigation, PackageCheck }
-const { heading, subheading, steps } = exportLogisticsPage.process
+/* ------------------------------------------------------------------ *
+ * Export-process steps. Icons are inline (Lucide-style) line paths.  *
+ * Text mirrors exportLogisticsPage.process.steps in ../../data/siteContent. *
+ * ------------------------------------------------------------------ */
+const steps = [
+  {
+    n: '01',
+    title: 'Requirement Confirmation',
+    desc: 'Confirm product specifications, quantities, timelines, and destination requirements before booking.',
+    icon: (
+      <>
+        <rect x="8" y="3" width="8" height="4" rx="1" />
+        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+        <path d="m9 14 2 2 4-4" />
+      </>
+    ),
+  },
+  {
+    n: '02',
+    title: 'Product Preparation',
+    desc: 'Prepare, inspect, pack, and label goods according to export requirements.',
+    icon: (
+      <>
+        <path d="M21 8 12 3 3 8l9 5 9-5Z" />
+        <path d="M3 8v8l9 5 9-5V8" />
+        <path d="M12 13v8" />
+      </>
+    ),
+  },
+  {
+    n: '03',
+    title: 'Export Documentation',
+    desc: 'Complete invoices, packing lists, certificates, and customs documents for shipment.',
+    icon: (
+      <>
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+        <path d="M14 3v5h5" />
+        <line x1="9" y1="13" x2="15" y2="13" />
+        <line x1="9" y1="17" x2="13" y2="17" />
+      </>
+    ),
+  },
+  {
+    n: '04',
+    title: 'Customs & Dispatch',
+    desc: 'Coordinate customs clearance, carrier handover, and final shipment departure smoothly.',
+    icon: (
+      <>
+        <path d="M3 7h11v8H3z" />
+        <path d="M14 10h4l3 3v2h-7z" />
+        <circle cx="7" cy="18" r="1.6" />
+        <circle cx="17" cy="18" r="1.6" />
+      </>
+    ),
+  },
+  {
+    n: '05',
+    title: 'Freight Booking',
+    desc: 'We secure ideal shipping routes and schedule timely vessel loading.',
+    icon: (
+      <>
+        <path d="M3 17.5 4.6 12h14.8L21 17.5" />
+        <path d="M2.5 17.5c1.3 1.2 2.4 1.2 3.7 0 1.3 1.2 2.4 1.2 3.7 0 1.3 1.2 2.4 1.2 3.7 0 1.3 1.2 2.4 1.2 3.7 0" />
+        <path d="M6.5 12V8h9l2 4" />
+        <path d="M11 8V5" />
+      </>
+    ),
+  },
+  {
+    n: '06',
+    title: 'Shipment Tracking',
+    desc: 'Track shipment progress and share updates until successful delivery.',
+    icon: (
+      <>
+        <path d="M22 2 11 13" />
+        <path d="M22 2 15 22l-4-9-9-4Z" />
+      </>
+    ),
+  },
+]
+
+/* ---- tuning constants (safe to tweak) ---------------------------- */
+const H = 620 // arc canvas height (desktop)
+const TOP_PAD = 66
+const BASE_X_RATIO = 0.44 // where the ends of the arc sit, as a fraction of width
+const BULGE = 66 // how far the middle of the arc pushes right
+const TEXT_W = 290
+
+// Catmull-Rom -> cubic bezier smoothing through a set of points
+function smoothPath(pts) {
+  if (pts.length < 2) return ''
+  let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i]
+    const p1 = pts[i]
+    const p2 = pts[i + 1]
+    const p3 = pts[i + 2] || p2
+    const c1x = p1.x + (p2.x - p0.x) / 6
+    const c1y = p1.y + (p2.y - p0.y) / 6
+    const c2x = p2.x - (p3.x - p1.x) / 6
+    const c2y = p2.y - (p3.y - p1.y) / 6
+    d += ` C ${c1x.toFixed(1)} ${c1y.toFixed(1)} ${c2x.toFixed(1)} ${c2y.toFixed(1)} ${p2.x.toFixed(1)} ${p2.y.toFixed(1)}`
+  }
+  return d
+}
 
 export default function LogisticsFlow() {
+  const arcRef = useRef(null)
+  const [geo, setGeo] = useState(null)
+
+  useEffect(() => {
+    const build = () => {
+      const el = arcRef.current
+      if (!el) return
+      const W = el.offsetWidth
+      if (!W) return // hidden (mobile) — list is shown instead
+      const n = steps.length
+      const usable = H - TOP_PAD * 2
+      const nodeX = (t) => W * BASE_X_RATIO + BULGE * Math.sin(Math.PI * t)
+      const yAt = (t) => TOP_PAD + t * usable
+
+      const nodes = steps.map((s, i) => {
+        const t = i / (n - 1)
+        return { ...s, x: nodeX(t), y: yAt(t), t }
+      })
+
+      // extend the drawn arc slightly beyond the first and last node
+      const pathPts = [-0.16, ...nodes.map((nd) => nd.t), 1.16].map((t) => ({
+        x: nodeX(t),
+        y: yAt(t),
+      }))
+
+      const r = Math.min(118, W * 0.12)
+      setGeo({
+        W,
+        H,
+        nodes,
+        arc: smoothPath(pathPts),
+        circle: { cx: W * 0.155, cy: H / 2, r },
+      })
+    }
+
+    build()
+    window.addEventListener('resize', build)
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(build) : null
+    if (ro && arcRef.current) ro.observe(arcRef.current)
+    const t = setTimeout(build, 250)
+    return () => {
+      window.removeEventListener('resize', build)
+      if (ro) ro.disconnect()
+      clearTimeout(t)
+    }
+  }, [])
+
   return (
-    <section className="relative overflow-hidden bg-bg py-16 themeblack:bg-black md:py-24">
-      <RouteBackground flip />
-      <div className="container-px relative mx-auto max-w-container">
-        <Reveal stagger={0}>
-          <SectionLabel>Our Export Process</SectionLabel>
-          <SectionHeading className="mt-3">{heading}</SectionHeading>
-          <p className="mt-2 max-w-2xl text-sm text-muted">{subheading}</p>
-        </Reveal>
+    <section className="container-px mx-auto max-w-container bg-white py-16 md:py-24">
+      {/* ---------- heading ---------- */}
+      <span className="text-[12px] font-semibold uppercase tracking-[2px] text-[#0a1020]/60">
+        Our Export Process
+      </span>
+      <h2 className="mt-2 text-[clamp(28px,4vw,44px)] font-bold tracking-tight text-[#0a1020]">
+        Our Export <span className="text-[#c69a44] underline decoration-[#e8cd85] decoration-2 underline-offset-4">Process</span>
+      </h2>
+      <p className="mt-3 max-w-[46ch] text-[14.5px] leading-relaxed text-[#5b6472]">
+        Every stage between booking and final delivery, coordinated end to end.
+      </p>
 
-        <Reveal as="div" stagger={0.08} className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {steps.map((s, i) => {
-            const Icon = icons[s.icon]
-            return (
-              <div
-                key={s.step}
-                className="group relative flex h-72 flex-col justify-end overflow-hidden rounded-3xl border border-white/10 p-6"
-              >
-                <img
-                  src={s.image}
-                  alt={s.label}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-navy-deep/10" />
+      {/* ================= DESKTOP: arc layout ================= */}
+      <div
+        ref={arcRef}
+        className="relative mt-10 hidden md:block"
+        style={{ height: H }}
+      >
+        {geo && (
+          <>
+            <svg
+              className="pointer-events-none absolute inset-0"
+              width={geo.W}
+              height={geo.H}
+              viewBox={`0 0 ${geo.W} ${geo.H}`}
+            >
+              {/* the big thin arc */}
+              <path
+                d={geo.arc}
+                fill="none"
+                stroke="#d9dde5"
+                strokeWidth="1.5"
+              />
 
-                <span
-                  className="pointer-events-none absolute -top-3 right-3 font-display text-6xl font-black leading-none text-transparent"
-                  style={{ WebkitTextStroke: '1.5px rgba(255,191,0,0.85)' }}
+              {/* central circle: decorative rings + orbiting dots */}
+              <g>
+                <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r + 30} fill="none" stroke="#e6e8ee" strokeWidth="1" />
+                <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r + 16} fill="none" stroke="#eef0f4" strokeWidth="1" />
+                {[35, 120, 210, 300].map((deg, i) => {
+                  const rad = (deg * Math.PI) / 180
+                  const rr = geo.circle.r + (i % 2 ? 30 : 16)
+                  return (
+                    <circle
+                      key={deg}
+                      cx={geo.circle.cx + rr * Math.cos(rad)}
+                      cy={geo.circle.cy + rr * Math.sin(rad)}
+                      r={i % 2 ? 3 : 4.5}
+                      fill={i % 2 ? '#c69a44' : '#0a1020'}
+                    />
+                  )
+                })}
+                {/* filled core */}
+                <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r} fill="#0a1020" />
+              </g>
+
+              {/* node dots on the arc */}
+              {geo.nodes.map((nd) => (
+                <circle key={nd.n} cx={nd.x} cy={nd.y} r="4" fill="#c69a44" />
+              ))}
+            </svg>
+
+            {/* central circle label */}
+            <div
+              className="absolute flex flex-col items-center justify-center text-center"
+              style={{
+                left: geo.circle.cx,
+                top: geo.circle.cy,
+                width: geo.circle.r * 2,
+                transform: 'translate(-50%,-50%)',
+              }}
+            >
+              <span className="text-[13px] font-medium uppercase tracking-[3px] text-[#e8cd85]">
+                Export
+              </span>
+              <span className="text-[26px] font-bold leading-tight text-white">
+                Process
+              </span>
+            </div>
+
+            {/* items */}
+            {geo.nodes.map((nd) => (
+              <div key={nd.n}>
+                {/* number label (left of node) */}
+                <div
+                  className="absolute text-right"
+                  style={{
+                    left: nd.x - 42,
+                    top: nd.y,
+                    width: 130,
+                    transform: 'translate(-100%,-50%)',
+                  }}
                 >
-                  {String(s.step).padStart(2, '0')}
-                </span>
+                  <span className="text-[12px] font-semibold uppercase tracking-[1.5px] text-[#0a1020]/55">
+                    Step
+                  </span>
+                  <span className="ml-1 text-[15px] font-bold text-[#c69a44]">{nd.n}</span>
+                </div>
 
-                <span className="relative flex h-11 w-11 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-                  <Icon size={20} />
-                </span>
+                {/* icon node */}
+                <div
+                  className="absolute flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-b from-[#f6e4a8] to-[#c69a44] shadow-[0_8px_18px_-8px_rgba(198,154,68,0.9)]"
+                  style={{ left: nd.x, top: nd.y, transform: 'translate(-50%,-50%)' }}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5 text-[#0a1020]"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {nd.icon}
+                  </svg>
+                </div>
 
-                <h3 className="relative mt-4 font-display text-lg font-bold text-white">{s.label}</h3>
-                <p className="relative mt-2 text-sm leading-relaxed text-white/70">{s.description}</p>
+                {/* title + description (right of node) */}
+                <div
+                  className="absolute"
+                  style={{
+                    left: nd.x + 40,
+                    top: nd.y,
+                    width: TEXT_W,
+                    transform: 'translateY(-50%)',
+                  }}
+                >
+                  <h3 className="text-[17px] font-bold tracking-tight text-[#0a1020]">
+                    {nd.title}
+                  </h3>
+                  <p className="mt-1 text-[13px] leading-relaxed text-[#5b6472]">
+                    {nd.desc}
+                  </p>
+                </div>
               </div>
-            )
-          })}
-        </Reveal>
+            ))}
+          </>
+        )}
+      </div>
+
+      {/* ================= MOBILE: stacked list ================= */}
+      <div className="mt-10 space-y-7 md:hidden">
+        {steps.map((s) => (
+          <div key={s.n} className="flex gap-4">
+            <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gradient-to-b from-[#f6e4a8] to-[#c69a44]">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5 w-5 text-[#0a1020]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                {s.icon}
+              </svg>
+            </div>
+            <div>
+              <div className="flex items-baseline gap-1.5">
+                <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[#0a1020]/55">
+                  Step
+                </span>
+                <span className="text-[14px] font-bold text-[#c69a44]">{s.n}</span>
+              </div>
+              <h3 className="text-[16px] font-bold tracking-tight text-[#0a1020]">
+                {s.title}
+              </h3>
+              <p className="mt-1 text-[13px] leading-relaxed text-[#5b6472]">{s.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   )
