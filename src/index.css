@@ -105,3 +105,27 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+/* Soft black wash on photographic images (skip circular avatars / logos marked data-no-dim) */
+img[class*='object-cover']:not([class*='rounded-full']):not([data-no-dim]) {
+  filter: brightness(0.82);
+}
+
+/* Prefer this on framed photo wrappers when you need a true overlay layer */
+.media-dim {
+  position: relative;
+  isolation: isolate;
+}
+
+.media-dim::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: rgb(0 0 0 / 0.22);
+}
+
+.media-dim > img {
+  filter: none;
+}

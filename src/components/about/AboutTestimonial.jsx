@@ -7,7 +7,7 @@ import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import SectionHeading from '../ui/SectionHeading'
 
-const featured = testimonials.buyer[1]
+const featured = testimonials[1]
 const experienceStat = trustStats.find((s) => s.label === 'Years of Experience')
 
 const sideImage = {
@@ -91,7 +91,7 @@ export default function AboutTestimonial() {
             {experienceStat && (
               <div className="absolute -bottom-6 left-6 flex items-center gap-3 rounded-2xl border border-line bg-surface px-5 py-4 shadow-card sm:left-10">
                 <div className="flex -space-x-3">
-                  {testimonials.supplier.slice(0, 3).map((t) => (
+                  {testimonials.slice(3, 6).map((t) => (
                     <img
                       key={t.avatar}
                       src={t.avatar}

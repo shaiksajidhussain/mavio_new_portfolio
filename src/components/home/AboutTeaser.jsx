@@ -8,7 +8,7 @@ import SectionHeading from '../ui/SectionHeading'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const experienceStat = trustStats.find((s) => s.label === 'Years of Experience')
-const proofAvatars = testimonials.buyer.slice(0, 3)
+const proofAvatars = testimonials.slice(0, 3)
 
 export default function AboutTeaser() {
   const imgWrapRef = useRef(null)
@@ -42,12 +42,12 @@ export default function AboutTeaser() {
           </div>
 
           <div className="relative">
-            <div ref={imgWrapRef} className="w-[80%] overflow-hidden rounded-3xl border-4 border-surface shadow-card">
+            <div ref={imgWrapRef} className="media-dim w-[80%] overflow-hidden rounded-3xl border-4 border-surface shadow-card">
               <img src={about.image} alt={about.imageAlt} className="aspect-[4/5] w-full object-cover" />
             </div>
 
             <Reveal delay={0.3} stagger={0} className="absolute -right-2 bottom-16 w-[52%] sm:bottom-20">
-              <div className="overflow-hidden rounded-3xl border-4 border-surface shadow-card">
+              <div className="media-dim overflow-hidden rounded-3xl border-4 border-surface shadow-card">
                 <img
                   src={about.secondaryImage}
                   alt={about.secondaryImageAlt}

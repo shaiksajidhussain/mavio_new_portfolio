@@ -31,7 +31,7 @@ export default function PrimaryHeader() {
     setOpenDropdown(label)
   }
   const scheduleClose = () => {
-    closeTimer.current = setTimeout(() => setOpenDropdown(null), 150)
+    closeTimer.current = setTimeout(() => setOpenDropdown(null), 120)
   }
 
   return (
@@ -50,7 +50,7 @@ export default function PrimaryHeader() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {nav.map((item) =>
               item.children ? (
                 <div
@@ -59,25 +59,44 @@ export default function PrimaryHeader() {
                   onMouseEnter={() => openMenu(item.label)}
                   onMouseLeave={scheduleClose}
                 >
-                  <button className="flex items-center gap-1 text-[15px] font-semibold text-white/90 transition-colors hover:text-gold">
+                  <button
+                    type="button"
+                    aria-expanded={openDropdown === item.label}
+                    aria-haspopup="true"
+                    className={`flex items-center gap-1 text-[15px] font-semibold transition-[color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-gold active:scale-[0.97] ${
+                      openDropdown === item.label ? 'text-gold' : 'text-white/90'
+                    }`}
+                  >
                     {item.label}
                     <ChevronDown
-                      size={15}
+                      size={14}
                       strokeWidth={2.5}
-                      className={`transition-transform duration-200 ${openDropdown === item.label ? 'rotate-180' : ''}`}
+                      className={`transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+                        openDropdown === item.label ? 'rotate-180' : ''
+                      }`}
                     />
                   </button>
                   {openDropdown === item.label && (
-                    <div className="absolute left-0 top-full z-20 w-64 rounded-xl border border-line bg-surface p-2 shadow-card">
-                      {item.children.map((c) => (
-                        <Link
-                          key={c.to}
-                          to={c.to}
-                          className="block rounded-lg px-3 py-2 text-sm text-ink transition-colors hover:bg-bg-muted hover:text-navy dark:hover:text-gold"
-                        >
-                          {c.label}
-                        </Link>
-                      ))}
+                    <div className="absolute left-0 top-full z-30 pt-2">
+                      <div className="min-w-[12.5rem] overflow-hidden rounded-xl border border-line bg-surface py-1.5 shadow-[0_12px_32px_-12px_rgba(2,16,35,0.35)]">
+                        {item.children.map((c) => (
+                          <NavLink
+                            key={c.to}
+                            to={c.to}
+                            onClick={() => setOpenDropdown(null)}
+                            className={({ isActive }) =>
+                              [
+                                'mx-1.5 block whitespace-nowrap rounded-lg px-3 py-2 text-[13px] font-medium transition-colors duration-150',
+                                isActive
+                                  ? 'bg-gold-deep/12 text-navy dark:bg-gold-deep/20 dark:text-gold'
+                                  : 'text-ink/85 hover:bg-bg-muted hover:text-navy dark:hover:text-gold',
+                              ].join(' ')
+                            }
+                          >
+                            {c.label}
+                          </NavLink>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -123,27 +142,38 @@ export default function PrimaryHeader() {
             {nav.map((item) =>
               item.children ? (
                 <div key={item.label} className="py-1">
-                  <p className="eyebrow py-2 text-white/50">{item.label}</p>
-                  {item.children.map((c) => (
-                    <Link
-                      key={c.to}
-                      to={c.to}
-                      onClick={() => setMobileOpen(false)}
-                      className="block rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10"
-                    >
-                      {c.label}
-                    </Link>
-                  ))}
+                  <p className="eyebrow px-2 py-2 text-white/45">{item.label}</p>
+                  <div className="space-y-0.5">
+                    {item.children.map((c) => (
+                      <NavLink
+                        key={c.to}
+                        to={c.to}
+                        onClick={() => setMobileOpen(false)}
+                        className={({ isActive }) =>
+                          `block rounded-lg px-3 py-2.5 text-sm font-medium ${
+                            isActive ? 'bg-white/10 text-gold' : 'text-white/90 hover:bg-white/10'
+                          }`
+                        }
+                      >
+                        {c.label}
+                      </NavLink>
+                    ))}
+                  </div>
                 </div>
               ) : (
-                <Link
+                <NavLink
                   key={item.to}
                   to={item.to}
+                  end={item.to === '/'}
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-2 py-2 text-sm font-semibold text-white/90 hover:bg-white/10"
+                  className={({ isActive }) =>
+                    `rounded-lg px-3 py-2.5 text-sm font-semibold ${
+                      isActive ? 'bg-white/10 text-gold' : 'text-white/90 hover:bg-white/10'
+                    }`
+                  }
                 >
                   {item.label}
-                </Link>
+                </NavLink>
               )
             )}
           </nav>

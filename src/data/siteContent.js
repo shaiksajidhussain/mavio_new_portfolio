@@ -39,6 +39,7 @@ export const nav = [
       { label: 'FAQ', to: '/resources/faq' },
       { label: 'Accreditations & Certifications', to: '/resources/accreditations' },
       { label: 'Download Centre', to: '/resources/download-centre' },
+      { label: 'Privacy and Policy', to: '/resources/privacy-policy' },
     ],
   },
   { label: 'Contact', to: '/contact' },
@@ -576,6 +577,17 @@ export const partnerPage = {
         { icon: 'Headphones', title: 'Beyond a Single Order', description: 'Because a good opportunity should not end with just one order — it should lead to a relationship that grows.' },
       ],
     },
+    complexWay: {
+      label: 'The Complex Way (Without Mavio Global)',
+      steps: [
+        { n: 1, title: 'Vendor Sourcing & Verification' },
+        { n: 2, title: 'Price & Term Negotiation' },
+        { n: 3, title: 'Quality & Factory Audit' },
+        { n: 4, title: 'Export Documentation' },
+        { n: 5, title: 'Cross-Border Logistics' },
+        { n: 6, title: 'Post-Delivery Assurance' },
+      ],
+    },
   },
   cta: {
     buyer: {
@@ -842,63 +854,161 @@ export const accreditationsPage = {
   },
 }
 
-export const testimonials = {
-  buyer: [
-    {
-      quote:
-        'We used to waste so much time dealing with delays between sourcing and delivery. Working with Mavio turned shipping into the easiest, most reliable part of our day.',
-      name: 'Global Supply Lead',
-      role: 'Agricultural Sector',
-      avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80',
-    },
-    {
-      quote:
-        'Finding good products was never our problem; getting them delivered consistently was. Mavio fixed that completely and brought real trust to every single shipment.',
-      name: 'Head of Sourcing',
-      role: 'Retail Commerce',
-      avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80',
-    },
-    {
-      quote:
-        'We just started looking for products, but the real value came later. Their clear communication and steady supply helped us grow our own business much faster.',
-      name: 'VP of Operations',
-      role: 'Industrial Materials',
-      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
-    },
-  ],
-  supplier: [
-    {
-      quote:
-        'The best part is how smooth everything runs. Orders are steady, updates are clear and direct, and we can just focus on making good products.',
-      name: 'Managing Director',
-      role: 'Group Manufacturing',
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
-    },
-    {
-      quote:
-        'Selling abroad used to bring a lot of stress. With Mavio, sending our goods overseas feels just as simple as shipping to a business down the street.',
-      name: 'Commercial Lead',
-      role: 'Specialized Commodities',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
-    },
-    {
-      quote:
-        'It doesn’t feel like using a middle channel — it feels like having a real partner taking our quality to the world. That trust has completely changed how we look at our future.',
-      name: 'Founder',
-      role: 'Specialty Goods Manufacturing',
-      avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80',
-    },
-  ],
-}
+export const testimonials = [
+  {
+    quote:
+      'We used to waste so much time dealing with delays between sourcing and delivery. Working with Mavio turned shipping into the easiest, most reliable part of our day.',
+    name: 'Global Supply Lead',
+    role: 'Agricultural Sector',
+    avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    quote:
+      'Finding good products was never our problem; getting them delivered consistently was. Mavio fixed that completely and brought real trust to every single shipment.',
+    name: 'Head of Sourcing',
+    role: 'Retail Commerce',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    quote:
+      'We just started looking for products, but the real value came later. Their clear communication and steady supply helped us grow our own business much faster.',
+    name: 'VP of Operations',
+    role: 'Industrial Materials',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    quote:
+      'The best part is how smooth everything runs. Orders are steady, updates are clear and direct, and we can just focus on making good products.',
+    name: 'Managing Director',
+    role: 'Group Manufacturing',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    quote:
+      'Selling abroad used to bring a lot of stress. With Mavio, sending our goods overseas feels just as simple as shipping to a business down the street.',
+    name: 'Commercial Lead',
+    role: 'Specialized Commodities',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
+  },
+  {
+    quote:
+      'It doesn’t feel like using a middle channel — it feels like having a real partner taking our quality to the world. That trust has completely changed how we look at our future.',
+    name: 'Founder',
+    role: 'Specialty Goods Manufacturing',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80',
+  },
+]
 
 export const regions = [
-  { name: 'Middle East', flag: '🇦🇪', example: 'UAE, Saudi Arabia, Oman', lat: 25.2048, lng: 55.2708 },
-  { name: 'Europe', flag: '🇪🇺', example: 'Germany, Netherlands, UK', lat: 50.1109, lng: 8.6821 },
-  { name: 'North America', flag: '🇺🇸', example: 'USA, Canada', lat: 40.7128, lng: -74.006 },
-  { name: 'Southeast Asia', flag: '🇸🇬', example: 'Singapore, Malaysia, Vietnam', lat: 1.3521, lng: 103.8198 },
-  { name: 'East Asia', flag: '🇨🇳', example: 'China, Japan, South Korea', lat: 31.2304, lng: 121.4737 },
-  { name: 'Africa', flag: '🌍', example: 'Kenya, Egypt, South Africa', lat: -1.2921, lng: 36.8219 },
-  { name: 'Oceania', flag: '🇦🇺', example: 'Australia, New Zealand', lat: -33.8688, lng: 151.2093 },
+  {
+    name: 'India',
+    flag: '🇮🇳',
+    example: 'Kochi, Tuticorin, Kolkata',
+    places: [
+      { name: 'Kochi', lat: 9.9312, lng: 76.2673, label: [1, 1] },
+      { name: 'Tuticorin', lat: 8.7642, lng: 78.1348, label: [1, -0.2] },
+      { name: 'Kolkata', lat: 22.5726, lng: 88.3639, label: [1, 0.4] },
+    ],
+    countryIds: ['356'],
+    lat: 9.9312,
+    lng: 76.2673,
+    isOrigin: true,
+  },
+  {
+    name: 'Middle East',
+    flag: '🇦🇪',
+    example: 'UAE, Saudi Arabia, Oman',
+    places: [
+      { name: 'Dubai', lat: 25.2048, lng: 55.2708, label: [1, -0.6] },
+      { name: 'Jeddah', lat: 21.4858, lng: 39.1925, label: [-1, 0.2] },
+      { name: 'Muscat', lat: 23.588, lng: 58.3829, label: [1, 0.5] },
+      { name: 'Doha', lat: 25.2854, lng: 51.531, label: [0.2, -1] },
+    ],
+    countryIds: ['784', '682', '512', '634'],
+    lat: 25.2048,
+    lng: 55.2708,
+  },
+  {
+    name: 'Europe',
+    flag: '🇪🇺',
+    example: 'Germany, Netherlands, UK',
+    places: [
+      { name: 'Rotterdam', lat: 51.9244, lng: 4.4777, label: [-1, 0.3] },
+      { name: 'Hamburg', lat: 53.5511, lng: 9.9937, label: [1, -0.5] },
+      { name: 'London', lat: 51.5074, lng: -0.1278, label: [-1, -0.6] },
+      { name: 'Antwerp', lat: 51.2194, lng: 4.4025, label: [0.4, 1] },
+    ],
+    countryIds: ['276', '528', '826', '056', '250'],
+    lat: 50.1109,
+    lng: 8.6821,
+  },
+  {
+    name: 'North America',
+    flag: '🇺🇸',
+    example: 'USA, Canada',
+    places: [
+      { name: 'New York', lat: 40.7128, lng: -74.006, label: [1, -0.4] },
+      { name: 'Los Angeles', lat: 34.0522, lng: -118.2437, label: [-1, 0.3] },
+      { name: 'Houston', lat: 29.7604, lng: -95.3698, label: [0.6, 1] },
+      { name: 'Toronto', lat: 43.6532, lng: -79.3832, label: [1, 0.5] },
+    ],
+    countryIds: ['840', '124'],
+    lat: 40.7128,
+    lng: -74.006,
+  },
+  {
+    name: 'Southeast Asia',
+    flag: '🇸🇬',
+    example: 'Singapore, Malaysia, Vietnam',
+    places: [
+      { name: 'Singapore', lat: 1.3521, lng: 103.8198, label: [1, 0.8] },
+      { name: 'Port Klang', lat: 3.0, lng: 101.4, label: [-1, -0.2] },
+      { name: 'Ho Chi Minh', lat: 10.8231, lng: 106.6297, label: [1, -0.5] },
+    ],
+    countryIds: ['702', '458', '704', '360'],
+    lat: 1.3521,
+    lng: 103.8198,
+  },
+  {
+    name: 'East Asia',
+    flag: '🇨🇳',
+    example: 'China, Japan, South Korea',
+    places: [
+      { name: 'Shanghai', lat: 31.2304, lng: 121.4737, label: [1, 0.3] },
+      { name: 'Tokyo', lat: 35.6762, lng: 139.6503, label: [1, -0.4] },
+      { name: 'Busan', lat: 35.1796, lng: 129.0756, label: [0.8, 1] },
+      { name: 'Hong Kong', lat: 22.3193, lng: 114.1694, label: [-0.6, 1] },
+    ],
+    countryIds: ['156', '392', '410', '344'],
+    lat: 31.2304,
+    lng: 121.4737,
+  },
+  {
+    name: 'Africa',
+    flag: '🌍',
+    example: 'Kenya, Egypt, South Africa',
+    places: [
+      { name: 'Mombasa', lat: -4.0435, lng: 39.6682, label: [1, 0.2] },
+      { name: 'Alexandria', lat: 31.2001, lng: 29.9187, label: [0.4, -1] },
+      { name: 'Durban', lat: -29.8587, lng: 31.0218, label: [1, 0.5] },
+    ],
+    countryIds: ['404', '818', '710'],
+    lat: -1.2921,
+    lng: 36.8219,
+  },
+  {
+    name: 'Oceania',
+    flag: '🇦🇺',
+    example: 'Australia, New Zealand',
+    places: [
+      { name: 'Sydney', lat: -33.8688, lng: 151.2093, label: [1, -0.3] },
+      { name: 'Melbourne', lat: -37.8136, lng: 144.9631, label: [-1, 0.4] },
+      { name: 'Auckland', lat: -36.8509, lng: 174.7645, label: [1, 0.5] },
+    ],
+    countryIds: ['036', '554'],
+    lat: -33.8688,
+    lng: 151.2093,
+  },
 ]
 
 export const originCoords = { lat: 9.9312, lng: 76.2673 }
@@ -1061,6 +1171,9 @@ export const downloadCentrePage = {
         { title: 'Company Profile', fileType: 'PDF · 2.1 MB' },
         { title: 'Sustainability Report 2025', fileType: 'PDF · 1.6 MB' },
         { title: 'Accreditations & Certifications Pack', fileType: 'ZIP · 4.8 MB' },
+        { title: 'Privacy and Policy', fileType: 'PDF · 0.4 MB' },
+        { title: 'Terms of Trade Overview', fileType: 'PDF · 0.7 MB' },
+        { title: 'Data Processing Addendum', fileType: 'PDF · 0.5 MB' },
       ],
     },
   ],
@@ -1068,6 +1181,66 @@ export const downloadCentrePage = {
     heading: 'Need a specific document?',
     body: 'If it’s not listed here, our team can put it together — certifications, lab reports or a custom spec sheet.',
     buttonLabel: 'Contact Us',
+  },
+}
+
+export const privacyPolicyPage = {
+  hero: {
+    eyebrow: 'Privacy and Policy',
+    heading: 'Privacy and Policy',
+    subheading:
+      'How Mavio Global handles personal information, website use, and the trade policies that guide every enquiry and partnership.',
+    image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=2200&q=80',
+    imageAlt: 'Secure documentation and compliance paperwork on a desk',
+  },
+  updatedAt: 'Last updated: 12 March 2026',
+  intro:
+    'This page covers our Privacy Policy and related site policies. It explains what information we collect when you contact Mavio Global, request a quote, download resources, or partner with us — and the rules that apply when you use this website.',
+  sections: [
+    {
+      title: 'Information We Collect',
+      body: 'We may collect your name, company name, email address, phone number, shipping destination, product interest, and any details you include in enquiry forms. When you browse our site we may also collect basic device and usage data such as browser type, pages visited, and approximate location.',
+    },
+    {
+      title: 'How We Use Your Information',
+      body: 'We use the information you share to respond to enquiries, prepare quotes, coordinate shipments, share catalogs or compliance documents, and improve our website experience. We do not sell personal data to third parties.',
+    },
+    {
+      title: 'Sharing With Partners',
+      body: 'In the course of fulfilling an order we may share relevant shipment or contact details with logistics partners, inspection agencies, banks, or customs intermediaries strictly as needed to move cargo and complete documentation.',
+    },
+    {
+      title: 'Cookies & Analytics',
+      body: 'Our site may use cookies and similar tools to remember preferences and understand how visitors use key pages such as Products, Download Centre, and Contact. You can control cookies through your browser settings.',
+    },
+    {
+      title: 'Website Use Policy',
+      body: 'Content on this site — including product descriptions, catalogs, and capability summaries — is provided for general trade information. Quotes, availability, and lead times are confirmed only after a formal enquiry. You agree not to misuse forms, scrape content, or submit false commercial details.',
+    },
+    {
+      title: 'Trade & Enquiry Policy',
+      body: 'Submitting an enquiry does not create a binding contract. Commercial terms, Incoterms, payment methods, and documentation requirements are agreed separately for each shipment. Sample requests and custom specs are subject to availability and destination rules.',
+    },
+    {
+      title: 'Data Retention',
+      body: 'Enquiry and trade records are kept only as long as needed for commercial, legal, or compliance reasons — typically up to 7 years for shipment and customs-related correspondence, unless a longer period is required by law.',
+    },
+    {
+      title: 'Your Choices',
+      body: 'You may request access to, correction of, or deletion of personal information we hold about you, subject to applicable trade and record-keeping obligations. Contact us at privacy@mavioglobal.com or through the Contact page.',
+    },
+    {
+      title: 'Security',
+      body: 'We apply reasonable administrative and technical safeguards to protect information submitted through our forms and shared with our team. No method of transmission over the internet is fully secure, so we encourage careful sharing of sensitive documents.',
+    },
+    {
+      title: 'Policy Updates',
+      body: 'We may update this Privacy and Policy page from time to time. The “Last updated” date at the top of this page will change when revisions are published. Continued use of our site after updates means you accept the revised policy.',
+    },
+  ],
+  contactNote: {
+    heading: 'Questions about privacy or policy?',
+    body: 'Reach our compliance desk at privacy@mavioglobal.com or call +91 484 000 0000. We aim to respond within two business days.',
   },
 }
 

@@ -125,10 +125,10 @@ export default function Hero() {
                 <p className="max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
                   {hero.subheading}
                 </p>
-                <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                <ul className="mt-5 flex flex-col gap-2.5">
                   {hero.points.map((p) => (
                     <li key={p} className="flex items-center gap-2 text-sm font-medium text-white">
-                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-gold-gradient">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-gradient">
                         <Check size={12} className="text-navy-deep" strokeWidth={3} />
                       </span>
                       {p}

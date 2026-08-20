@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
 import { MapPin, Plane, Ship } from 'lucide-react'
-import { brand, originCoords, regions } from '../../data/siteContent'
+import { brand, regions } from '../../data/siteContent'
 import { useTheme } from '../../context/ThemeContext'
 import Button from './Button'
 import Reveal from './Reveal'
@@ -9,38 +9,97 @@ import Reveal from './Reveal'
 const geoUrl = 'https://unpkg.com/world-atlas@2/countries-110m.json'
 
 const palettes = {
-  light: { card: '#ffffff', country: '#dbe1e8', hover: '#c7cfda', stroke: '#ffffff', text: '#0b2442' },
-  dark: { card: '#0f2e52', country: '#1c3f66', hover: '#254c79', stroke: '#0f2e52', text: '#ffffff' },
-  black: { card: '#0a0a0a', country: '#1e1e1e', hover: '#292929', stroke: '#0a0a0a', text: '#ffffff' },
+  light: {
+    card: '#ffffff',
+    country: '#e4e9ef',
+    served: '#c5d0de',
+    active: '#d4a24c',
+    stroke: '#ffffff',
+    text: '#0b2442',
+    line: '#0b2442',
+  },
+  dark: {
+    card: '#0f2e52',
+    country: '#1a3558',
+    served: '#2a4f78',
+    active: '#d4a24c',
+    stroke: '#0f2e52',
+    text: '#ffffff',
+    line: '#ffd27a',
+  },
+  black: {
+    card: '#0a0a0a',
+    country: '#1a1a1a',
+    served: '#2a2a2a',
+    active: '#d4a24c',
+    stroke: '#0a0a0a',
+    text: '#ffffff',
+    line: '#ffd27a',
+  },
 }
 
-// flagcdn.com ISO-3166 alpha-2 codes for the representative country of each region
-// (Africa has no single-country flag, so it falls back to the 🌍 emoji marker)
-const regionIso = {
-  'Middle East': 'ae',
-  Europe: 'eu',
-  'North America': 'us',
-  'Southeast Asia': 'sg',
-  'East Asia': 'cn',
-  Africa: null,
-  Oceania: 'au',
+function normalizeId(id) {
+  if (id == null) return ''
+  return String(id).padStart(3, '0')
 }
 
-const markers = [
-  { name: `${brand.hq} · HQ`, flag: '🇮🇳', iso: 'in', coordinates: [originCoords.lng, originCoords.lat], isHq: true },
-  ...regions.map((r) => ({
-    name: r.name,
-    flag: r.flag,
-    iso: regionIso[r.name] ?? null,
-    coordinates: [r.lng, r.lat],
-    isHq: false,
-  })),
-]
+/** Leader line + place label beside a city marker */
+function PlaceCallout({ place, color, textColor }) {
+  const [dx, dy] = place.label ?? [1, 0]
+  const len = 34
+  const endX = dx * len
+  const endY = dy * len
+  const midX = endX * 0.55
+  const midY = endY * 0.55
+  const textAnchor = endX >= 0 ? 'start' : 'end'
+  const textX = endX + (endX >= 0 ? 5 : -5)
+
+  return (
+    <Marker coordinates={[place.lng, place.lat]}>
+      <g style={{ pointerEvents: 'none' }}>
+        <circle r={3.2} fill={color} stroke="#fff" strokeWidth={1} />
+        <path
+          d={`M 0 0 L ${midX} ${midY} L ${endX} ${endY}`}
+          fill="none"
+          stroke={color}
+          strokeWidth={1.15}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx={endX} cy={endY} r={1.6} fill={color} />
+        <text
+          x={textX}
+          y={endY + 3.5}
+          textAnchor={textAnchor}
+          fontSize={9.5}
+          fontWeight={600}
+          fill={textColor}
+          style={{ letterSpacing: '0.02em' }}
+        >
+          {place.name}
+        </text>
+      </g>
+    </Marker>
+  )
+}
 
 export default function GlobalReachMap({ className = '' }) {
   const { theme } = useTheme()
-  const [hovered, setHovered] = useState(null)
+  const [activeRegion, setActiveRegion] = useState(null)
   const p = palettes[theme] ?? palettes.light
+
+  const countryToRegion = useMemo(() => {
+    const map = new Map()
+    regions.forEach((region) => {
+      region.countryIds?.forEach((id) => {
+        map.set(normalizeId(id), region)
+      })
+    })
+    return map
+  }, [])
+
+  const marketRegions = regions.filter((r) => !r.isOrigin)
+  const shown = activeRegion
 
   return (
     <Reveal as="div" stagger={0} y={40} className={`relative ${className}`}>
@@ -96,92 +155,69 @@ export default function GlobalReachMap({ className = '' }) {
           </Button>
         </div>
 
-        <ComposableMap
-          projection="geoEqualEarth"
-          projectionConfig={{ scale: 150 }}
-          width={800}
-          height={430}
-          style={{ width: '100%', height: 'auto', display: 'block' }}
-        >
-          <Geographies geography={geoUrl}>
-            {({ geographies }) =>
-              geographies.map((geo) => (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  fill={p.country}
-                  stroke={p.stroke}
-                  strokeWidth={0.6}
-                  style={{
-                    default: { outline: 'none', transition: 'fill 0.25s ease' },
-                    hover: { outline: 'none', fill: p.hover, transition: 'fill 0.25s ease' },
-                    pressed: { outline: 'none', fill: p.hover, transition: 'fill 0.25s ease' },
-                  }}
-                />
-              ))
-            }
-          </Geographies>
+        <div className="relative" onMouseLeave={() => setActiveRegion(null)}>
+          <ComposableMap
+            projection="geoEqualEarth"
+            projectionConfig={{ scale: 150 }}
+            width={800}
+            height={430}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
+          >
+            <Geographies geography={geoUrl}>
+              {({ geographies }) =>
+                geographies.map((geo) => {
+                  const region = countryToRegion.get(normalizeId(geo.id))
+                  const isActive = shown && region?.name === shown.name
+                  const isServed = Boolean(region)
+                  const fill = isActive ? p.active : isServed ? p.served : p.country
 
-          {markers.map((m, i) => {
-            const isHovered = hovered === m.name
-            const clipId = `flag-clip-${i}`
-            return (
-              <Marker
-                key={m.name}
-                coordinates={m.coordinates}
-                onMouseEnter={() => setHovered(m.name)}
-                onMouseLeave={() => setHovered(null)}
-                style={{ default: { cursor: 'pointer' } }}
-              >
-                <defs>
-                  <clipPath id={clipId}>
-                    <circle cx={0} cy={-21} r={8.6} />
-                  </clipPath>
-                </defs>
-
-                <g
-                  style={{
-                    transform: isHovered ? 'scale(1.25) translateY(-2px)' : 'scale(1)',
-                    transformOrigin: '0px 0px',
-                    transition: 'transform 0.25s ease',
-                  }}
-                >
-                  <ellipse cx={0} cy={2} rx={5.5} ry={1.8} fill="#000" opacity={0.2} />
-                  <path
-                    d="M0,0 C0,0 -11,-14.5 -11,-22.5 A11,11 0 1,1 11,-22.5 C11,-14.5 0,0 0,0 Z"
-                    fill={isHovered ? '#ffbf00' : m.isHq ? '#ffbf00' : '#ffffff'}
-                    stroke="#0b2442"
-                    strokeWidth={1}
-                    style={{ transition: 'fill 0.2s ease' }}
-                  />
-                  <circle cx={0} cy={-21} r={9.4} fill="#ffffff" />
-                  {m.iso ? (
-                    <image
-                      href={`https://flagcdn.com/w80/${m.iso}.png`}
-                      x={-9.7}
-                      y={-30.3}
-                      width={19.4}
-                      height={19.4}
-                      preserveAspectRatio="xMidYMid slice"
-                      clipPath={`url(#${clipId})`}
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill={fill}
+                      stroke={p.stroke}
+                      strokeWidth={0.55}
+                      onMouseEnter={() => {
+                        if (region) setActiveRegion(region)
+                      }}
+                      onClick={() => {
+                        if (!region) return
+                        setActiveRegion((prev) => (prev?.name === region.name ? null : region))
+                      }}
+                      style={{
+                        default: {
+                          outline: 'none',
+                          cursor: isServed ? 'pointer' : 'default',
+                          transition: 'fill 0.25s ease, filter 0.25s ease',
+                          filter: isActive ? 'drop-shadow(0 6px 10px rgba(10,16,32,0.28))' : 'none',
+                        },
+                        hover: {
+                          outline: 'none',
+                          fill: isServed ? p.active : p.country,
+                          cursor: isServed ? 'pointer' : 'default',
+                        },
+                        pressed: {
+                          outline: 'none',
+                          fill: isServed ? p.active : p.country,
+                        },
+                      }}
                     />
-                  ) : (
-                    <text textAnchor="middle" dominantBaseline="central" x={0} y={-21} fontSize={13}>
-                      {m.flag}
-                    </text>
-                  )}
-                  <circle cx={0} cy={-21} r={8.6} fill="none" stroke="#ffffff" strokeWidth={1.4} />
-                  <circle cx={0} cy={-21} r={8.6} fill="none" stroke="#0b2442" strokeWidth={0.6} />
-                </g>
-                {isHovered && (
-                  <text textAnchor="middle" y={-26} fontSize={10} fontWeight={600} fill={p.text}>
-                    {m.name}
-                  </text>
-                )}
-              </Marker>
-            )
-          })}
-        </ComposableMap>
+                  )
+                })
+              }
+            </Geographies>
+
+            {shown?.places?.map((place) => (
+              <PlaceCallout
+                key={`${shown.name}-${place.name}`}
+                place={place}
+                color={p.active}
+                textColor={p.text}
+              />
+            ))}
+          </ComposableMap>
+        </div>
 
         <div className="flex items-center justify-between px-6 py-4 sm:px-8">
           <div className="flex items-center gap-2 text-xs font-medium" style={{ color: p.text }}>
@@ -189,7 +225,7 @@ export default function GlobalReachMap({ className = '' }) {
             Markets we serve
           </div>
           <p className="text-xs" style={{ color: p.text, opacity: 0.6 }}>
-            {regions.length} regions · {brand.marketsCount} countries
+            {marketRegions.length} regions · {brand.marketsCount} countries
           </p>
         </div>
 

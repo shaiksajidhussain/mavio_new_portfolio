@@ -74,6 +74,19 @@ export default function SupplyChainShowcase() {
     }
   }, [])
 
+  const ActiveIcon = icons[supplyChainSteps[activeIndex]?.icon] || Truck
+
+  useEffect(() => {
+    if (prefersReducedMotion || !truckRef.current) return
+    const iconEl = truckRef.current.querySelector('[data-marker-icon]')
+    if (!iconEl) return
+    gsap.fromTo(
+      iconEl,
+      { opacity: 0, scale: 0.85 },
+      { opacity: 1, scale: 1, duration: 0.22, ease: 'power3.out' }
+    )
+  }, [activeIndex])
+
   return (
     <section ref={sectionRef} className="relative overflow-hidden bg-bg py-16 themeblack:bg-black md:py-24">
       <div className="pointer-events-none absolute -left-32 top-0 -z-10 h-96 w-96 rounded-full bg-gold/20 blur-[120px]" />
@@ -129,7 +142,9 @@ export default function SupplyChainShowcase() {
               ref={truckRef}
               className="pointer-events-none absolute left-[2.35rem] top-6 z-20 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-gold-gradient text-navy-deep shadow-card sm:left-[3rem] sm:h-8 sm:w-8"
             >
-              <Truck size={13} />
+              <span data-marker-icon className="flex items-center justify-center will-change-transform">
+                <ActiveIcon size={13} />
+              </span>
             </span>
 
             <div className="space-y-3">

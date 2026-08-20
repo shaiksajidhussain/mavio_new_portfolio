@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import { ArrowRight, Check } from 'lucide-react'
-import { partnerPage, whyChooseMavio } from '../../data/siteContent'
+import { ArrowRight } from 'lucide-react'
+import { partnerPage } from '../../data/siteContent'
 import { usePartnerRole } from '../../context/PartnerRoleContext'
 import SectionLabel from '../ui/SectionLabel'
 import Button from '../ui/Button'
@@ -13,7 +13,6 @@ const IMAGE = 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto
 
 export default function WhyPartner() {
   const { role } = usePartnerRole()
-  const content = whyChooseMavio[role === 'supplier' ? 'supplier' : 'buyer']
   const intro = partnerPage.whyPartner[role === 'supplier' ? 'supplier' : 'buyer']
   const panelRef = useRef(null)
 
@@ -49,17 +48,6 @@ export default function WhyPartner() {
                   <p key={p} className="text-sm leading-relaxed text-muted md:text-base">
                     {p}
                   </p>
-                ))}
-              </div>
-
-              <div className="mt-6 space-y-3">
-                {content.points.map((p) => (
-                  <div key={p} className="flex items-start gap-3">
-                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-                      <Check size={13} />
-                    </span>
-                    <p className="text-sm leading-relaxed text-ink">{p}</p>
-                  </div>
                 ))}
               </div>
 

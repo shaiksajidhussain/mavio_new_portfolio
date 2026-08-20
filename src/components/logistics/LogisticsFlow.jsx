@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import SectionLabel from '../ui/SectionLabel'
+import SectionHeading from '../ui/SectionHeading'
 
 /* ------------------------------------------------------------------ *
  * Export-process steps. Icons are inline (Lucide-style) line paths.  *
@@ -83,13 +85,13 @@ const steps = [
 ]
 
 /* ---- tuning constants (safe to tweak) ---------------------------- */
-const H = 620 // arc canvas height (desktop)
+const H = 640
 const TOP_PAD = 66
-const BASE_X_RATIO = 0.44 // where the ends of the arc sit, as a fraction of width
-const BULGE = 66 // how far the middle of the arc pushes right
-const TEXT_W = 290
+const BASE_X_RATIO = 0.5 // arc sits further right so step copy has room
+const BULGE = 58
+const TEXT_W = 400 // wider right-side titles + descriptions
+const CIRCLE_X_RATIO = 0.26 // hub closer to center of left half
 
-// Catmull-Rom -> cubic bezier smoothing through a set of points
 function smoothPath(pts) {
   if (pts.length < 2) return ''
   let d = `M ${pts[0].x.toFixed(1)} ${pts[0].y.toFixed(1)}`
@@ -121,7 +123,7 @@ export default function LogisticsFlow() {
       const el = arcRef.current
       if (!el) return
       const W = el.offsetWidth
-      if (!W) return // hidden (mobile) — list is shown instead
+      if (!W) return
       const n = steps.length
       const usable = H - TOP_PAD * 2
       const nodeX = (t) => W * BASE_X_RATIO + BULGE * Math.sin(Math.PI * t)
@@ -132,19 +134,18 @@ export default function LogisticsFlow() {
         return { ...s, x: nodeX(t), y: yAt(t), t }
       })
 
-      // extend the drawn arc slightly beyond the first and last node
       const pathPts = [-0.16, ...nodes.map((nd) => nd.t), 1.16].map((t) => ({
         x: nodeX(t),
         y: yAt(t),
       }))
 
-      const r = Math.min(118, W * 0.12)
+      const r = Math.min(132, W * 0.13)
       setGeo({
         W,
         H,
         nodes,
         arc: smoothPath(pathPts),
-        circle: { cx: W * 0.155, cy: H / 2, r },
+        circle: { cx: W * CIRCLE_X_RATIO, cy: H / 2, r },
       })
     }
 
@@ -318,183 +319,179 @@ export default function LogisticsFlow() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="container-px mx-auto max-w-container bg-white py-16 md:py-24">
-      {/* ---------- heading ---------- */}
-      <span data-flow-head className="text-[12px] font-semibold uppercase tracking-[2px] text-[#0a1020]/60">
-        Our Export Process
-      </span>
-      <h2 data-flow-head className="mt-2 text-[clamp(28px,4vw,44px)] font-bold tracking-tight text-[#0a1020]">
-        Our Export <span className="text-[#c69a44] underline decoration-[#e8cd85] decoration-2 underline-offset-4">Process</span>
-      </h2>
-      <p data-flow-head className="mt-3 max-w-[46ch] text-[14.5px] leading-relaxed text-[#5b6472]">
-        Every stage between booking and final delivery, coordinated end to end.
-      </p>
+    <section ref={sectionRef} className="bg-bg py-16 themeblack:bg-black md:py-24">
+      <div className="container-px mx-auto max-w-[1600px]">
+        <div data-flow-head>
+          <SectionLabel>Our Export Process</SectionLabel>
+        </div>
+        <div data-flow-head>
+          <SectionHeading className="mt-3">Our Export Process</SectionHeading>
+        </div>
+        <p data-flow-head className="mt-3 max-w-[52ch] text-sm leading-relaxed text-muted md:text-base">
+          Every stage between booking and final delivery, coordinated end to end.
+        </p>
 
-      {/* ================= DESKTOP: arc layout ================= */}
-      <div
-        ref={arcRef}
-        className="relative mt-10 hidden md:block"
-        style={{ height: H }}
-      >
-        {geo && (
-          <>
-            <svg
-              className="pointer-events-none absolute inset-0"
-              width={geo.W}
-              height={geo.H}
-              viewBox={`0 0 ${geo.W} ${geo.H}`}
-            >
-              {/* the big thin arc */}
-              <path
-                ref={arcPathRef}
-                d={geo.arc}
-                fill="none"
-                stroke="#d9dde5"
-                strokeWidth="1.5"
-              />
+        {/* ================= DESKTOP: arc layout ================= */}
+        <div ref={arcRef} className="relative mx-auto mt-12 hidden md:block" style={{ height: H }}>
+          {geo && (
+            <>
+              <svg
+                className="pointer-events-none absolute inset-0 text-line"
+                width={geo.W}
+                height={geo.H}
+                viewBox={`0 0 ${geo.W} ${geo.H}`}
+              >
+                <path
+                  ref={arcPathRef}
+                  d={geo.arc}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
 
-              {/* central circle: decorative rings + orbiting dots */}
-              <g>
-                <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r + 30} fill="none" stroke="#e6e8ee" strokeWidth="1" />
-                <circle cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r + 16} fill="none" stroke="#eef0f4" strokeWidth="1" />
-                <g ref={orbitRef}>
-                  {[35, 120, 210, 300].map((deg, i) => {
-                    const rad = (deg * Math.PI) / 180
-                    const rr = geo.circle.r + (i % 2 ? 30 : 16)
-                    return (
-                      <circle
-                        key={deg}
-                        cx={geo.circle.cx + rr * Math.cos(rad)}
-                        cy={geo.circle.cy + rr * Math.sin(rad)}
-                        r={i % 2 ? 3 : 4.5}
-                        fill={i % 2 ? '#c69a44' : '#0a1020'}
-                      />
-                    )
-                  })}
-                </g>
-                {/* filled core */}
-                <circle ref={coreRef} cx={geo.circle.cx} cy={geo.circle.cy} r={geo.circle.r} fill="#0a1020" />
-              </g>
-
-              {/* node dots on the arc */}
-              {geo.nodes.map((nd) => (
-                <circle data-flow-dot key={nd.n} cx={nd.x} cy={nd.y} r="4" fill="#c69a44" />
-              ))}
-            </svg>
-
-            {/* central circle label */}
-            <div
-              data-flow-core-label
-              className="absolute flex flex-col items-center justify-center text-center"
-              style={{
-                left: geo.circle.cx,
-                top: geo.circle.cy,
-                width: geo.circle.r * 2,
-                transform: 'translate(-50%,-50%)',
-              }}
-            >
-              <span className="text-[13px] font-medium uppercase tracking-[3px] text-[#e8cd85]">
-                Export
-              </span>
-              <span className="text-[26px] font-bold leading-tight text-white">
-                Process
-              </span>
-            </div>
-
-            {/* items */}
-            {geo.nodes.map((nd) => (
-              <div key={nd.n}>
-                {/* number label (left of node) */}
-                <div
-                  data-flow-label
-                  className="absolute text-right"
-                  style={{
-                    left: nd.x - 42,
-                    top: nd.y,
-                    width: 130,
-                    transform: 'translate(-100%,-50%)',
-                  }}
-                >
-                  <span className="text-[12px] font-semibold uppercase tracking-[1.5px] text-[#0a1020]/55">
-                    Step
-                  </span>
-                  <span className="ml-1 text-[15px] font-bold text-[#c69a44]">{nd.n}</span>
-                </div>
-
-                {/* icon node */}
-                <div
-                  data-flow-icon
-                  className="absolute flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-b from-[#f6e4a8] to-[#c69a44] shadow-[0_8px_18px_-8px_rgba(198,154,68,0.9)]"
-                  style={{ left: nd.x, top: nd.y, transform: 'translate(-50%,-50%)' }}
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="h-5 w-5 text-[#0a1020]"
+                <g className="text-line">
+                  <circle
+                    cx={geo.circle.cx}
+                    cy={geo.circle.cy}
+                    r={geo.circle.r + 30}
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    {nd.icon}
-                  </svg>
-                </div>
+                    strokeWidth="1"
+                    opacity="0.7"
+                  />
+                  <circle
+                    cx={geo.circle.cx}
+                    cy={geo.circle.cy}
+                    r={geo.circle.r + 16}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    opacity="0.5"
+                  />
+                  <g ref={orbitRef}>
+                    {[35, 120, 210, 300].map((deg, i) => {
+                      const rad = (deg * Math.PI) / 180
+                      const rr = geo.circle.r + (i % 2 ? 30 : 16)
+                      return (
+                        <circle
+                          key={deg}
+                          cx={geo.circle.cx + rr * Math.cos(rad)}
+                          cy={geo.circle.cy + rr * Math.sin(rad)}
+                          r={i % 2 ? 3 : 4.5}
+                          className={i % 2 ? 'fill-gold-deep' : 'fill-navy dark:fill-gold'}
+                        />
+                      )
+                    })}
+                  </g>
+                  <circle
+                    ref={coreRef}
+                    cx={geo.circle.cx}
+                    cy={geo.circle.cy}
+                    r={geo.circle.r}
+                    className="fill-navy-deep dark:fill-navy"
+                  />
+                </g>
 
-                {/* title + description (right of node) */}
-                <div
-                  data-flow-copy
-                  className="absolute"
-                  style={{
-                    left: nd.x + 40,
-                    top: nd.y,
-                    width: TEXT_W,
-                    transform: 'translateY(-50%)',
-                  }}
-                >
-                  <h3 className="text-[17px] font-bold tracking-tight text-[#0a1020]">
-                    {nd.title}
-                  </h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-[#5b6472]">
-                    {nd.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </>
-        )}
-      </div>
-
-      {/* ================= MOBILE: stacked list ================= */}
-      <div className="mt-10 space-y-7 md:hidden">
-        {steps.map((s) => (
-          <div key={s.n} data-flow-mobile className="flex gap-4">
-            <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gradient-to-b from-[#f6e4a8] to-[#c69a44]">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-5 w-5 text-[#0a1020]"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                {s.icon}
+                {geo.nodes.map((nd) => (
+                  <circle data-flow-dot key={nd.n} cx={nd.x} cy={nd.y} r="4" className="fill-gold-deep" />
+                ))}
               </svg>
-            </div>
-            <div>
-              <div className="flex items-baseline gap-1.5">
-                <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-[#0a1020]/55">
-                  Step
-                </span>
-                <span className="text-[14px] font-bold text-[#c69a44]">{s.n}</span>
+
+              <div
+                data-flow-core-label
+                className="absolute flex flex-col items-center justify-center text-center"
+                style={{
+                  left: geo.circle.cx,
+                  top: geo.circle.cy,
+                  width: geo.circle.r * 2,
+                  transform: 'translate(-50%,-50%)',
+                }}
+              >
+                <span className="text-[13px] font-medium uppercase tracking-[3px] text-gold">Export</span>
+                <span className="text-[26px] font-bold leading-tight text-white">Process</span>
               </div>
-              <h3 className="text-[16px] font-bold tracking-tight text-[#0a1020]">
-                {s.title}
-              </h3>
-              <p className="mt-1 text-[13px] leading-relaxed text-[#5b6472]">{s.desc}</p>
+
+              {geo.nodes.map((nd) => (
+                <div key={nd.n}>
+                  <div
+                    data-flow-label
+                    className="absolute text-right"
+                    style={{
+                      left: nd.x - 42,
+                      top: nd.y,
+                      width: 140,
+                      transform: 'translate(-100%,-50%)',
+                    }}
+                  >
+                    <span className="text-[12px] font-semibold uppercase tracking-[1.5px] text-muted">Step</span>
+                    <span className="ml-1 text-[15px] font-bold text-gold-deep">{nd.n}</span>
+                  </div>
+
+                  <div
+                    data-flow-icon
+                    className="absolute flex h-11 w-11 items-center justify-center rounded-full bg-gold-gradient shadow-[0_8px_18px_-8px_rgba(198,154,68,0.9)]"
+                    style={{ left: nd.x, top: nd.y, transform: 'translate(-50%,-50%)' }}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-5 w-5 text-navy-deep"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      {nd.icon}
+                    </svg>
+                  </div>
+
+                  <div
+                    data-flow-copy
+                    className="absolute"
+                    style={{
+                      left: nd.x + 44,
+                      top: nd.y,
+                      width: TEXT_W,
+                      transform: 'translateY(-50%)',
+                    }}
+                  >
+                    <h3 className="text-[17px] font-bold tracking-tight text-ink md:text-[18px]">{nd.title}</h3>
+                    <p className="mt-1.5 max-w-[38ch] text-[13px] leading-relaxed text-muted md:text-[14px]">{nd.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
+        </div>
+
+        {/* ================= MOBILE: stacked list ================= */}
+        <div className="mt-10 space-y-7 md:hidden">
+          {steps.map((s) => (
+            <div key={s.n} data-flow-mobile className="flex gap-4">
+              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gold-gradient">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5 text-navy-deep"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  {s.icon}
+                </svg>
+              </div>
+              <div>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-muted">Step</span>
+                  <span className="text-[14px] font-bold text-gold-deep">{s.n}</span>
+                </div>
+                <h3 className="text-[16px] font-bold tracking-tight text-ink">{s.title}</h3>
+                <p className="mt-1 text-[13px] leading-relaxed text-muted">{s.desc}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )

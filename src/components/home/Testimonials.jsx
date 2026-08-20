@@ -6,8 +6,7 @@ import RouteBackground from '../ui/RouteBackground'
 import SectionHeading from '../ui/SectionHeading'
 
 export default function Testimonials() {
-  const [role, setRole] = useState('buyer')
-  const items = testimonials[role]
+  const items = testimonials
   const trackRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
 
@@ -31,7 +30,7 @@ export default function Testimonials() {
       el.removeEventListener('scroll', updateActive)
       window.removeEventListener('resize', updateActive)
     }
-  }, [role])
+  }, [])
 
   const scrollToIndex = (i) => {
     const el = trackRef.current
@@ -57,26 +56,10 @@ export default function Testimonials() {
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted md:text-base">
             Real feedback from the buyers and suppliers we work with, shipment after shipment.
           </p>
-
-          <div className="mt-7 inline-flex rounded-full border border-line bg-bg-muted p-1">
-            {['buyer', 'supplier'].map((r) => (
-              <button
-                key={r}
-                type="button"
-                onClick={() => setRole(r)}
-                className={`rounded-full px-5 py-2 text-sm font-medium capitalize transition-colors ${
-                  role === r ? 'bg-navy text-white' : 'text-muted hover:text-ink'
-                }`}
-              >
-                {r}
-              </button>
-            ))}
-          </div>
         </Reveal>
 
         <div className="relative min-w-0">
           <Reveal
-            key={role}
             as="div"
             stagger={0.1}
             ref={trackRef}

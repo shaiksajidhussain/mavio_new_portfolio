@@ -36,7 +36,7 @@ const capabilities = [
 ]
 
 const countriesStat = trustStats.find((s) => s.label === 'Countries Served')
-const avatars = [...testimonials.buyer.map((t) => t.avatar), testimonials.supplier[0].avatar]
+const avatars = testimonials.slice(0, 4).map((t) => t.avatar)
 
 export default function TradeCapabilities() {
   const mapSvgUri = useMemo(() => {

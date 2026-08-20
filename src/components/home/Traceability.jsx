@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import { traceability } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
@@ -7,88 +7,119 @@ import SectionHeading from '../ui/SectionHeading'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const bannerImage =
-  'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=2200&q=80'
+  'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80'
+
+/* Foot cut: flat top, long straight sides, gentle curve only at the bottom */
+const FOOT_CUT =
+  'M 0 0 L 1 0 L 1 0.58 C 1 0.82, 0.82 1, 0.5 1 C 0.18 1, 0 0.82, 0 0.58 Z'
 
 export default function Traceability() {
+  const cardRef = useRef(null)
+  const frameRef = useRef(null)
   const imgRef = useRef(null)
-  const sweepRef = useRef(null)
+  const markerRef = useRef(null)
+  const clipId = useId().replace(/:/g, '')
 
   useEffect(() => {
     if (prefersReducedMotion) return
     const ctx = gsap.context(() => {
-      // vertical float: 0 -> -18 -> 0 -> 12 -> 0, ~8.4s loop, seamless (ends where it starts)
-      gsap
-        .timeline({ repeat: -1 })
-        .to(imgRef.current, { y: -18, duration: 2.2, ease: 'sine.inOut' })
-        .to(imgRef.current, { y: 0, duration: 2.2, ease: 'sine.inOut' })
-        .to(imgRef.current, { y: 12, duration: 2.0, ease: 'sine.inOut' })
-        .to(imgRef.current, { y: 0, duration: 2.0, ease: 'sine.inOut' })
-
-      // horizontal drift: 0 -> 8 -> -8 -> 0, ~7s loop, deliberately out of phase with the vertical timeline
-      gsap
-        .timeline({ repeat: -1 })
-        .to(imgRef.current, { x: 8, duration: 2.2, ease: 'sine.inOut' })
-        .to(imgRef.current, { x: -8, duration: 2.6, ease: 'sine.inOut' })
-        .to(imgRef.current, { x: 0, duration: 2.2, ease: 'sine.inOut' })
-
-      // breathing zoom: 1 -> 1.07 -> 1.04 -> 1, ~8s loop
-      gsap
-        .timeline({ repeat: -1 })
-        .to(imgRef.current, { scale: 1.07, duration: 3, ease: 'power1.inOut' })
-        .to(imgRef.current, { scale: 1.04, duration: 2.5, ease: 'power1.inOut' })
-        .to(imgRef.current, { scale: 1, duration: 2.5, ease: 'power1.inOut' })
-
-      // occasional soft light sweep crossing the image, left to right
-      gsap.set(sweepRef.current, { xPercent: -160 })
-      gsap.to(sweepRef.current, {
-        xPercent: 260,
-        duration: 4.5,
-        ease: 'power1.inOut',
-        repeat: -1,
-        repeatDelay: 3,
+      gsap.fromTo(
+        frameRef.current,
+        { rotateX: 10, y: 28, transformPerspective: 1400 },
+        {
+          rotateX: 0,
+          y: 0,
+          duration: 1.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: cardRef.current, start: 'top 78%', once: true },
+        }
+      )
+      gsap.fromTo(
+        imgRef.current,
+        { scale: 1.1 },
+        {
+          scale: 1,
+          duration: 1.25,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: cardRef.current, start: 'top 78%', once: true },
+        }
+      )
+      gsap.to(imgRef.current, {
+        yPercent: 6,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
       })
-    })
+      gsap.fromTo(
+        markerRef.current,
+        { scale: 0.85, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.55,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: cardRef.current, start: 'top 72%', once: true },
+        }
+      )
+    }, cardRef)
     return () => ctx.revert()
   }, [])
 
   return (
     <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
       <RouteBackground flip />
-      <Reveal
-        as="div"
-        stagger={0}
-        className="relative overflow-hidden rounded-t-3xl rounded-b-[48px] border-2 border-navy/15 bg-bg-muted shadow-card md:rounded-b-[64px] dark:border-white/15"
-      >
-        {/* image viewport — flush with the outer frame (no own border/radius/margin), so the
-            card reads as one continuous shape. overflow-hidden clips the animated <img> to it. */}
-        <div className="relative min-h-[320px] overflow-hidden md:min-h-[380px]">
+      <Reveal as="div" stagger={0} ref={cardRef} className="relative" style={{ perspective: '1400px' }}>
+        <svg width="0" height="0" className="absolute" aria-hidden>
+          <defs>
+            <clipPath id={clipId} clipPathUnits="objectBoundingBox">
+              <path d={FOOT_CUT} />
+            </clipPath>
+          </defs>
+        </svg>
+
+        {/* Image — sits above the foot with a 3D lift toward the viewer */}
+        <div
+          ref={frameRef}
+          className="relative z-10 min-h-[300px] overflow-hidden rounded-t-3xl shadow-[0_28px_60px_-18px_rgba(10,16,32,0.45)] sm:min-h-[360px] md:min-h-[420px]"
+          style={{ transformOrigin: 'center top', transformStyle: 'preserve-3d' }}
+        >
           <img
             ref={imgRef}
             src={bannerImage}
-            alt="Trucks loading shipping containers at a freight yard"
-            className="absolute inset-0 h-full w-full object-cover will-change-transform"
+            alt="Shipping containers at a busy port"
+            className="absolute inset-0 h-[115%] w-full object-cover will-change-transform"
             loading="lazy"
           />
-          <div
-            ref={sweepRef}
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 w-1/2 skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent will-change-transform"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/55 via-black/25 to-transparent" />
 
-          <div className="relative flex h-full min-h-[320px] flex-col justify-end p-6 md:min-h-[380px] md:p-10">
-            <SectionLabel tone="onDark" className="font-bold">
-              Traceability
-            </SectionLabel>
-            <SectionHeading tone="onDark" weight="bold" className="mt-3 max-w-md">
+          <div className="relative flex h-full min-h-[300px] flex-col justify-start p-6 sm:min-h-[360px] md:min-h-[420px] md:p-10">
+            <SectionLabel tone="onDark">Traceability</SectionLabel>
+            <SectionHeading tone="onDark" weight="bold" className="mt-3 max-w-lg">
               {traceability.heading}
             </SectionHeading>
           </div>
+
+          <span
+            ref={markerRef}
+            aria-hidden
+            className="pointer-events-none absolute right-[18%] top-[42%] flex h-9 w-9 items-center justify-center rounded-full border-2 border-gold md:right-[22%] md:top-[46%] md:h-11 md:w-11"
+          >
+            <span className="h-2.5 w-2.5 rounded-full bg-gold md:h-3 md:w-3" />
+          </span>
         </div>
 
-        {/* same frame, no divider — the text sits directly in the card below the image */}
-        <div className="mx-auto max-w-2xl p-6 text-center md:p-8">
-          <p className="text-base leading-relaxed text-muted md:text-lg">{traceability.description}</p>
+        {/* Foot — tucked under the image, straight sides then bottom curve */}
+        <div
+          className="relative z-0 -mt-1 bg-bg-muted px-6 pb-16 pt-12 md:px-16 md:pb-20 md:pt-14"
+          style={{ clipPath: `url(#${clipId})` }}
+        >
+          <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-muted md:text-base lg:text-lg">
+            {traceability.description}
+          </p>
         </div>
       </Reveal>
     </section>
