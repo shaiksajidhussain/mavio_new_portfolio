@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import {
-  ArrowRight,
   Box,
   FileCheck2,
   Handshake,
@@ -207,18 +206,76 @@ function MavioHub() {
   )
 }
 
-function FlowArrow() {
+function FlowArrow({ vertical = false }) {
+  if (vertical) {
+    return (
+      <div className="flex justify-center py-1 text-navy/50 sm:hidden" aria-hidden>
+        <svg viewBox="0 0 24 40" className="h-10 w-6 overflow-visible" fill="none">
+          <line x1="12" y1="2" x2="12" y2="30" stroke="currentColor" strokeWidth="1.4" opacity="0.3" />
+          <line
+            className="flow-arrow-dash-vertical"
+            x1="12"
+            y1="2"
+            x2="12"
+            y2="30"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeDasharray="5 7"
+            strokeLinecap="round"
+          />
+          {prefersReducedMotion ? (
+            <circle cx="12" cy="16" r="2.4" fill="#d4a24c" />
+          ) : (
+            <circle r="2.4" fill="#d4a24c">
+              <animateMotion dur="1.5s" repeatCount="indefinite" path="M12,4 L12,28" />
+            </circle>
+          )}
+          <path
+            d="M7 28 L12 34 L17 28"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    )
+  }
+
   return (
     <div
-      className="group/arrow hidden items-center text-navy/45 transition-colors duration-200 hover:text-gold-deep sm:flex"
+      className="group/arrow hidden items-center text-navy/50 transition-colors duration-200 hover:text-gold-deep sm:flex"
       aria-hidden
     >
-      <span className="h-px w-8 origin-left bg-current transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/arrow:scale-x-125 md:w-12" />
-      <ArrowRight
-        size={18}
-        strokeWidth={2}
-        className="-ml-1 transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/arrow:translate-x-1"
-      />
+      <svg viewBox="0 0 80 28" className="h-7 w-[4.5rem] overflow-visible md:w-24" fill="none">
+        <line x1="2" y1="14" x2="62" y2="14" stroke="currentColor" strokeWidth="1.4" opacity="0.28" />
+        <line
+          className="flow-arrow-dash"
+          x1="2"
+          y1="14"
+          x2="62"
+          y2="14"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeDasharray="6 8"
+          strokeLinecap="round"
+        />
+        {prefersReducedMotion ? (
+          <circle cx="32" cy="14" r="2.5" fill="#d4a24c" />
+        ) : (
+          <circle r="2.5" fill="#d4a24c">
+            <animateMotion dur="1.5s" repeatCount="indefinite" path="M4,14 L58,14" />
+          </circle>
+        )}
+        <path
+          className="flow-arrow-head"
+          d="M58 7 L70 14 L58 21"
+          stroke="currentColor"
+          strokeWidth="1.9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
     </div>
   )
 }
@@ -321,28 +378,54 @@ function ProcurementDiagram({ role }) {
       ref={diagramRef}
       className="overflow-hidden rounded-3xl border border-[#c5d3e8] bg-[#e8eef7] p-5 shadow-card md:p-8"
     >
-      <div className="grid grid-cols-1 items-center gap-4 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:gap-2 md:gap-4">
+      <div className="grid grid-cols-1 items-center gap-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:gap-2 md:gap-4">
         <ActorCard label={left.label} accent={buyerFirst}>
           {left.scene}
         </ActorCard>
-        <FlowArrow />
+        <div className="flex justify-center">
+          <FlowArrow vertical />
+          <FlowArrow />
+        </div>
         <div className="group/hub flex flex-col items-center">
           <MavioHub />
           <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy/60 transition-colors duration-200 group-hover/hub:text-gold-deep">
             Direct path
           </p>
         </div>
-        <FlowArrow />
+        <div className="flex justify-center">
+          <FlowArrow vertical />
+          <FlowArrow />
+        </div>
         <ActorCard label={right.label} accent={!buyerFirst}>
           {right.scene}
         </ActorCard>
       </div>
 
       <div className="relative mt-8 md:mt-10">
-        <div
-          className="pointer-events-none absolute left-[8%] right-[8%] top-5 hidden h-16 border-x border-b border-dashed border-navy/25 transition-colors duration-300 sm:block"
+        <svg
+          className="pointer-events-none absolute left-[8%] right-[8%] top-5 hidden h-16 w-[84%] text-navy/30 sm:block"
+          viewBox="0 0 100 40"
+          preserveAspectRatio="none"
           aria-hidden
-        />
+        >
+          <path
+            d="M0 0 V28 H100 V0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.8"
+            strokeDasharray="3 3"
+            opacity="0.45"
+          />
+          <path
+            className="flow-arrow-dash"
+            d="M0 0 V28 H100 V0"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="0.9"
+            strokeDasharray="4 5"
+            strokeLinecap="round"
+          />
+        </svg>
 
         <div className="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" style={{ perspective: 800 }}>
           {complexWay.steps.map((step, i) => {

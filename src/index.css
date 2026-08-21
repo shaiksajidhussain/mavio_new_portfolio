@@ -29,10 +29,49 @@
   --line: 38 38 38;
 }
 
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@keyframes flow-dash-vertical {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@keyframes flow-arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+
+.flow-arrow-dash {
+  animation: flow-dash 1.1s linear infinite;
+}
+
+.flow-arrow-dash-vertical {
+  animation: flow-dash-vertical 1.1s linear infinite;
+}
+
+.flow-arrow-head {
+  animation: flow-arrow-nudge 1.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-float,
   .animate-float-slow,
-  .animate-float-fast {
+  .animate-float-fast,
+  .flow-arrow-dash,
+  .flow-arrow-dash-vertical,
+  .flow-arrow-head {
     animation: none;
   }
 }
