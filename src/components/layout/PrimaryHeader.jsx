@@ -7,14 +7,17 @@ import ThemeToggle from '../ui/ThemeToggle'
 import FontSwitcher from '../ui/FontSwitcher'
 import { ScrollTrigger } from '../../lib/gsap'
 import logoMavio from '../../assets/logo-mavio.svg'
-const socialIcons = { LinkedIn: Linkedin, Instagram: Instagram }
 
-const SHADE_BLUE =
-  'linear-gradient(90deg, #0e2d4f 0%, #0b2442 48%, #071b32 78%, #021023 100%)'
+const socialIcons = { LinkedIn: Linkedin, Instagram: Instagram }
+const NAV_BG = '#021528'
+
+const linkClass = ({ isActive }) =>
+  `whitespace-nowrap text-[13px] font-medium tracking-wide transition-colors duration-150 xl:text-sm ${
+    isActive ? 'text-gold' : 'text-white hover:text-gold'
+  }`
 
 export default function PrimaryHeader() {
   const [scrolled, setScrolled] = useState(false)
-  const [progress, setProgress] = useState(0)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
   const closeTimer = useRef(null)
@@ -23,10 +26,7 @@ export default function PrimaryHeader() {
     const st = ScrollTrigger.create({
       start: 0,
       end: 'max',
-      onUpdate: (self) => {
-        setProgress(self.progress)
-        setScrolled(self.scroll() > 60)
-      },
+      onUpdate: (self) => setScrolled(self.scroll() > 40),
     })
     return () => st.kill()
   }, [])
@@ -39,64 +39,30 @@ export default function PrimaryHeader() {
     closeTimer.current = setTimeout(() => setOpenDropdown(null), 120)
   }
 
-  return (
-    <header
-      className={`transition-shadow duration-300 ${
-        scrolled || mobileOpen ? 'shadow-lg shadow-black/25' : ''
-      }`}
-    >
-      <div className="flex flex-col" style={{ background: SHADE_BLUE }}>
-        {/* Top row — full-width utility (Logistiq-style bar) */}
-        <div className="hidden h-11 items-center justify-between gap-4 border-b border-white/10 px-4 sm:flex md:px-6">
-          <div className="flex min-w-0 items-center gap-4">
-            <p className="whitespace-nowrap text-[11px] font-medium tracking-wide text-white/70">
-              {secondaryHeader.countriesText}
-            </p>
-            <p className="hidden truncate text-[11px] font-semibold italic tracking-wide text-gold md:block">
-              {secondaryHeader.usp}
-            </p>
-          </div>
-          <div className="flex shrink-0 items-center gap-2">
-            {secondaryHeader.socials.map((s) => {
-              const Icon = socialIcons[s.label]
-              return (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={s.label}
-                  className="inline-flex h-7 items-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-2.5 text-white/75 transition-colors hover:border-gold/50 hover:text-gold"
-                >
-                  <Icon size={12} />
-                  <span className="hidden text-[10px] font-medium xl:inline">{s.label}</span>
-                </a>
-              )
-            })}
-          </div>
-        </div>
+  const filled = scrolled || mobileOpen
 
-        {/* Bottom row — navy plate, opposite slant, drop-shadow follows the cut */}
-        <div className="relative flex h-[4.5rem] items-stretch sm:h-20">
-          <Link
-            to="/"
-            aria-label="Mavio Global home"
-            className="relative z-20 flex shrink-0 items-center bg-navy-deep pl-5 pr-12 sm:pl-7 sm:pr-16 md:min-w-[17rem] md:pl-9 md:pr-[4.5rem] lg:min-w-[19rem]"
-            style={{
-              clipPath: 'polygon(0 0, calc(100% - 3.25rem) 0, 100% 100%, 0 100%)',
-              filter:
-                'drop-shadow(10px 0 0 rgba(224, 176, 90, 0.55)) drop-shadow(18px 6px 18px rgba(0, 0, 0, 0.55))',
-            }}
-          >
+  return (
+    <header className={`transition-shadow duration-300 ${filled ? 'shadow-lg shadow-black/30' : ''}`}>
+      <div className="relative">
+        <div
+          className={`pointer-events-none absolute inset-0 -z-10 transition-opacity duration-300 ${
+            filled ? 'opacity-100' : 'opacity-0'
+          }`}
+          style={{ background: NAV_BG }}
+          aria-hidden
+        />
+
+        <div className="container-px mx-auto flex h-16 max-w-container items-center justify-between gap-6 sm:h-[4.5rem]">
+          <Link to="/" className="relative z-20 shrink-0" aria-label="Mavio Global home">
             <img
               src={logoMavio}
               alt="Mavio Global"
-              className="h-10 w-auto sm:h-12 md:h-14"
+              className="h-9 w-auto sm:h-10 md:h-11"
             />
           </Link>
 
-          <div className="relative flex min-w-0 flex-1 items-center justify-between gap-3 py-0 pl-3 pr-3 sm:pl-4 sm:pr-4 md:pl-6 md:pr-6">
-            <nav className="hidden min-w-0 items-center gap-5 xl:gap-7 lg:flex">
+          <div className="flex min-w-0 items-center gap-5 lg:gap-8">
+            <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
               {nav.map((item) =>
                 item.children ? (
                   <div
@@ -109,21 +75,21 @@ export default function PrimaryHeader() {
                       type="button"
                       aria-expanded={openDropdown === item.label}
                       aria-haspopup="true"
-                      className={`flex items-center gap-1 text-[14px] font-semibold transition-[color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] hover:text-gold active:scale-[0.97] xl:text-[15px] ${
-                        openDropdown === item.label ? 'text-gold' : 'text-white/90'
+                      className={`flex items-center gap-1 text-[13px] font-medium tracking-wide transition-colors duration-150 xl:text-sm ${
+                        openDropdown === item.label ? 'text-gold' : 'text-white hover:text-gold'
                       }`}
                     >
                       {item.label}
                       <ChevronDown
-                        size={14}
-                        strokeWidth={2.5}
-                        className={`transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+                        size={13}
+                        strokeWidth={2}
+                        className={`transition-transform duration-200 ${
                           openDropdown === item.label ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
                     {openDropdown === item.label && (
-                      <div className="absolute left-0 top-full z-30 pt-2">
+                      <div className="absolute right-0 top-full z-30 pt-3">
                         <div className="min-w-[12.5rem] overflow-hidden rounded-xl border border-line bg-surface py-1.5 shadow-[0_12px_32px_-12px_rgba(2,16,35,0.35)]">
                           {item.children.map((c) => (
                             <NavLink
@@ -147,32 +113,16 @@ export default function PrimaryHeader() {
                     )}
                   </div>
                 ) : (
-                  <NavLink
-                    key={item.to}
-                    to={item.to}
-                    end={item.to === '/'}
-                    className={({ isActive }) =>
-                      `text-[14px] font-semibold transition-colors hover:text-gold xl:text-[15px] ${
-                        isActive ? 'text-gold' : 'text-white/90'
-                      }`
-                    }
-                  >
+                  <NavLink key={item.to} to={item.to} end={item.to === '/'} className={linkClass}>
                     {item.label}
                   </NavLink>
                 )
               )}
             </nav>
 
-            <div className="ml-auto flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <FontSwitcher tone="light" className="hidden lg:flex" />
               <ThemeToggle tone="light" className="hidden sm:flex" />
-              <Button
-                to="/partner-with-us"
-                variant="primary"
-                className="hidden rounded-full sm:inline-flex"
-              >
-                Partner With Us
-              </Button>
               <button
                 type="button"
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-white/30 text-white transition-colors lg:hidden"
@@ -182,21 +132,14 @@ export default function PrimaryHeader() {
                 {mobileOpen ? <X size={18} /> : <Menu size={18} />}
               </button>
             </div>
-
-            <div
-              className="pointer-events-none absolute bottom-0 left-0 h-[2px] bg-gold-gradient"
-              style={{ width: `${progress * 100}%` }}
-            />
           </div>
         </div>
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-navy px-5 py-4 lg:hidden">
+        <div className="border-t border-white/10 px-5 py-4 lg:hidden" style={{ background: NAV_BG }}>
           <div className="mb-3 flex items-center justify-between gap-3 border-b border-white/10 pb-3 sm:hidden">
-            <p className="text-[11px] font-medium tracking-wide text-white/70">
-              {secondaryHeader.countriesText}
-            </p>
+            <p className="text-[11px] font-medium tracking-wide text-white/70">{secondaryHeader.countriesText}</p>
             <div className="flex items-center gap-2">
               {secondaryHeader.socials.map((s) => {
                 const Icon = socialIcons[s.label]

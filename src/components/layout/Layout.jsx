@@ -31,8 +31,8 @@ export default function Layout() {
         <PrimaryHeader />
       </div>
 
-      {/* Mobile: ~72px; sm+: utility 44px + nav 80px */}
-      <main ref={mainRef} className="pt-[4.5rem] sm:pt-[7.75rem]">
+      {/* Slim overlay header: 64px / 72px */}
+      <main ref={mainRef} className="pt-16 sm:pt-[4.5rem]">
         <Outlet />
       </main>
       <SecondaryFooter />

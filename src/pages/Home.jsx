@@ -35,7 +35,7 @@ export default function Home() {
       <Traceability />
 
       {/* 6. About (indirect title) */}
-      <AboutTeaser />
+      {/* <AboutTeaser /> */}
 
       {/* 7. Why Choose Mavio — toggle */}
       <WhyChooseMavio />

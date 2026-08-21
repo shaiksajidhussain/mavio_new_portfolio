@@ -57,7 +57,7 @@ export default function LogisticsHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-[4.5rem] flex min-h-[420px] items-center overflow-hidden sm:-mt-[7.75rem] sm:min-h-[460px]"
+      className="relative -mt-[4.5rem] flex min-h-[420px] items-center overflow-hidden sm:-mt-[4.5rem] sm:min-h-[460px]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <div ref={imgWrapRef} className="h-full w-full will-change-transform">
@@ -91,7 +91,7 @@ export default function LogisticsHero() {
         />
       </span>
 
-      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pt-[4.5rem] sm:pt-[7.75rem]">
+      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pt-[4.5rem] sm:pt-[4.5rem]">
         <SectionLabel tone="onDark">{hero.eyebrow}</SectionLabel>
         <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">
           {hero.heading}

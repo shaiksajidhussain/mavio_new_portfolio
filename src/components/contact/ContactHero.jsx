@@ -24,7 +24,7 @@ export default function ContactHero() {
   }, [])
 
   return (
-    <section className="relative -mt-[4.5rem] flex min-h-[420px] items-center overflow-hidden sm:-mt-[7.75rem] sm:min-h-[460px]">
+    <section className="relative -mt-[4.5rem] flex min-h-[420px] items-center overflow-hidden sm:-mt-[4.5rem] sm:min-h-[460px]">
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <img src={heroImage.src} alt={heroImage.alt} className="h-full w-full object-cover" />
       </div>
@@ -36,7 +36,7 @@ export default function ContactHero() {
         className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
       />
 
-      <div className="container-px relative mx-auto w-full max-w-container pt-[4.5rem] sm:pt-[7.75rem]">
+      <div className="container-px relative mx-auto w-full max-w-container pt-[4.5rem] sm:pt-[4.5rem]">
         <Reveal stagger={0.08} className="border-l-2 border-gold-deep pl-6">
           <SectionHeading as="h1" tone="onDark" size="hero" weight="bold">Contact Us</SectionHeading>
           <div className="mt-3 flex items-center gap-2 text-sm text-white/70">

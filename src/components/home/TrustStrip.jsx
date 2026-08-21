@@ -37,25 +37,34 @@ export default function TrustStrip() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="container-px mx-auto max-w-container py-10 md:py-14">
+    <section ref={sectionRef} className="container-px mx-auto max-w-container py-14 md:py-20">
       <Reveal
         as="div"
         stagger={0}
-        className="grid grid-cols-2 gap-6 rounded-2xl border border-line bg-surface px-6 py-6 shadow-card sm:px-8 md:grid-cols-4 md:gap-4"
+        className="grid grid-cols-2 rounded-2xl border border-line bg-surface shadow-card md:grid-cols-4"
       >
         {trustStats.map((stat, i) => {
           const Icon = statIcons[i]
+          const last = i === trustStats.length - 1
           return (
-            <div key={stat.label} className="flex items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-deep/10 text-gold-deep">
-                <Icon size={18} />
+            <div
+              key={stat.label}
+              className={[
+                'flex min-h-[7.5rem] items-center gap-4 px-6 py-8 sm:min-h-[8.5rem] sm:px-8 md:min-h-[9.5rem] md:py-10',
+                i % 2 === 0 ? 'border-r border-line' : '',
+                i < 2 ? 'border-b border-line md:border-b-0' : '',
+                !last ? 'md:border-r md:border-line' : '',
+              ].join(' ')}
+            >
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-deep/10 text-gold-deep sm:h-14 sm:w-14">
+                <Icon size={22} />
               </span>
               <div>
-                <p className="font-mono text-xl font-semibold text-ink sm:text-2xl">
+                <p className="font-mono text-2xl font-semibold text-ink sm:text-3xl">
                   <span ref={(el) => (numberRefs.current[i] = el)}>0</span>
                   {stat.suffix}
                 </p>
-                <p className="text-xs text-muted">{stat.label}</p>
+                <p className="mt-1 text-xs text-muted sm:text-sm">{stat.label}</p>
               </div>
             </div>
           )

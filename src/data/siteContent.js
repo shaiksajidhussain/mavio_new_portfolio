@@ -455,6 +455,12 @@ export const about = {
   ],
 }
 
+export const productsPage = {
+  hero: {
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1800&q=80',
+  },
+}
+
 export const aboutPage = {
   hero: {
     eyebrow: 'The Story Behind Mavio',

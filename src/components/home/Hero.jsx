@@ -63,7 +63,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-[4.5rem] flex min-h-screen flex-col overflow-hidden sm:-mt-[7.75rem]"
+      className="relative -mt-[4.5rem] flex min-h-screen flex-col overflow-hidden sm:-mt-[4.5rem]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <div ref={imgWrapRef} className="relative h-full w-full scale-110">
@@ -79,10 +79,9 @@ export default function Hero() {
           ))}
         </div>
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/90 via-transparent to-navy-deep/30" />
+      <div className="absolute inset-0 -z-10 bg-black/50" />
 
-      <div className="flex flex-1 flex-col pt-[4.5rem] sm:pt-[7.75rem]">
+      <div className="flex flex-1 flex-col pt-[4.5rem] sm:pt-[4.5rem]">
         <div className="container-px mx-auto mt-auto w-full max-w-container pb-14 pt-16 md:pb-20">
           <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -146,30 +145,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div
-              ref={cardRef}
-              className="w-full max-w-xs shrink-0 rounded-2xl bg-surface p-5 shadow-card md:w-80"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-muted">01/{String(productCategories.length).padStart(2, '0')}</span>
-                <span className="eyebrow text-muted">Our Products</span>
-              </div>
-              <div className="my-4 h-px bg-line" />
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="font-display text-lg font-semibold text-ink">{featured.name}</p>
-                  <p className="mt-1 text-xs text-muted">{featured.description}</p>
-                </div>
-                <Button
-                  to={`/products/${featured.slug}`}
-                  variant="primary"
-                  className="!h-10 !w-10 shrink-0 !rounded-full !p-0"
-                  aria-label={`Explore ${featured.name}`}
-                >
-                  <ArrowRight size={16} />
-                </Button>
-              </div>
-            </div>
+      
           </div>
         </div>
       </div>

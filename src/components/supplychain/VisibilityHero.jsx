@@ -47,7 +47,7 @@ export default function VisibilityHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-[4.5rem] flex min-h-[420px] flex-col justify-end overflow-hidden sm:-mt-[7.75rem] sm:min-h-[460px]"
+      className="relative -mt-[4.5rem] flex min-h-[420px] flex-col justify-end overflow-hidden sm:-mt-[4.5rem] sm:min-h-[460px]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <img ref={imgRef} src={hero.image} alt={hero.imageAlt} className="h-full w-full object-cover" />
@@ -81,7 +81,7 @@ export default function VisibilityHero() {
 
       <div
         ref={copyRef}
-        className="container-px relative mx-auto w-full max-w-container pb-10 pt-20 sm:pt-[7.75rem] md:pb-14"
+        className="container-px relative mx-auto w-full max-w-container pb-10 pt-20 sm:pt-[4.5rem] md:pb-14"
       >
         <SectionLabel tone="onDark">{hero.eyebrow}</SectionLabel>
         <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">

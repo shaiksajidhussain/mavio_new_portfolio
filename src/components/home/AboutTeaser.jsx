@@ -45,7 +45,7 @@ export default function AboutTeaser() {
             <div ref={imgWrapRef} className="media-dim w-[80%] overflow-hidden rounded-3xl border-4 border-surface shadow-card">
               <img src={about.image} alt={about.imageAlt} className="aspect-[4/5] w-full object-cover" />
             </div>
-
+{/* 
             <Reveal delay={0.3} stagger={0} className="absolute -right-2 bottom-16 w-[52%] sm:bottom-20">
               <div className="media-dim overflow-hidden rounded-3xl border-4 border-surface shadow-card">
                 <img
@@ -54,8 +54,8 @@ export default function AboutTeaser() {
                   className="aspect-square w-full object-cover"
                 />
               </div>
-            </Reveal>
-
+            </Reveal> */}
+{/* 
             {experienceStat && (
               <Reveal delay={0.5} stagger={0} className="absolute -right-4 top-10 sm:top-14">
                 <div className="flex w-36 flex-col items-start gap-0.5 rounded-2xl bg-navy-deep p-4 text-left shadow-card sm:w-40">
@@ -67,7 +67,7 @@ export default function AboutTeaser() {
                   <p className="text-xs leading-tight text-white/70">{experienceStat.label}</p>
                 </div>
               </Reveal>
-            )}
+            )} */}
           </div>
         </Reveal>
 

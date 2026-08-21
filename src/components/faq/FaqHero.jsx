@@ -45,7 +45,7 @@ export default function FaqHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-[4.5rem] flex min-h-[460px] items-center overflow-hidden sm:-mt-[7.75rem] sm:min-h-[520px]"
+      className="relative -mt-[4.5rem] flex min-h-[460px] items-center overflow-hidden sm:-mt-[4.5rem] sm:min-h-[520px]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <img ref={imgRef} src={HERO_IMAGE} alt="Container cranes loading freight at a busy port" className="h-full w-full object-cover" />
@@ -77,7 +77,7 @@ export default function FaqHero() {
         />
       </span>
 
-      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pb-8 pt-[4.5rem] sm:pt-[7.75rem]">
+      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pb-8 pt-[4.5rem] sm:pt-[4.5rem]">
         <SectionLabel tone="onDark">FAQ</SectionLabel>
         <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">
           {hero.heading}

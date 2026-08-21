@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Plane } from 'lucide-react'
 import DottedMap from 'dotted-map/without-countries'
 import worldMapData from '../../data/worldMap.json'
-import { aboutPage } from '../../data/siteContent'
+import { productsPage } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
 import SectionHeading from '../ui/SectionHeading'
 
-export default function AboutHero() {
+export default function ProductsHero() {
   const mapSvgUri = useMemo(() => {
     const map = new DottedMap({ map: worldMapData })
     const svg = map.getSVG({
@@ -22,7 +22,7 @@ export default function AboutHero() {
   return (
     <section className="relative -mt-[4.5rem] flex min-h-[420px] items-center overflow-hidden sm:-mt-[4.5rem] sm:min-h-[460px]">
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img src={aboutPage.hero.image} alt="" className="h-full w-full object-cover" />
+        <img src={productsPage.hero.image} alt="" className="h-full w-full object-cover" />
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
       <img
@@ -53,13 +53,15 @@ export default function AboutHero() {
 
       <div className="container-px relative mx-auto w-full max-w-container pt-[4.5rem] sm:pt-[4.5rem]">
         <Reveal stagger={0.08} className="border-l-2 border-gold-deep pl-6">
-          <SectionHeading as="h1" tone="onDark" size="hero" weight="bold">About Us</SectionHeading>
+          <SectionHeading as="h1" tone="onDark" size="hero" weight="bold">
+            Products
+          </SectionHeading>
           <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
             <Link to="/" className="font-medium text-gold hover:text-gold-bright">
               Home
             </Link>
             <ArrowRight size={14} />
-            <span className="text-white">About Us</span>
+            <span className="text-white">Products</span>
           </div>
         </Reveal>
       </div>
