@@ -84,7 +84,7 @@ export default function Traceability() {
         {/* Image — sits above the foot with a 3D lift toward the viewer */}
         <div
           ref={frameRef}
-          className="relative z-10 min-h-[300px] overflow-hidden rounded-t-3xl shadow-[0_28px_60px_-18px_rgba(10,16,32,0.45)] sm:min-h-[360px] md:min-h-[420px]"
+          className="relative z-10 min-h-[420px] overflow-hidden rounded-t-3xl shadow-[0_28px_60px_-18px_rgba(10,16,32,0.45)] sm:min-h-[520px] md:min-h-[620px] lg:min-h-[500px]"
           style={{ transformOrigin: 'center top', transformStyle: 'preserve-3d' }}
         >
           <img
@@ -96,7 +96,7 @@ export default function Traceability() {
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/55 via-black/25 to-transparent" />
 
-          <div className="relative flex h-full min-h-[300px] flex-col justify-start p-6 sm:min-h-[360px] md:min-h-[420px] md:p-10">
+          <div className="relative flex h-full min-h-[420px] flex-col justify-start p-6 sm:min-h-[520px] md:min-h-[620px] md:p-10 lg:min-h-[500px]">
             <SectionLabel tone="onDark">Traceability</SectionLabel>
             <SectionHeading tone="onDark" weight="bold" className="mt-3 max-w-lg">
               {traceability.heading}

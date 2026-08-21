@@ -1,13 +1,18 @@
 import { ArrowRight, Building2, Factory, Pill, Ship, Tag, UtensilsCrossed } from 'lucide-react'
 import { partnerPage } from '../../data/siteContent'
+import { usePartnerRole } from '../../context/PartnerRoleContext'
 import Button from '../ui/Button'
 import Reveal from '../ui/Reveal'
 import SectionHeading from '../ui/SectionHeading'
 
 const icons = { UtensilsCrossed, Building2, Pill, Factory, Ship, Tag }
-const { eyebrow, heading, subheading, cta, items } = partnerPage.industries
+const { eyebrow, heading, items } = partnerPage.industries
 
 export default function Industries() {
+  const { role } = usePartnerRole()
+  const activeRole = role === 'supplier' ? 'supplier' : 'buyer'
+  const { subheading, cta } = partnerPage.industries[activeRole]
+
   return (
     <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
       <div className="container-px mx-auto max-w-container">
@@ -21,7 +26,9 @@ export default function Industries() {
             <SectionHeading as="h2" className="mt-3">
               {heading}
             </SectionHeading>
-            <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">{subheading}</p>
+            <p key={subheading} className="mt-4 text-sm leading-relaxed text-muted md:text-base">
+              {subheading}
+            </p>
 
             <Button to={cta.to} variant="primary" className="mt-6 w-fit">
               {cta.label}

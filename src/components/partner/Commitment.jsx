@@ -22,55 +22,6 @@ const stepIcons = [Search, Handshake, ShieldCheck, FileCheck2, Ship, Box]
 
 const EASE = 'cubic-bezier(0.23, 1, 0.32, 1)'
 
-function RoleToggle() {
-  const { role, setRole } = usePartnerRole()
-  const tabRefs = useRef([])
-  const indicatorRef = useRef(null)
-
-  const moveIndicator = (index, animate = true) => {
-    const btn = tabRefs.current[index]
-    const indicator = indicatorRef.current
-    if (!btn || !indicator) return
-    const { offsetLeft, offsetWidth } = btn
-    if (animate && !prefersReducedMotion) {
-      gsap.to(indicator, { left: offsetLeft, width: offsetWidth, duration: 0.35, ease: 'power3.out' })
-    } else {
-      indicator.style.left = `${offsetLeft}px`
-      indicator.style.width = `${offsetWidth}px`
-    }
-  }
-
-  useEffect(() => {
-    moveIndicator(role === 'buyer' ? 0 : 1, false)
-    const onResize = () => moveIndicator(role === 'buyer' ? 0 : 1, false)
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  return (
-    <div className="relative mt-6 inline-flex rounded-full border border-line bg-bg-muted p-1">
-      <span ref={indicatorRef} className="pointer-events-none absolute bottom-1 top-1 rounded-full bg-gold-gradient" />
-      {['buyer', 'supplier'].map((r, i) => (
-        <button
-          key={r}
-          ref={(el) => (tabRefs.current[i] = el)}
-          type="button"
-          onClick={() => {
-            setRole(r)
-            moveIndicator(i)
-          }}
-          className={`relative z-10 rounded-full px-6 py-2.5 text-sm font-semibold capitalize transition-[color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
-            role === r ? 'text-navy-deep' : 'text-muted hover:text-ink'
-          }`}
-        >
-          {r}
-        </button>
-      ))}
-    </div>
-  )
-}
-
 function BuyerScene() {
   return (
     <svg viewBox="0 0 160 140" className="mx-auto h-28 w-auto text-navy transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/actor:scale-105 md:h-32" aria-hidden>
@@ -334,7 +285,7 @@ function StepCard({ step, Icon }) {
       onPointerDown={() => pressCard(cardRef.current, true)}
       onPointerUp={() => pressCard(cardRef.current, false)}
       onPointerCancel={() => pressCard(cardRef.current, false)}
-      className="group/step relative rounded-2xl border border-white/80 bg-surface px-3 pb-4 pt-5 text-center shadow-[0_10px_24px_-16px_rgba(11,36,66,0.35)] will-change-transform transition-[border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gold-deep/35 hover:shadow-[0_18px_36px_-18px_rgba(11,36,66,0.4)]"
+      className="group/step relative flex h-full flex-col items-center rounded-2xl border border-white/80 bg-surface px-3 pb-4 pt-5 text-center shadow-[0_10px_24px_-16px_rgba(11,36,66,0.35)] will-change-transform transition-[border-color,box-shadow] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-gold-deep/35 hover:shadow-[0_18px_36px_-18px_rgba(11,36,66,0.4)]"
       style={{ transformStyle: 'preserve-3d', transitionTimingFunction: EASE }}
     >
       <span className="absolute -top-3 left-1/2 flex h-6 w-6 -translate-x-1/2 items-center justify-center rounded-full bg-navy text-[11px] font-bold text-white transition-transform duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover/step:scale-110 group-hover/step:bg-gold-deep group-hover/step:text-navy-deep">
@@ -346,7 +297,7 @@ function StepCard({ step, Icon }) {
       >
         <Icon size={22} strokeWidth={1.7} />
       </span>
-      <p className="mt-2 text-[12px] font-semibold leading-snug text-navy transition-colors duration-200 group-hover/step:text-navy-deep">
+      <p className="mt-2 flex-1 text-[12px] font-semibold leading-snug text-navy transition-colors duration-200 group-hover/step:text-navy-deep">
         {step.title}
       </p>
     </div>
@@ -427,7 +378,7 @@ function ProcurementDiagram({ role }) {
           />
         </svg>
 
-        <div className="relative grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" style={{ perspective: 800 }}>
+        <div className="relative grid items-stretch gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" style={{ perspective: 800 }}>
           {complexWay.steps.map((step, i) => {
             const Icon = stepIcons[i]
             return <StepCard key={step.title} step={step} Icon={Icon} />
@@ -460,7 +411,6 @@ export default function Commitment() {
         <SectionLabel>Our Commitment To Every Procurement</SectionLabel>
         <SectionHeading className="mt-3">{heading}</SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
-        <RoleToggle />
       </Reveal>
 
       <Reveal as="div" stagger={0} delay={0.08} className="mt-10 md:mt-14">

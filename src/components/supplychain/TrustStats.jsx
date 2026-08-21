@@ -6,7 +6,7 @@ import Reveal from '../ui/Reveal'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 import SectionHeading from '../ui/SectionHeading'
 
-const { heading, subheading } = supplyChainVisibilityPage.trust
+const { heading, subheading, image, imageAlt } = supplyChainVisibilityPage.trust
 
 export default function TrustStats() {
   const gridRef = useRef(null)
@@ -68,13 +68,28 @@ export default function TrustStats() {
         <Ship aria-hidden size={20} strokeWidth={1.5} className="animate-float text-gold/40" style={{ '--float-rotate': '-4deg' }} />
       </span>
       <div className="container-px relative mx-auto max-w-container">
-        <Reveal stagger={0}>
-          <SectionLabel tone="onDark">Why Businesses Trust Mavio</SectionLabel>
-          <SectionHeading tone="onDark" className="mt-3">{heading}</SectionHeading>
-          <p className="mt-2 max-w-xl text-sm text-white/70 md:text-base">{subheading}</p>
-        </Reveal>
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-14">
+          <Reveal stagger={0}>
+            <SectionLabel tone="onDark">Why Businesses Trust Mavio</SectionLabel>
+            <SectionHeading tone="onDark" className="mt-3">
+              {heading}
+            </SectionHeading>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">{subheading}</p>
+          </Reveal>
 
-        <div ref={gridRef} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal as="div" stagger={0} delay={0.08} className="relative">
+            <div className="overflow-hidden rounded-3xl border border-white/10 shadow-[0_28px_60px_-28px_rgba(0,0,0,0.55)]">
+              <img
+                src={image}
+                alt={imageAlt}
+                className="aspect-[4/3] h-full w-full object-cover md:aspect-[5/4]"
+                loading="lazy"
+              />
+            </div>
+          </Reveal>
+        </div>
+
+        <div ref={gridRef} className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {trustStats.map((stat, i) => (
             <div
               key={stat.label}

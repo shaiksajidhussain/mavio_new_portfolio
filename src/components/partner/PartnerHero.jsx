@@ -9,10 +9,11 @@ import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 export default function PartnerHero() {
   const { role, setRole } = usePartnerRole()
+  const activeRole = role === 'supplier' ? 'supplier' : 'buyer'
+  const heroVisual = partnerPage.hero[activeRole]
   const sectionRef = useRef(null)
   const imgRef = useRef(null)
   const copyRef = useRef(null)
-  const toggleWrapRef = useRef(null)
   const tabRefs = useRef([])
   const indicatorRef = useRef(null)
 
@@ -48,12 +49,17 @@ export default function PartnerHero() {
   }
 
   useEffect(() => {
-    moveIndicator(role === 'buyer' ? 0 : 1, false)
-    const onResize = () => moveIndicator(role === 'buyer' ? 0 : 1, false)
+    moveIndicator(activeRole === 'buyer' ? 0 : 1, true)
+    const onResize = () => moveIndicator(activeRole === 'buyer' ? 0 : 1, false)
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [activeRole])
+
+  useEffect(() => {
+    if (prefersReducedMotion || !imgRef.current) return
+    gsap.fromTo(imgRef.current, { opacity: 0.55, scale: 1.04 }, { opacity: 1, scale: 1, duration: 0.55, ease: 'power2.out' })
+  }, [activeRole])
 
   const handleSelect = (index, r) => {
     setRole(r)
@@ -63,10 +69,16 @@ export default function PartnerHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-20 flex min-h-[420px] flex-col justify-end overflow-hidden sm:-mt-[7.25rem] sm:min-h-[460px]"
+      className="relative -mt-[4.5rem] flex min-h-[420px] flex-col justify-end overflow-hidden sm:-mt-[7.75rem] sm:min-h-[460px]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img ref={imgRef} src={partnerPage.hero.image} alt={partnerPage.hero.imageAlt} className="h-full w-full object-cover" />
+        <img
+          key={heroVisual.image}
+          ref={imgRef}
+          src={heroVisual.image}
+          alt={heroVisual.imageAlt}
+          className="h-full w-full object-cover"
+        />
       </div>
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
 
@@ -92,7 +104,7 @@ export default function PartnerHero() {
         <Truck aria-hidden size={20} strokeWidth={1.5} className="animate-float-fast text-gold/50" />
       </span>
 
-      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pb-10 pt-24 sm:pt-[7.25rem] md:pb-14">
+      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pb-10 pt-20 sm:pt-[7.75rem] md:pb-14">
         <SectionLabel tone="onDark">{partnerPage.hero.eyebrow}</SectionLabel>
 
         <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">
@@ -111,7 +123,7 @@ export default function PartnerHero() {
           {partnerPage.hero.subheading}
         </p>
 
-        <div ref={toggleWrapRef} className="relative mt-8 inline-flex rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur-sm">
+        <div className="relative mt-8 inline-flex rounded-full border border-white/20 bg-white/10 p-1 backdrop-blur-sm">
           <span
             ref={indicatorRef}
             className="pointer-events-none absolute top-1 bottom-1 rounded-full bg-gold-gradient transition-none"
@@ -123,7 +135,7 @@ export default function PartnerHero() {
               type="button"
               onClick={() => handleSelect(i, r)}
               className={`relative z-10 rounded-full px-6 py-2.5 text-sm font-semibold capitalize transition-colors ${
-                role === r ? 'text-navy-deep' : 'text-white/80 hover:text-white'
+                activeRole === r ? 'text-navy-deep' : 'text-white/80 hover:text-white'
               }`}
             >
               {r}

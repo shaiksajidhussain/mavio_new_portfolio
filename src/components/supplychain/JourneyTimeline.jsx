@@ -11,8 +11,8 @@ const steps = [
     tab: 'Origin',
     accent: 'gold',
     title: 'Sourcing',
-    kicker: 'Direct procurement from primary origins.',
-    desc: 'We source commodities directly from primary producers and verified origin suppliers. This direct approach eliminates unnecessary intermediaries, securing optimal pricing and consistent supply quality.',
+    kicker: 'Selected from reliable origins.',
+    desc: 'We carefully select products from reliable origins, keeping quality and specifications in mind from the start.',
     icon: (
       <>
         <path d="M12 21s-6-5.686-6-10a6 6 0 1 1 12 0c0 4.314-6 10-6 10z" />
@@ -25,8 +25,8 @@ const steps = [
     tab: 'Grading',
     accent: 'dark',
     title: 'Sorting & Grading',
-    kicker: 'Measured and separated by specification.',
-    desc: 'All raw materials undergo strict physical assessment, measurement, and classification in accordance with market standards. This ensures every batch precisely matches the exact grade and specification required by our buyers.',
+    kicker: 'Sorted for consistent quality.',
+    desc: 'Each lot is carefully sorted and graded by size, quality, and specifications to maintain consistency.',
     icon: (
       <>
         <line x1="4" y1="6" x2="20" y2="6" />
@@ -42,9 +42,9 @@ const steps = [
     n: 3,
     tab: 'Lab QC',
     accent: 'gold',
-    title: 'Quality & Lab Testing',
-    kicker: 'Verified for safety and compliance.',
-    desc: 'Products undergo rigorous laboratory testing and safety inspections to verify purity and physical parameters. Every batch is certified to satisfy international quality protocols and import market standards.',
+    title: 'Lab Testing',
+    kicker: 'Checked before dispatch.',
+    desc: 'Products undergo the necessary quality and safety checks to ensure they meet the required standards before dispatch.',
     icon: (
       <>
         <path d="M9 3h6" />
@@ -57,9 +57,9 @@ const steps = [
     n: 4,
     tab: 'Packing',
     accent: 'dark',
-    title: 'Secure Packaging',
-    kicker: 'Packed safely for global transit.',
-    desc: 'Goods are packaged using export-grade, durable materials tailored to the specific cargo type. This protects product integrity against moisture, handling, and environmental exposure during long-distance transit.',
+    title: 'Packing',
+    kicker: 'Packed to specification.',
+    desc: 'Each product is packed to its required specifications, keeping it secure and well-preserved in transit.',
     icon: (
       <>
         <path d="M21 8 12 3 3 8l9 5 9-5Z" />
@@ -70,11 +70,26 @@ const steps = [
   },
   {
     n: 5,
-    tab: 'Freight',
+    tab: 'Docs',
     accent: 'gold',
-    title: 'Freight & Shipping',
-    kicker: 'Tracked transport to destination port.',
-    desc: 'Logistics operations are fully managed and monitored from the origin facility to the final port of entry. Continuous shipment tracking provides clear visibility, scheduling predictability, and timely delivery.',
+    title: 'Documentation',
+    kicker: 'Aligned to each shipment.',
+    desc: 'Trade and shipping documents are prepared, reviewed, and aligned with the requirements of each shipment.',
+    icon: (
+      <>
+        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+        <path d="M14 3v5h5" />
+        <path d="m9 14 2 2 4-4" />
+      </>
+    ),
+  },
+  {
+    n: 6,
+    tab: 'Freight',
+    accent: 'dark',
+    title: 'Shipping',
+    kicker: 'Tracked to destination port.',
+    desc: 'Every shipment is monitored throughout its journey, with key updates tracked from dispatch to the destination port.',
     icon: (
       <>
         <path d="M3 17.5 4.6 12h14.8L21 17.5" />
@@ -167,23 +182,12 @@ export default function JourneyTimeline() {
         </span>
       </h2>
 
-      <div className="mt-6 flex flex-wrap items-end justify-between gap-7">
-        <p className="max-w-[52ch] text-[14.5px] leading-relaxed text-[#5b6472]">
+      <div className="mt-6 max-w-[52ch]">
+        <p className="text-[14.5px] leading-relaxed text-[#5b6472]">
           From primary origin to the final destination port, we manage every stage
           of the commodity journey — securing quality, compliance, and reliable
           delivery across borders.
         </p>
-        <div className="flex flex-shrink-0 items-stretch gap-3.5">
-          <div className="flex flex-col justify-end px-1 pb-2 text-[12.5px] font-medium text-[#5b6472]">
-            Origin
-          </div>
-          <div
-            className="flex h-[78px] w-[78px] items-end rounded-lg p-2.5 text-[12.5px] font-semibold text-[#231803] shadow-[0_12px_26px_-12px_rgba(217,180,90,0.85)]"
-            style={{ background: GOLD_GRADIENT }}
-          >
-            Port
-          </div>
-        </div>
       </div>
 
       {/* ---------- journey / zigzag ---------- */}

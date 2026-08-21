@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import SecondaryHeader from './SecondaryHeader'
 import PrimaryHeader from './PrimaryHeader'
 import SecondaryFooter from './SecondaryFooter'
 import PrimaryFooter from './PrimaryFooter'
@@ -29,11 +28,11 @@ export default function Layout() {
       <CustomCursor />
 
       <div className="fixed inset-x-0 top-0 z-50">
-        <SecondaryHeader />
         <PrimaryHeader />
       </div>
 
-      <main ref={mainRef} className="pt-20 sm:pt-[7.25rem]">
+      {/* Mobile: ~72px; sm+: utility 44px + nav 80px */}
+      <main ref={mainRef} className="pt-[4.5rem] sm:pt-[7.75rem]">
         <Outlet />
       </main>
       <SecondaryFooter />

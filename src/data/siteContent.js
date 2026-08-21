@@ -38,7 +38,6 @@ export const nav = [
     children: [
       { label: 'FAQ', to: '/resources/faq' },
       { label: 'Accreditations & Certifications', to: '/resources/accreditations' },
-      { label: 'Download Centre', to: '/resources/download-centre' },
       { label: 'Privacy and Policy', to: '/resources/privacy-policy' },
     ],
   },
@@ -362,9 +361,10 @@ export const supplyChainSteps = [
     step: 1,
     label: 'Sourcing',
     icon: 'Sprout',
-    description: 'Products from trusted sources.',
+    description:
+      'We carefully select products from reliable origins, keeping quality and specifications in mind from the start.',
     longDescription:
-      'Direct procurement from primary origins. We source commodities directly from primary producers and verified origin suppliers. This direct approach eliminates unnecessary intermediaries, securing optimal pricing and consistent supply quality.',
+      'We carefully select products from reliable origins, keeping quality and specifications in mind from the start.',
     image:
       'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1000&q=80',
   },
@@ -372,39 +372,54 @@ export const supplyChainSteps = [
     step: 2,
     label: 'Sorting & Grading',
     icon: 'Package',
-    description: 'Sorted by size, grade, and quality.',
+    description:
+      'Each lot is carefully sorted and graded by size, quality, and specifications to maintain consistency.',
     longDescription:
-      'Measured and separated by specification. All raw materials undergo strict physical assessment, measurement, and classification in accordance with market standards. This ensures every batch precisely matches the exact grade and specification required by our buyers.',
+      'Each lot is carefully sorted and graded by size, quality, and specifications to maintain consistency.',
     image:
       'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80',
   },
   {
     step: 3,
-    label: 'Quality & Lab Testing',
+    label: 'Lab Testing',
     icon: 'ShieldCheck',
-    description: 'Checked for quality and safety.',
+    description:
+      'Products undergo the necessary quality and safety checks to ensure they meet the required standards before dispatch.',
     longDescription:
-      'Verified for safety and compliance. Products undergo rigorous laboratory testing and safety inspections to verify purity and physical parameters. Every batch is certified to satisfy international quality protocols and import market standards.',
+      'Products undergo the necessary quality and safety checks to ensure they meet the required standards before dispatch.',
     image:
       'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1000&q=80',
   },
   {
     step: 4,
-    label: 'Secure Packaging',
+    label: 'Packing',
     icon: 'PackageCheck',
-    description: 'Packed safely for the journey.',
+    description:
+      'Each product is packed to its required specifications, keeping it secure and well-preserved in transit.',
     longDescription:
-      'Packed safely for global transit. Goods are packaged using export-grade, durable materials tailored to the specific cargo type. This protects the product integrity against moisture, handling, and environmental exposure during long-distance transit.',
+      'Each product is packed to its required specifications, keeping it secure and well-preserved in transit.',
     image:
       'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=1000&q=80',
   },
   {
     step: 5,
-    label: 'Freight & Shipping',
-    icon: 'Truck',
-    description: 'Tracked until it reaches the port.',
+    label: 'Documentation',
+    icon: 'FileCheck2',
+    description:
+      'Trade and shipping documents are prepared, reviewed, and aligned with the requirements of each shipment.',
     longDescription:
-      'Tracked transport to destination port. Logistics operations are fully managed and monitored from the origin facility to the final port of entry. Continuous shipment tracking provides clear visibility, scheduling predictability, and timely delivery.',
+      'Trade and shipping documents are prepared, reviewed, and aligned with the requirements of each shipment.',
+    image:
+      'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1000&q=80',
+  },
+  {
+    step: 6,
+    label: 'Shipping',
+    icon: 'Ship',
+    description:
+      'Every shipment is monitored throughout its journey, with key updates tracked from dispatch to the destination port.',
+    longDescription:
+      'Every shipment is monitored throughout its journey, with key updates tracked from dispatch to the destination port.',
     image:
       'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1000&q=80',
   },
@@ -498,12 +513,20 @@ export const partnerPage = {
     eyebrow: 'Partner With Us',
     heading: 'Partner with us',
     subheading: 'Select your stream to see how we build long-term value together.',
-    image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
-    imageAlt: 'Container cranes loading freight at a busy port',
+    buyer: {
+      image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
+      imageAlt: 'Container cranes loading freight at a busy port',
+    },
+    supplier: {
+      image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=2200&q=80',
+      imageAlt: 'Producers preparing harvest for export at origin',
+    },
   },
   whyPartner: {
     buyer: {
       heading: 'Why Partner With Mavio',
+      image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80',
+      imageAlt: 'Quality-checked spices prepared for export buyers',
       paragraphs: [
         'International sourcing usually brings constant worries—bad product quality, late shipments, rising costs, and zero updates when things go wrong. Mavio changes this by working directly on the ground. We check product quality before anything gets loaded, lock in fair pricing, track shipments in real time, ensure proper fumigation and moisture control, and take full responsibility for the entire journey from start to finish.',
         'You get exact product standards and on-time deliveries without the stress of managing overseas trade yourself.',
@@ -511,6 +534,8 @@ export const partnerPage = {
     },
     supplier: {
       heading: 'Why Partner With Mavio',
+      image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1200&q=80',
+      imageAlt: 'Farm partner harvesting produce for international markets',
       paragraphs: [
         'Reaching international markets can sometimes be challenging, especially around logistics, payment terms, and negotiating from a distance. Maintaining regular orders, market access, and communication on their own takes focus away from daily operations. Mavio simplifies this entire journey by connecting your production directly with active global markets, taking care of export logistics, and ensuring clear communication from day one.',
         'You get steady orders, managed shipping, and more predictable growth, giving you the confidence to scale without added pressure.',
@@ -518,36 +543,70 @@ export const partnerPage = {
     },
   },
   competitiveAdvantage: {
-    heading: 'Our competitive advantage',
-    subheading: 'What sets us apart from other trading houses and brokers.',
-    items: [
-      {
-        icon: 'ShieldCheck',
-        title: 'On-Ground Quality Assurance',
-        description: 'We check quality before loading, so the work put into your product is protected all the way to delivery.',
-      },
-      {
-        icon: 'Timer',
-        title: 'Cost & Schedule Stability',
-        description: 'Clear pricing and real-time tracking help you avoid unexpected costs, delays, and uncertainty along the way.',
-      },
-      {
-        icon: 'Handshake',
-        title: 'Full End-to-End Ownership',
-        description: 'From paperwork and customs to shipping, we handle the details so you don’t have to carry the burden.',
-      },
-      {
-        icon: 'Sprout',
-        title: 'Friction-Free Trade Growth',
-        description: 'Reach global markets and grow with confidence, while we take care of the complexities behind every shipment.',
-      },
-    ],
+    buyer: {
+      heading: 'Our competitive advantage',
+      subheading: 'What buyers get when they source through Mavio instead of a fragmented broker chain.',
+      items: [
+        {
+          icon: 'ShieldCheck',
+          title: 'On-Ground Quality Assurance',
+          description: 'We check quality before loading, so the work put into your product is protected all the way to delivery.',
+        },
+        {
+          icon: 'Timer',
+          title: 'Cost & Schedule Stability',
+          description: 'Clear pricing and real-time tracking help you avoid unexpected costs, delays, and uncertainty along the way.',
+        },
+        {
+          icon: 'Handshake',
+          title: 'Full End-to-End Ownership',
+          description: 'From paperwork and customs to shipping, we handle the details so you don’t have to carry the burden.',
+        },
+        {
+          icon: 'Sprout',
+          title: 'Friction-Free Trade Growth',
+          description: 'Reach global markets and grow with confidence, while we take care of the complexities behind every shipment.',
+        },
+      ],
+    },
+    supplier: {
+      heading: 'Our competitive advantage',
+      subheading: 'What suppliers get when they grow with Mavio as a long-term export partner.',
+      items: [
+        {
+          icon: 'Sprout',
+          title: 'Direct Market Access',
+          description: 'Connect your production to active buyers without building an overseas sales network from scratch.',
+        },
+        {
+          icon: 'Timer',
+          title: 'Predictable Order Flow',
+          description: 'Clear requirements and steady coordination help you plan capacity with fewer last-minute surprises.',
+        },
+        {
+          icon: 'Handshake',
+          title: 'Export Logistics Handled',
+          description: 'Documentation, shipping, and handoffs stay with us so you can stay focused on production quality.',
+        },
+        {
+          icon: 'ShieldCheck',
+          title: 'Long-Term Brand Elevation',
+          description: 'Present your standards to markets that value consistency, with a partner that stays accountable after the first order.',
+        },
+      ],
+    },
   },
   industries: {
     eyebrow: 'Sector Coverage',
     heading: 'Industries we’ve collaborated with',
-    subheading: 'We have no product boundaries. We source and export any item to match your exact trade requirements.',
-    cta: { label: 'See Our Capabilities', to: '/capabilities/export-logistics' },
+    buyer: {
+      subheading: 'We source and export any item to match your exact procurement requirements across sectors.',
+      cta: { label: 'See Our Capabilities', to: '/capabilities/export-logistics' },
+    },
+    supplier: {
+      subheading: 'We open pathways into sectors that need consistent origin supply — without product boundaries.',
+      cta: { label: 'Explore Export Routes', to: '/capabilities/export-logistics' },
+    },
     items: [
       { icon: 'UtensilsCrossed', tag: 'Retail Sector', name: 'Food & Beverage Retail', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80' },
       { icon: 'Building2', tag: 'Foodservice', name: 'Hospitality & Foodservice', image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=1000&q=80' },
@@ -651,7 +710,7 @@ export const qualityCompliancePage = {
 export const supplyChainVisibilityPage = {
   hero: {
     eyebrow: 'Supply Chain Visibility',
-    heading: 'Total Operational Governance, End-to-End Visibility',
+    heading: 'Supply Chain Visibility',
     subheading:
       'Integrating buyers, suppliers, and transport networks into one seamless setup — with full ownership of backend logistics.',
     image: 'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=2200&q=80',
@@ -692,6 +751,8 @@ export const supplyChainVisibilityPage = {
     heading: 'Why Businesses Trust Mavio',
     subheading:
       'At Mavio, trust is built on absolute operational clarity, effortless logistics, and strong commercial partnerships. We provide buyers with rigorous quality assurance at the point of origin, continuous route monitoring, and straightforward business terms. At the same time, we give suppliers direct access to international markets, eliminating trade barriers and providing end-to-end visibility throughout the shipping lifecycle. By handling the operational heavy lifting and maintaining open, real-time communication, Mavio creates a frictionless trade environment where both buyers and suppliers can scale with complete confidence.',
+    image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Shipping containers coordinated at a busy export terminal',
   },
   documentation: {
     heading: 'Documentation & Compliance',
@@ -1092,23 +1153,34 @@ export const leadFormConfig = {
 export const footer = {
   description:
     'Mavio Global connects international trade, delivering any commodity to every port through an integrated network with verified testing and on-time transit — partnered with 25+ countries.',
+  talkToUs: {
+    heading: 'Talk to Us',
+    body: "Whether you're interested in speaking to our country management team, enquiring about one of our products or partnering with us, we want to hear from you.",
+    cta: { label: 'Contact Us', to: '/contact' },
+  },
   columns: [
     {
-      title: 'Company',
+      title: 'Quick Links',
       links: [
-        { label: 'About', to: '/about' },
-        { label: 'Sustainability', to: '/sustainability' },
+        { label: 'About Us', to: '/about' },
         { label: 'Contact', to: '/contact' },
+        { label: 'Partner With Us', to: '/partner-with-us' },
+        { label: 'Products', to: '/products' },
+        { label: 'Privacy and Policy', to: '/resources/privacy-policy' },
+        { label: 'FAQ', to: '/resources/faq' },
       ],
     },
     {
-      title: 'Capabilities',
-      links: nav.find((n) => n.label === 'Capabilities').children,
+      title: 'Product Categories',
+      links: productCategories.map((c) => ({
+        label: c.name,
+        to: `/products/${c.slug}`,
+      })),
     },
-    {
-      title: 'Resources',
-      links: nav.find((n) => n.label === 'Resources').children,
-    },
+  ],
+  social: [
+    { label: 'LinkedIn', handle: 'MavioGlobal', href: 'https://linkedin.com' },
+    { label: 'Instagram', handle: 'mavioglobal', href: 'https://instagram.com' },
   ],
   contact: {
     email: 'hello@mavioglobal.com',
@@ -1211,7 +1283,7 @@ export const privacyPolicyPage = {
     },
     {
       title: 'Cookies & Analytics',
-      body: 'Our site may use cookies and similar tools to remember preferences and understand how visitors use key pages such as Products, Download Centre, and Contact. You can control cookies through your browser settings.',
+      body: 'Our site may use cookies and similar tools to remember preferences and understand how visitors use key pages such as Products and Contact. You can control cookies through your browser settings.',
     },
     {
       title: 'Website Use Policy',

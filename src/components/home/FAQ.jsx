@@ -22,9 +22,14 @@ export default function FAQ() {
               <button
                 type="button"
                 onClick={() => setOpenIndex(isOpen ? -1 : i)}
-                className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-medium text-ink"
+                className={`flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-sm font-semibold transition-colors ${
+                  isOpen ? 'text-navy dark:text-gold' : 'text-ink hover:text-navy dark:hover:text-gold'
+                }`}
               >
-                {item.q}
+                <span>
+                  <span className="mr-2 font-bold text-gold-deep">Q.</span>
+                  {item.q}
+                </span>
                 <ChevronDown
                   size={16}
                   className={`shrink-0 text-gold-deep transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
@@ -35,7 +40,12 @@ export default function FAQ() {
                 style={{ gridTemplateRows: isOpen ? '1fr' : '0fr' }}
               >
                 <div className="overflow-hidden">
-                  <p className="px-5 pb-4 text-sm leading-relaxed text-muted">{item.a}</p>
+                  <div className="border-t border-line/70 bg-bg-muted/60 px-5 py-4 dark:bg-white/[0.03]">
+                    <p className="text-sm leading-relaxed text-muted">
+                      <span className="mr-2 font-semibold text-navy/55 dark:text-white/45">A.</span>
+                      {item.a}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

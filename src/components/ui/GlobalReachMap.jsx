@@ -85,7 +85,8 @@ function PlaceCallout({ place, color, textColor }) {
 
 export default function GlobalReachMap({ className = '' }) {
   const { theme } = useTheme()
-  const [activeRegion, setActiveRegion] = useState(null)
+  const indiaRegion = useMemo(() => regions.find((r) => r.name === 'India') ?? null, [])
+  const [activeRegion, setActiveRegion] = useState(indiaRegion)
   const p = palettes[theme] ?? palettes.light
 
   const countryToRegion = useMemo(() => {
@@ -100,6 +101,8 @@ export default function GlobalReachMap({ className = '' }) {
 
   const marketRegions = regions.filter((r) => !r.isOrigin)
   const shown = activeRegion
+
+  const resetToIndia = () => setActiveRegion(indiaRegion)
 
   return (
     <Reveal as="div" stagger={0} y={40} className={`relative ${className}`}>
@@ -155,7 +158,7 @@ export default function GlobalReachMap({ className = '' }) {
           </Button>
         </div>
 
-        <div className="relative" onMouseLeave={() => setActiveRegion(null)}>
+        <div className="relative" onMouseLeave={resetToIndia}>
           <ComposableMap
             projection="geoEqualEarth"
             projectionConfig={{ scale: 150 }}
@@ -183,7 +186,7 @@ export default function GlobalReachMap({ className = '' }) {
                       }}
                       onClick={() => {
                         if (!region) return
-                        setActiveRegion((prev) => (prev?.name === region.name ? null : region))
+                        setActiveRegion(region)
                       }}
                       style={{
                         default: {

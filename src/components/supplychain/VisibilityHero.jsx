@@ -35,6 +35,11 @@ export default function VisibilityHero() {
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.2 }
       )
+      gsap.to(imgRef.current, {
+        yPercent: 10,
+        ease: 'none',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
+      })
     }, sectionRef)
     return () => ctx.revert()
   }, [])
@@ -42,12 +47,12 @@ export default function VisibilityHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-20 flex min-h-[420px] items-center overflow-hidden sm:-mt-[7.25rem] sm:min-h-[460px]"
+      className="relative -mt-[4.5rem] flex min-h-[420px] flex-col justify-end overflow-hidden sm:-mt-[7.75rem] sm:min-h-[460px]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <img ref={imgRef} src={hero.image} alt={hero.imageAlt} className="h-full w-full object-cover" />
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/85 to-navy-deep/20" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
       <img
         src={mapSvgUri}
         alt=""
@@ -74,9 +79,12 @@ export default function VisibilityHero() {
         />
       </span>
 
-      <div ref={copyRef} className="container-px relative mx-auto w-full max-w-container pt-20 sm:pt-[7.25rem]">
+      <div
+        ref={copyRef}
+        className="container-px relative mx-auto w-full max-w-container pb-10 pt-20 sm:pt-[7.75rem] md:pb-14"
+      >
         <SectionLabel tone="onDark">{hero.eyebrow}</SectionLabel>
-        <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-xl">
+        <SectionHeading as="h1" tone="onDark" size="hero" weight="bold" className="mt-4 max-w-2xl">
           {hero.heading}
         </SectionHeading>
         <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
@@ -86,7 +94,9 @@ export default function VisibilityHero() {
           <ArrowRight size={14} />
           <span className="text-white">Supply Chain Visibility</span>
         </div>
-        <p className="mt-5 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">{hero.subheading}</p>
+        <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+          {hero.subheading}
+        </p>
       </div>
     </section>
   )

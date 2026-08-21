@@ -9,7 +9,12 @@ const FontContext = createContext(null)
 // back to the next font in the stack.
 export const FONT_OPTIONS = [
   { name: 'DM Sans', stack: `'DM Sans', sans-serif` },
+  { name: 'Open Sans', stack: `'Open Sans', sans-serif` },
+  { name: 'Raleway', stack: `'Raleway', sans-serif` },
+  { name: 'Manrope', stack: `'Manrope', sans-serif` },
   { name: 'Albert Sans', stack: `'Albert Sans', sans-serif` },
+  { name: 'Noto Serif', stack: `'Noto Serif', Georgia, serif` },
+  { name: 'Crimson Pro', stack: `'Crimson Pro', Georgia, serif` },
   { name: 'Alegreya', stack: `'Alegreya', serif` },
   { name: 'Calisto MT', stack: `'Calisto MT', 'Bookman Old Style', Georgia, serif` },
   { name: 'Futura Std', stack: `'Futura Std', Futura, 'Century Gothic', sans-serif` },

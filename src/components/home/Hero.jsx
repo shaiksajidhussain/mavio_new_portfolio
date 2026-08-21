@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ArrowRight, Check } from 'lucide-react'
-import { brand, hero, productCategories } from '../../data/siteContent'
+import { hero, productCategories } from '../../data/siteContent'
 import Button from '../ui/Button'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
@@ -19,7 +19,6 @@ const line2Words = [
 export default function Hero() {
   const sectionRef = useRef(null)
   const imgWrapRef = useRef(null)
-  const markerRef = useRef(null)
   const wordsRef = useRef([])
   const copyRef = useRef(null)
   const cardRef = useRef(null)
@@ -38,7 +37,6 @@ export default function Hero() {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
       tl.fromTo(imgWrapRef.current, { scale: 1.15 }, { scale: 1, duration: 1.6, ease: 'power2.out' })
-        .fromTo(markerRef.current, { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3)
         .fromTo(
           wordsRef.current,
           { opacity: 0, y: '60%', filter: 'blur(10px)' },
@@ -65,7 +63,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-20 flex min-h-screen flex-col overflow-hidden sm:-mt-[7.25rem]"
+      className="relative -mt-[4.5rem] flex min-h-screen flex-col overflow-hidden sm:-mt-[7.75rem]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
         <div ref={imgWrapRef} className="relative h-full w-full scale-110">
@@ -84,16 +82,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/90 via-transparent to-navy-deep/30" />
 
-      <div className="flex flex-1 flex-col pt-20 sm:pt-[7.25rem]">
-        <div
-          ref={markerRef}
-          className="container-px mx-auto mt-8 flex w-full max-w-container items-center justify-between border-b border-white/20 pb-4 text-white/70"
-        >
-          <span className="eyebrow">Est. {brand.founded}</span>
-          <span className="eyebrow hidden sm:inline">{brand.ports.join(' · ')}</span>
-          <span className="eyebrow text-gold">Global Trade &amp; Logistics</span>
-        </div>
-
+      <div className="flex flex-1 flex-col pt-[4.5rem] sm:pt-[7.75rem]">
         <div className="container-px mx-auto mt-auto w-full max-w-container pb-14 pt-16 md:pb-20">
           <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -122,21 +111,28 @@ export default function Hero() {
               </h1>
 
               <div ref={copyRef} className="mt-6">
-                <p className="max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
+                <p className="max-w-lg text-sm leading-relaxed text-white/55 md:text-[0.9375rem]">
                   {hero.subheading}
                 </p>
-                <ul className="mt-5 flex flex-col gap-2.5">
+                <ul className="mt-6 flex flex-col gap-3">
                   {hero.points.map((p) => (
-                    <li key={p} className="flex items-center gap-2 text-sm font-medium text-white">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold-gradient">
-                        <Check size={12} className="text-navy-deep" strokeWidth={3} />
+                    <li
+                      key={p}
+                      className="flex items-center gap-3 text-base font-semibold tracking-tight text-white md:text-lg"
+                    >
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-gradient shadow-[0_0_16px_rgba(212,162,76,0.45)]">
+                        <Check size={13} className="text-navy-deep" strokeWidth={3} />
                       </span>
                       {p}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-7 flex flex-wrap gap-4">
-                  <Button to={hero.primaryCta.to} variant="primary">
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Button
+                    to={hero.primaryCta.to}
+                    variant="primary"
+                    className="!px-8 !py-3.5 !text-base !font-semibold shadow-[0_10px_28px_-8px_rgba(212,162,76,0.65)]"
+                  >
                     {hero.primaryCta.label}
                   </Button>
                   <Button

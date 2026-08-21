@@ -46,7 +46,7 @@ export default function ProductDetail() {
 
   return (
     <>
-      <section ref={sectionRef} className="relative -mt-20 flex min-h-[60vh] flex-col justify-end overflow-hidden">
+      <section ref={sectionRef} className="relative -mt-[4.5rem] flex min-h-[60vh] flex-col justify-end overflow-hidden">
         <div className="absolute inset-0 -z-20 overflow-hidden">
           <img ref={heroImgRef} src={category.image} alt="" className="h-full w-full scale-110 object-cover" />
         </div>

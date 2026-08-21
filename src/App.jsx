@@ -8,7 +8,6 @@ import SupplyChainVisibility from './pages/SupplyChainVisibility'
 import ExportLogistics from './pages/ExportLogistics'
 import Faq from './pages/Faq'
 import Accreditations from './pages/Accreditations'
-import DownloadCentre from './pages/DownloadCentre'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import Sustainability from './pages/Sustainability'
 import Contact from './pages/Contact'
@@ -27,7 +26,6 @@ export default function App() {
         <Route path="/capabilities/export-logistics" element={<ExportLogistics />} />
         <Route path="/resources/faq" element={<Faq />} />
         <Route path="/resources/accreditations" element={<Accreditations />} />
-        <Route path="/resources/download-centre" element={<DownloadCentre />} />
         <Route path="/resources/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/sustainability" element={<Sustainability />} />
         <Route path="/contact" element={<Contact />} />

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Handshake, ShieldCheck, Sprout, Timer } from 'lucide-react'
 import { partnerPage } from '../../data/siteContent'
+import { usePartnerRole } from '../../context/PartnerRoleContext'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
@@ -8,12 +9,15 @@ import SectionHeading from '../ui/SectionHeading'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const icons = { Sprout, ShieldCheck, Timer, Handshake }
-const { heading, subheading, items } = partnerPage.competitiveAdvantage
 
 export default function CompetitiveAdvantage() {
+  const { role } = usePartnerRole()
+  const activeRole = role === 'supplier' ? 'supplier' : 'buyer'
+  const { heading, subheading, items } = partnerPage.competitiveAdvantage[activeRole]
   const gridRef = useRef(null)
   const lineRef = useRef(null)
   const iconsRef = useRef([])
+  const copyRef = useRef(null)
 
   useEffect(() => {
     if (prefersReducedMotion || !gridRef.current) return
@@ -48,6 +52,11 @@ export default function CompetitiveAdvantage() {
     return () => ctx.revert()
   }, [])
 
+  useEffect(() => {
+    if (prefersReducedMotion || !copyRef.current) return
+    gsap.fromTo(copyRef.current, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' })
+  }, [activeRole])
+
   const handleTiltMove = (e, i) => {
     if (prefersReducedMotion) return
     const card = e.currentTarget
@@ -77,9 +86,11 @@ export default function CompetitiveAdvantage() {
       <RouteBackground flip />
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0} className="text-center">
-          <SectionLabel>Our Competitive Advantage</SectionLabel>
-          <SectionHeading className="mt-3">{heading}</SectionHeading>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
+          <div ref={copyRef}>
+            <SectionLabel>Our Competitive Advantage</SectionLabel>
+            <SectionHeading className="mt-3">{heading}</SectionHeading>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
+          </div>
         </Reveal>
 
         <div ref={gridRef} className="relative mt-16">
@@ -94,12 +105,12 @@ export default function CompetitiveAdvantage() {
               const Icon = icons[item.icon]
               return (
                 <div
-                  key={item.title}
+                  key={`${activeRole}-${item.title}`}
                   data-tilt-card
                   style={{ perspective: 700 }}
                   onMouseMove={(e) => handleTiltMove(e, i)}
                   onMouseLeave={() => handleTiltLeave(i)}
-                  className="group relative flex flex-col items-center rounded-2xl border border-line bg-surface px-5 pb-6 pt-8 text-center shadow-card transition-shadow duration-300 will-change-transform hover:shadow-xl hover:border-gold/50"
+                  className="group relative flex h-full flex-col items-center rounded-2xl border border-line bg-surface px-5 pb-6 pt-8 text-center shadow-card transition-shadow duration-300 will-change-transform hover:shadow-xl hover:border-gold/50"
                 >
                   <span className="absolute right-4 top-4 font-mono text-xs font-semibold text-line group-hover:text-gold-deep/60">
                     0{i + 1}
@@ -114,7 +125,7 @@ export default function CompetitiveAdvantage() {
                   </span>
 
                   <h3 className="mt-5 font-display text-base font-bold text-ink md:text-lg">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{item.description}</p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{item.description}</p>
                 </div>
               )
             })}

@@ -22,11 +22,11 @@ export default function LogisticsCapabilities() {
         <p className="mt-2 max-w-xl text-sm text-muted md:text-base">{subheading}</p>
       </Reveal>
 
-      <Reveal as="div" stagger={0.05} className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <Reveal as="div" stagger={0.05} className="mt-10 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {items.map((item, i) => {
           const Icon = icons[item.icon]
           return (
-            <div key={item.label} style={{ perspective: 700 }}>
+            <div key={item.label} className="h-full" style={{ perspective: 700 }}>
               <div
                 ref={(el) => (cardsRef.current[i] = el)}
                 onPointerMove={(e) => tiltCard(cardsRef.current[i], e)}
@@ -34,14 +34,14 @@ export default function LogisticsCapabilities() {
                 onPointerDown={() => pressCard(cardsRef.current[i], true)}
                 onPointerUp={() => pressCard(cardsRef.current[i], false)}
                 onPointerCancel={() => pressCard(cardsRef.current[i], false)}
-                className="flex flex-col items-center gap-3 rounded-2xl border border-line bg-surface p-6 text-center shadow-card will-change-transform"
+                className="flex h-full flex-col items-center gap-3 rounded-2xl border border-line bg-surface p-6 text-center shadow-card will-change-transform"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold-deep/15 text-gold-deep">
                   <Icon size={22} />
                 </span>
                 <p className="font-display text-sm font-semibold text-ink">{item.label}</p>
                 {item.description && (
-                  <p className="text-xs leading-relaxed text-muted">{item.description}</p>
+                  <p className="flex-1 text-xs leading-relaxed text-muted">{item.description}</p>
                 )}
               </div>
             </div>

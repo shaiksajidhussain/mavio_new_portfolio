@@ -52,15 +52,16 @@ export default function PartnerCTA() {
   }, [])
 
   const handleMagnetMove = (e) => {
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion || !btnWrapRef.current || !btnRef.current) return
     const rect = btnWrapRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left - rect.width / 2
-    const y = e.clientY - rect.top - rect.height / 2
-    gsap.to(btnRef.current, { x: x * 0.35, y: y * 0.35, duration: 0.3, ease: 'power2.out' })
+    const x = gsap.utils.clamp(-18, 18, (e.clientX - rect.left - rect.width / 2) * 0.28)
+    const y = gsap.utils.clamp(-12, 12, (e.clientY - rect.top - rect.height / 2) * 0.28)
+    gsap.to(btnRef.current, { x, y, duration: 0.35, ease: 'power3.out', overwrite: 'auto' })
   }
 
   const handleMagnetLeave = () => {
-    gsap.to(btnRef.current, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1,0.4)' })
+    if (!btnRef.current) return
+    gsap.to(btnRef.current, { x: 0, y: 0, duration: 0.55, ease: 'power3.out', overwrite: 'auto' })
   }
 
   const loop = [...accreditations, ...accreditations]
@@ -90,11 +91,17 @@ export default function PartnerCTA() {
           <p className="mt-4 text-sm leading-relaxed text-white/70 md:text-base">{content.body}</p>
 
           <div className="mt-8 flex justify-center">
-            <div ref={btnWrapRef} onMouseMove={handleMagnetMove} onMouseLeave={handleMagnetLeave} className="inline-block p-4">
+            <div
+              ref={btnWrapRef}
+              data-magnetic
+              onMouseMove={handleMagnetMove}
+              onMouseLeave={handleMagnetLeave}
+              className="inline-flex p-5"
+            >
               <Link
                 ref={btnRef}
                 to={content.primaryCta.to}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-semibold text-navy-deep shadow-card"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-semibold text-navy-deep shadow-card will-change-transform"
               >
                 {content.primaryCta.label} <ArrowRight size={16} />
               </Link>
@@ -103,11 +110,11 @@ export default function PartnerCTA() {
         </div>
 
         <div className="relative mt-10 overflow-hidden border-t border-white/10 pt-8">
-          <div ref={marqueeRef} className="flex w-max gap-4">
+          <div ref={marqueeRef} className="flex w-max items-center gap-4">
             {loop.map((a, i) => (
               <span
                 key={`${a}-${i}`}
-                className="shrink-0 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-white/70"
+                className="inline-flex h-9 shrink-0 items-center whitespace-nowrap rounded-full border border-white/15 bg-white/5 px-4 text-xs font-medium text-white/70"
               >
                 {a}
               </span>

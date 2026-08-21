@@ -4,11 +4,15 @@ import { testimonials } from '../../data/siteContent'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import SectionHeading from '../ui/SectionHeading'
+import { prefersReducedMotion } from '../../lib/gsap'
+
+const AUTO_MS = 2000
 
 export default function Testimonials() {
   const items = testimonials
   const trackRef = useRef(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const [paused, setPaused] = useState(false)
 
   const updateActive = () => {
     const el = trackRef.current
@@ -17,6 +21,15 @@ export default function Testimonials() {
     if (!card) return
     const cardWidth = card.getBoundingClientRect().width + 20
     setActiveIndex(Math.round(el.scrollLeft / cardWidth))
+  }
+
+  const scrollToIndex = (i) => {
+    const el = trackRef.current
+    if (!el) return
+    const card = el.querySelector('[data-card]')
+    const amount = card ? card.getBoundingClientRect().width + 20 : 0
+    el.scrollTo({ left: i * amount, behavior: 'smooth' })
+    setActiveIndex(i)
   }
 
   useEffect(() => {
@@ -32,13 +45,22 @@ export default function Testimonials() {
     }
   }, [])
 
-  const scrollToIndex = (i) => {
-    const el = trackRef.current
-    if (!el) return
-    const card = el.querySelector('[data-card]')
-    const amount = card ? card.getBoundingClientRect().width + 20 : 0
-    el.scrollTo({ left: i * amount, behavior: 'smooth' })
-  }
+  useEffect(() => {
+    if (prefersReducedMotion || paused || items.length < 2) return
+    const id = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % items.length
+        const el = trackRef.current
+        const card = el?.querySelector('[data-card]')
+        if (el && card) {
+          const amount = card.getBoundingClientRect().width + 20
+          el.scrollTo({ left: next * amount, behavior: 'smooth' })
+        }
+        return next
+      })
+    }, AUTO_MS)
+    return () => clearInterval(id)
+  }, [paused, items.length])
 
   return (
     <section className="relative overflow-hidden container-px mx-auto max-w-container py-16 md:py-24">
@@ -58,7 +80,15 @@ export default function Testimonials() {
           </p>
         </Reveal>
 
-        <div className="relative min-w-0">
+        <div
+          className="relative min-w-0"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false)
+          }}
+        >
           <Reveal
             as="div"
             stagger={0.1}

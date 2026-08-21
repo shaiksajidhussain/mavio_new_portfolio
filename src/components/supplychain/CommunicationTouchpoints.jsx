@@ -39,15 +39,16 @@ export default function CommunicationTouchpoints() {
   }
 
   const handleMagnetMove = (e) => {
-    if (prefersReducedMotion) return
+    if (prefersReducedMotion || !btnWrapRef.current || !btnRef.current) return
     const rect = btnWrapRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left - rect.width / 2
-    const y = e.clientY - rect.top - rect.height / 2
-    gsap.to(btnRef.current, { x: x * 0.35, y: y * 0.35, duration: 0.3, ease: 'power2.out' })
+    const x = gsap.utils.clamp(-18, 18, (e.clientX - rect.left - rect.width / 2) * 0.28)
+    const y = gsap.utils.clamp(-12, 12, (e.clientY - rect.top - rect.height / 2) * 0.28)
+    gsap.to(btnRef.current, { x, y, duration: 0.35, ease: 'power3.out', overwrite: 'auto' })
   }
 
   const handleMagnetLeave = () => {
-    gsap.to(btnRef.current, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1,0.4)' })
+    if (!btnRef.current) return
+    gsap.to(btnRef.current, { x: 0, y: 0, duration: 0.55, ease: 'power3.out', overwrite: 'auto' })
   }
 
   return (
@@ -84,14 +85,15 @@ export default function CommunicationTouchpoints() {
       <div className="mt-12 flex justify-center">
         <div
           ref={btnWrapRef}
+          data-magnetic
           onMouseMove={handleMagnetMove}
           onMouseLeave={handleMagnetLeave}
-          className="inline-block p-4"
+          className="inline-flex p-5"
         >
           <Link
             ref={btnRef}
             to={cta.to}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-semibold text-navy-deep shadow-card transition-transform"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-semibold text-navy-deep shadow-card will-change-transform"
           >
             {cta.label} <ArrowRight size={16} />
           </Link>

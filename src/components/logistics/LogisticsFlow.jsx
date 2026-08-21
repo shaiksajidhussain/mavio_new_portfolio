@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
+import { pressCard, tiltCard, untiltCard } from '../../lib/cardTilt'
 import SectionLabel from '../ui/SectionLabel'
 import SectionHeading from '../ui/SectionHeading'
 
@@ -109,6 +110,184 @@ function smoothPath(pts) {
   return d
 }
 
+function canHover() {
+  return (
+    !prefersReducedMotion &&
+    typeof window !== 'undefined' &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  )
+}
+
+function FlowStep({ nd, textW }) {
+  const iconInnerRef = useRef(null)
+  const copyInnerRef = useRef(null)
+
+  const lift = () => {
+    if (!canHover()) return
+    gsap.to(iconInnerRef.current, {
+      scale: 1.12,
+      y: -4,
+      boxShadow: '0 0 28px rgba(224,176,90,0.55), 0 14px 28px -10px rgba(198,154,68,0.95)',
+      duration: 0.35,
+      ease: 'power3.out',
+      overwrite: 'auto',
+    })
+    gsap.to(copyInnerRef.current, {
+      y: -3,
+      duration: 0.35,
+      ease: 'power3.out',
+      overwrite: 'auto',
+    })
+  }
+
+  const drop = () => {
+    gsap.to(iconInnerRef.current, {
+      scale: 1,
+      y: 0,
+      boxShadow: '0 8px 18px -8px rgba(198,154,68,0.9)',
+      duration: 0.4,
+      ease: 'power3.out',
+      overwrite: 'auto',
+    })
+    gsap.to(copyInnerRef.current, {
+      y: 0,
+      duration: 0.4,
+      ease: 'power3.out',
+      overwrite: 'auto',
+    })
+  }
+
+  return (
+    <>
+      <div
+        data-flow-label
+        className="absolute text-right"
+        style={{
+          left: nd.x - 48,
+          top: nd.y,
+          width: 140,
+          transform: 'translate(-100%, -50%)',
+        }}
+      >
+        <div data-flow-label-inner className="will-change-transform">
+          <span className="text-[12px] font-semibold uppercase tracking-[1.5px] text-muted">Step</span>
+          <span className="ml-1 text-[15px] font-bold text-gold-deep">{nd.n}</span>
+        </div>
+      </div>
+
+      <div
+        data-flow-icon
+        className="absolute z-10"
+        style={{ left: nd.x, top: nd.y, transform: 'translate(-50%, -50%)' }}
+        onPointerEnter={lift}
+        onPointerLeave={drop}
+      >
+        <div
+          ref={iconInnerRef}
+          data-flow-icon-inner
+          className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-gold-gradient shadow-[0_8px_18px_-8px_rgba(198,154,68,0.9)] will-change-transform"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5 text-navy-deep"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            {nd.icon}
+          </svg>
+        </div>
+      </div>
+
+      <div
+        data-flow-copy
+        className="absolute"
+        style={{
+          left: nd.x + 58,
+          top: nd.y,
+          width: textW,
+          transform: 'translateY(-50%)',
+        }}
+        onPointerEnter={lift}
+        onPointerLeave={drop}
+      >
+        <div ref={copyInnerRef} data-flow-copy-inner className="will-change-transform">
+          <h3 className="text-[17px] font-bold tracking-tight text-ink md:text-[18px]">{nd.title}</h3>
+          <p className="mt-1.5 max-w-[38ch] text-[13px] leading-relaxed text-muted md:text-[14px]">{nd.desc}</p>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function MobileFlowStep({ s }) {
+  const cardRef = useRef(null)
+  const iconRef = useRef(null)
+
+  return (
+    <div
+      ref={cardRef}
+      data-flow-mobile
+      className="flex gap-4 rounded-2xl border border-transparent p-2 will-change-transform transition-[border-color,box-shadow,background-color] duration-200"
+      style={{ transformStyle: 'preserve-3d', perspective: 700 }}
+      onPointerMove={(e) => tiltCard(cardRef.current, e)}
+      onPointerEnter={() => {
+        if (!canHover()) return
+        gsap.to(cardRef.current, {
+          y: -4,
+          boxShadow: '0 18px 36px -20px rgba(11,36,66,0.35)',
+          borderColor: 'rgba(212,162,76,0.35)',
+          backgroundColor: 'rgba(255,255,255,0.6)',
+          duration: 0.35,
+          ease: 'power3.out',
+        })
+        gsap.to(iconRef.current, { scale: 1.1, y: -2, duration: 0.35, ease: 'power3.out' })
+      }}
+      onPointerLeave={() => {
+        untiltCard(cardRef.current)
+        gsap.to(cardRef.current, {
+          y: 0,
+          boxShadow: '0 0 0 0 transparent',
+          borderColor: 'transparent',
+          backgroundColor: 'transparent',
+          duration: 0.45,
+          ease: 'power3.out',
+        })
+        gsap.to(iconRef.current, { scale: 1, y: 0, duration: 0.45, ease: 'power3.out' })
+      }}
+      onPointerDown={() => pressCard(cardRef.current, true)}
+      onPointerUp={() => pressCard(cardRef.current, false)}
+    >
+      <div
+        ref={iconRef}
+        className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gold-gradient will-change-transform"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          className="h-5 w-5 text-navy-deep"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          {s.icon}
+        </svg>
+      </div>
+      <div>
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-muted">Step</span>
+          <span className="text-[14px] font-bold text-gold-deep">{s.n}</span>
+        </div>
+        <h3 className="text-[16px] font-bold tracking-tight text-ink">{s.title}</h3>
+        <p className="mt-1 text-[13px] leading-relaxed text-muted">{s.desc}</p>
+      </div>
+    </div>
+  )
+}
+
 export default function LogisticsFlow() {
   const sectionRef = useRef(null)
   const arcRef = useRef(null)
@@ -198,12 +377,10 @@ export default function LogisticsFlow() {
       if (playedRef.current) return
 
       gsap.fromTo(
-        '[data-flow-core-label]',
-        { opacity: 0, xPercent: -50, yPercent: -50, scale: 0.96 },
+        '[data-flow-core-inner]',
+        { opacity: 0, scale: 0.96 },
         {
           opacity: 1,
-          xPercent: -50,
-          yPercent: -50,
           scale: 1,
           duration: 0.5,
           ease: 'power3.out',
@@ -227,12 +404,10 @@ export default function LogisticsFlow() {
       }
 
       gsap.fromTo(
-        '[data-flow-label]',
-        { opacity: 0, xPercent: -100, yPercent: -50, x: -12 },
+        '[data-flow-label-inner]',
+        { opacity: 0, x: -12 },
         {
           opacity: 1,
-          xPercent: -100,
-          yPercent: -50,
           x: 0,
           duration: 0.45,
           stagger: 0.06,
@@ -241,12 +416,10 @@ export default function LogisticsFlow() {
         }
       )
       gsap.fromTo(
-        '[data-flow-icon]',
-        { opacity: 0, xPercent: -50, yPercent: -50, scale: 0.95 },
+        '[data-flow-icon-inner]',
+        { opacity: 0, scale: 0.9 },
         {
           opacity: 1,
-          xPercent: -50,
-          yPercent: -50,
           scale: 1,
           duration: 0.45,
           stagger: 0.06,
@@ -255,11 +428,10 @@ export default function LogisticsFlow() {
         }
       )
       gsap.fromTo(
-        '[data-flow-copy]',
-        { opacity: 0, yPercent: -50, y: 10 },
+        '[data-flow-copy-inner]',
+        { opacity: 0, y: 10 },
         {
           opacity: 1,
-          yPercent: -50,
           y: 0,
           duration: 0.45,
           stagger: 0.06,
@@ -399,97 +571,63 @@ export default function LogisticsFlow() {
 
               <div
                 data-flow-core-label
-                className="absolute flex flex-col items-center justify-center text-center"
+                className="absolute flex cursor-pointer flex-col items-center justify-center text-center"
                 style={{
                   left: geo.circle.cx,
                   top: geo.circle.cy,
                   width: geo.circle.r * 2,
+                  height: geo.circle.r * 2,
                   transform: 'translate(-50%,-50%)',
                 }}
+                onPointerEnter={() => {
+                  if (!canHover()) return
+                  gsap.to(coreRef.current, {
+                    scale: 1.05,
+                    duration: 0.4,
+                    ease: 'power3.out',
+                    transformOrigin: '50% 50%',
+                    overwrite: 'auto',
+                  })
+                  gsap.to('[data-flow-core-inner]', {
+                    scale: 1.04,
+                    duration: 0.4,
+                    ease: 'power3.out',
+                    overwrite: 'auto',
+                  })
+                }}
+                onPointerLeave={() => {
+                  gsap.to(coreRef.current, {
+                    scale: 1,
+                    duration: 0.45,
+                    ease: 'power3.out',
+                    transformOrigin: '50% 50%',
+                    overwrite: 'auto',
+                  })
+                  gsap.to('[data-flow-core-inner]', {
+                    scale: 1,
+                    duration: 0.45,
+                    ease: 'power3.out',
+                    overwrite: 'auto',
+                  })
+                }}
               >
-                <span className="text-[13px] font-medium uppercase tracking-[3px] text-gold">Export</span>
-                <span className="text-[26px] font-bold leading-tight text-white">Process</span>
+                <div data-flow-core-inner className="will-change-transform">
+                  <span className="block text-[13px] font-medium uppercase tracking-[3px] text-gold">Export</span>
+                  <span className="block text-[26px] font-bold leading-tight text-white">Process</span>
+                </div>
               </div>
 
               {geo.nodes.map((nd) => (
-                <div key={nd.n}>
-                  <div
-                    data-flow-label
-                    className="absolute text-right"
-                    style={{
-                      left: nd.x - 42,
-                      top: nd.y,
-                      width: 140,
-                      transform: 'translate(-100%,-50%)',
-                    }}
-                  >
-                    <span className="text-[12px] font-semibold uppercase tracking-[1.5px] text-muted">Step</span>
-                    <span className="ml-1 text-[15px] font-bold text-gold-deep">{nd.n}</span>
-                  </div>
-
-                  <div
-                    data-flow-icon
-                    className="absolute flex h-11 w-11 items-center justify-center rounded-full bg-gold-gradient shadow-[0_8px_18px_-8px_rgba(198,154,68,0.9)]"
-                    style={{ left: nd.x, top: nd.y, transform: 'translate(-50%,-50%)' }}
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-5 w-5 text-navy-deep"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      {nd.icon}
-                    </svg>
-                  </div>
-
-                  <div
-                    data-flow-copy
-                    className="absolute"
-                    style={{
-                      left: nd.x + 44,
-                      top: nd.y,
-                      width: TEXT_W,
-                      transform: 'translateY(-50%)',
-                    }}
-                  >
-                    <h3 className="text-[17px] font-bold tracking-tight text-ink md:text-[18px]">{nd.title}</h3>
-                    <p className="mt-1.5 max-w-[38ch] text-[13px] leading-relaxed text-muted md:text-[14px]">{nd.desc}</p>
-                  </div>
-                </div>
+                <FlowStep key={nd.n} nd={nd} textW={TEXT_W} />
               ))}
             </>
           )}
         </div>
 
         {/* ================= MOBILE: stacked list ================= */}
-        <div className="mt-10 space-y-7 md:hidden">
+        <div className="mt-10 space-y-4 md:hidden">
           {steps.map((s) => (
-            <div key={s.n} data-flow-mobile className="flex gap-4">
-              <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gold-gradient">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5 text-navy-deep"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  {s.icon}
-                </svg>
-              </div>
-              <div>
-                <div className="flex items-baseline gap-1.5">
-                  <span className="text-[11px] font-semibold uppercase tracking-[1.5px] text-muted">Step</span>
-                  <span className="text-[14px] font-bold text-gold-deep">{s.n}</span>
-                </div>
-                <h3 className="text-[16px] font-bold tracking-tight text-ink">{s.title}</h3>
-                <p className="mt-1 text-[13px] leading-relaxed text-muted">{s.desc}</p>
-              </div>
-            </div>
+            <MobileFlowStep key={s.n} s={s} />
           ))}
         </div>
       </div>

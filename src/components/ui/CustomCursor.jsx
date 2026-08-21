@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"], input, textarea, select, summary'
+const MAGNETIC_SELECTOR = '[data-magnetic]'
 
 export default function CustomCursor() {
   const dotRef = useRef(null)
@@ -36,14 +37,20 @@ export default function CustomCursor() {
     const handleUp = () => gsap.to(ring, { scale: 1, duration: 0.2 })
 
     const handleOver = (e) => {
+      if (e.target.closest?.(MAGNETIC_SELECTOR)) {
+        // Magnetic buttons move under the cursor — hide the ring so it never looks detached
+        gsap.to(ring, { scale: 0, opacity: 0, duration: 0.2 })
+        gsap.to(dot, { scale: 0, duration: 0.15 })
+        return
+      }
       if (e.target.closest?.(INTERACTIVE_SELECTOR)) {
-        gsap.to(ring, { scale: 1.7, duration: 0.3, ease: 'power2.out' })
+        gsap.to(ring, { scale: 1.7, opacity: 1, duration: 0.3, ease: 'power2.out' })
         gsap.to(dot, { scale: 0, duration: 0.2 })
       }
     }
     const handleOut = (e) => {
-      if (e.target.closest?.(INTERACTIVE_SELECTOR)) {
-        gsap.to(ring, { scale: 1, duration: 0.3, ease: 'power2.out' })
+      if (e.target.closest?.(MAGNETIC_SELECTOR) || e.target.closest?.(INTERACTIVE_SELECTOR)) {
+        gsap.to(ring, { scale: 1, opacity: revealed ? 1 : 0, duration: 0.3, ease: 'power2.out' })
         gsap.to(dot, { scale: 1, duration: 0.2 })
       }
     }

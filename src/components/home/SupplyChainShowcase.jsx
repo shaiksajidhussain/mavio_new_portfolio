@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
-import { FileCheck2, MapPin, Package, PackageCheck, Ship, ShieldCheck, Sprout, Truck } from 'lucide-react'
-import { supplyChainSteps, supplyChainVisibilityPage } from '../../data/siteContent'
+import { FileCheck2, Package, PackageCheck, Ship, ShieldCheck, Sprout, Truck } from 'lucide-react'
+import { supplyChainSteps } from '../../data/siteContent'
 import SectionLabel from '../ui/SectionLabel'
 import Reveal from '../ui/Reveal'
 import RouteBackground from '../ui/RouteBackground'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../../lib/gsap'
 import SectionHeading from '../ui/SectionHeading'
 
-const icons = { Sprout, ShieldCheck, Package, FileCheck2, Truck, PackageCheck }
-const { origin, destination } = supplyChainVisibilityPage.logistics
+const icons = { Sprout, ShieldCheck, Package, FileCheck2, Truck, PackageCheck, Ship }
 
 export default function SupplyChainShowcase() {
   const sectionRef = useRef(null)
@@ -105,36 +104,6 @@ export default function SupplyChainShowcase() {
         </Reveal>
 
         <div className="mt-10 overflow-hidden rounded-[2rem] border border-line/70 bg-surface/70 shadow-card backdrop-blur-2xl md:mt-14">
-          <div className="flex flex-col gap-4 border-b border-line/70 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-8">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-                <MapPin size={14} />
-              </span>
-              <div>
-                <p className="eyebrow text-muted">Origin</p>
-                <p className="text-sm font-semibold text-ink">{origin}</p>
-              </div>
-            </div>
-
-            <div className="hidden flex-1 items-center gap-2 px-4 sm:flex">
-              <span className="h-px flex-1 border-t border-dashed border-line" />
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-bg-muted text-gold-deep">
-                <Ship size={14} />
-              </span>
-              <span className="h-px flex-1 border-t border-dashed border-line" />
-            </div>
-
-            <div className="flex items-center gap-2.5 sm:flex-row-reverse sm:text-right">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-gradient text-navy-deep">
-                <MapPin size={14} />
-              </span>
-              <div>
-                <p className="eyebrow text-muted">Destination</p>
-                <p className="text-sm font-semibold text-ink">{destination}</p>
-              </div>
-            </div>
-          </div>
-
           <div ref={stepsWrapRef} className="relative px-5 py-6 sm:px-8 md:py-8">
             <div className="absolute left-[2.35rem] top-6 bottom-6 w-px bg-line sm:left-[3rem]" />
 

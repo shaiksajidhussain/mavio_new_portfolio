@@ -1,50 +1,47 @@
 import { Link } from 'react-router-dom'
-import { Mail, MapPin, Phone } from 'lucide-react'
-import { brand, footer } from '../../data/siteContent'
+import { MessagesSquare } from 'lucide-react'
+import { footer } from '../../data/siteContent'
 
 export default function SecondaryFooter() {
+  const { talkToUs } = footer
+
   return (
-    <div className="bg-navy-deep text-white/80">
-      <div className="container-px mx-auto grid max-w-container gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div>
-          <p className="font-display text-lg font-semibold text-white">
-            {brand.name.toUpperCase()}
-          </p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-white/60">
-            {footer.description}
-          </p>
-        </div>
+    <section className="relative isolate mt-8 text-white md:mt-12" aria-labelledby="footer-cta-heading">
+      {/* Soft upward curve into the page above */}
+      <svg
+        className="pointer-events-none relative z-10 -mb-px block h-14 w-full text-navy-deep md:h-20 lg:h-24"
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+        aria-hidden
+      >
+        <path
+          fill="currentColor"
+          d="M0 120 V72 C240 8 480 -12 720 18 C960 48 1200 28 1440 72 V120 Z"
+        />
+      </svg>
 
-        {footer.columns.map((col) => (
-          <div key={col.title}>
-            <p className="eyebrow text-gold">{col.title}</p>
-            <ul className="mt-3 space-y-2">
-              {col.links.map((l) => (
-                <li key={l.to}>
-                  <Link to={l.to} className="text-sm text-white/60 transition-colors hover:text-white">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        <div>
-          <p className="eyebrow text-gold">Contact</p>
-          <ul className="mt-3 space-y-3 text-sm text-white/60">
-            <li className="flex items-center gap-2">
-              <Mail size={14} className="text-gold-deep" /> {footer.contact.email}
-            </li>
-            <li className="flex items-center gap-2">
-              <Phone size={14} className="text-gold-deep" /> {footer.contact.phone}
-            </li>
-            <li className="flex items-center gap-2">
-              <MapPin size={14} className="text-gold-deep" /> {footer.contact.address}
-            </li>
-          </ul>
+      <div className="relative z-10 bg-navy-deep">
+        <div className="container-px mx-auto max-w-container px-6 pb-12 pt-2 text-center md:pb-14 md:pt-4">
+          <span className="mx-auto flex h-14 w-14 items-center justify-center text-gold-deep">
+            <MessagesSquare size={32} strokeWidth={1.5} />
+          </span>
+          <h2
+            id="footer-cta-heading"
+            className="mt-4 font-display text-3xl font-bold tracking-tight text-white md:text-4xl"
+          >
+            {talkToUs.heading}
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
+            {talkToUs.body}
+          </p>
+          <Link
+            to={talkToUs.cta.to}
+            className="mt-8 inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-sm font-semibold text-navy-deep transition-colors hover:bg-gold hover:text-navy-deep"
+          >
+            {talkToUs.cta.label}
+          </Link>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
