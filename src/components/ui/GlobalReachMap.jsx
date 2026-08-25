@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
 import { MapPin, Plane, Ship } from 'lucide-react'
-import { brand, regions } from '../../data/siteContent'
+import { brand, countryLeaders, regions } from '../../data/siteContent'
 import { useTheme } from '../../context/ThemeContext'
 import Button from './Button'
 import Reveal from './Reveal'
@@ -43,7 +43,6 @@ function normalizeId(id) {
   return String(id).padStart(3, '0')
 }
 
-/** Leader line + place label beside a city marker */
 function PlaceCallout({ place, color, textColor }) {
   const [dx, dy] = place.label ?? [1, 0]
   const len = 34
@@ -83,10 +82,68 @@ function PlaceCallout({ place, color, textColor }) {
   )
 }
 
+function getPopupPos(x, y, width, height) {
+  const popupSize = 144
+  const edge = popupSize / 2 + 12
+  const clampedX = Math.min(Math.max(x, edge), width - edge)
+  const clampedY = Math.min(Math.max(y, edge), height - edge)
+  const placement = clampedY < popupSize + 24 ? 'below' : 'above'
+
+  return { x: clampedX, y: clampedY, placement }
+}
+
+function LeaderPopup({ leader, x, y, placement = 'above' }) {
+  const [imgFailed, setImgFailed] = useState(false)
+  const above = placement === 'above'
+
+  return (
+    <div
+      className={`pointer-events-none absolute z-50 -translate-x-1/2 ${above ? '-translate-y-full' : 'translate-y-2'}`}
+      style={{ left: x, top: y }}
+    >
+      {!above ? (
+        <span
+          aria-hidden
+          className="mx-auto mb-1 block h-2 w-2 rotate-45 border-l-2 border-t-2 border-gold-deep/60 bg-surface"
+        />
+      ) : null}
+      <div className="animate-leader-pop overflow-hidden rounded-2xl border-2 border-gold-deep/60 bg-surface shadow-[0_20px_48px_-10px_rgba(2,16,40,0.45)]">
+        {!imgFailed ? (
+          <img
+            src={leader.image}
+            alt=""
+            data-no-dim
+            className="block h-32 w-32 object-cover object-top sm:h-36 sm:w-36"
+            onError={() => setImgFailed(true)}
+          />
+        ) : (
+          <div className="flex h-32 w-32 items-center justify-center bg-gold-gradient sm:h-36 sm:w-36">
+            <span className="font-display text-2xl font-bold text-navy-deep">
+              {leader.name
+                .split(' ')
+                .slice(0, 2)
+                .map((w) => w[0])
+                .join('')}
+            </span>
+          </div>
+        )}
+      </div>
+      {above ? (
+        <span
+          aria-hidden
+          className="mx-auto mt-1 block h-2 w-2 rotate-45 border-b-2 border-r-2 border-gold-deep/60 bg-surface"
+        />
+      ) : null}
+    </div>
+  )
+}
+
 export default function GlobalReachMap({ className = '' }) {
   const { theme } = useTheme()
   const indiaRegion = useMemo(() => regions.find((r) => r.name === 'India') ?? null, [])
   const [activeRegion, setActiveRegion] = useState(indiaRegion)
+  const [hoveredLeader, setHoveredLeader] = useState(null)
+  const [popupPos, setPopupPos] = useState({ x: 0, y: 0, placement: 'above' })
   const p = palettes[theme] ?? palettes.light
 
   const countryToRegion = useMemo(() => {
@@ -102,7 +159,26 @@ export default function GlobalReachMap({ className = '' }) {
   const marketRegions = regions.filter((r) => !r.isOrigin)
   const shown = activeRegion
 
-  const resetToIndia = () => setActiveRegion(indiaRegion)
+  const clearHover = () => {
+    setActiveRegion(indiaRegion)
+    setHoveredLeader(null)
+  }
+
+  const showLeader = (leader, e) => {
+    const stage = e.currentTarget.closest('[data-map-stage]')
+    const rect = stage?.getBoundingClientRect()
+    if (!rect) return
+    setPopupPos(getPopupPos(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height))
+    setHoveredLeader(leader)
+  }
+
+  const moveLeader = (leader, e) => {
+    const stage = e.currentTarget.closest('[data-map-stage]')
+    const rect = stage?.getBoundingClientRect()
+    if (!rect) return
+    setPopupPos(getPopupPos(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height))
+    if (leader) setHoveredLeader(leader)
+  }
 
   return (
     <Reveal as="div" stagger={0} y={40} className={`relative ${className}`}>
@@ -158,7 +234,17 @@ export default function GlobalReachMap({ className = '' }) {
           </Button>
         </div>
 
-        <div className="relative" onMouseLeave={resetToIndia}>
+        <div className="relative" data-map-stage onMouseLeave={clearHover}>
+          {hoveredLeader ? (
+            <LeaderPopup
+              key={hoveredLeader.country}
+              leader={hoveredLeader}
+              x={popupPos.x}
+              y={popupPos.y}
+              placement={popupPos.placement}
+            />
+          ) : null}
+
           <ComposableMap
             projection="geoEqualEarth"
             projectionConfig={{ scale: 150 }}
@@ -169,7 +255,9 @@ export default function GlobalReachMap({ className = '' }) {
             <Geographies geography={geoUrl}>
               {({ geographies }) =>
                 geographies.map((geo) => {
-                  const region = countryToRegion.get(normalizeId(geo.id))
+                  const id = normalizeId(geo.id)
+                  const region = countryToRegion.get(id)
+                  const leader = countryLeaders[id] || null
                   const isActive = shown && region?.name === shown.name
                   const isServed = Boolean(region)
                   const fill = isActive ? p.active : isServed ? p.served : p.country
@@ -181,8 +269,13 @@ export default function GlobalReachMap({ className = '' }) {
                       fill={fill}
                       stroke={p.stroke}
                       strokeWidth={0.55}
-                      onMouseEnter={() => {
+                      onMouseEnter={(e) => {
                         if (region) setActiveRegion(region)
+                        if (leader) showLeader(leader, e)
+                        else setHoveredLeader(null)
+                      }}
+                      onMouseMove={(e) => {
+                        if (leader) moveLeader(leader, e)
                       }}
                       onClick={() => {
                         if (!region) return

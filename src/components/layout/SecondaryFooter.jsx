@@ -1,47 +1,41 @@
 import { Link } from 'react-router-dom'
-import { MessagesSquare } from 'lucide-react'
 import { footer } from '../../data/siteContent'
+import SocialGallery from './SocialGallery'
 
 export default function SecondaryFooter() {
   const { talkToUs } = footer
 
   return (
-    <section className="relative isolate mt-8 text-white md:mt-12" aria-labelledby="footer-cta-heading">
-      {/* Soft upward curve into the page above */}
-      <svg
-        className="pointer-events-none relative z-10 -mb-px block h-14 w-full text-navy-deep md:h-20 lg:h-24"
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <path
-          fill="currentColor"
-          d="M0 120 V72 C240 8 480 -12 720 18 C960 48 1200 28 1440 72 V120 Z"
+    <section className="container-px mx-auto max-w-container py-10 md:py-14" aria-labelledby="footer-cta-heading">
+      <div className="relative isolate overflow-hidden rounded-[1.75rem] md:rounded-[2.25rem]">
+        <img
+          src={talkToUs.image}
+          alt=""
+          data-no-dim
+          className="absolute inset-0 h-full w-full object-cover"
         />
-      </svg>
+        <div className="absolute inset-0 bg-black/50" />
 
-      <div className="relative z-10 bg-navy-deep">
-        <div className="container-px mx-auto max-w-container px-6 pb-12 pt-2 text-center md:pb-14 md:pt-4">
-          <span className="mx-auto flex h-14 w-14 items-center justify-center text-gold-deep">
-            <MessagesSquare size={32} strokeWidth={1.5} />
-          </span>
+        <div className="relative flex min-h-[280px] flex-col items-center justify-center gap-8 px-6 py-16 text-center sm:min-h-[340px] md:min-h-[400px] md:gap-10 md:py-20">
           <h2
             id="footer-cta-heading"
-            className="mt-4 font-display text-3xl font-bold tracking-tight text-white md:text-4xl"
+            className="max-w-3xl font-display text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
           >
-            {talkToUs.heading}
+            {talkToUs.heading}{' '}
+            <Link to={talkToUs.cta.to} className="gold-text transition-opacity hover:opacity-90">
+              {talkToUs.cta.label}
+            </Link>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
-            {talkToUs.body}
-          </p>
           <Link
             to={talkToUs.cta.to}
-            className="mt-8 inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-sm font-semibold text-navy-deep transition-colors hover:bg-gold hover:text-navy-deep"
+            className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-navy-deep transition-transform duration-200 hover:scale-[1.04] active:scale-[0.97] md:px-10 md:text-base"
           >
-            {talkToUs.cta.label}
+            Contact
           </Link>
         </div>
       </div>
+
+      <SocialGallery />
     </section>
   )
 }

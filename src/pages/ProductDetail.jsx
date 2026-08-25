@@ -1,11 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ChevronRight } from 'lucide-react'
 import { productCategories, productCatalog } from '../data/siteContent'
 import { useEnquiryModal } from '../context/EnquiryModalContext'
 import SectionLabel from '../components/ui/SectionLabel'
 import Button from '../components/ui/Button'
-import Reveal from '../components/ui/Reveal'
 import { gsap, prefersReducedMotion } from '../lib/gsap'
 import SectionHeading from '../components/ui/SectionHeading'
 
@@ -46,62 +45,103 @@ export default function ProductDetail() {
 
   return (
     <>
-      <section ref={sectionRef} className="relative -mt-[4.5rem] flex min-h-[60vh] flex-col justify-end overflow-hidden">
+      <section ref={sectionRef} className="relative -mt-[4.5rem] flex min-h-[58svh] flex-col justify-end overflow-hidden md:min-h-[68svh]">
         <div className="absolute inset-0 -z-20 overflow-hidden">
-          <img ref={heroImgRef} src={category.image} alt="" className="h-full w-full scale-110 object-cover" />
+          <img
+            ref={heroImgRef}
+            src={product.image || category.image}
+            alt=""
+            data-no-dim
+            className="h-full w-full scale-110 object-cover"
+          />
         </div>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/90 via-navy-deep/45 to-navy-deep/40" />
+        <div className="absolute inset-0 -z-10 bg-black/50" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/85 via-transparent to-black/30" />
 
-        <div className="container-px relative mx-auto w-full max-w-container pb-10 pt-40 md:pb-14">
+        <div className="container-px relative mx-auto w-full max-w-container pb-14 pt-40 md:pb-16">
           <Link
             to={`/products/${categorySlug}`}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-gold hover:text-gold-deep"
+            className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85 transition-colors hover:text-gold"
           >
-            <ArrowLeft size={14} /> All products
+            ← Back to {category.name}
           </Link>
-          <h1 className="mt-4 font-display text-4xl font-bold text-white sm:text-5xl">{product.name}</h1>
+          <h1 className="mt-8 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+            {product.name}
+          </h1>
+          {product.hsCode ? (
+            <p className="mt-4 font-mono text-sm text-gold">HSN {product.hsCode}</p>
+          ) : null}
         </div>
       </section>
 
-      <section className="container-px mx-auto max-w-container py-16 md:py-24">
-        <Reveal stagger={0}>
-          <p className="max-w-3xl text-base leading-relaxed text-muted md:text-lg">{product.description}</p>
-        </Reveal>
+      <section className="container-px mx-auto max-w-container py-14 md:py-20">
+        <div className="grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-14">
+          <nav aria-label="Product categories" className="lg:sticky lg:top-28 lg:self-start">
+            <ul>
+              {productCategories.map((cat) => {
+                const active = cat.slug === categorySlug
+                return (
+                  <li key={cat.slug} className="border-b border-gold-deep/45">
+                    <Link
+                      to={`/products/${cat.slug}`}
+                      className={`flex w-full items-center justify-between gap-3 py-4 transition-colors ${
+                        active ? 'text-navy dark:text-gold' : 'text-ink/70 hover:text-navy dark:text-white/65'
+                      }`}
+                    >
+                      <span
+                        className={`font-display text-lg ${
+                          active ? 'font-bold underline decoration-gold-deep decoration-2 underline-offset-8' : 'font-medium'
+                        }`}
+                      >
+                        {cat.name}
+                      </span>
+                      <ChevronRight size={16} className="text-gold-deep" />
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
 
-        <div className="mt-10 flex items-center gap-4">
-          <span className="font-mono text-sm text-muted">HS Code: {product.hsCode}</span>
-          <Button variant="primary" onClick={() => openEnquiry({ name: product.name, hsCode: product.hsCode })}>
-            Enquire
-          </Button>
-        </div>
+          <div>
+            <p className="max-w-3xl text-base leading-relaxed text-muted md:text-lg">{product.description}</p>
+            {product.usage ? (
+              <p className="mt-4 text-sm text-ink md:text-base">
+                <span className="font-semibold text-navy dark:text-gold">Usage:</span> {product.usage}
+              </p>
+            ) : null}
 
-        <div className="mt-16 space-y-16">
-          {product.variants.map((variant, i) => {
-            const imageFirst = i % 2 === 0
-            return (
-              <div key={variant.name}>
-                <Reveal
-                  as="div"
-                  stagger={0}
-                  className={`grid items-center gap-10 md:grid-cols-2 ${imageFirst ? '' : 'md:[&>*:first-child]:order-2'}`}
-                >
-                  <div className="aspect-[4/3] overflow-hidden rounded-3xl shadow-card">
-                    <img src={category.image} alt={variant.name} className="h-full w-full object-cover" />
-                  </div>
-                  <div>
-                    <span className="font-display text-6xl font-black leading-none text-gold/30 md:text-7xl">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="mt-4 font-display text-2xl font-bold text-ink md:text-3xl">{variant.name}</h3>
-                    <p className="mt-3 max-w-md text-sm leading-relaxed text-muted md:text-base">
-                      {variant.description}
-                    </p>
-                  </div>
-                </Reveal>
-                {i < product.variants.length - 1 && <div className="mt-16 border-t border-line" />}
+            <div className="mt-8">
+              <Button variant="primary" onClick={() => openEnquiry({ name: product.name, hsCode: product.hsCode })}>
+                Enquire
+              </Button>
+            </div>
+
+            {product.variants?.length ? (
+              <div className="mt-14 space-y-10 border-t border-line pt-10">
+                {product.variants.map((variant) => (
+                  <article key={variant.name} className="grid gap-5 sm:grid-cols-[140px_1fr] sm:gap-7">
+                    <div className="overflow-hidden rounded-xl">
+                      <img
+                        src={product.image || category.image}
+                        alt=""
+                        data-no-dim
+                        className="aspect-square h-full w-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-semibold text-navy dark:text-white md:text-2xl">
+                        {variant.name}
+                      </h3>
+                      <p className="mt-3 text-sm leading-relaxed text-muted md:text-[0.95rem]">
+                        {variant.description}
+                      </p>
+                    </div>
+                  </article>
+                ))}
               </div>
-            )
-          })}
+            ) : null}
+          </div>
         </div>
       </section>
     </>

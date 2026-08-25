@@ -1,52 +1,39 @@
-import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import DottedMap from 'dotted-map/without-countries'
-import worldMapData from '../../data/worldMap.json'
-import Reveal from '../ui/Reveal'
-import SectionHeading from '../ui/SectionHeading'
-
-const heroImage = {
-  src: 'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=2200&q=80',
-  alt: 'Trucks loading shipping containers at a freight yard',
-}
+import { contactPage } from '../../data/siteContent'
 
 export default function ContactHero() {
-  const mapSvgUri = useMemo(() => {
-    const map = new DottedMap({ map: worldMapData })
-    const svg = map.getSVG({
-      radius: 0.22,
-      color: '#ffffff26',
-      shape: 'circle',
-      backgroundColor: 'transparent',
-    })
-    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
-  }, [])
+  const { headline, body, image } = contactPage
+  const [lead, ...rest] = headline.split('. ')
+  const trail = rest.length ? `${rest.join('. ')}` : ''
 
   return (
-    <section className="relative -mt-[4.5rem] flex min-h-[420px] items-center overflow-hidden sm:-mt-[4.5rem] sm:min-h-[460px]">
-      <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img src={heroImage.src} alt={heroImage.alt} className="h-full w-full object-cover" />
+    <section className="relative -mt-[4.5rem] flex min-h-[70svh] items-end overflow-hidden md:min-h-[78svh]">
+      <div className="absolute inset-0 -z-20">
+        <img src={image} alt="" data-no-dim className="h-full w-full object-cover" />
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
-      <img
-        src={mapSvgUri}
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
-      />
+      <div className="absolute inset-0 -z-10 bg-black/50" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-black/25" />
 
-      <div className="container-px relative mx-auto w-full max-w-container pt-[4.5rem] sm:pt-[4.5rem]">
-        <Reveal stagger={0.08} className="border-l-2 border-gold-deep pl-6">
-          <SectionHeading as="h1" tone="onDark" size="hero" weight="bold">Contact Us</SectionHeading>
-          <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
-            <Link to="/" className="font-medium text-gold hover:text-gold-bright">
-              Home
-            </Link>
-            <ArrowRight size={14} />
-            <span className="text-white">Contact Us</span>
-          </div>
-        </Reveal>
+      <div className="container-px relative mx-auto w-full max-w-container pb-16 pt-[8rem] md:pb-20">
+        <p className="gold-text eyebrow">Contact</p>
+        <h1 className="mt-5 max-w-4xl font-display text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+          {lead}.
+          {trail ? (
+            <>
+              {' '}
+              <span className="gold-text">{trail}</span>
+            </>
+          ) : null}
+        </h1>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 md:text-lg">{body}</p>
+        <div className="mt-8 flex items-center gap-2 text-sm text-white/70">
+          <Link to="/" className="font-medium text-gold hover:text-gold-bright">
+            Home
+          </Link>
+          <ArrowRight size={14} />
+          <span className="text-white">Contact</span>
+        </div>
       </div>
     </section>
   )

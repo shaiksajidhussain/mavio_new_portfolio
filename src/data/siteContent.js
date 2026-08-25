@@ -24,34 +24,33 @@ export const nav = [
   { label: 'About', to: '/about' },
   { label: 'Products', to: '/products' },
   { label: 'Partner With Us', to: '/partner-with-us' },
-  {
-    label: 'Capabilities',
-    children: [
-      { label: 'Quality & Compliance', to: '/capabilities/quality-compliance' },
-      { label: 'Supply Chain Visibility', to: '/capabilities/supply-chain-visibility' },
-      { label: 'Export & Logistics', to: '/capabilities/export-logistics' },
-      { label: 'Sustainability', to: '/sustainability' },
-    ],
-  },
-  {
-    label: 'Resources',
-    children: [
-      { label: 'FAQ', to: '/resources/faq' },
-      { label: 'Accreditations & Certifications', to: '/resources/accreditations' },
-      { label: 'Privacy and Policy', to: '/resources/privacy-policy' },
-    ],
-  },
+  // {
+  //   label: 'Capabilities',
+  //   children: [
+  //     { label: 'Quality & Compliance', to: '/capabilities/quality-compliance' },
+  //     { label: 'Supply Chain Visibility', to: '/capabilities/supply-chain-visibility' },
+  //     { label: 'Export & Logistics', to: '/capabilities/export-logistics' },
+  //     { label: 'Sustainability', to: '/sustainability' },
+  //   ],
+  // },
+  // {
+  //   label: 'Resources',
+  //   children: [
+  //     { label: 'FAQ', to: '/resources/faq' },
+  //     { label: 'Accreditations & Certifications', to: '/resources/accreditations' },
+  //     { label: 'Privacy and Policy', to: '/resources/privacy-policy' },
+  //   ],
+  // },
+  { label: 'Accreditations & Certifications', to: '/resources/accreditations' },
   { label: 'Contact', to: '/contact' },
 ]
 
 export const hero = {
   eyebrow: 'Mavio Global · Est. 1987',
-  heading: "India's Leading and Trusted Gateway to Global Markets",
-  subheading:
-    'Mavio Global connects international trade, delivering any commodity to every port through an integrated network with verified testing and on-time transit.',
-  points: ['100% Live Shipment Tracking', 'Strict Lab Quality Testing', 'Unlimited Product Sourcing Capacity'],
-  primaryCta: { label: 'Explore Our Products', to: '/products' },
-  secondaryCta: { label: 'Partner With Us', to: '/partner-with-us' },
+  heading: "India's Largest B2B Procurement & Digital Platform",
+  subheading: 'Excellence Beyond Borders',
+  primaryCta: { label: 'Schedule a Call', to: '/contact' },
+  secondaryCta: { label: 'Explore Products', to: '/products' },
   images: [
     {
       src: 'https://images.unsplash.com/photo-1759272840538-ae4b07214c71?auto=format&fit=crop&w=2200&q=80',
@@ -87,270 +86,344 @@ export const trustStats = [
   { value: '15', suffix: '+', label: 'Years of Experience' },
 ]
 
+export const homeTrustBar = [
+  { value: '25', suffix: '+', label: 'Trusted Global Partners' },
+  { value: '150', suffix: '+', label: 'Verified Procurement Partners' },
+  { value: '100', suffix: '%', label: 'Quality Inspected Shipments' },
+  { value: '50000', suffix: '+', label: 'Metric Tons Exported' },
+]
+
+export const trustBeforeTransaction = {
+  eyebrow: 'Trust Before Transaction',
+  heading: 'Trust should be built before the transaction begins.',
+  markets: [
+    {
+      country: 'UAE',
+      lines: [
+        'Halal-compliant. Precisely packed. Export-ready.',
+        'Built around UAE customs and buyer requirements.',
+        'From India to Dubai, compliance comes first.',
+      ],
+      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80',
+    },
+    {
+      country: 'USA',
+      lines: [
+        'Matched to your specification. Tested for your confidence.',
+        'Built around food-safety and import requirements.',
+        'The sample you approve is the product you receive.',
+      ],
+      image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1600&q=80',
+    },
+    {
+      country: 'Europe',
+      lines: [
+        'Tested for the standards your market demands.',
+        'Traceability and documentation built into every shipment.',
+        'From farm region to final delivery, every detail accounted for.',
+      ],
+      image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1600&q=80',
+    },
+    {
+      country: 'Malaysia',
+      lines: [
+        'Consistent grade. Consistent appearance. Consistent supply.',
+        'Every shipment built around the approved specification.',
+        'So your next order feels like the first.',
+      ],
+      image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1600&q=80',
+    },
+    {
+      country: 'Vietnam',
+      lines: [
+        'Built for volume without compromising consistency.',
+        'Procurement, packing and documentation coordinated as one.',
+        'Multiple containers. One controlled supply process.',
+      ],
+      image: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1600&q=80',
+    },
+    {
+      country: 'Singapore',
+      lines: [
+        'Certified product. Complete documentation. Shipment-ready.',
+        'Safety and compliance handled alongside production.',
+        'Ready in the drum. Ready on paper.',
+      ],
+      image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1600&q=80',
+    },
+    {
+      country: 'Thailand',
+      lines: [
+        'Right specification. Right protection. Right documentation.',
+        'Every detail coordinated from origin to port.',
+        'Reliable execution, without the unnecessary complexity.',
+      ],
+      image: 'https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&w=1600&q=80',
+    },
+  ],
+}
+
+export const productCatalogue = {
+  heading: 'Product Catalogue',
+  intro:
+    'Five origin-led catalogues — spices, fresh agriculture, marine, industrial chemicals, and natural granite — each selected, tested, and packed around the destination market.',
+  spices: {
+    name: 'Spices',
+    intro:
+      'From the rich agricultural belts of Guntur and Nizamabad to kitchens around the world, our spice story starts at origin. Every lot is selected, graded, tested, packed, and prepared around the requirements of the destination market.',
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1400&q=80',
+    products: [
+      {
+        name: 'Teja S17 Red Chilli',
+        image: 'https://images.unsplash.com/photo-1678019964614-a6515d5efd44?auto=format&fit=crop&w=1200&q=80',
+        body: 'A high-pungency chilli variety grown in the Guntur belt of Andhra Pradesh, prized globally for its sharp heat and deep red colour. Teja S17 is widely used in chilli powder production, oleoresin extraction, and sauce manufacturing where consistent Scoville strength matters. We grade for colour value, moisture, and pungency before every shipment, and pack to protect colour and heat retention through transit — critical for buyers running continuous production lines.',
+      },
+      {
+        name: 'Byadgi Chilli',
+        image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1200&q=80',
+        body: 'Grown primarily in Karnataka, Byadgi chilli is known for its deep red colour and mild-to-moderate heat, making it the preferred choice for colour-focused applications — oleoresin, natural food colouring, and culinary blends where visual richness matters more than intensity. We select for skin thickness and colour extraction potential, and grade every lot to match the buyer\'s end-use specification.',
+      },
+      {
+        name: 'Stem and Stemless Chilli',
+        image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80',
+        body: 'Available in both whole-stem and destemmed formats to match different processing lines — destemmed for direct powder production, stemmed for buyers who process at their own facility. Sorting and stem-removal are carried out to consistent standards, so every container matches the grade a buyer has already approved.',
+      },
+      {
+        name: 'Chilli Powder',
+        image: 'https://images.unsplash.com/photo-1577563717655-919fc57789b4?auto=format&fit=crop&w=1200&q=80',
+        body: 'Ground to order from selected chilli varieties, with colour value, mesh size, and moisture content controlled to buyer specification. Whether the requirement is culinary-grade heat or industrial colour extraction, grinding and packing are matched to the product\'s final application.',
+      },
+      {
+        name: 'Turmeric Finger',
+        image: 'https://images.unsplash.com/photo-1768729341078-9da4e0ea959e?auto=format&fit=crop&w=1200&q=80',
+        body: 'Whole, unpeeled turmeric rhizomes sourced from India\'s major turmeric belts, valued for curcumin content, colour, and aroma. Turmeric finger is dried and graded before shipment, with curcumin percentage tested where required — an essential detail for buyers in pharmaceutical, nutraceutical, and premium culinary markets.',
+      },
+      {
+        name: 'Turmeric Powder',
+        image: 'https://images.unsplash.com/photo-1756361946964-f835b200d5d2?auto=format&fit=crop&w=1200&q=80',
+        body: 'Finely ground from selected turmeric fingers, with curcumin content, colour, and fineness matched to the buyer\'s requirement — from standard culinary grade to high-curcumin variants for health and wellness applications. Every batch is tested before packing to confirm it meets the agreed specification.',
+      },
+    ],
+  },
+  fresh: {
+    name: 'Fresh Agriculture',
+    intro:
+      'Fresh produce is a race against time. Our job is to protect the product from farm to shipment — careful selection, sorting, packing, and coordinated movement, every step of the way.',
+    image: 'https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1400&q=80',
+    products: [
+      {
+        name: 'Green Chillies',
+        body: 'Sourced fresh and sorted for size, firmness, and colour uniformity, then packed and moved on a tight timeline to preserve freshness from farm to destination.',
+      },
+      {
+        name: 'Ginger',
+        body: 'Selected for size, skin quality, and pungency, cleaned and graded before export, and packed in formats suited to both short-haul and long-haul shipments.',
+      },
+      {
+        name: 'Onions',
+        body: 'Graded by size and quality, cured appropriately for export, and packed to withstand extended transit without compromising shelf life at destination.',
+      },
+      {
+        name: 'Fruits & Vegetables',
+        body: 'A seasonal range handled with the same discipline as our core categories — sorted, quality-checked, and packed for export timelines, with movement coordinated around each product\'s shelf life.',
+      },
+    ],
+  },
+  marine: {
+    name: 'Marine & Seafood',
+    intro:
+      'Quality starts with freshness. Our marine supply is built around responsible procurement, proper handling, cold-chain discipline, inspection, and export readiness — protecting product integrity from the point of catch or harvest through to loading.',
+    image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=1600&q=80',
+  },
+  chemicals: {
+    name: 'Industrial Chemicals',
+    intro:
+      'Industrial buyers need more than a product name — they need consistency, specifications, purity, packaging, documentation, and dependable supply.',
+    footnote: 'Other approved industrial products are available subject to availability and buyer specification.',
+    products: [
+      {
+        name: 'Isopropanol (IPA)',
+        body: 'Supplied to buyer-specified purity grades for industrial, pharmaceutical, and cosmetic applications, with certificates of analysis and safety documentation provided alongside every shipment.',
+      },
+      {
+        name: 'Acetone',
+        body: 'Available to industrial-grade specifications with consistent purity, packed in export-compliant containers and supported by the documentation industrial buyers need for customs and safety compliance.',
+      },
+      {
+        name: 'Taurine',
+        body: 'Supplied to pharmaceutical and nutraceutical-grade specifications, with quality documentation aligned to buyer and destination-market requirements.',
+      },
+    ],
+  },
+  granite: {
+    name: 'Natural Granite',
+    intro:
+      'India\'s natural stone is shaped by geology, craftsmanship, and careful finishing. We connect buyers with granite selected for appearance, structural characteristics, finishing requirements, and project-specific requirements — from slabs to custom-cut formats, finished and packed to protect surface quality through long-distance transit.',
+    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80',
+  },
+}
+
 export const productCategories = [
+  {
+    slug: 'agri',
+    name: 'Agri',
+    tagline: 'Farm-graded produce, ready to move.',
+    description:
+      'Fresh agricultural commodities sourced and graded at origin — green chillies, ginger, onion, and fruits & vegetables prepared for export markets.',
+    color: 'bay',
+    image:
+      'https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=1800&q=80',
+  },
   {
     slug: 'spices',
     name: 'Spices',
     tagline: 'Checked, handled and ready to move.',
-    description: 'Pepper, cardamom, turmeric, chilli, cloves, nutmeg and mace.',
+    description:
+      'Export-grade spices coordinated for heat, colour, and specification — with red chilli as a core line for buyers who need consistent quality shipment after shipment.',
     color: 'gold-deep',
     image:
-      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'seafood',
-    name: 'Seafood & Fisheries',
-    tagline: 'Cold-chain integrity, dock to deck.',
-    description: 'Shrimp, prawn and marine exports handled under strict cold-chain protocol.',
-    color: 'navy',
-    image:
-      'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'fresh-produce',
-    name: 'Agri-Commodities',
-    tagline: 'Farm-graded, freight-ready.',
-    description: 'Grains, pulses and fresh produce sourced and graded at origin.',
-    color: 'bay',
-    image:
-      'https://images.unsplash.com/photo-1508747703725-719777637510?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1800&q=80',
   },
   {
     slug: 'chemicals',
-    name: 'Industrial Chemicals',
-    tagline: 'Compliance built into every drum.',
-    description: 'Industrial and specialty chemicals shipped to certified specification.',
+    name: 'Chemicals',
+    tagline: 'Industrial solvents moved to specification.',
+    description:
+      'Industrial chemicals supplied with clear usage guidance and HSN documentation — including IPA, Acetone, and Toluene for manufacturing and processing applications.',
     color: 'paprika',
     image:
-      'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'minerals',
-    name: 'Minerals',
-    tagline: 'Sourced, graded and shipped at scale.',
-    description: 'Bulk mineral commodities handled from origin through to port delivery.',
-    color: 'gold-deep',
-    image:
-      'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    slug: 'industrial-metals',
-    name: 'Industrial Metals',
-    tagline: 'Trade-grade metals, moved reliably.',
-    description: 'Industrial metal commodities sourced and exported to specification.',
-    color: 'bay',
-    image:
-      'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1800&q=80',
   },
 ]
 
 // Individual products within each category, keyed by category slug.
-// Each product has its own detail page listing numbered variants.
 export const productCatalog = {
+  agri: [
+    {
+      slug: 'green-chillies',
+      name: 'Green Chillies',
+      hsCode: '0709.60',
+      description:
+        'Fresh green chillies sourced for export grade — graded for size, colour, and firmness, packed for cold-chain transit to destination markets.',
+      image:
+        'https://images.unsplash.com/photo-1583663848850-46af132dc08e?auto=format&fit=crop&w=800&q=80',
+      variants: [
+        {
+          name: 'Fresh Green Chilli',
+          description: 'Sorted and packed for export; moisture and appearance checked against buyer specification before dispatch.',
+        },
+      ],
+    },
+    {
+      slug: 'ginger',
+      name: 'Ginger',
+      hsCode: '0910.11',
+      description:
+        'Fresh and dried ginger coordinated from reliable growing regions, prepared to the size, moisture, and packing format required for the destination market.',
+      image:
+        'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80',
+      variants: [
+        {
+          name: 'Fresh / Dried Ginger',
+          description: 'Available as fresh rhizomes or dried ginger, graded and packed to buyer specification.',
+        },
+      ],
+    },
+    {
+      slug: 'onion',
+      name: 'Onion',
+      hsCode: '0703.10',
+      description:
+        'Export onions graded for size and shelf life, packed in mesh bags or cartons suited to long-haul transit and destination retail or foodservice use.',
+      image:
+        'https://images.unsplash.com/photo-1518977956812-cd3dbadaaf31?auto=format&fit=crop&w=800&q=80',
+      variants: [
+        {
+          name: 'Red Onion',
+          description: 'Firm bulbs with tight skin, graded by size and packed for export.',
+        },
+      ],
+    },
+    {
+      slug: 'fruits-vegetables',
+      name: 'Fruits & Vegetables',
+      hsCode: '0709.99',
+      description:
+        'A curated line of fruits and vegetables sourced for export readiness — selected for quality, packing integrity, and destination-market requirements.',
+      image:
+        'https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80',
+      variants: [
+        {
+          name: 'Seasonal Produce Mix',
+          description: 'Assorted fruits and vegetables prepared to buyer brief, with packing and transit aligned to product type.',
+        },
+      ],
+    },
+  ],
   spices: [
     {
-      slug: 'black-pepper',
-      name: 'Black Pepper',
-      hsCode: '0904.11',
-      description:
-        'Kerala’s signature export since 1987 — Mavio Global grades and ships black pepper to specification, from bulk garbled lots to premium bold berries for the retail grinder market.',
-      variants: [
-        { name: 'Malabar Garbled Black Pepper (MG-1)', description: 'Sun-dried and hand-garbled peppercorns from Idukki and Wayanad estates; consistent 500–560 g/l density, machine-cleaned to less than 1% extraneous matter.' },
-        { name: 'Tellicherry Extra Bold (TGSEB)', description: 'Large-berry premium grade prized by specialty grinders and retail spice brands; sorted to 4.25mm+ screen size.' },
-        { name: 'White Pepper', description: 'Water-retted and sun-dried black peppercorns with the outer skin removed; used in light-colored sauces, dressings and processed foods.' },
-      ],
-    },
-    {
-      slug: 'cardamom',
-      name: 'Green Cardamom',
-      hsCode: '0908.31',
-      description:
-        'Small cardamom (Elettaria cardamomum) grown in the high-range estates of Idukki, graded by size and color for export markets across the Middle East and Europe.',
-      variants: [
-        { name: 'Cardamom 8mm Bold', description: 'Large, deep-green pods with high oil content; the preferred grade for Middle Eastern coffee and dessert markets.' },
-        { name: 'Cardamom 7mm / 6mm', description: 'Mid-size grading for general culinary and grinding use; consistent moisture content below 10%.' },
-      ],
-    },
-    {
-      slug: 'turmeric',
-      name: 'Turmeric',
-      hsCode: '0910.30',
-      description:
-        'Alleppey and Erode-origin turmeric, valued for curcumin content and deep golden color, supplied whole (finger) or ground to specification.',
-      variants: [
-        { name: 'Turmeric Finger (Whole)', description: 'Boiled, sun-dried turmeric rhizomes; curcumin content 3–5%, polished or unpolished on request.' },
-        { name: 'Turmeric Powder', description: 'Ground and sieved to 80–100 mesh; packed in moisture-barrier bags to preserve color and aroma over long transit.' },
-      ],
-    },
-    {
       slug: 'red-chilli',
-      name: 'Dried Red Chilli',
-      hsCode: '0904.22',
+      name: 'Red Chilli',
+      hsCode: '0904.21',
       description:
-        'Guntur and Byadagi-variety dried chillies, graded for heat (SHU) and color extract value, supplied whole or as stemless pods.',
+        'Dried red chilli sourced for heat, colour, and export packing — coordinated for buyers who need consistent specification across recurring shipments.',
+      image:
+        'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=800&q=80',
       variants: [
-        { name: 'Guntur Sannam S4', description: 'High-pungency variety (40,000–50,000 SHU) used in oleoresin extraction and spice blends.' },
-        { name: 'Byadagi Chilli', description: 'Low-pungency, deep-red variety prized for color value in curry powders and sauces.' },
-      ],
-    },
-  ],
-  seafood: [
-    {
-      slug: 'shrimps-prawns',
-      name: 'Shrimps & Prawns',
-      hsCode: '0306.17',
-      description:
-        'India is the world’s leading shrimp exporter, and Mavio Global connects international buyers with the highest-quality Indian seafood processed at state-of-the-art, internationally certified facilities. Our marine exports comply with the stringent norms of MPEDA (Marine Products Export Development Authority) and all importing-country regulatory bodies.',
-      variants: [
-        { name: 'Vannamei Shrimp (White Leg)', description: 'Farm-raised Pacific white shrimp (Litopenaeus vannamei); available HOSO, HLSO, PD, and IQF-frozen in a range of counts (10/20, 16/20, 21/25, 26/30, 31/40, 41/50); sourced from antibiotic-free, ASC-certified farms.' },
-        { name: 'Black Tiger Shrimp', description: 'Wild and farm-raised Penaeus monodon; larger sizes, distinct dark banding; popular in Japanese and Southeast Asian markets; HOSO and headless block-frozen.' },
-        { name: 'Scampi / Freshwater Prawn', description: 'Macrobrachium rosenbergii sourced from freshwater aquaculture; large-sized, succulent, and popular in European markets; exported IQF and block-frozen.' },
-        { name: 'Baby Shrimp', description: 'Small-count shrimp (71/90, 91/110) used in food processing, pasta, and salad applications; exported cooked or raw, peeled and deveined.' },
-      ],
-    },
-    {
-      slug: 'whole-fish',
-      name: 'Whole Fish',
-      hsCode: '0303.89',
-      description:
-        'Ocean and aquaculture-sourced finfish, block-frozen at sea or immediately on landing to preserve texture and freshness for export.',
-      variants: [
-        { name: 'Seer Fish (King Mackerel)', description: 'Whole round or gutted, IQF or block-frozen; a premium species popular across Middle Eastern markets.' },
-        { name: 'Pomfret', description: 'Silver and black pomfret, whole gutted and scaled; sized and graded for retail and foodservice buyers.' },
-      ],
-    },
-    {
-      slug: 'crab-lobster',
-      name: 'Crab & Lobster',
-      hsCode: '0306.14',
-      description:
-        'Live-caught mud crab and spiny lobster, processed and frozen within hours of harvest for maximum shelf life and quality.',
-      variants: [
-        { name: 'Mud Crab (Whole / Meat)', description: 'Whole cooked-frozen crab or picked crab meat, graded by claw size and meat yield.' },
-        { name: 'Spiny Lobster (Tail / Whole)', description: 'Whole or tail-only, block-frozen; sized 4–6oz through 10oz+ for foodservice and retail.' },
-      ],
-    },
-  ],
-  'fresh-produce': [
-    {
-      slug: 'onions',
-      name: 'Onions',
-      hsCode: '0703.10',
-      description: 'Nashik and Solapur-origin onions, graded for size and shelf life, packed in export-grade mesh bags or cartons.',
-      variants: [
-        { name: 'Red Onion (40–60mm)', description: 'Standard export grade, firm bulbs with tight skin; packed in 25kg mesh bags.' },
-        { name: 'Red Onion (60–80mm)', description: 'Larger-count grade for foodservice and processing buyers.' },
-      ],
-    },
-    {
-      slug: 'bananas',
-      name: 'Bananas',
-      hsCode: '0803.90',
-      description: 'Cavendish bananas harvested green and shipped under controlled ripening protocols for extended transit windows.',
-      variants: [
-        { name: 'Cavendish (Green, Export Grade)', description: 'Hand-harvested at 75–80% maturity, boxed in ventilated cartons for sea-freight transit.' },
-      ],
-    },
-    {
-      slug: 'mangoes',
-      name: 'Mangoes',
-      hsCode: '0804.50',
-      description: 'Alphonso and Kesar mango varieties, hot-water treated and vapor heat-treated per destination-market phytosanitary requirements.',
-      variants: [
-        { name: 'Alphonso Mango', description: 'Premium variety from Ratnagiri and Devgad; hand-picked and sorted by weight for retail export.' },
-        { name: 'Kesar Mango', description: 'Gujarat-origin variety with distinct aroma; suited to both fresh and pulp processing markets.' },
+        {
+          name: 'Dried Red Chilli',
+          description: 'Whole or stemless pods graded for pungency and colour value, packed for export.',
+        },
       ],
     },
   ],
   chemicals: [
     {
-      slug: 'castor-oil',
-      name: 'Castor Oil',
-      hsCode: '1515.30',
-      description: 'Cold-pressed and refined castor oil derivatives for industrial, pharmaceutical and cosmetic applications, REACH and ISO-compliant.',
+      slug: 'ipa',
+      name: 'IPA',
+      hsCode: '29051220',
+      description:
+        'Isopropyl alcohol (IPA) used in sanitizer and related industrial applications. HSN Code: 29051220.',
+      usage: 'Sanitizer and related industrial applications',
+      image:
+        'https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=800&q=80',
       variants: [
-        { name: 'Commercial Grade Castor Oil', description: 'First-pressed, filtered oil for industrial lubricant and coating applications.' },
-        { name: 'Pharma Grade Castor Oil', description: 'Refined and deodorized to USP/BP pharmacopeia specifications.' },
+        {
+          name: 'Industrial / Sanitizer Grade IPA',
+          description: 'Supplied to specification for sanitizer production and related industrial use. HSN Code: 29051220.',
+        },
       ],
     },
     {
-      slug: 'guar-gum',
-      name: 'Guar Gum',
-      hsCode: '1302.32',
-      description: 'Food and industrial-grade guar gum powder milled to specified viscosity for use as a thickener and stabilizer.',
+      slug: 'acetone',
+      name: 'Acetone',
+      hsCode: '29141100',
+      description:
+        'Acetone used in the making of paints, nail polish remover, and textile industry applications. HSN Code: 29141100.',
+      usage: 'Paints, nail polish remover, textile industry',
+      image:
+        'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
       variants: [
-        { name: 'Food Grade Guar Gum', description: 'Fine-milled powder meeting food-additive purity standards; used in bakery, dairy and sauces.' },
-        { name: 'Industrial Grade Guar Gum', description: 'Coarser mesh grade for oilfield fracturing fluids and textile printing applications.' },
+        {
+          name: 'Industrial Grade Acetone',
+          description: 'Solvent grade for paints, nail polish remover, and textile processing. HSN Code: 29141100.',
+        },
       ],
     },
     {
-      slug: 'agro-intermediates',
-      name: 'Agrochemical Intermediates',
-      hsCode: '3808.99',
-      description: 'Custom-manufactured intermediates for crop protection formulations, produced to buyer specification under REACH compliance.',
+      slug: 'toluene',
+      name: 'Toluene',
+      hsCode: '29023000',
+      description:
+        'Toluene used as a paint thinner, high-octane fuel additive, and cleaning solvent. HSN Code: 29023000.',
+      usage: 'Paint thinner, high-octane fuel additives, cleaning',
+      image:
+        'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80',
       variants: [
-        { name: 'Technical Grade Intermediates', description: 'Bulk intermediate compounds supplied per buyer’s technical data sheet.' },
-      ],
-    },
-  ],
-  'cashew-dry-fruits': [
-    {
-      slug: 'cashew-kernels',
-      name: 'Cashew Kernels',
-      hsCode: '0801.32',
-      description: 'Kerala-processed cashew kernels, hand-graded to international size standards (W180 through W450) and vacuum-packed for freshness.',
-      variants: [
-        { name: 'W240 Whole White', description: 'Premium whole kernel grade, uniform ivory-white color, low moisture for extended shelf life.' },
-        { name: 'W320 Whole White', description: 'The most widely traded whole-kernel grade, balancing size and value for retail and foodservice.' },
-        { name: 'Cashew Splits (SW/SSW)', description: 'Split kernels graded by size, used in confectionery, bakery and snack manufacturing.' },
-      ],
-    },
-    {
-      slug: 'almonds',
-      name: 'Almonds',
-      hsCode: '0802.12',
-      description: 'Shelled almonds sourced and re-graded to buyer specification for bulk food-manufacturing and retail packing.',
-      variants: [
-        { name: 'Almond Kernels (Natural)', description: 'Whole shelled almonds, sized and sorted; suited to retail repacking and snack use.' },
-      ],
-    },
-    {
-      slug: 'dried-fruits',
-      name: 'Dried Fruits Mix',
-      hsCode: '0813.50',
-      description: 'Sun-dried and dehydrated fruit mixes including raisins, apricots and dates, packed to retail or bulk specification.',
-      variants: [
-        { name: 'Raisins (Golden / Black)', description: 'Sun-dried seedless grapes, sorted by size and moisture content.' },
-      ],
-    },
-  ],
-  'rice-grains': [
-    {
-      slug: 'basmati-rice',
-      name: 'Basmati Rice',
-      hsCode: '1006.30',
-      description: 'Aged, extra-long-grain basmati rice milled and sorted to export specification, sourced from Punjab and Haryana paddy fields.',
-      variants: [
-        { name: '1121 Basmati (Extra Long)', description: 'Extra-long grain length (8.3mm+) after cooking; aged a minimum of 12 months for aroma and elongation.' },
-        { name: 'Pusa Basmati 1509', description: 'Shorter-cycle basmati variety offering strong aroma at a more accessible price point.' },
-      ],
-    },
-    {
-      slug: 'non-basmati-rice',
-      name: 'Non-Basmati Rice',
-      hsCode: '1006.30',
-      description: 'Parboiled and white non-basmati rice varieties milled for bulk food-security and retail markets.',
-      variants: [
-        { name: 'IR64 Parboiled', description: 'Widely traded parboiled variety for bulk retail and institutional buyers.' },
-      ],
-    },
-    {
-      slug: 'pulses-cereals',
-      name: 'Pulses & Cereals',
-      hsCode: '0713.40',
-      description: 'Lentils, chickpeas and other pulses cleaned, graded and packed for export to retail and bulk buyers.',
-      variants: [
-        { name: 'Toor Dal (Split Pigeon Pea)', description: 'Cleaned and polished split pigeon pea, sorted for uniform size and color.' },
+        {
+          name: 'Industrial Grade Toluene',
+          description: 'Used as paint thinner, high-octane fuel additive, and cleaning solvent. HSN Code: 29023000.',
+        },
       ],
     },
   ],
@@ -359,69 +432,75 @@ export const productCatalog = {
 export const supplyChainSteps = [
   {
     step: 1,
-    label: 'Sourcing',
+    label: 'Sourcing at Origin',
     icon: 'Sprout',
     description:
-      'We carefully select products from reliable origins, keeping quality and specifications in mind from the start.',
+      'We start where the product starts. Procurement focuses on identifying the right supply, understanding availability, and matching it to what the buyer actually needs.',
     longDescription:
-      'We carefully select products from reliable origins, keeping quality and specifications in mind from the start.',
+      'We start where the product starts. Procurement focuses on identifying the right supply, understanding availability, and matching it to what the buyer actually needs.',
     image:
-      'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1400&q=80',
+    video: 'https://videos.pexels.com/video-files/2887460/2887460-sd_640_360_25fps.mp4',
   },
   {
     step: 2,
     label: 'Sorting & Grading',
     icon: 'Package',
     description:
-      'Each lot is carefully sorted and graded by size, quality, and specifications to maintain consistency.',
+      'Quantity alone doesn’t make a shipment commercially useful. Size, appearance, grade, moisture, colour, and purity all matter — handling is aligned to the agreed specification from the start.',
     longDescription:
-      'Each lot is carefully sorted and graded by size, quality, and specifications to maintain consistency.',
+      'Quantity alone doesn’t make a shipment commercially useful. Size, appearance, grade, moisture, colour, and purity all matter — handling is aligned to the agreed specification from the start.',
     image:
-      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1400&q=80',
+    video: 'https://videos.pexels.com/video-files/3571264/3571264-sd_640_360_30fps.mp4',
   },
   {
     step: 3,
-    label: 'Lab Testing',
+    label: 'Lab Testing & Inspection',
     icon: 'ShieldCheck',
     description:
-      'Products undergo the necessary quality and safety checks to ensure they meet the required standards before dispatch.',
+      'Confidence is stronger when it’s measurable. Where applicable, products are tested and inspected against agreed parameters before they ever reach the port.',
     longDescription:
-      'Products undergo the necessary quality and safety checks to ensure they meet the required standards before dispatch.',
+      'Confidence is stronger when it’s measurable. Where applicable, products are tested and inspected against agreed parameters before they ever reach the port.',
     image:
-      'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1400&q=80',
+    video: 'https://videos.pexels.com/video-files/3195394/3195394-sd_640_360_25fps.mp4',
   },
   {
     step: 4,
-    label: 'Packing',
+    label: 'Secure Packaging',
     icon: 'PackageCheck',
     description:
-      'Each product is packed to its required specifications, keeping it secure and well-preserved in transit.',
+      'Packaging is part of the journey, not an afterthought. We coordinate export-suitable packing built to protect quality through handling, storage, and transport.',
     longDescription:
-      'Each product is packed to its required specifications, keeping it secure and well-preserved in transit.',
+      'Packaging is part of the journey, not an afterthought. We coordinate export-suitable packing built to protect quality through handling, storage, and transport.',
     image:
-      'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1773126378189-9186d697b797?auto=format&fit=crop&w=1400&q=80',
+    video: 'https://videos.pexels.com/video-files/7578552/7578552-sd_640_360_30fps.mp4',
   },
   {
     step: 5,
-    label: 'Documentation',
+    label: 'Logistics & Documentation',
     icon: 'FileCheck2',
     description:
-      'Trade and shipping documents are prepared, reviewed, and aligned with the requirements of each shipment.',
+      'International trade is as much paperwork as it is physical movement. We coordinate commercial and shipping documentation, customs processes, freight, and shipment milestones through the right partners.',
     longDescription:
-      'Trade and shipping documents are prepared, reviewed, and aligned with the requirements of each shipment.',
+      'International trade is as much paperwork as it is physical movement. We coordinate commercial and shipping documentation, customs processes, freight, and shipment milestones through the right partners.',
     image:
-      'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1400&q=80',
+    video: 'https://videos.pexels.com/video-files/3129957/3129957-sd_640_360_25fps.mp4',
   },
   {
     step: 6,
-    label: 'Shipping',
+    label: 'Real-Time Visibility',
     icon: 'Ship',
     description:
-      'Every shipment is monitored throughout its journey, with key updates tracked from dispatch to the destination port.',
+      'Once the shipment moves, you shouldn’t have to wonder what’s happening. Milestones and updates are communicated clearly — what’s happened, what’s happening, and what’s next.',
     longDescription:
-      'Every shipment is monitored throughout its journey, with key updates tracked from dispatch to the destination port.',
+      'Once the shipment moves, you shouldn’t have to wonder what’s happening. Milestones and updates are communicated clearly — what’s happened, what’s happening, and what’s next.',
     image:
-      'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1000&q=80',
+      'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1400&q=80',
+    video: 'https://videos.pexels.com/video-files/3129671/3129671-sd_640_360_30fps.mp4',
   },
 ]
 
@@ -463,22 +542,70 @@ export const productsPage = {
 
 export const aboutPage = {
   hero: {
-    eyebrow: 'The Story Behind Mavio',
-    heading: 'We didn’t start with products. We started with a problem.',
-    body: 'Traditional import-export frameworks were built to move goods, but not always to provide the clarity and consistency that modern procurement demands. Gaps in communication, changing standards, and short-term priorities could make reliable trade difficult to sustain, leaving quality-focused producers with limited visibility and fewer opportunities to build lasting global relationships. Mavio Global was built to eliminate this gap. As a direct supply partner, we deliver lab-tested quality paired with live, step-by-step tracking right to your destination port. Every cargo we handle arrives fully verified and on schedule. While we take complete ownership of our supply chain, we actively open doors for quality-focused producers who have exceptional products and want a transparent pathway into serious global markets.',
-    image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1800&q=80',
+    eyebrow: 'About Us',
+    heading: 'A connected journey for global buyers sourcing from India.',
+    body: 'Mavio was founded on a simple observation: international trade gets difficult when responsibility is fragmented. A buyer might know exactly what product they need, and still have to navigate sourcing, quality checks, packaging, documentation, customs, freight, and delivery as separate problems, with separate people.',
+    image: 'https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=2200&q=80',
   },
+  story: [
+    'Mavio was founded on a simple observation: international trade gets difficult when responsibility is fragmented. A buyer might know exactly what product they need, and still have to navigate sourcing, quality checks, packaging, documentation, customs, freight, and delivery as separate problems, with separate people.',
+    'We built Mavio Global to make that journey connected instead. We bring together procurement, quality coordination, trade documentation, logistics, and digital visibility into one organised experience for global buyers sourcing from India. Our goal was never just to sell an Indian product — it\'s to build confidence around the entire transaction.',
+  ],
+  storyImages: [
+    'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1800&q=80',
+    'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1800&q=80',
+  ],
   visionMission: {
     vision: {
       title: 'Vision',
-      body: 'Our vision is to shape a borderless future for global trade driven by integrity and consistent performance. We aspire to make international procurement completely hassle-free and dependable across every market we operate in. We exist to elevate how business is conducted worldwide.',
-      image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1400&q=80',
+      body: 'To build a connected global trade ecosystem where quality products move across borders with greater visibility, dependable execution, and lasting trust.',
+      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80',
     },
     mission: {
       title: 'Mission',
-      body: 'Our mission is to make global procurement simpler, more reliable, and more transparent — taking responsibility for the journey from where a product comes from to where it arrives, while keeping sourcing, quality, and delivery connected so the right products reach the right markets with greater trust and confidence on both sides.',
-      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1400&q=80',
+      body: 'To empower global businesses with greater confidence in cross-border trade by connecting sourcing, quality, coordination, and logistics into one transparent journey.',
+      image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1600&q=80',
     },
+  },
+  belief: {
+    title: 'What We Believe',
+    body: "A successful shipment isn't the end of the relationship. It's proof that the relationship works.",
+    image: 'https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=2200&q=80',
+  },
+  whyChoose: {
+    eyebrow: 'Why Choose Mavio Global?',
+    slides: [
+      {
+        title: 'One Partner, Multiple Trade Functions',
+        body: 'Instead of coordinating procurement, quality, documentation, and logistics separately, you work through one organised trade partner.',
+        image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1800&q=80',
+      },
+      {
+        title: 'Procurement Capacity',
+        body: 'We start by understanding your required quantity, specification, destination, and timeline — then we build the procurement route around that.',
+        image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1800&q=80',
+      },
+      {
+        title: 'Quality Discipline',
+        body: "Quality isn't a sentence on a website. It's a process of checking the product against agreed requirements before it ships.",
+        image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1800&q=80',
+      },
+      {
+        title: 'Long-Term Supply',
+        body: 'For recurring buyers, the goal is consistency — repeatable specifications, volumes, packaging formats, and commercial processes, order after order.',
+        image: 'https://images.unsplash.com/photo-1559297434-fae8a1916a79?auto=format&fit=crop&w=1800&q=80',
+      },
+      {
+        title: 'Digital Visibility',
+        body: 'The digital layer exists to remove uncertainty — making shipment and operational information easier to access and easier to talk about.',
+        image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1800&q=80',
+      },
+      {
+        title: 'Human Accountability',
+        body: 'Technology can show you a status. A responsible trade team makes sure that status means something — and that the next action has an owner.',
+        image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1800&q=80',
+      },
+    ],
   },
   milestones: [
     { year: '1987', title: 'Founded in Kochi', description: 'Started as a single-warehouse pepper trading desk on the Kochi waterfront.' },
@@ -869,56 +996,82 @@ export const exportLogisticsPage = {
 }
 
 export const accreditations = [
+  'APEDA',
+  'Spices Board of India',
+  'Halal',
   'ISO 9001:2015',
-  'ISO 22000 / HACCP',
-  'GMP',
-  'APEDA / Spice Board Registrations',
-  'FDA Registration',
-  'FSSAI License',
+  'FSSAI',
+  'US Food Safety Compliance',
 ]
 
 export const accreditationsPage = {
   hero: {
-    eyebrow: 'Accreditations & Certifications',
-    heading: 'Accreditations & Certifications',
-    subheading:
-      'Every shipment prepared to meet the safety, quality, and documentation standards of its destination.',
-    image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=2200&q=80',
-    imageAlt: 'Quality inspection at a certified facility',
+    eyebrow: 'Accreditations & Proof',
+    heading: 'Proof Behind the Promise',
+    body: 'International trade runs on documentation and evidence, not adjectives. We present relevant certifications, registrations, laboratory reports, inspection records, and compliance documentation transparently — for the products and markets they apply to.',
+    image: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=2200&q=80',
+    imageAlt: 'Compliance documents and certificates on a desk',
   },
-  commitment: {
-    heading: 'Our Commitment To Global Standards',
-    body: 'International trade comes with standards that need to be right at every step. Mavio Global carefully checks each process against international requirements, making sure products meet the necessary safety, quality, and documentation standards before they leave. We take care of the details that help shipments move smoothly across borders, giving you confidence that your product is compliant, properly prepared, and ready for its destination. Every shipment is prepared with the standards, documentation, and requirements of its destination in mind.',
-  },
-  benefits: {
-    heading: 'What These Certifications Ensure',
-    points: [
-      'The right certification gives confidence that a product meets the standards expected in its market.',
-      'It reflects the care taken across quality, safety, production, and other important requirements.',
-      'For Mavio Global, these standards help us maintain consistency across different products and destinations.',
-      'They also give every business we work with greater clarity before moving forward.',
-    ],
-  },
-  framework: {
-    heading: 'Our Quality & Compliance Framework',
-    body: 'Quality and compliance work together from product selection to final documentation. We review product specifications, required standards, testing needs, and destination regulations. The right checks and documents are maintained according to the requirements of each shipment. This gives every product a clear basis for meeting its intended market requirements.',
-  },
-  ethical: {
-    heading: 'Commitment to Ethical Trade',
-    body: 'Long-term trade relationships are built on fair practices, open communication, and responsible sourcing. We believe in clear business terms, safe working conditions, and respect for environmental standards across the way we work. By keeping communication open and taking responsibility at every stage, we support local production while meeting global market needs. Our goal is to build sustainable trade connections that help businesses grow steadily on both sides.',
-  },
-  grid: {
-    heading: 'Our Accreditations',
-    subheading: 'We align our operations with recognized global safety and trade standards. Holding these certifications ensures smooth customs clearance and easy entry into international markets.',
-    items: [
-      { icon: 'ShieldCheck', title: 'ISO 9001:2015', description: 'Certified quality management system across our operations.' },
-      { icon: 'BadgeCheck', title: 'ISO 22000 / HACCP', description: 'Certified food safety management and hazard control system.' },
-      { icon: 'FileCheck2', title: 'GMP', description: 'Good Manufacturing Practice standards applied across handling and processing.' },
-      { icon: 'Globe', title: 'APEDA / Spice Board Registrations', description: 'Registered with India\'s apex agri-export and spice trade authorities.' },
-      { icon: 'FlaskConical', title: 'FDA Registration', description: 'US import-ready registration for eligible product categories.' },
-      { icon: 'ClipboardCheck', title: 'FSSAI License', description: 'Licensed under India\'s Food Safety and Standards Authority.' },
-    ],
-  },
+  badges: [
+    'APEDA',
+    'Spices Board of India',
+    'Halal',
+    'ISO 9001:2015',
+    'FSSAI',
+    'US Food Safety Compliance',
+  ],
+  precisionNote:
+    'This precision is a feature, not a limitation — buyers trust a company more when it explains exactly what a certification covers instead of using every badge as a marketing claim.',
+  items: [
+    {
+      code: 'SBI',
+      title: 'Spice Board of India',
+      subtitle: 'Spice Board of India — Registered Exporter',
+      body: 'The Spice Board of India is the statutory body regulating the export of spices from India. As a registered exporter, Mavio Global is authorized to export all major spice categories including chilli, turmeric, pepper, and cardamom, with quality backed by Spice Board certification.',
+      issuingBody: 'Ministry of Commerce & Industry, Government of India',
+      scope: 'Red Chilli · Turmeric · Black Pepper · Cardamom · All Major Spices',
+    },
+    {
+      code: 'FSSAI',
+      title: 'FSSAI Licensed',
+      subtitle: 'Food Safety and Standards Authority of India',
+      body: "FSSAI licensing is the foundational food safety authorization for all food businesses in India. It ensures that every product handled, processed, and exported by Mavio Global meets India's domestic food safety standards, which are aligned with Codex Alimentarius principles.",
+      issuingBody: 'Ministry of Health & Family Welfare, Government of India',
+      scope: 'All Food & Agricultural Products',
+    },
+    {
+      code: 'IEC',
+      title: 'IEC — DGFT',
+      subtitle: 'Importer Exporter Code',
+      body: 'The Importer Exporter Code (IEC) is the primary business identification number required for any entity conducting international trade from India. Issued by DGFT, it is mandatory for all export shipments, customs clearance, and foreign exchange transactions. Mavio Global holds an active IEC enabling seamless cross-border trade.',
+      issuingBody: 'Directorate General of Foreign Trade, Ministry of Commerce',
+      scope: 'All Import & Export Transactions',
+    },
+    {
+      code: 'GST',
+      title: 'GST',
+      subtitle: 'GST Registration & Registration Cum Membership Certificate',
+      body: "GST registration ensures Mavio Global is fully compliant with India's Goods and Services Tax framework, enabling smooth domestic procurement and input tax credit on exports. The RCMC (Registration Cum Membership Certificate) from the relevant Export Promotion Council authorizes us to avail export incentives and schemes under India's Foreign Trade Policy.",
+      issuingBody: 'GSTN / Export Promotion Councils, Government of India',
+      scope: 'Tax Compliance · Export Incentives · FTP Benefits',
+    },
+    {
+      code: 'APEDA',
+      title: 'APEDA Registered',
+      subtitle: 'Agricultural & Processed Food Products Export Development Authority',
+      body: "APEDA registration is mandatory for exporters of scheduled agricultural and processed food products from India. It authorizes Mavio Global to export commodities including fresh fruits, vegetables, cereals, and processed foods to global markets, and enables access to APEDA's quality development and market promotion schemes.",
+      issuingBody: 'Ministry of Commerce & Industry, Government of India',
+      scope: 'Fresh Produce · Spices · Cereals · Processed Foods',
+    },
+    {
+      code: 'MPEDA',
+      title: 'MPEDA Registered',
+      subtitle: 'Marine Products Export Development Authority',
+      body: 'MPEDA registration is the primary authorization required for any Indian entity exporting marine products. It ensures our shrimp and seafood exports meet the hygiene, traceability, and species-compliance requirements of importing countries including the EU, USA, and Japan.',
+      issuingBody: 'Ministry of Commerce & Industry, Government of India',
+      scope: 'Shrimps · Prawns · Seafood',
+    },
+  ],
 }
 
 export const testimonials = [
@@ -927,42 +1080,48 @@ export const testimonials = [
       'We used to waste so much time dealing with delays between sourcing and delivery. Working with Mavio turned shipping into the easiest, most reliable part of our day.',
     name: 'Global Supply Lead',
     role: 'Agricultural Sector',
-    avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=200&q=80',
+    avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80',
+    video: 'https://videos.pexels.com/video-files/2887460/2887460-sd_640_360_25fps.mp4',
   },
   {
     quote:
       'Finding good products was never our problem; getting them delivered consistently was. Mavio fixed that completely and brought real trust to every single shipment.',
     name: 'Head of Sourcing',
     role: 'Retail Commerce',
-    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80',
+    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80',
+    video: 'https://videos.pexels.com/video-files/3571264/3571264-sd_640_360_30fps.mp4',
   },
   {
     quote:
       'We just started looking for products, but the real value came later. Their clear communication and steady supply helped us grow our own business much faster.',
     name: 'VP of Operations',
     role: 'Industrial Materials',
-    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80',
+    avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=900&q=80',
+    video: 'https://videos.pexels.com/video-files/3195394/3195394-sd_640_360_25fps.mp4',
   },
   {
     quote:
       'The best part is how smooth everything runs. Orders are steady, updates are clear and direct, and we can just focus on making good products.',
     name: 'Managing Director',
     role: 'Group Manufacturing',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=900&q=80',
+    video: 'https://videos.pexels.com/video-files/7578552/7578552-sd_640_360_30fps.mp4',
   },
   {
     quote:
       'Selling abroad used to bring a lot of stress. With Mavio, sending our goods overseas feels just as simple as shipping to a business down the street.',
     name: 'Commercial Lead',
     role: 'Specialized Commodities',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
+    video: 'https://videos.pexels.com/video-files/3129957/3129957-sd_640_360_25fps.mp4',
   },
   {
     quote:
       'It doesn’t feel like using a middle channel — it feels like having a real partner taking our quality to the world. That trust has completely changed how we look at our future.',
     name: 'Founder',
     role: 'Specialty Goods Manufacturing',
-    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80',
+    avatar: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80',
+    video: 'https://videos.pexels.com/video-files/3129671/3129671-sd_640_360_30fps.mp4',
   },
 ]
 
@@ -1005,7 +1164,7 @@ export const regions = [
       { name: 'London', lat: 51.5074, lng: -0.1278, label: [-1, -0.6] },
       { name: 'Antwerp', lat: 51.2194, lng: 4.4025, label: [0.4, 1] },
     ],
-    countryIds: ['276', '528', '826', '056', '250'],
+    countryIds: ['276', '528', '826', '056', '250', '380'],
     lat: 50.1109,
     lng: 8.6821,
   },
@@ -1077,6 +1236,166 @@ export const regions = [
     lng: 151.2093,
   },
 ]
+
+/** Head of government keyed by ISO 3166-1 numeric id. Replace `image` with official portraits when ready. */
+export const countryLeaders = {
+  '356': {
+    country: 'India',
+    name: 'Narendra Modi',
+    title: 'Prime Minister',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/The_official_portrait_of_Shri_Narendra_Modi%2C_the_Prime_Minister_of_the_Republic_of_India.jpg',
+  },
+  '784': {
+    country: 'United Arab Emirates',
+    name: 'Mohammed bin Rashid Al Maktoum',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJAGPK-fAPTWxyjadeOdvLOfGXjAWFG3IrlUQKLLO9iqMq-D2-lvJZprPVhW8vbOK61AwbYUC3QR40l5zx5Z6vtxwCkBWVoWCo-iApGIQx&s=10',
+  },
+  '682': {
+    country: 'Saudi Arabia',
+    name: 'Mohammed bin Salman',
+    title: 'Crown Prince',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrKEAmZQkKsPmPddxkHjDLsd02T71oOvuvmodxYZ4QLoTJyNacXSPwdrlZnK85UwQnPYoHbWNpMtwutoUqskuXtWC2joOzwrVz-z6M4TEEEw&s=10',
+  },
+  '512': {
+    country: 'Oman',
+    name: 'Haitham bin Tariq',
+    title: 'Sultan',
+    image: 'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTYZTdDRXA8eGBPqu9Wg5hah3SBxgnffDciHHYUAAkyKx_4K_ID8Y2hSwQC6drZwaoSepoXAXR5Wkpx52osFoFu2iKqWCjbPhFhvxhFBp2ArwHTmt7x0K_tou3-lp7efUJpVFAuV_k3AqQ&s=19',
+  },
+  '634': {
+    country: 'Qatar',
+    name: 'Mohammed bin Abdulrahman Al Thani',
+    title: 'Prime Minister',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Mohammed_bin_Abdulrahman_Al-Thani_of_Qatar_on_25_January_2024_-_2_%28cropped%29.jpg/500px-Mohammed_bin_Abdulrahman_Al-Thani_of_Qatar_on_25_January_2024_-_2_%28cropped%29.jpg',
+  },
+  '276': {
+    country: 'Germany',
+    name: 'Friedrich Merz',
+    title: 'Chancellor',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIHdGvpZdwHQEdeeKAZ9djJeyex_LSy5tlC46drhGlfhHTzC3zuMHUVs4SdHFXXtcwFHTDxMoZUVfsE-9D6-1SVH5eMBYxAxWFCjHy5dbuKg&s=10',
+  },
+  '528': {
+    country: 'Netherlands',
+    name: 'Dick Schoof',
+    title: 'Prime Minister',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Dick_Schoof_in_2025.jpg/500px-Dick_Schoof_in_2025.jpg',
+  },
+  '826': {
+    country: 'United Kingdom',
+    name: 'Keir Starmer',
+    title: 'Prime Minister',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Prime_Minister_Keir_Starmer_Portrait_%28cropped%29.jpg/500px-Prime_Minister_Keir_Starmer_Portrait_%28cropped%29.jpg',
+  },
+  '056': {
+    country: 'Belgium',
+    name: 'Bart De Wever',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSLe2Q9Tb0eo-XBwQC39tNIHJufgOoGWsYSaI_D6QCK3jtUNm1voVBG-m72r1X7DXmRSlQtw3GPHLlykxs',
+  },
+  '250': {
+    country: 'France',
+    name: 'Emmanuel Macron',
+    title: 'President',
+    image: 'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcS8X6VtzmVi7SwzNYzVPiN3Kc--5YaxaX_xqjZv_RaIEc8Tu841W5OkRrCiJBDblhC9F4vmrE41bc60xO8DHGg62VAn8EMT5YHBDCdPeoEGAWBY7caaCACoqBuYxeOCCSq6N-9dMvV5enw&s=19',
+  },
+  '380': {
+    country: 'Italy',
+    name: 'Giorgia Meloni',
+    title: 'Prime Minister',
+    image: 'https://foreignpolicy.com/wp-content/uploads/2025/10/Giorgia-Meloni-Italy-GettyImages-2223761066.jpg?resize=1200,1200',
+  },
+  '840': {
+    country: 'United States',
+    name: 'Donald Trump',
+    title: 'President',
+    image: 'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcS4bILfHNwii8uAEjhc6MqCZRtxiTt24vRZ1n-LD4Y-VEELv1_dikkgW4YOPB29KIBPAnCgdDHQO7LcfM06wx_HAw9HHObdsVM16NENz75VoCtaKeGY4ocbQbKAkDyhz9WVFFMbaVd5jbx3&s=19',
+  },
+  '124': {
+    country: 'Canada',
+    name: 'Mark Carney',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRmXyDlYHYw2WQ22w6TOiLyTHigRraE0G2txsPe1IfanqO7jQVlAbTIWqfn7MrKiGqPyukIlSiobRIFk_o',
+  },
+  '702': {
+    country: 'Singapore',
+    name: 'Lawrence Wong',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqZkme1z7F6lUyTM5v62ZSQcIr7BW0wczPMIddC_jk1kCxTdwTTOI8MamuFLHJS0QrXx4vvmrKfiMyDZoJq993w5Wd-58pg9qZcOIKLg&s=10',
+  },
+  '458': {
+    country: 'Malaysia',
+    name: 'Anwar Ibrahim',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgsyeGThNU6mxj9lt5u5jOmKysYQU2lNIcA-V7CY3qQ8kEbbiGz1g3UL34sGUEruahPtthf7MQpuF8MsYuCgx7oL_NkrshAj_RdFGQJw&s=10',
+  },
+  '704': {
+    country: 'Vietnam',
+    name: 'Phạm Minh Chính',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTeAZv--aLYaSPWOT9wfNM8U1Nn0rwJvNgDRSQEUW9Q0j3pJonEBbE7rQwVhu-k645CGccz9sabLtITesk',
+  },
+  '360': {
+    country: 'Indonesia',
+    name: 'Prabowo Subianto',
+    title: 'President',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKCwjiHSuuAFFVd5wqC5m8W2KFCOrtUGkVDQRURv6_RxKFH8NfcH2msfv5Gv5HAFD-Y_V6dZOzvJsKDERwmCnaZUOzgGv2ZNJe_IBzRA&s=10',
+  },
+  '156': {
+    country: 'China',
+    name: 'Li Qiang',
+    title: 'Premier',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Li_Qiang_meets_Keir_Starmer_Jan_2026.jpg/960px-Li_Qiang_meets_Keir_Starmer_Jan_2026.jpg',
+  },
+  '392': {
+    country: 'Japan',
+    name: 'Shigeru Ishiba',
+    title: 'Prime Minister',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Ishiba_Shigeru_2025_%28cropped%29.jpg/500px-Ishiba_Shigeru_2025_%28cropped%29.jpg',
+  },
+  '410': {
+    country: 'South Korea',
+    name: 'Lee Jae-myung',
+    title: 'President',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY8rAhFUX2YY7w755rrlfWNuG7nitnQas39RUmcQbECKI3yP6VB25YOPU2-UjW6-syS3BAGRy1d1V6xo-Ce-ticEbYZbEq1Au4s68Nku4&s=10',
+  },
+  '344': {
+    country: 'Hong Kong',
+    name: 'John Lee',
+    title: 'Chief Executive',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Inmediahk_-_John_Lee_2023_%28cropped%29.jpg/500px-Inmediahk_-_John_Lee_2023_%28cropped%29.jpg',
+  },
+  '404': {
+    country: 'Kenya',
+    name: 'William Ruto',
+    title: 'President',
+    image: 'https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTWxqqx8VoJq0xYIox0cmG85IWLWBRrcX9xzZL1fpJU19EfCnNHgcVX8Ql8xYPs61DRRwf9N1Tds3DmqQ0',
+  },
+  '818': {
+    country: 'Egypt',
+    name: 'Mostafa Madbouly',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSND-mMZ0LLmiYGM160T_r0Z33HfkhYyQN7nf_a_UMDgI7A4mHmWBlTr1Dwq99ftCcM0IoR3kENPMbBAapXePH6-TnMCbiRF4E7ysdKjK4&s=10',
+  },
+  '710': {
+    country: 'South Africa',
+    name: 'Cyril Ramaphosa',
+    title: 'President',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlySEGJGwYc2x0qH_mU-8WZeGrHtXStqg-t_z5Wq24M0QN7kbPI_L2EG9c&s=10',
+  },
+  '036': {
+    country: 'Australia',
+    name: 'Anthony Albanese',
+    title: 'Prime Minister',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHd0AHbBHeNuWOoV4m_B2yspHsgPvEJ7aMMNFCVhWTlXlCNL0AMgDXwrvH&s=10',
+  },
+  '554': {
+    country: 'New Zealand',
+    name: 'Christopher Luxon',
+    title: 'Prime Minister',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/LUXON%2C_Christopher_-_Botany_%28cropped%29.png/500px-LUXON%2C_Christopher_-_Botany_%28cropped%29.png',
+  },
+}
 
 export const originCoords = { lat: 9.9312, lng: 76.2673 }
 
@@ -1158,35 +1477,66 @@ export const leadFormConfig = {
 
 export const footer = {
   description:
-    'Mavio Global connects international trade, delivering any commodity to every port through an integrated network with verified testing and on-time transit — partnered with 25+ countries.',
+    'Mavio Global connects Indian products with global buyers through organised procurement, quality coordination, documentation, logistics, and digital visibility.',
   talkToUs: {
-    heading: 'Talk to Us',
-    body: "Whether you're interested in speaking to our country management team, enquiring about one of our products or partnering with us, we want to hear from you.",
-    cta: { label: 'Contact Us', to: '/contact' },
+    heading: 'Have a sourcing requirement?',
+    body: '',
+    cta: { label: "Let's talk.", to: '/contact' },
+    image:
+      'https://images.unsplash.com/photo-1613690399151-65ea69478674?auto=format&fit=crop&w=2200&q=80',
   },
   columns: [
     {
-      title: 'Quick Links',
+      title: 'Navigation',
       links: [
-        { label: 'About Us', to: '/about' },
-        { label: 'Contact', to: '/contact' },
-        { label: 'Partner With Us', to: '/partner-with-us' },
         { label: 'Products', to: '/products' },
-        { label: 'Privacy and Policy', to: '/resources/privacy-policy' },
-        { label: 'FAQ', to: '/resources/faq' },
+        { label: 'How We Work', to: '/capabilities/supply-chain-visibility' },
+        { label: 'Why Mavio', to: '/partner-with-us' },
+        { label: 'About Us', to: '/about' },
+        { label: 'Global Presence', to: '/#global-presence' },
+        { label: 'Accreditations', to: '/resources/accreditations' },
+        { label: 'Contact', to: '/contact' },
+        { label: 'Privacy Policy', to: '/resources/privacy-policy' },
+        { label: 'Terms', to: '/resources/terms' },
       ],
-    },
-    {
-      title: 'Product Categories',
-      links: productCategories.map((c) => ({
-        label: c.name,
-        to: `/products/${c.slug}`,
-      })),
     },
   ],
   social: [
     { label: 'LinkedIn', handle: 'MavioGlobal', href: 'https://linkedin.com' },
     { label: 'Instagram', handle: 'mavioglobal', href: 'https://instagram.com' },
+  ],
+  socialGallery: [
+    {
+      label: 'YouTube',
+      href: 'https://youtube.com',
+      image:
+        'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=80',
+    },
+    {
+      label: 'Facebook',
+      href: 'https://facebook.com',
+      image:
+        'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80',
+    },
+    {
+      label: 'Instagram',
+      href: 'https://instagram.com',
+      image:
+        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80',
+      showLogo: true,
+    },
+    {
+      label: 'LinkedIn',
+      href: 'https://linkedin.com',
+      image:
+        'https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=900&q=80',
+    },
+    {
+      label: 'X',
+      href: 'https://x.com',
+      image:
+        'https://images.unsplash.com/photo-1559297434-fae8a1916a79?auto=format&fit=crop&w=900&q=80',
+    },
   ],
   contact: {
     email: 'hello@mavioglobal.com',
@@ -1322,7 +1672,93 @@ export const privacyPolicyPage = {
   },
 }
 
+export const termsPage = {
+  updatedAt: 'Last updated: 12 March 2026',
+  intro:
+    'These terms explain how you may use the Mavio Global website and what applies when you send an enquiry, request a quote, or begin a trade conversation with us.',
+  sections: [
+    {
+      title: 'Use of this website',
+      body: 'Content on this site — including product descriptions, catalogs, and capability summaries — is provided for general trade information. Quotes, availability, and lead times are confirmed only after a formal enquiry. You agree not to misuse forms, scrape content, or submit false commercial details.',
+    },
+    {
+      title: 'Enquiries and trade',
+      body: 'Submitting an enquiry does not create a binding contract. Commercial terms, Incoterms, payment methods, and documentation requirements are agreed separately for each shipment. Sample requests and custom specs are subject to availability and destination rules.',
+    },
+    {
+      title: 'Liability',
+      body: 'Mavio Global is not liable for decisions made solely on the basis of website copy. Confirmed specifications, pricing, and shipping terms are those stated in written commercial correspondence and contracts.',
+    },
+  ],
+  contactNote: {
+    heading: 'Questions about these terms?',
+    body: 'Reach us at hello@mavioglobal.com or through the Contact page. We aim to respond within two business days.',
+  },
+}
+
 export const contactPage = {
+  headline: "Tell us what you need. We'll help you build the route.",
+  body: 'Share your product, quantity, destination, specification, and timeline. Our team will review the requirement and come back with the next practical step.',
+  whatsapp: {
+    heading: 'Prefer a quick conversation?',
+    body: 'Connect with our team on WhatsApp.',
+    href: 'https://wa.me/914840000000',
+    label: 'Chat on WhatsApp',
+  },
+  confirmation:
+    "Thank you. Your requirement has reached the Mavio Global team. We'll review the details and contact you with the next step.",
+  image:
+    'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=2200&q=80',
+  fields: [
+    { key: 'name', label: 'Name', type: 'text', placeholder: 'Full name', required: true },
+    { key: 'email', label: 'Work Email', type: 'email', placeholder: 'you@company.com', required: true },
+    { key: 'company', label: 'Company', type: 'text', placeholder: 'Company name', required: true },
+    { key: 'country', label: 'Country', type: 'text', placeholder: 'Country', required: true },
+    {
+      key: 'category',
+      label: 'Product / Category',
+      type: 'select',
+      placeholder: 'Select a category',
+      options: productCategories.map((c) => c.name),
+      required: true,
+    },
+    {
+      key: 'quantity',
+      label: 'Estimated Quantity',
+      type: 'text',
+      placeholder: 'e.g. 1 FCL / month',
+      required: true,
+    },
+    {
+      key: 'destination',
+      label: 'Destination Port or City',
+      type: 'text',
+      placeholder: 'e.g. Jebel Ali, Dubai',
+      required: true,
+    },
+    {
+      key: 'specification',
+      label: 'Required Specification',
+      type: 'text',
+      placeholder: 'Grade, packing, moisture, etc.',
+      required: false,
+    },
+    {
+      key: 'timeline',
+      label: 'Expected Timeline',
+      type: 'text',
+      placeholder: 'e.g. Within 30 days',
+      required: false,
+    },
+    {
+      key: 'message',
+      label: 'Message / Additional Requirements',
+      type: 'textarea',
+      placeholder: 'Anything else we should know',
+      required: false,
+      full: true,
+    },
+  ],
   cards: [
     { icon: 'MapPin', label: 'Location', value: 'Kochi, Kerala, India', href: null },
     { icon: 'Phone', label: 'Call Us', value: '+91 484 000 0000', href: 'tel:+914840000000' },
@@ -1331,9 +1767,9 @@ export const contactPage = {
     { icon: 'MessageCircle', label: 'WhatsApp', value: 'Chat with us', href: 'https://wa.me/914840000000' },
   ],
   flow: [
-    { step: 'Submit', description: 'Fill out the role-based form with your requirement.' },
-    { step: 'Review', description: 'Our team reviews and routes it to the right specialist.' },
-    { step: 'We Reach Out', description: 'You hear back within one business day.' },
+    { step: 'Submit', description: 'Share your requirement with product, quantity, and destination.' },
+    { step: 'Review', description: 'Our team reviews the details and maps the practical next step.' },
+    { step: 'We Reach Out', description: 'You hear back with clear guidance on how to proceed.' },
   ],
   support: {
     heading: 'Our global support',

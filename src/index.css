@@ -9,6 +9,9 @@
   --ink: 28 20 16;
   --muted: 58 51 44;
   --line: 226 228 233;
+  --accent-gold-bright: #ffe08a;
+  --accent-gold: #e0b05a;
+  --accent-gold-dark: #8f6414;
 }
 
 .dark {
@@ -51,6 +54,15 @@
   }
 }
 
+@keyframes testimonial-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .flow-arrow-dash {
   animation: flow-dash 1.1s linear infinite;
 }
@@ -71,7 +83,8 @@
   .animate-float-fast,
   .flow-arrow-dash,
   .flow-arrow-dash-vertical,
-  .flow-arrow-head {
+  .flow-arrow-head,
+  .testimonial-progress-fill {
     animation: none;
   }
 }
@@ -138,11 +151,19 @@ body {
   font-weight: 500;
 }
 
-.text-gold-gradient {
-  background: linear-gradient(135deg, #d4a24c, #e0b05a, #ffbf00);
+.text-gold-gradient,
+.gold-text {
+  background-image: linear-gradient(
+    135deg,
+    var(--accent-gold-bright),
+    var(--accent-gold) 45%,
+    var(--accent-gold-dark)
+  );
+  background-size: 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Soft black wash on photographic images (skip circular avatars / logos marked data-no-dim) */

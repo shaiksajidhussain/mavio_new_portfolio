@@ -6,6 +6,8 @@ const variants = {
   navy: 'bg-navy text-white font-semibold hover:bg-navy-deep',
   outline:
     'border border-line text-ink hover:border-gold hover:text-navy dark:hover:text-gold',
+  outlineLight:
+    'border border-white/30 bg-transparent text-white hover:border-gold hover:bg-gold/10 hover:text-gold',
 }
 
 export default function Button({

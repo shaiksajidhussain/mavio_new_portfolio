@@ -1,69 +1,35 @@
-import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Plane } from 'lucide-react'
-import DottedMap from 'dotted-map/without-countries'
-import worldMapData from '../../data/worldMap.json'
-import { productsPage } from '../../data/siteContent'
-import Reveal from '../ui/Reveal'
-import SectionHeading from '../ui/SectionHeading'
+import { ChevronDown } from 'lucide-react'
 
-export default function ProductsHero() {
-  const mapSvgUri = useMemo(() => {
-    const map = new DottedMap({ map: worldMapData })
-    const svg = map.getSVG({
-      radius: 0.22,
-      color: '#ffffff26',
-      shape: 'circle',
-      backgroundColor: 'transparent',
-    })
-    return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`
-  }, [])
-
+export default function ProductsHero({ category }) {
   return (
-    <section className="relative -mt-[4.5rem] flex min-h-[420px] items-center overflow-hidden sm:-mt-[4.5rem] sm:min-h-[460px]">
-      <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img src={productsPage.hero.image} alt="" className="h-full w-full object-cover" />
+    <section className="relative -mt-[4.5rem] flex min-h-[58svh] items-end overflow-hidden md:min-h-[68svh]">
+      <div className="absolute inset-0 -z-20">
+        <img
+          key={category.slug}
+          src={category.image}
+          alt=""
+          data-no-dim
+          className="h-full w-full object-cover transition-opacity duration-500"
+        />
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
-      <img
-        src={mapSvgUri}
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-50"
-      />
+      <div className="absolute inset-0 -z-10 bg-black/50" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/80 via-transparent to-black/25" />
 
-      <span className="pointer-events-none absolute right-[12%] top-[22%] hidden sm:block">
-        <Plane
-          aria-hidden
-          size={26}
-          strokeWidth={1.5}
-          className="animate-float-slow text-gold/70"
-          style={{ '--float-rotate': '35deg' }}
-        />
-      </span>
-      <span className="pointer-events-none absolute right-[22%] bottom-[18%] hidden md:block">
-        <Plane
-          aria-hidden
-          size={18}
-          strokeWidth={1.5}
-          className="animate-float text-gold/50"
-          style={{ '--float-rotate': '-20deg' }}
-        />
-      </span>
+      <div className="container-px relative mx-auto flex w-full max-w-container flex-col pb-14 pt-[8rem] md:pb-16">
+        <Link
+          to="/"
+          className="inline-flex w-fit items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/85 transition-colors hover:text-gold"
+        >
+          ← Back to catalogue
+        </Link>
+        <h1 className="mt-8 font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          {category.name}
+        </h1>
+      </div>
 
-      <div className="container-px relative mx-auto w-full max-w-container pt-[4.5rem] sm:pt-[4.5rem]">
-        <Reveal stagger={0.08} className="border-l-2 border-gold-deep pl-6">
-          <SectionHeading as="h1" tone="onDark" size="hero" weight="bold">
-            Products
-          </SectionHeading>
-          <div className="mt-3 flex items-center gap-2 text-sm text-white/70">
-            <Link to="/" className="font-medium text-gold hover:text-gold-bright">
-              Home
-            </Link>
-            <ArrowRight size={14} />
-            <span className="text-white">Products</span>
-          </div>
-        </Reveal>
+      <div className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 text-white/70" aria-hidden>
+        <ChevronDown size={22} strokeWidth={1.5} className="animate-bounce" />
       </div>
     </section>
   )

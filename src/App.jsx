@@ -9,6 +9,7 @@ import ExportLogistics from './pages/ExportLogistics'
 import Faq from './pages/Faq'
 import Accreditations from './pages/Accreditations'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import Terms from './pages/Terms'
 import Sustainability from './pages/Sustainability'
 import Contact from './pages/Contact'
 import Products from './pages/Products'
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/resources/faq" element={<Faq />} />
         <Route path="/resources/accreditations" element={<Accreditations />} />
         <Route path="/resources/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/resources/terms" element={<Terms />} />
         <Route path="/sustainability" element={<Sustainability />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/products" element={<Products />} />

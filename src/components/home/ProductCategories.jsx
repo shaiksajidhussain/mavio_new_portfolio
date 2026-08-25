@@ -49,7 +49,7 @@ export default function ProductCategories() {
   }
 
   return (
-    <section className="relative overflow-hidden py-16 md:py-24">
+    <section className="relative overflow-hidden pb-16 pt-20 md:pb-24 md:pt-28">
       <RouteBackground />
       <div className="container-px mx-auto max-w-container text-center">
         <Reveal stagger={0}>
