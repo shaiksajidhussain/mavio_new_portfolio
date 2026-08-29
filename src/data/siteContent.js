@@ -535,6 +535,15 @@ export const about = {
 }
 
 export const productsPage = {
+  catalogue: {
+    eyebrow: 'Quality assured, globally sourced',
+    heading: 'Explore Our Premium Product Portfolio',
+    image:
+      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=2200&q=80',
+    overviewTitle: 'Products We Export',
+    overviewBody:
+      'Mavio Global is a supplier of agricultural commodities, seafood, and specialty chemicals from India. We work with a carefully selected network of growers and processors, coordinating quality checks, documentation, and logistics so every shipment meets destination-market standards.',
+  },
   hero: {
     image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1800&q=80',
   },
