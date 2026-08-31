@@ -652,9 +652,17 @@ export const whyChooseMavio = {
 
 export const partnerPage = {
   hero: {
-    eyebrow: 'Partner With Us',
-    heading: 'Partner with us',
-    subheading: 'Select your stream to see how we build long-term value together.',
+    eyebrow: 'Partner with Mavio Global',
+    heading: 'Build the next global trade relationship.',
+    lead: 'Great trade begins with the right partners.',
+    paragraphs: [
+      'Mavio Global connects trusted producers, manufacturers, sourcing partners, logistics specialists and international buyers to create reliable trade relationships across borders.',
+      'We are building a global trade network where quality is verified, communication is transparent, and every partnership is built for the long term.',
+    ],
+    close: ['Partner with Mavio Global.', 'Take your capabilities to the world.'],
+    cta: { label: 'Become a Partner', to: '#become-a-partner' },
+    image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=2200&q=80',
+    imageAlt: 'Producers preparing harvest for export at origin',
     buyer: {
       image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
       imageAlt: 'Container cranes loading freight at a busy port',
@@ -664,7 +672,84 @@ export const partnerPage = {
       imageAlt: 'Producers preparing harvest for export at origin',
     },
   },
+  partnerTypes: {
+    eyebrow: 'Who we partner with',
+    heading: 'Four ways into the network.',
+    subheading: 'Choose how you work. One application covers every partner type.',
+    items: [
+      {
+        id: 'producer',
+        label: 'Producer',
+        title: 'Producers',
+        body: 'Origin farms and growers ready to supply verified quality at consistent volume.',
+        image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1200&q=80',
+        imageAlt: 'Producers preparing harvest for export at origin',
+      },
+      {
+        id: 'manufacturer',
+        label: 'Manufacturer',
+        title: 'Manufacturers',
+        body: 'Processors and packers who can hold specification, hygiene, and dispatch windows.',
+        image: 'https://images.unsplash.com/photo-1723466998040-78d7e2ef6d72?auto=format&fit=crop&w=1200&q=80',
+        imageAlt: 'Manufacturing and packing line prepared for export',
+      },
+      {
+        id: 'sourcing',
+        label: 'Sourcing Partner',
+        title: 'Sourcing partners',
+        body: 'Category specialists who already know origin, grade, and reliable supply bases.',
+        image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=1200&q=80',
+        imageAlt: 'Quality inspection of sourced product at origin',
+      },
+      {
+        id: 'logistics',
+        label: 'Logistics Specialist',
+        title: 'Logistics specialists',
+        body: 'Freight, warehousing, and last-mile partners who keep cross-border movement visible.',
+        image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=1200&q=80',
+        imageAlt: 'Port logistics and container movement',
+      },
+    ],
+  },
+  applyForm: {
+    eyebrow: 'Become a Partner',
+    heading: 'Take your capabilities to the world.',
+    body: 'Partner with Mavio Global. Tell us who you are, what you handle, and we will come back with a practical next step.',
+    submitLabel: 'Become a Partner',
+    confirmation:
+      'Thank you. Your partner application has reached the Mavio Global team. We will review it and contact you with the next step.',
+    fields: [
+      {
+        key: 'partnerType',
+        label: 'Partner type',
+        type: 'select',
+        placeholder: 'Select how you work with us',
+        options: ['Producer', 'Manufacturer', 'Sourcing Partner', 'Logistics Specialist'],
+        required: true,
+      },
+      { key: 'name', label: 'Name', type: 'text', placeholder: 'Full name', required: true },
+      { key: 'email', label: 'Work email', type: 'email', placeholder: 'you@company.com', required: true },
+      { key: 'company', label: 'Company', type: 'text', placeholder: 'Company or farm name', required: true },
+      { key: 'country', label: 'Country', type: 'text', placeholder: 'Country', required: true },
+      { key: 'phone', label: 'Phone', type: 'tel', placeholder: '+91 …', required: false },
+      {
+        key: 'message',
+        label: 'What you offer',
+        type: 'textarea',
+        placeholder: 'Products, capacity, certifications, lanes, or regions you cover.',
+        required: true,
+        full: true,
+      },
+    ],
+  },
   whyPartner: {
+    heading: 'Great trade begins with the right partners.',
+    image: 'https://images.unsplash.com/photo-1755788060367-30e6e3d567fe?auto=format&fit=crop&w=1200&q=80',
+    imageAlt: 'Farm partner harvesting produce for international markets',
+    paragraphs: [
+      'Mavio Global connects trusted producers, manufacturers, sourcing partners, logistics specialists and international buyers to create reliable trade relationships across borders.',
+      'We are building a global trade network where quality is verified, communication is transparent, and every partnership is built for the long term.',
+    ],
     buyer: {
       heading: 'Why Partner With Mavio',
       image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=1200&q=80',
@@ -713,7 +798,7 @@ export const partnerPage = {
     },
     supplier: {
       heading: 'Our competitive advantage',
-      subheading: 'What suppliers get when they grow with Mavio as a long-term export partner.',
+      subheading: 'What partners get when they grow with Mavio as a long-term export relationship.',
       items: [
         {
           icon: 'Sprout',
@@ -791,6 +876,9 @@ export const partnerPage = {
     },
   },
   cta: {
+    heading: 'Partner with Mavio Global.',
+    body: 'Take your capabilities to the world. One form, four partner types — producers, manufacturers, sourcing partners, and logistics specialists.',
+    primaryCta: { label: 'Become a Partner', to: '#become-a-partner' },
     buyer: {
       heading: 'Ready to source with confidence?',
       body: 'Talk to our team about your next shipment — sample requests, MOQs and lead times, sorted in one call.',
@@ -799,7 +887,7 @@ export const partnerPage = {
     supplier: {
       heading: 'Ready to grow with a long-term partner?',
       body: 'If you grow, process or manufacture export-grade produce, seafood or specialty chemicals, we want to hear from you.',
-      primaryCta: { label: 'Become a Supplier', to: '/contact' },
+      primaryCta: { label: 'Become a Partner', to: '#become-a-partner' },
     },
   },
 }
