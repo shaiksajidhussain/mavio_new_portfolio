@@ -29,7 +29,9 @@ export default function ProductCards({ activeSlug }) {
                 src={product.image || category.image}
                 alt=""
                 data-no-dim
-                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/25 transition-colors duration-500 group-hover:bg-black/15" />
             </Link>

@@ -76,16 +76,20 @@ export default function EditorialMix() {
       <div className="mt-8 grid w-full gap-8 md:mt-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-start lg:gap-10">
         <div className="overflow-hidden rounded-2xl">
           <div className="relative h-72 w-full sm:h-[26rem] lg:h-[560px]">
-            {spices.products.map((item, i) => (
-              <img
-                key={item.name}
-                src={item.image}
-                alt=""
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-                  active === i ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
-            ))}
+            {spices.products.map((item, i) =>
+              Math.abs(active - i) <= 1 || i === active ? (
+                <img
+                  key={item.name}
+                  src={item.image}
+                  alt=""
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+                    active === i ? 'opacity-100' : 'opacity-0'
+                  }`}
+                />
+              ) : null
+            )}
           </div>
         </div>
 

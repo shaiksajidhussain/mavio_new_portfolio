@@ -6,7 +6,7 @@ import TrustGrid from './trust/TrustGrid'
 
 export default function SupplyChainShowcase() {
   return (
-    <section className="relative bg-bg py-16 md:py-24">
+    <section className="section-defer relative bg-bg py-16 md:py-24">
       <RouteBackground />
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0} className="text-center">

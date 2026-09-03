@@ -5,6 +5,7 @@ import { aboutPage } from '../../data/siteContent'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '../../lib/gsap'
 import Reveal from '../ui/Reveal'
 import SectionHeading from '../ui/SectionHeading'
+import SmartImage from '../ui/SmartImage'
 
 const beliefWords = aboutPage.belief.body.split(' ')
 
@@ -25,7 +26,7 @@ export default function AboutJourney() {
       const beliefLabel = root.querySelector('[data-belief-label]')
 
       if (!prefersReducedMotion) {
-        gsap.fromTo(heroImg, { scale: 1.18, filter: 'blur(8px)' }, { scale: 1, filter: 'blur(0px)', duration: 2, ease: 'power2.out' })
+        gsap.fromTo(heroImg, { scale: 1.12 }, { scale: 1, duration: 1.6, ease: 'power2.out' })
         gsap.from(heroCopy?.children || [], { y: 48, opacity: 0, duration: 1, stagger: 0.12, delay: 0.25, ease: 'power3.out' })
         gsap.to(heroImg, {
           yPercent: 18,
@@ -99,6 +100,8 @@ export default function AboutJourney() {
             src={hero.image}
             alt=""
             data-no-dim
+            fetchPriority="high"
+            decoding="async"
             className="h-[120%] w-full object-cover"
           />
         </div>
@@ -144,12 +147,12 @@ export default function AboutJourney() {
                 >
                   <Reveal y={48} scale={0.96} delay={0.05}>
                     <div className="group relative aspect-[16/11] overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]">
-                      <img
+                      <SmartImage
                         data-story-img
                         src={storyImages[i] || storyImages[0]}
                         alt=""
                         data-no-dim
-                        className="h-full w-full origin-center object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                        className="h-full w-full origin-center object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-black/75 transition-colors duration-500 group-hover:bg-black/60" />
                     </div>
@@ -178,11 +181,11 @@ export default function AboutJourney() {
           {panels.map((panel) => (
             <article key={panel.title} className="group relative overflow-hidden rounded-[1.75rem] md:rounded-[2rem]">
               <div className="relative h-[240px] overflow-hidden md:h-[280px]">
-                <img
+                <SmartImage
                   src={panel.image}
                   alt=""
                   data-no-dim
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/50 transition-colors duration-500 group-hover:bg-black/35" />
               </div>
@@ -196,7 +199,7 @@ export default function AboutJourney() {
       </section>
 
       <section data-belief className="relative flex min-h-[100svh] items-center overflow-hidden">
-        <img
+        <SmartImage
           data-belief-img
           src={belief.image}
           alt=""

@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import SmartImage from '../../ui/SmartImage'
 
 export default function TrustCard({ step, className = '' }) {
   const videoRef = useRef(null)
@@ -29,10 +30,10 @@ export default function TrustCard({ step, className = '' }) {
       onFocus={play}
       onBlur={stop}
     >
-      <img
+      <SmartImage
         src={step.image}
         alt=""
-        className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-110 ${
+        className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-105 ${
           playing ? 'opacity-0' : 'opacity-100'
         }`}
       />
@@ -41,8 +42,8 @@ export default function TrustCard({ step, className = '' }) {
         muted
         loop
         playsInline
-        preload="metadata"
-        className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-110 ${
+        preload="none"
+        className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-105 ${
           playing ? 'opacity-100' : 'opacity-0'
         }`}
       >

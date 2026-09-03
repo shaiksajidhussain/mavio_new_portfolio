@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { footer } from '../../data/siteContent'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
 import wordmark from '../../assets/logo-mavio-wordmark.svg'
+import SmartImage from '../ui/SmartImage'
 
 function YouTubeIcon() {
   return (
@@ -62,8 +63,7 @@ function SocialCard({ item }) {
     if (prefersReducedMotion) return
     gsap.set(imgRef.current, { transformOrigin: 'center center' })
     gsap.to(imgRef.current, {
-      scale: 1.14,
-      filter: 'grayscale(0) sepia(0) brightness(1)',
+      scale: 1.08,
       duration: 0.75,
       ease: 'power3.out',
     })
@@ -75,7 +75,6 @@ function SocialCard({ item }) {
   const leave = () => {
     gsap.to(imgRef.current, {
       scale: 1,
-      filter: 'grayscale(0.45) sepia(0.18) brightness(0.72)',
       duration: 0.6,
       ease: 'power3.out',
     })
@@ -96,7 +95,7 @@ function SocialCard({ item }) {
       onBlur={leave}
       className="group relative isolate aspect-square min-w-[68%] overflow-hidden rounded-[1.35rem] outline-none ring-0 transition-[box-shadow,transform] duration-300 snap-center focus-visible:ring-2 focus-visible:ring-white/70 sm:min-w-[42%] md:min-w-0 md:rounded-[1.6rem] hover:shadow-[0_18px_40px_rgba(0,0,0,0.28)] hover:-translate-y-1"
     >
-      <img
+      <SmartImage
         ref={imgRef}
         src={item.image}
         alt=""

@@ -19,6 +19,7 @@ export default function Hero() {
   const wordsRef = useRef([])
   const copyRef = useRef(null)
   const [activeSlide, setActiveSlide] = useState(0)
+  const [readySlides, setReadySlides] = useState(() => new Set([0]))
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -26,6 +27,21 @@ export default function Hero() {
     }, SLIDE_INTERVAL)
     return () => clearInterval(id)
   }, [])
+
+  useEffect(() => {
+    const next = (activeSlide + 1) % hero.images.length
+    const wait = activeSlide === 0 ? 1400 : 0
+    const id = window.setTimeout(() => {
+      setReadySlides((prev) => {
+        if (prev.has(activeSlide) && prev.has(next)) return prev
+        const copy = new Set(prev)
+        copy.add(activeSlide)
+        copy.add(next)
+        return copy
+      })
+    }, wait)
+    return () => window.clearTimeout(id)
+  }, [activeSlide])
 
   useEffect(() => {
     if (prefersReducedMotion) return
@@ -56,17 +72,21 @@ export default function Hero() {
       className="relative -mt-[4.5rem] flex min-h-screen flex-col overflow-hidden sm:-mt-[4.5rem]"
     >
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <div ref={imgWrapRef} className="relative h-full w-full scale-110">
-          {hero.images.map((img, i) => (
-            <img
-              key={img.src}
-              src={img.src}
-              alt={img.alt}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity ease-in-out ${
-                prefersReducedMotion ? 'duration-0' : 'duration-[1200ms]'
-              } ${i === activeSlide ? 'opacity-100' : 'opacity-0'}`}
-            />
-          ))}
+        <div ref={imgWrapRef} className="relative h-full w-full will-change-transform">
+          {hero.images.map((img, i) =>
+            readySlides.has(i) ? (
+              <img
+                key={img.src}
+                src={img.src}
+                alt={img.alt}
+                fetchPriority={i === 0 ? 'high' : 'low'}
+                decoding="async"
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity ease-in-out ${
+                  prefersReducedMotion ? 'duration-0' : 'duration-[1200ms]'
+                } ${i === activeSlide ? 'opacity-100' : 'opacity-0'}`}
+              />
+            ) : null
+          )}
         </div>
       </div>
       <div className="absolute inset-0 -z-10 bg-black/50" />

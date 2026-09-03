@@ -11,7 +11,7 @@ export default function AccreditationsHero() {
   return (
     <section className="relative -mt-[4.5rem] flex min-h-[70svh] items-end overflow-hidden md:min-h-[78svh]">
       <div className="absolute inset-0 -z-20">
-        <img src={hero.image} alt={hero.imageAlt} data-no-dim className="h-full w-full object-cover" />
+        <img src={hero.image} alt={hero.imageAlt} data-no-dim fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
       </div>
       <div className="absolute inset-0 -z-10 bg-black/50" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-black/25" />

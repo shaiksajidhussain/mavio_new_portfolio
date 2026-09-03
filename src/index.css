@@ -189,3 +189,9 @@ img[class*='object-cover']:not([class*='rounded-full']):not([data-no-dim]) {
 .media-dim > img {
   filter: none;
 }
+
+/* Skip layout/paint for offscreen homepage blocks */
+.section-defer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 820px;
+}

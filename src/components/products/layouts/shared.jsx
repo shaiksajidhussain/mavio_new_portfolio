@@ -1,13 +1,60 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { useEnquiryModal } from '../../../context/EnquiryModalContext'
 import Button from '../../ui/Button'
-import { productCategories, productCatalog } from '../../../data/siteContent'
+import { productCategories, productCatalog, productCatalogue } from '../../../data/siteContent'
+
+export function useIsLg() {
+  const [isLg, setIsLg] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia('(min-width: 1024px)').matches : true
+  )
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const apply = () => setIsLg(mq.matches)
+    apply()
+    mq.addEventListener('change', apply)
+    return () => mq.removeEventListener('change', apply)
+  }, [])
+
+  return isLg
+}
 
 export function useProductSection(activeSlug) {
   const category = productCategories.find((c) => c.slug === activeSlug)
-  const products = productCatalog[activeSlug] || []
+  const products = (productCatalog[activeSlug] || []).map((item) => ({
+    ...item,
+    categorySlug: activeSlug,
+    categoryImage: category?.image,
+  }))
   const { openEnquiry } = useEnquiryModal()
   return { category, products, openEnquiry, activeSlug }
+}
+
+export function productsForCategory(slug) {
+  if (!slug) return []
+  if (slug === 'spices' && productCatalogue.spices?.products?.length) {
+    return productCatalogue.spices.products.map((item) => ({
+      slug: null,
+      name: item.name,
+      description: item.body,
+      image: item.image,
+      categorySlug: 'spices',
+    }))
+  }
+  const category = productCategories.find((c) => c.slug === slug)
+  return (productCatalog[slug] || []).map((item) => ({
+    ...item,
+    categorySlug: slug,
+    categoryImage: category?.image,
+  }))
+}
+
+export function productHref(product, fallbackSlug) {
+  const categorySlug = product.categorySlug || fallbackSlug
+  if (!categorySlug) return '/products'
+  if (product.slug) return `/products/${categorySlug}/${product.slug}`
+  return `/products/${categorySlug}`
 }
 
 export function CategoryIntro({ category }) {

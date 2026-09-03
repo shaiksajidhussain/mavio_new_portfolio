@@ -15,6 +15,7 @@ export default function MarketStack() {
           >
             <MarketCard
               market={market}
+              priority={i === 0}
               className="h-[52vh] min-h-[240px] max-h-[400px] shadow-[0_20px_40px_rgba(2,16,40,0.16)] md:h-[56vh] md:max-h-[440px]"
             />
           </div>

@@ -10,9 +10,17 @@ export default function ProofCards() {
             key={item.code}
             className="group flex h-full flex-col overflow-hidden rounded-[1.5rem] border border-line bg-surface transition-colors duration-300 hover:border-gold-deep"
           >
-            <div className="flex items-center justify-between gap-3 border-b border-line bg-navy-deep px-5 py-4">
-              <span className="gold-text font-display text-2xl font-bold tracking-tight">{item.code}</span>
-              <span className="rounded-full border border-gold-deep/40 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">
+            <div className="relative flex items-center justify-between gap-3 overflow-hidden border-b border-line bg-navy-deep px-5 py-4">
+              {item.watermark ? (
+                <img
+                  src={item.watermark}
+                  alt=""
+                  data-no-dim
+                  className="pointer-events-none absolute right-3 top-1/2 h-16 w-16 -translate-y-1/2 object-contain opacity-25 md:h-20 md:w-20"
+                />
+              ) : null}
+              <span className="relative gold-text font-display text-2xl font-bold tracking-tight">{item.code}</span>
+              <span className="relative rounded-full border border-gold-deep/40 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">
                 On file
               </span>
             </div>

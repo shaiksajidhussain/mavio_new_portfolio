@@ -1,15 +1,17 @@
 import { trustBeforeTransaction } from '../../../data/siteContent'
+import SmartImage from '../../ui/SmartImage'
 
 const { markets } = trustBeforeTransaction
 
-export default function MarketCard({ market, className = '' }) {
+export default function MarketCard({ market, className = '', priority = false }) {
   return (
     <article className={`group relative overflow-hidden rounded-[1.75rem] ${className}`}>
-      <img
+      <SmartImage
         src={market.image}
         alt=""
         data-no-dim
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        priority={priority}
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
       />
       <div className="absolute inset-0 bg-black/50 transition-colors duration-500 group-hover:bg-black/35" />
       <div className="relative flex h-full flex-col justify-end p-5 md:p-6">

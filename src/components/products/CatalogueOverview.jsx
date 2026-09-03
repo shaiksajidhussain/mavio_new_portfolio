@@ -1,4 +1,5 @@
 import { productCategories, productsPage } from '../../data/siteContent'
+import SmartImage from '../ui/SmartImage'
 
 export default function CatalogueOverview({ onSelect }) {
   const { overviewTitle, overviewBody } = productsPage.catalogue
@@ -21,11 +22,11 @@ export default function CatalogueOverview({ onSelect }) {
             onClick={() => onSelect?.(cat.slug)}
             className="group relative aspect-[4/5] overflow-hidden rounded-[1.35rem] text-left outline-none transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-gold md:rounded-[1.5rem]"
           >
-            <img
+            <SmartImage
               src={cat.image}
               alt=""
               data-no-dim
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
             <div className="absolute inset-0 bg-black/20 transition-colors duration-500 group-hover:bg-black/10" />

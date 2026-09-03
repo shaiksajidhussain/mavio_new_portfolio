@@ -39,6 +39,8 @@ function TestimonialVideoCard({ item }) {
       <img
         src={item.avatar}
         alt=""
+        loading="lazy"
+        decoding="async"
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
           playing ? 'opacity-0' : 'opacity-100'
         }`}
@@ -48,7 +50,7 @@ function TestimonialVideoCard({ item }) {
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
           playing ? 'opacity-100' : 'opacity-0'
         }`}

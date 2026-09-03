@@ -14,6 +14,8 @@ export default function ProductsHero({ category = null }) {
           src={isCatalogue ? catalogue.image : category.image}
           alt=""
           data-no-dim
+          fetchPriority="high"
+          decoding="async"
           className="h-full w-full object-cover transition-opacity duration-500"
         />
       </div>
