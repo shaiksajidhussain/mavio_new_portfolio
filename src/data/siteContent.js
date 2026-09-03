@@ -53,24 +53,24 @@ export const hero = {
   secondaryCta: { label: 'Explore Products', to: '/products' },
   images: [
     {
-      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/container-ship-loading-unloading-deep-sea-port-sunset-aerial-view-business-logistic-import-export.avif',
-      alt: 'Container ship loading and unloading at a deep-sea port at sunset',
+      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/background-image-with-rows-export-import-cargo-containers-various-colors-3d-rendering_3_11zon.webp',
+      alt: 'Rows of export-import cargo containers',
     },
     {
-      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/red+chilli.avif',
-      alt: 'Export-grade red chilli at origin',
-    },
-    {
-      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/container-logistic-logistics-transportation-container-cargo-ship-ship-port-container-truck.avif',
+      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/container-logistic-logistics-transportation-container-cargo-ship-ship-port-container-truck_5_11zon.webp',
       alt: 'Container logistics across ship, port, and truck',
     },
     {
-      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/background-image-with-rows-export-import-cargo-containers-various-colors-3d-rendering.avif',
-      alt: 'Rows of export-import cargo containers',
+      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/container-ship-loading-unloading-deep-sea-port-sunset-aerial-view-business-logistic-import-export_6_11zon.webp',
+      alt: 'Container ship loading and unloading at a deep-sea port at sunset',
+    },
+    {
+      src: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/red+chilli_8_11zon.webp',
+      alt: 'Export-grade red chilli at origin',
     },
   ],
   secondaryImage:
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/red+chilli.avif',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/red+chilli_8_11zon.webp',
   secondaryImageAlt: 'Export-grade red chilli at origin',
   trustAvatars: [
     'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=100&q=80',
@@ -104,7 +104,7 @@ export const trustBeforeTransaction = {
         'Built around UAE customs and buyer requirements.',
         'From India to Dubai, compliance comes first.',
       ],
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/USA_UAE_THAILAND/UAE_2.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/UAE_2_17_11zon.webp',
     },
     {
       country: 'USA',
@@ -113,7 +113,7 @@ export const trustBeforeTransaction = {
         'Built around food-safety and import requirements.',
         'The sample you approve is the product you receive.',
       ],
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/USA_UAE_THAILAND/USA_2.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/USA_2_18_11zon.webp',
     },
     {
       country: 'Europe',
@@ -122,7 +122,7 @@ export const trustBeforeTransaction = {
         'Traceability and documentation built into every shipment.',
         'From farm region to final delivery, every detail accounted for.',
       ],
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/EUROPE/Europe_2.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/Europe_2_3_11zon.webp',
     },
     {
       country: 'Malaysia',
@@ -131,7 +131,7 @@ export const trustBeforeTransaction = {
         'Every shipment built around the approved specification.',
         'So your next order feels like the first.',
       ],
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/MALAYSIA/MALAYSIA_2.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/MALAYSIA_2_4_11zon.webp',
     },
     {
       country: 'Vietnam',
@@ -140,7 +140,7 @@ export const trustBeforeTransaction = {
         'Procurement, packing and documentation coordinated as one.',
         'Multiple containers. One controlled supply process.',
       ],
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/VIETNAM/VIETNAM.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/VIETNAM_19_11zon.webp',
     },
     {
       country: 'Singapore',
@@ -149,7 +149,7 @@ export const trustBeforeTransaction = {
         'Safety and compliance handled alongside production.',
         'Ready in the drum. Ready on paper.',
       ],
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/SINGAPORE/SINGAPORE.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/SINGAPORE_10_11zon.webp',
     },
     {
       country: 'Thailand',
@@ -158,7 +158,7 @@ export const trustBeforeTransaction = {
         'Every detail coordinated from origin to port.',
         'Reliable execution, without the unnecessary complexity.',
       ],
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/USA_UAE_THAILAND/THAILAND.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/trust_before_transaction/THAILAND_14_11zon.webp',
     },
   ],
 }
@@ -171,36 +171,36 @@ export const productCatalogue = {
     name: 'Spices',
     intro:
       'From the rich agricultural belts of Guntur and Nizamabad to kitchens around the world, our spice story starts at origin. Every lot is selected, graded, tested, packed, and prepared around the requirements of the destination market.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/teja+s17-red-chilli-500x500.avif',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/red+chilli_8_11zon.webp',
     products: [
       {
         name: 'Teja S17 Red Chilli',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/teja+s17-red-chilli-500x500.avif',
+        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/red+chilli_8_11zon.webp',
         body: 'A high-pungency chilli variety grown in the Guntur belt of Andhra Pradesh, prized globally for its sharp heat and deep red colour. Teja S17 is widely used in chilli powder production, oleoresin extraction, and sauce manufacturing where consistent Scoville strength matters. We grade for colour value, moisture, and pungency before every shipment, and pack to protect colour and heat retention through transit — critical for buyers running continuous production lines.',
       },
       {
         name: 'Byadgi Chilli',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/byadgi-chilli_2.avif',
+        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/byadgi-chilli_2_4_11zon.webp',
         body: 'Grown primarily in Karnataka, Byadgi chilli is known for its deep red colour and mild-to-moderate heat, making it the preferred choice for colour-focused applications — oleoresin, natural food colouring, and culinary blends where visual richness matters more than intensity. We select for skin thickness and colour extraction potential, and grade every lot to match the buyer\'s end-use specification.',
       },
       {
         name: 'Stem and Stemless Chilli',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/stem+and+stemless+chilli_1.avif',
+        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/stem+and+stemless+chilli_1_13_11zon.webp',
         body: 'Available in both whole-stem and destemmed formats to match different processing lines — destemmed for direct powder production, stemmed for buyers who process at their own facility. Sorting and stem-removal are carried out to consistent standards, so every container matches the grade a buyer has already approved.',
       },
       {
         name: 'Chilli Powder',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/red-chilli-powder-with-dried-red-chillies.avif',
+        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/red-chilli-powder-with-dried-red-chillies_9_11zon.webp',
         body: 'Ground to order from selected chilli varieties, with colour value, mesh size, and moisture content controlled to buyer specification. Whether the requirement is culinary-grade heat or industrial colour extraction, grinding and packing are matched to the product\'s final application.',
       },
       {
         name: 'Turmeric Finger',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/turmeric-finger.avif',
+        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/turmeric-finger_15_11zon.webp',
         body: 'Whole, unpeeled turmeric rhizomes sourced from India\'s major turmeric belts, valued for curcumin content, colour, and aroma. Turmeric finger is dried and graded before shipment, with curcumin percentage tested where required — an essential detail for buyers in pharmaceutical, nutraceutical, and premium culinary markets.',
       },
       {
         name: 'Turmeric Powder',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/turmeric-powder-fresh-turmeric-wooden-spoon-with-green-leaf-old-wooden-table-herbs-are-native-southeast-asia.avif',
+        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/turmeric-powder-fresh-turmeric-wooden-spoon-with-green-leaf-old-wooden-table-herbs-are-native-southeast-asia_16_11zon.webp',
         body: 'Finely ground from selected turmeric fingers, with curcumin content, colour, and fineness matched to the buyer\'s requirement — from standard culinary grade to high-curcumin variants for health and wellness applications. Every batch is tested before packing to confirm it meets the agreed specification.',
       },
     ],
@@ -439,7 +439,7 @@ export const supplyChainSteps = [
     longDescription:
       'We start where the product starts. Procurement focuses on identifying the right supply, understanding availability, and matching it to what the buyer actually needs.',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/2c9d6ce9-6cc7-4a73-9958-beb5aaaeb408.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/2c9d6ce9-6cc7-4a73-9958-beb5aaaeb408_1_11zon.webp',
     video: 'https://videos.pexels.com/video-files/2887460/2887460-sd_640_360_25fps.mp4',
   },
   {
@@ -451,7 +451,7 @@ export const supplyChainSteps = [
     longDescription:
       'Quantity alone doesn’t make a shipment commercially useful. Size, appearance, grade, moisture, colour, and purity all matter — handling is aligned to the agreed specification from the start.',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/sorting_2.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/sorting_2_11_11zon.webp',
     video: 'https://videos.pexels.com/video-files/3571264/3571264-sd_640_360_30fps.mp4',
   },
   {
@@ -463,7 +463,7 @@ export const supplyChainSteps = [
     longDescription:
       'Confidence is stronger when it’s measurable. Where applicable, products are tested and inspected against agreed parameters before they ever reach the port.',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/researchers-laboratories-medical-vaccines-generative-ai-art.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/researchers-laboratories-medical-vaccines-generative-ai-art_2_11zon.webp',
     video: 'https://videos.pexels.com/video-files/3195394/3195394-sd_640_360_25fps.mp4',
   },
   {
@@ -475,7 +475,7 @@ export const supplyChainSteps = [
     longDescription:
       'Packaging is part of the journey, not an afterthought. We coordinate export-suitable packing built to protect quality through handling, storage, and transport.',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/3748330d-e756-4a07-b919-cc0618a0713e.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/3748330d-e756-4a07-b919-cc0618a0713e_2_11zon.webp',
     video: 'https://videos.pexels.com/video-files/7578552/7578552-sd_640_360_30fps.mp4',
   },
   {
@@ -487,7 +487,7 @@ export const supplyChainSteps = [
     longDescription:
       'International trade is as much paperwork as it is physical movement. We coordinate commercial and shipping documentation, customs processes, freight, and shipment milestones through the right partners.',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/Custom-Clearance.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/Custom-Clearance_7_11zon.webp',
     video: 'https://videos.pexels.com/video-files/3129957/3129957-sd_640_360_25fps.mp4',
   },
   {
@@ -499,7 +499,7 @@ export const supplyChainSteps = [
     longDescription:
       'Once the shipment moves, you shouldn’t have to wonder what’s happening. Milestones and updates are communicated clearly — what’s happened, what’s happening, and what’s next.',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/16196946_375-mj-1289-fon-l.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/the_chain_of_trust/16196946_375-mj-1289-fon-l_1_11zon.webp',
     video: 'https://videos.pexels.com/video-files/3129671/3129671-sd_640_360_30fps.mp4',
   },
 ]
@@ -1619,32 +1619,32 @@ export const footer = {
       label: 'YouTube',
       href: 'https://youtube.com',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/youtube_2.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/youtube_5_11zon_5_11zon.webp',
     },
     {
       label: 'Facebook',
       href: 'https://facebook.com',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/facebook.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/facebook_1_11zon_1_11zon.webp',
     },
     {
       label: 'Instagram',
       href: 'https://instagram.com',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/instagram.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/instagram_2_11zon_2_11zon.webp',
       showLogo: true,
     },
     {
       label: 'LinkedIn',
       href: 'https://linkedin.com',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/linkedin.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/linkedin_3_11zon_3_11zon.webp',
     },
     {
       label: 'X',
       href: 'https://x.com',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/x.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/social_media/x_4_11zon_4_11zon.webp',
     },
   ],
   contact: {

@@ -84,6 +84,22 @@ export default function Testimonials() {
   const [paused, setPaused] = useState(false)
   const count = testimonials.length
 
+  const visibleRef = useRef(false)
+
+  useEffect(() => {
+    const section = trackRef.current?.closest('section')
+    if (!section || typeof IntersectionObserver === 'undefined') {
+      visibleRef.current = true
+      return
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => { visibleRef.current = entry.isIntersecting },
+      { threshold: 0.3 }
+    )
+    io.observe(section)
+    return () => io.disconnect()
+  }, [])
+
   const scrollToIndex = (index) => {
     const el = trackRef.current
     const card = el?.querySelector('[data-card]')
@@ -100,13 +116,14 @@ export default function Testimonials() {
   useEffect(() => {
     if (prefersReducedMotion || paused || count < 2) return
     const id = setTimeout(() => {
+      if (!visibleRef.current) return
       setActiveIndex((prev) => (prev + 1) % count)
     }, AUTO_MS)
     return () => clearTimeout(id)
   }, [activeIndex, paused, count])
 
   return (
-    <section className="relative overflow-hidden py-16 md:py-24">
+    <section className="relative overflow-x-clip py-16 md:py-24">
       <RouteBackground />
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0} className="max-w-xl">
