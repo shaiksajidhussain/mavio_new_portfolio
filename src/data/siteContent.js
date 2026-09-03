@@ -175,7 +175,7 @@ export const productCatalogue = {
     products: [
       {
         name: 'Teja S17 Red Chilli',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/hero/red+chilli_8_11zon.webp',
+        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/teja+s17-red-chilli-500x500.avif',
         body: 'A high-pungency chilli variety grown in the Guntur belt of Andhra Pradesh, prized globally for its sharp heat and deep red colour. Teja S17 is widely used in chilli powder production, oleoresin extraction, and sauce manufacturing where consistent Scoville strength matters. We grade for colour value, moisture, and pungency before every shipment, and pack to protect colour and heat retention through transit — critical for buyers running continuous production lines.',
       },
       {
