@@ -1,16 +1,12 @@
-import { useMemo, useState } from 'react'
-import { ComposableMap, Geographies, Geography, Marker } from 'react-simple-maps'
-import { MapPin, Plane, Ship } from 'lucide-react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ComposableMap, Geographies, Geography, Marker, useMapContext } from 'react-simple-maps'
 import { brand, countryLeaders, regions } from '../../data/siteContent'
 import { useTheme } from '../../context/ThemeContext'
+import { gsap, prefersReducedMotion } from '../../lib/gsap'
 import Reveal from './Reveal'
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'
-
-export const MAP_STYLES = [
-  { id: 'classic', n: '01', name: 'Classic' },
-  { id: 'choropleth', n: '02', name: 'Growth' },
-]
+const GOLD = '#d4a24c'
 
 /** ISO numeric → short map label + centroid for choropleth callouts */
 const countryMeta = {
@@ -42,34 +38,6 @@ const countryMeta = {
   '554': { code: 'NZ', label: 'N. Zealand', lat: -41, lng: 174, tier: 'growth' },
 }
 
-const classicPalettes = {
-  light: {
-    card: '#ffffff',
-    country: '#e8edf3',
-    served: '#c5d0de',
-    active: '#d4a24c',
-    stroke: '#ffffff',
-    text: '#0b2442',
-  },
-  dark: {
-    card: '#0f2e52',
-    country: '#1a3558',
-    served: '#2a4f78',
-    active: '#d4a24c',
-    stroke: '#0f2e52',
-    text: '#ffffff',
-  },
-  black: {
-    card: '#0a0a0a',
-    country: '#1a1a1a',
-    served: '#2a2a2a',
-    active: '#d4a24c',
-    stroke: '#0a0a0a',
-    text: '#ffffff',
-  },
-}
-
-/** Theme chrome (card / strokes / text) */
 const choroplethChrome = {
   light: {
     card: '#ffffff',
@@ -94,61 +62,29 @@ const choroplethChrome = {
   },
 }
 
-/** Pickable market-focus color schemes (brand-first defaults) */
-export const GROWTH_COLOR_SCHEMES = [
-  {
-    id: 'gold',
-    name: 'Gold',
-    home: '#d4a24c',
-    core: '#0b2442',
-    strong: '#1a4a7a',
-    growth: '#7a93b0',
-    none: '#d5dde8',
+const goldScheme = {
+  light: {
+    home: GOLD,
+    served: '#c5d0de',
+    none: '#e8edf3',
   },
-  {
-    id: 'navy',
-    name: 'Navy',
-    home: '#e0b05a',
-    core: '#021023',
-    strong: '#0b2442',
-    growth: '#3d5a80',
-    none: '#cfd8e6',
+  dark: {
+    home: GOLD,
+    served: '#3d4d61',
+    none: '#1a3558',
   },
-  {
-    id: 'ocean',
-    name: 'Ocean',
-    home: '#d4a24c',
-    core: '#0e4d6e',
-    strong: '#1a7a9e',
-    growth: '#6bb3c9',
-    none: '#d2e4ea',
+  black: {
+    home: GOLD,
+    served: '#2a2a2a',
+    none: '#1a1a1a',
   },
-  {
-    id: 'forest',
-    name: 'Forest',
-    home: '#e08a2c',
-    core: '#1f7a45',
-    strong: '#4fad6e',
-    growth: '#9fd4a8',
-    none: '#d5dde8',
-  },
-  {
-    id: 'sand',
-    name: 'Sand',
-    home: '#c9892e',
-    core: '#5c4a32',
-    strong: '#8a7355',
-    growth: '#c4b49a',
-    none: '#e8e2d8',
-  },
-]
+}
 
-function fillForTier(tier, scheme) {
-  if (tier === 'home') return scheme.home
-  if (tier === 'core') return scheme.core
-  if (tier === 'strong') return scheme.strong
-  if (tier === 'growth') return scheme.growth
-  return scheme.none
+function fillForCountry(id, scheme) {
+  const meta = countryMeta[id]
+  if (!meta) return scheme.none
+  if (meta.tier === 'home') return scheme.home
+  return scheme.served
 }
 
 function normalizeId(id) {
@@ -185,7 +121,7 @@ function LeaderPopup({ leader, x, y, placement = 'above' }) {
             src={leader.image}
             alt=""
             data-no-dim
-            className="block h-32 w-32 object-cover object-top sm:h-36 sm:w-36"
+            className="block h-32 w-32 bg-bg-muted object-cover object-top sm:h-36 sm:w-36"
             onError={() => setImgFailed(true)}
           />
         ) : (
@@ -281,6 +217,64 @@ function CountryLabel({ meta, color, hideHomeLabel = false }) {
   )
 }
 
+const INDIA_ORIGIN = [78.5, 21.5]
+
+function projectLngLat(projection, lng, lat) {
+  const pt = projection([lng, lat])
+  if (!pt || Number.isNaN(pt[0]) || Number.isNaN(pt[1])) return null
+  return { x: pt[0], y: pt[1] }
+}
+
+/** Aceternity WorldMap-style quadratic arc that always bows upward on screen. */
+function createCurvedPath(start, end) {
+  const dist = Math.hypot(end.x - start.x, end.y - start.y)
+  const lift = Math.min(72, Math.max(32, dist * 0.22))
+  const midX = (start.x + end.x) / 2
+  const midY = Math.max(10, Math.min(start.y, end.y) - lift)
+  return `M ${start.x} ${start.y} Q ${midX} ${midY} ${end.x} ${end.y}`
+}
+
+function TradeWires({ destinations, color }) {
+  const { projection } = useMapContext()
+  const start = projectLngLat(projection, INDIA_ORIGIN[0], INDIA_ORIGIN[1])
+  if (!start) return null
+
+  return (
+    <g data-trade-routes style={{ pointerEvents: 'none' }}>
+      <defs>
+        <linearGradient id="growth-wire-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor={color} stopOpacity="0" />
+          <stop offset="12%" stopColor={color} stopOpacity="1" />
+          <stop offset="88%" stopColor={color} stopOpacity="1" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      {destinations.map((item) => {
+        const end = projectLngLat(projection, item.lng, item.lat)
+        if (!end) return null
+        return (
+          <g key={item.id}>
+            <path
+              d={createCurvedPath(start, end)}
+              fill="none"
+              stroke="url(#growth-wire-grad)"
+              strokeWidth={1.45}
+              strokeLinecap="round"
+              pathLength={1}
+              strokeDasharray={1}
+              strokeDashoffset={1}
+            />
+            <circle cx={end.x} cy={end.y} r={5.5} fill={color} opacity={0} data-wire-glow />
+            <circle cx={end.x} cy={end.y} r={2.2} fill={color} opacity={0} data-wire-dot />
+          </g>
+        )
+      })}
+      <circle cx={start.x} cy={start.y} r={6.5} fill={color} opacity={0} data-wire-glow />
+      <circle cx={start.x} cy={start.y} r={2.6} fill={color} opacity={0} data-wire-dot />
+    </g>
+  )
+}
+
 const tierTitles = {
   home: 'Home Country',
   core: 'Core market',
@@ -305,217 +299,15 @@ function GrowthTitlePopup({ title, subtitle, x, y, placement = 'above', accent =
   )
 }
 
-function useMapHover(indiaRegion) {
-  const [activeRegion, setActiveRegion] = useState(indiaRegion)
-  const [hoveredLeader, setHoveredLeader] = useState(null)
-  const [popupPos, setPopupPos] = useState({ x: 0, y: 0, placement: 'above' })
-
-  const clearHover = () => {
-    setActiveRegion(indiaRegion)
-    setHoveredLeader(null)
-  }
-
-  const showLeader = (leader, e) => {
-    const stage = e.currentTarget.closest('[data-map-stage]')
-    const rect = stage?.getBoundingClientRect()
-    if (!rect) return
-    setPopupPos(getPopupPos(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height))
-    setHoveredLeader(leader)
-  }
-
-  const moveLeader = (leader, e) => {
-    const stage = e.currentTarget.closest('[data-map-stage]')
-    const rect = stage?.getBoundingClientRect()
-    if (!rect) return
-    setPopupPos(getPopupPos(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height))
-    if (leader) setHoveredLeader(leader)
-  }
-
-  return {
-    activeRegion,
-    setActiveRegion,
-    hoveredLeader,
-    setHoveredLeader,
-    popupPos,
-    clearHover,
-    showLeader,
-    moveLeader,
-  }
-}
-
-function ClassicMap({ countryToRegion, marketRegions, indiaRegion }) {
-  const { theme } = useTheme()
-  const p = classicPalettes[theme] ?? classicPalettes.light
-  const {
-    activeRegion,
-    setActiveRegion,
-    hoveredLeader,
-    setHoveredLeader,
-    popupPos,
-    clearHover,
-    showLeader,
-    moveLeader,
-  } = useMapHover(indiaRegion)
-  const shown = activeRegion
-
-  return (
-    <>
-      <span className="pointer-events-none absolute -right-4 -top-7 z-30 hidden sm:block">
-        <Plane
-          aria-hidden
-          size={30}
-          strokeWidth={1.5}
-          className="animate-float-slow text-gold-deep/60"
-          style={{ '--float-rotate': '35deg' }}
-        />
-      </span>
-      <svg
-        aria-hidden
-        viewBox="0 0 60 60"
-        className="pointer-events-none absolute -right-8 top-8 z-20 hidden h-14 w-14 animate-float text-gold-deep/30 sm:block"
-      >
-        <circle cx="30" cy="30" r="26" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 5" />
-      </svg>
-      <span className="pointer-events-none absolute -left-5 bottom-16 z-30 hidden -scale-x-100 sm:block">
-        <Plane
-          aria-hidden
-          size={24}
-          strokeWidth={1.5}
-          className="animate-float text-gold-deep/50"
-          style={{ '--float-rotate': '-25deg' }}
-        />
-      </span>
-      <span className="pointer-events-none absolute -bottom-5 right-10 z-30 hidden sm:block">
-        <Ship
-          aria-hidden
-          size={26}
-          strokeWidth={1.5}
-          className="animate-float-slow text-gold-deep/50"
-          style={{ '--float-rotate': '-4deg' }}
-        />
-      </span>
-
-      <div className="relative overflow-hidden rounded-3xl border border-line shadow-card" style={{ backgroundColor: p.card }}>
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-24 left-1/2 z-10 h-40 w-[140%] -translate-x-1/2 rounded-[50%]"
-          style={{ backgroundColor: p.card }}
-        />
-
-        <div className="relative" data-map-stage onMouseLeave={clearHover}>
-          {hoveredLeader ? (
-            <LeaderPopup
-              key={hoveredLeader.country}
-              leader={hoveredLeader}
-              x={popupPos.x}
-              y={popupPos.y}
-              placement={popupPos.placement}
-            />
-          ) : null}
-
-          <ComposableMap
-            projection="geoEqualEarth"
-            projectionConfig={{ scale: 150 }}
-            width={800}
-            height={430}
-            style={{ width: '100%', height: 'auto', display: 'block' }}
-          >
-            <Geographies geography={geoUrl}>
-              {({ geographies }) =>
-                geographies.map((geo) => {
-                  const id = normalizeId(geo.id)
-                  const region = countryToRegion.get(id)
-                  const leader = countryLeaders[id] || null
-                  const isActive = shown && region?.name === shown.name
-                  const isServed = Boolean(region)
-                  const fill = isActive ? p.active : isServed ? p.served : p.country
-
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill={fill}
-                      stroke={p.stroke}
-                      strokeWidth={0.55}
-                      onMouseEnter={(e) => {
-                        if (region) setActiveRegion(region)
-                        if (leader) showLeader(leader, e)
-                        else setHoveredLeader(null)
-                      }}
-                      onMouseMove={(e) => {
-                        if (leader) moveLeader(leader, e)
-                      }}
-                      onClick={() => {
-                        if (!region) return
-                        setActiveRegion(region)
-                      }}
-                      style={{
-                        default: {
-                          outline: 'none',
-                          cursor: isServed ? 'pointer' : 'default',
-                          transition: 'fill 0.25s ease, filter 0.25s ease',
-                          filter: isActive ? 'drop-shadow(0 6px 10px rgba(10,16,32,0.28))' : 'none',
-                        },
-                        hover: {
-                          outline: 'none',
-                          fill: isServed ? p.active : p.country,
-                          cursor: isServed ? 'pointer' : 'default',
-                        },
-                        pressed: {
-                          outline: 'none',
-                          fill: isServed ? p.active : p.country,
-                        },
-                      }}
-                    />
-                  )
-                })
-              }
-            </Geographies>
-
-            {shown?.places?.map((place) => (
-              <PlaceCallout
-                key={`${shown.name}-${place.name}`}
-                place={place}
-                color={p.active}
-                textColor={p.text}
-              />
-            ))}
-          </ComposableMap>
-        </div>
-
-        <div className="flex items-center justify-between px-6 py-4 sm:px-8">
-          <div className="flex items-center gap-2 text-xs font-medium" style={{ color: p.text }}>
-            <MapPin size={14} className="text-gold-deep" fill="#d4a24c" />
-            Markets we serve
-          </div>
-          <p className="text-xs" style={{ color: p.text, opacity: 0.6 }}>
-            {marketRegions.length} regions · {brand.marketsCount} countries
-          </p>
-        </div>
-
-        <div className="h-1 w-full bg-gold-gradient" />
-      </div>
-    </>
-  )
-}
-
 function ChoroplethMap({ countryToRegion, marketRegions }) {
   const { theme } = useTheme()
   const chrome = choroplethChrome[theme] ?? choroplethChrome.light
-  const [schemeId, setSchemeId] = useState('gold')
-  const scheme = useMemo(() => {
-    const base = GROWTH_COLOR_SCHEMES.find((s) => s.id === schemeId) ?? GROWTH_COLOR_SCHEMES[0]
-    const noneByTheme = {
-      light: base.none,
-      dark: '#1a3558',
-      black: '#1f1f1f',
-    }
-    return { ...base, none: noneByTheme[theme] ?? base.none }
-  }, [schemeId, theme])
+  const scheme = goldScheme[theme] ?? goldScheme.light
+  const stageRef = useRef(null)
 
   const [hoveredId, setHoveredId] = useState(null)
   const [hoveredGeo, setHoveredGeo] = useState(null)
-  const [hoveredFill, setHoveredFill] = useState(null)
+  const [hoveredLeader, setHoveredLeader] = useState(null)
   const [titleTip, setTitleTip] = useState(null)
   const [popupPos, setPopupPos] = useState({ x: 0, y: 0, placement: 'above' })
 
@@ -529,51 +321,125 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
     [countryToRegion]
   )
 
+  const routeDestinations = useMemo(
+    () => labeledCountries.filter((item) => item.id !== '356'),
+    [labeledCountries]
+  )
+
+  const hoveredRegion = hoveredId ? countryToRegion.get(hoveredId) : null
+
   const legend = [
     { color: scheme.home, label: 'Home country' },
-    { color: scheme.core, label: 'Core markets' },
-    { color: scheme.strong, label: 'Strong markets' },
-    { color: scheme.growth, label: 'Growth markets' },
+    { color: scheme.served, label: 'Markets we serve' },
     { color: scheme.none, label: 'No data' },
   ]
 
-  const countryFill = (id) => {
-    const meta = countryMeta[id]
-    return meta ? fillForTier(meta.tier, scheme) : scheme.none
-  }
+  const countryFill = (id) => fillForCountry(id, scheme)
 
-  const updatePopupPos = (e) => {
+  const updatePopupPos = (e, size = 144) => {
     const stage = e.currentTarget.closest('[data-map-stage]')
     const rect = stage?.getBoundingClientRect()
     if (!rect) return
-    setPopupPos(getPopupPos(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height, 96))
+    setPopupPos(getPopupPos(e.clientX - rect.left, e.clientY - rect.top, rect.width, rect.height, size))
   }
 
   const clearHover = () => {
     setHoveredId(null)
     setHoveredGeo(null)
-    setHoveredFill(null)
+    setHoveredLeader(null)
     setTitleTip(null)
   }
 
   const onCountryEnter = (geo, e) => {
     const id = normalizeId(geo.id)
-    const meta = countryMeta[id]
     const region = countryToRegion.get(id)
-    const fill = countryFill(id)
-    const name = meta?.label || geo.properties?.name || 'Country'
-    const subtitle = meta ? tierTitles[meta.tier] : region ? `Market · ${region.name}` : 'No data'
+    const leader = countryLeaders[id] || null
+    if (!region || !leader) {
+      clearHover()
+      return
+    }
 
     setHoveredId(id)
     setHoveredGeo(geo)
-    setHoveredFill(fill)
-    setTitleTip({ title: name, subtitle })
-    updatePopupPos(e)
+    setHoveredLeader(leader)
+    setTitleTip(null)
+    updatePopupPos(e, 144)
   }
+
+  useEffect(() => {
+    if (prefersReducedMotion) return
+    const host = stageRef.current
+    if (!host) return
+
+    let ctx
+    let cancelled = false
+    let frame = 0
+    let attempts = 0
+
+    const play = () => {
+      const routes = host.querySelector('[data-trade-routes]')
+      const paths = [...host.querySelectorAll('[data-trade-routes] path')]
+      if (!routes || !paths.length) return false
+
+      const dots = host.querySelectorAll('[data-trade-routes] [data-wire-dot]')
+      const glows = host.querySelectorAll('[data-trade-routes] [data-wire-glow]')
+
+      ctx = gsap.context(() => {
+        gsap.set(paths, { attr: { 'stroke-dasharray': 1, 'stroke-dashoffset': 1 }, opacity: 1 })
+        gsap.set(dots, { opacity: 0 })
+        gsap.set(glows, { opacity: 0 })
+
+        const draw = 1.05
+        const stagger = 0.07
+        const fadeAt = draw + stagger * Math.max(paths.length - 1, 0) + 0.75
+
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: host, start: 'top 78%', once: true },
+        })
+
+        tl.to(paths, {
+          attr: { 'stroke-dashoffset': 0 },
+          duration: draw,
+          stagger,
+          ease: 'power2.out',
+        })
+          .to(
+            glows,
+            { opacity: 0.32, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+            0.28
+          )
+          .to(
+            dots,
+            { opacity: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+            0.28
+          )
+          .to(
+            [paths, dots, glows],
+            { opacity: 0, duration: 0.9, ease: 'power2.inOut' },
+            fadeAt
+          )
+      }, host)
+      return true
+    }
+
+    const tryPlay = () => {
+      if (cancelled) return
+      attempts += 1
+      if (play() || attempts > 16) return
+      frame = requestAnimationFrame(tryPlay)
+    }
+    frame = requestAnimationFrame(tryPlay)
+
+    return () => {
+      cancelled = true
+      cancelAnimationFrame(frame)
+      ctx?.revert()
+    }
+  }, [])
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-line shadow-card" style={{ backgroundColor: chrome.card }}>
-      <div className="flex flex-wrap items-end justify-between gap-3 px-5 pt-5 pr-16 sm:px-7 sm:pt-6 sm:pr-20">
+      <div className="flex flex-wrap items-end justify-between gap-3 px-5 pt-5 sm:px-7 sm:pt-6">
         <div>
           <p className="text-xs font-medium" style={{ color: chrome.text }}>
             Color-coded by market focus · Shipping from {brand.ports.join(' & ')}
@@ -584,32 +450,16 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
         </p>
       </div>
 
-      {/* Side color scheme picker */}
-      <div className="absolute right-3 top-16 z-20 flex flex-col items-center gap-2 sm:right-4 sm:top-20">
-        <p className="mb-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-muted">Color</p>
-        {GROWTH_COLOR_SCHEMES.map((item) => {
-          const active = schemeId === item.id
-          return (
-            <button
-              key={item.id}
-              type="button"
-              title={item.name}
-              aria-label={`${item.name} color scheme`}
-              aria-pressed={active}
-              onClick={() => setSchemeId(item.id)}
-              className={`relative h-7 w-7 rounded-full border-2 transition-transform duration-150 ${
-                active ? 'scale-110 border-navy shadow-md dark:border-gold' : 'border-white/80 hover:scale-105'
-              }`}
-              style={{
-                background: `linear-gradient(135deg, ${item.home} 0 38%, ${item.core} 38% 68%, ${item.strong} 68% 100%)`,
-              }}
-            />
-          )
-        })}
-      </div>
-
-      <div className="relative" data-map-stage onMouseLeave={clearHover}>
-        {titleTip ? (
+      <div ref={stageRef} className="relative" data-map-stage onMouseLeave={clearHover}>
+        {hoveredLeader ? (
+          <LeaderPopup
+            key={hoveredLeader.country}
+            leader={hoveredLeader}
+            x={popupPos.x}
+            y={popupPos.y}
+            placement={popupPos.placement}
+          />
+        ) : titleTip ? (
           <GrowthTitlePopup
             title={titleTip.title}
             subtitle={titleTip.subtitle}
@@ -633,34 +483,46 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
                 {geographies.map((geo) => {
                   const id = normalizeId(geo.id)
                   const isHovered = hoveredId === id
-                  const fill = countryFill(id)
+                  const isHome = countryMeta[id]?.tier === 'home'
+                  const interactive = Boolean(countryToRegion.get(id) && countryLeaders[id])
+                  const fill = isHome || isHovered ? scheme.home : countryFill(id)
+                  const hoverFill = interactive || isHome ? scheme.home : countryFill(id)
 
                   return (
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
+                      data-iso={id}
                       fill={fill}
                       stroke={isHovered ? chrome.outline : chrome.stroke}
                       strokeWidth={isHovered ? 1.6 : 0.45}
                       onMouseEnter={(e) => onCountryEnter(geo, e)}
-                      onMouseMove={updatePopupPos}
+                      onMouseMove={(e) => {
+                        if (hoveredLeader) updatePopupPos(e, 144)
+                      }}
                       style={{
                         default: {
                           outline: 'none',
-                          cursor: 'pointer',
-                          transition: 'stroke-width 0.15s ease',
+                          cursor: interactive ? 'pointer' : 'default',
+                          transition: 'fill 0.25s ease, filter 0.25s ease, stroke-width 0.15s ease',
+                          filter:
+                            isHome || isHovered ? 'drop-shadow(0 6px 10px rgba(10,16,32,0.28))' : 'none',
                         },
-                        hover: { outline: 'none', cursor: 'pointer' },
-                        pressed: { outline: 'none' },
+                        hover: {
+                          outline: 'none',
+                          cursor: interactive ? 'pointer' : 'default',
+                          fill: hoverFill,
+                        },
+                        pressed: { outline: 'none', fill: hoverFill },
                       }}
                     />
                   )
                 })}
 
-                {hoveredGeo && hoveredFill ? (
+                {hoveredGeo ? (
                   <Geography
                     geography={hoveredGeo}
-                    fill={hoveredFill}
+                    fill={scheme.home}
                     stroke={chrome.outline}
                     strokeWidth={1.85}
                     style={{
@@ -680,6 +542,17 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
               meta={item}
               color={chrome.label}
               hideHomeLabel={hoveredId === '356'}
+            />
+          ))}
+
+          <TradeWires destinations={routeDestinations} color={scheme.home} />
+
+          {hoveredRegion?.places?.map((place) => (
+            <PlaceCallout
+              key={`${hoveredRegion.name}-${place.name}`}
+              place={place}
+              color={scheme.home}
+              textColor={chrome.label}
             />
           ))}
         </ComposableMap>
@@ -705,8 +578,6 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
 }
 
 export default function GlobalReachMap({ className = '' }) {
-  const [style, setStyle] = useState('classic')
-  const indiaRegion = useMemo(() => regions.find((r) => r.name === 'India') ?? null, [])
   const marketRegions = regions.filter((r) => !r.isOrigin)
 
   const countryToRegion = useMemo(() => {
@@ -721,33 +592,7 @@ export default function GlobalReachMap({ className = '' }) {
 
   return (
     <Reveal as="div" stagger={0} y={40} className={`relative ${className}`}>
-      <div className="mb-4 flex flex-wrap items-center gap-2">
-        {MAP_STYLES.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => setStyle(item.id)}
-            aria-pressed={style === item.id}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide transition-all duration-200 ${
-              style === item.id
-                ? 'bg-gold-gradient text-navy-deep'
-                : 'border border-line bg-surface text-muted hover:border-gold/50 hover:text-navy'
-            }`}
-          >
-            {item.n} {item.name}
-          </button>
-        ))}
-      </div>
-
-      {style === 'choropleth' ? (
-        <ChoroplethMap countryToRegion={countryToRegion} marketRegions={marketRegions} />
-      ) : (
-        <ClassicMap
-          countryToRegion={countryToRegion}
-          marketRegions={marketRegions}
-          indiaRegion={indiaRegion}
-        />
-      )}
+      <ChoroplethMap countryToRegion={countryToRegion} marketRegions={marketRegions} />
     </Reveal>
   )
 }
