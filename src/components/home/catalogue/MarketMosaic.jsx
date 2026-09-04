@@ -51,7 +51,7 @@ export default function MarketMosaic() {
 
       <div className="mt-8 rounded-[1.75rem] border border-line bg-surface p-6 shadow-card md:mt-10 md:p-10">
         <p className="font-mono text-[11px] tracking-[0.28em] text-gold-deep">
-          {String(active + 1).padStart(2, '0')} — {chapter.name.toUpperCase()}
+          {String(active + 1).padStart(2, '0')}. {chapter.name.toUpperCase()}
         </p>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted md:text-base">{chapter.intro}</p>
         {products.length > 0 && (

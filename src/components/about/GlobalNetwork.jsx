@@ -15,7 +15,7 @@ export default function GlobalNetwork() {
           One HQ, {brand.marketsCount} markets
         </SectionHeading>
         <p className="mt-2 max-w-xl text-sm text-muted">
-          Every shipment traces back to {brand.hq} — routed through {brand.ports.join(' and ')} to buyers
+          Every shipment traces back to {brand.hq}, routed through {brand.ports.join(' and ')} to buyers
           across every region we serve.
         </p>
       </Reveal>

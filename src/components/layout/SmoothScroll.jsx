@@ -1,12 +1,14 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 import { gsap, ScrollTrigger } from '../../lib/gsap'
+import ScrollToTop from '../ui/ScrollToTop'
 
 export default function SmoothScroll({ children }) {
   const location = useLocation()
   const lenisRef = useRef(null)
+  const [lenis, setLenis] = useState(null)
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -21,6 +23,7 @@ export default function SmoothScroll({ children }) {
       stopInertiaOnNavigate: true,
     })
     lenisRef.current = lenis
+    setLenis(lenis)
 
     lenis.on('scroll', ScrollTrigger.update)
 
@@ -41,6 +44,7 @@ export default function SmoothScroll({ children }) {
       gsap.ticker.remove(ticker)
       lenis.destroy()
       lenisRef.current = null
+      setLenis(null)
     }
   }, [])
 
@@ -70,5 +74,10 @@ export default function SmoothScroll({ children }) {
     return () => cancelAnimationFrame(id)
   }, [location.pathname, location.hash])
 
-  return children
+  return (
+    <>
+      {children}
+      <ScrollToTop lenis={lenis} />
+    </>
+  )
 }

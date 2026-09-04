@@ -21,7 +21,7 @@ export default function DocumentationCompliance() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 md:py-24">
       <RouteBackground />
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>

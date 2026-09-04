@@ -2,11 +2,12 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext(null)
 
-const THEMES = ['light', 'dark', 'black']
+const THEMES = ['light', 'dark']
 
 function getInitialTheme() {
   if (typeof window === 'undefined') return 'light'
   const stored = window.localStorage.getItem('mavio-theme')
+  if (stored === 'black') return 'dark'
   if (THEMES.includes(stored)) return stored
   return 'light'
 }
@@ -16,16 +17,14 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     const root = document.documentElement
-    root.classList.toggle('dark', theme === 'dark' || theme === 'black')
-    root.classList.toggle('theme-black', theme === 'black')
+    root.classList.toggle('dark', theme === 'dark')
+    root.classList.remove('theme-black')
     window.localStorage.setItem('mavio-theme', theme)
   }, [theme])
 
-  const cycleTheme = () => setTheme((t) => THEMES[(THEMES.indexOf(t) + 1) % THEMES.length])
+  const cycleTheme = () => setTheme((t) => (t === 'light' ? 'dark' : 'light'))
 
-  return (
-    <ThemeContext.Provider value={{ theme, cycleTheme }}>{children}</ThemeContext.Provider>
-  )
+  return <ThemeContext.Provider value={{ theme, cycleTheme }}>{children}</ThemeContext.Provider>
 }
 
 export function useTheme() {

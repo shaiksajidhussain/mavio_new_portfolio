@@ -1,12 +1,9 @@
-import { Moon, MoonStar, Sun } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
-
-const icons = { light: Sun, dark: Moon, black: MoonStar }
-const labels = { light: 'light', dark: 'dark (navy)', black: 'dark (black)' }
 
 export default function ThemeToggle({ className = '', tone = 'default' }) {
   const { theme, cycleTheme } = useTheme()
-  const Icon = icons[theme]
+  const Icon = theme === 'light' ? Sun : Moon
 
   const toneClasses =
     tone === 'light'
@@ -17,7 +14,7 @@ export default function ThemeToggle({ className = '', tone = 'default' }) {
     <button
       type="button"
       onClick={cycleTheme}
-      aria-label={`Theme: ${labels[theme]} — click to switch`}
+      aria-label={theme === 'light' ? 'Theme: white. Click for blue' : 'Theme: blue. Click for white'}
       className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${toneClasses} ${className}`}
     >
       <Icon size={16} />

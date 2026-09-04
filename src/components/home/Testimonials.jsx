@@ -123,7 +123,7 @@ export default function Testimonials() {
   }, [activeIndex, paused, count])
 
   return (
-    <section className="relative overflow-x-clip py-16 md:py-24">
+    <section className="relative overflow-x-clip pt-16 pb-8 md:pt-24 md:pb-8">
       <RouteBackground />
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0} className="max-w-xl">
@@ -150,7 +150,7 @@ export default function Testimonials() {
         </Reveal>
       </div>
 
-      <div className="mt-8 flex justify-center">
+      <div className="mt-5 flex justify-center">
         <div className="flex items-center gap-2 rounded-full bg-[#f4f1ea] px-3 py-2 dark:bg-white/10">
           {testimonials.map((item, i) => {
             const active = i === activeIndex

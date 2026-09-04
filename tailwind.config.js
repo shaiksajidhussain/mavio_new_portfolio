@@ -60,9 +60,4 @@ export default {
       },
     },
   },
-  plugins: [
-    function ({ addVariant }) {
-      addVariant('themeblack', '.dark.theme-black &')
-    },
-  ],
 }

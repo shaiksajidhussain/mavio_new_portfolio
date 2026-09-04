@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CheckCircle2, MessageCircle } from 'lucide-react'
-import { brand, contactPage, footer, partnerPage } from '../../data/siteContent'
+import { contactPage, footer, partnerPage } from '../../data/siteContent'
 import Button from '../ui/Button'
 
 const { applyForm } = partnerPage
@@ -53,10 +53,27 @@ export default function PartnerApply() {
               </a>
             </p>
             <p>
+              <span className="block text-xs uppercase tracking-[0.14em] text-gold-deep">WhatsApp</span>
+              <a href={footer.contact.whatsapp} target="_blank" rel="noreferrer" className="mt-1 inline-block text-ink hover:text-gold-deep">
+                {footer.contact.phone}
+              </a>
+            </p>
+            <p>
+              <span className="block text-xs uppercase tracking-[0.14em] text-gold-deep">Website</span>
+              <a href={footer.contact.website} target="_blank" rel="noreferrer" className="mt-1 inline-block text-ink hover:text-gold-deep">
+                www.mavioglobal.com
+              </a>
+            </p>
+            <p>
               <span className="block text-xs uppercase tracking-[0.14em] text-gold-deep">Base</span>
-              <span className="mt-1 block text-ink">
-                {footer.contact.address} · Est. {brand.founded}
-              </span>
+              <a
+                href={footer.contact.maps}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 block max-w-sm text-ink hover:text-gold-deep"
+              >
+                {footer.contact.address}
+              </a>
             </p>
           </div>
 

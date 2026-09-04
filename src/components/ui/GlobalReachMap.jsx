@@ -53,13 +53,6 @@ const choroplethChrome = {
     label: '#ffffff',
     outline: '#021023',
   },
-  black: {
-    card: '#0a0a0a',
-    stroke: '#0a0a0a',
-    text: '#cbd5e1',
-    label: '#ffffff',
-    outline: '#000000',
-  },
 }
 
 const goldScheme = {
@@ -72,11 +65,6 @@ const goldScheme = {
     home: GOLD,
     served: '#3d4d61',
     none: '#1a3558',
-  },
-  black: {
-    home: GOLD,
-    served: '#2a2a2a',
-    none: '#1a1a1a',
   },
 }
 
@@ -331,7 +319,7 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
   const legend = [
     { color: scheme.home, label: 'Home country' },
     { color: scheme.served, label: 'Markets we serve' },
-    { color: scheme.none, label: 'No data' },
+  
   ]
 
   const countryFill = (id) => fillForCountry(id, scheme)

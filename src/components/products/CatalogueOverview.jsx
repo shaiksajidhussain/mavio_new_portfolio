@@ -14,7 +14,7 @@ export default function CatalogueOverview({ onSelect }) {
       </p>
       <div className="mt-8 h-px w-full bg-gold-deep/45 md:mt-10" />
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-10 xl:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:mt-10">
         {productCategories.map((cat) => (
           <button
             key={cat.slug}

@@ -46,7 +46,7 @@ export default function Home() {
       <Accreditations />
 
       {/* 9. Testimonials */}
-      <Testimonials />
+      {/* <Testimonials /> */}
 
       {/* 10. Global Collaboration Map */}
       <GlobalMap />

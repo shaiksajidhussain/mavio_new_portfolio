@@ -14,7 +14,7 @@ export default function Industries() {
   const { subheading, cta } = partnerPage.industries[activeRole]
 
   return (
-    <section className="bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="bg-bg-muted py-16 md:py-24">
       <div className="container-px mx-auto max-w-container">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:items-center lg:gap-16">
           <Reveal as="div" stagger={0.1}>

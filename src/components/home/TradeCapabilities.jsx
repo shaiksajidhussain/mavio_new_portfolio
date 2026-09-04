@@ -79,7 +79,7 @@ export default function TradeCapabilities() {
 
               <p className="mt-5 max-w-md text-sm leading-relaxed text-white/70 md:text-base">
                 Mavio Global connects buyers and suppliers through a single, accountable trade
-                partner — handling sourcing, quality, documentation and logistics as one
+                partner, handling sourcing, quality, documentation and logistics as one
                 connected system.
               </p>
 

@@ -98,7 +98,7 @@ export default function Milestones() {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-bg-muted py-16 themeblack:bg-black md:py-0 md:min-h-[calc(100vh_+_var(--ms-scroll))]"
+      className="relative bg-bg-muted py-16 md:py-0 md:min-h-[calc(100vh_+_var(--ms-scroll))]"
       style={{ '--ms-scroll': `${count * 260}px` }}
     >
       <RouteBackground />

@@ -185,7 +185,7 @@ export default function JourneyTimeline() {
       <div className="mt-6 max-w-[52ch]">
         <p className="text-[14.5px] leading-relaxed text-[#5b6472]">
           From primary origin to the final destination port, we manage every stage
-          of the commodity journey — securing quality, compliance, and reliable
+          of the commodity journey, securing quality, compliance, and reliable
           delivery across borders.
         </p>
       </div>

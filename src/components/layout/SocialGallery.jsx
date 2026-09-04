@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { footer } from '../../data/siteContent'
 import { gsap, prefersReducedMotion } from '../../lib/gsap'
-import wordmark from '../../assets/logo-mavio-wordmark.svg'
 import SmartImage from '../ui/SmartImage'
 
 function YouTubeIcon() {
@@ -56,7 +55,6 @@ function SocialCard({ item }) {
   const imgRef = useRef(null)
   const overlayRef = useRef(null)
   const iconRef = useRef(null)
-  const logoRef = useRef(null)
   const Icon = ICONS[item.label] || InstagramIcon
 
   const enter = () => {
@@ -69,7 +67,6 @@ function SocialCard({ item }) {
     })
     gsap.to(overlayRef.current, { opacity: 0.22, duration: 0.4, ease: 'power2.out' })
     gsap.to(iconRef.current, { scale: 1.12, y: -6, duration: 0.45, ease: 'back.out(1.7)' })
-    if (logoRef.current) gsap.to(logoRef.current, { y: -4, opacity: 1, duration: 0.4, ease: 'power2.out' })
   }
 
   const leave = () => {
@@ -80,7 +77,6 @@ function SocialCard({ item }) {
     })
     gsap.to(overlayRef.current, { opacity: 0.52, duration: 0.4, ease: 'power2.out' })
     gsap.to(iconRef.current, { scale: 1, y: 0, duration: 0.4, ease: 'power2.out' })
-    if (logoRef.current) gsap.to(logoRef.current, { y: 0, opacity: 0.95, duration: 0.35, ease: 'power2.out' })
   }
 
   return (
@@ -108,24 +104,6 @@ function SocialCard({ item }) {
       <span ref={iconRef} className="absolute inset-0 z-10 flex items-center justify-center drop-shadow-[0_4px_18px_rgba(0,0,0,0.45)]">
         <Icon />
       </span>
-
-      {item.showLogo ? (
-        <span
-          ref={logoRef}
-          className="absolute inset-x-4 bottom-4 z-10 mx-auto block h-4 w-[78%] max-w-[11rem] bg-gold-gradient sm:bottom-5"
-          style={{
-            WebkitMaskImage: `url(${wordmark})`,
-            maskImage: `url(${wordmark})`,
-            WebkitMaskRepeat: 'no-repeat',
-            maskRepeat: 'no-repeat',
-            WebkitMaskSize: 'contain',
-            maskSize: 'contain',
-            WebkitMaskPosition: 'center',
-            maskPosition: 'center',
-          }}
-          aria-hidden="true"
-        />
-      ) : null}
     </a>
   )
 }

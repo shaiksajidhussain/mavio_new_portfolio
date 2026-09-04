@@ -114,8 +114,7 @@ export default function AboutJourney() {
             className="h-[120%] w-full object-cover"
           />
         </div>
-        <div className="absolute inset-0 -z-10 bg-black/45" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep via-transparent to-black/30" />
+        <div className="absolute inset-0 -z-10 bg-black/50" />
         <div className="container-px relative mx-auto w-full max-w-container pb-20 pt-[8rem] md:pb-24">
           <div data-hero-copy className="max-w-4xl">
             <p className="gold-text eyebrow">About Us</p>
@@ -176,7 +175,7 @@ export default function AboutJourney() {
                     className={imageLeft ? 'md:pl-2' : 'md:pr-2'}
                   >
                     <span className="inline-block font-display text-[11px] tracking-[0.22em] text-gold-deep">
-                      {String(i + 1).padStart(2, '0')} — {i === 0 ? 'The problem' : 'Our response'}
+                      {String(i + 1).padStart(2, '0')}. {i === 0 ? 'The problem' : 'Our response'}
                     </span>
                     <p className="mt-4 text-base leading-relaxed text-ink md:text-lg">{paragraph}</p>
                   </Reveal>

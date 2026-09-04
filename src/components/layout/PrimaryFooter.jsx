@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Instagram, Linkedin } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react'
 import { brand, footer } from '../../data/siteContent'
 
 const LOGO_SRC = 'https://www.mavioglobal.com/assets/SVG_Logo-header-CTSoE-ST.svg'
@@ -7,11 +7,9 @@ const LOGO_SRC = 'https://www.mavioglobal.com/assets/SVG_Logo-header-CTSoE-ST.sv
 const socialIcons = {
   LinkedIn: Linkedin,
   Instagram: Instagram,
-}
-
-function splitLinks(links) {
-  const mid = Math.ceil(links.length / 2)
-  return [links.slice(0, mid), links.slice(mid)]
+  Facebook: Facebook,
+  X: Twitter,
+  YouTube: Youtube,
 }
 
 export default function PrimaryFooter() {
@@ -21,7 +19,7 @@ export default function PrimaryFooter() {
     <footer className="bg-navy-deep text-white">
       <div className="h-px w-full bg-[#e08a2c]" />
 
-      <div className="container-px mx-auto grid max-w-container gap-10 py-14 md:grid-cols-[1.35fr_1.5fr_0.85fr] md:gap-8 md:py-16">
+      <div className="container-px mx-auto grid max-w-container gap-10 py-14 md:grid-cols-[1.35fr_1fr_1fr_0.85fr] md:gap-8 md:py-16">
         <div>
           <Link to="/" className="inline-flex items-center" aria-label={brand.name}>
             <span
@@ -50,34 +48,20 @@ export default function PrimaryFooter() {
           </p>
         </div>
 
-        {columns.map((col) => {
-          const [left, right] = splitLinks(col.links)
-          return (
-            <div key={col.title}>
-              <p className="text-sm font-semibold text-white">{col.title}</p>
-              <div className="mt-4 grid grid-cols-2 gap-x-5 gap-y-2">
-                <ul className="space-y-2.5">
-                  {left.map((l) => (
-                    <li key={l.to}>
-                      <Link to={l.to} className="text-sm text-white/55 transition-colors hover:text-white">
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                <ul className="space-y-2.5">
-                  {right.map((l) => (
-                    <li key={l.to}>
-                      <Link to={l.to} className="text-sm text-white/55 transition-colors hover:text-white">
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          )
-        })}
+        {columns.map((col) => (
+          <div key={col.title}>
+            <p className="text-sm font-semibold text-white">{col.title}</p>
+            <ul className="mt-4 space-y-2.5">
+              {col.links.map((l) => (
+                <li key={l.to}>
+                  <Link to={l.to} className="text-sm text-white/55 transition-colors hover:text-white">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
 
         <div>
           <p className="text-sm font-semibold text-white">Social</p>

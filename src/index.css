@@ -23,15 +23,6 @@
   --line: 28 58 94;
 }
 
-.dark.theme-black {
-  --surface: 10 10 10;
-  --bg: 0 0 0;
-  --bg-muted: 15 15 15;
-  --ink: 245 245 245;
-  --muted: 163 163 163;
-  --line: 38 38 38;
-}
-
 @keyframes flow-dash {
   to {
     stroke-dashoffset: -28;

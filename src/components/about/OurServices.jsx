@@ -30,7 +30,7 @@ const services = [
 
 export default function OurServices() {
   return (
-    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 md:py-24">
       <RouteBackground />
       <div className="container-px mx-auto max-w-container text-center">
         <Reveal stagger={0}>

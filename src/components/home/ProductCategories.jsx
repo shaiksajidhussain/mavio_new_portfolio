@@ -9,8 +9,8 @@ import SectionHeading from '../ui/SectionHeading'
 
 const icons = {
   spices: Package,
-  seafood: Ship,
-  'fresh-produce': Wheat,
+  shrimps: Ship,
+  agri: Wheat,
   chemicals: FlaskConical,
   minerals: Gem,
   'industrial-metals': Package,
@@ -60,7 +60,7 @@ export default function ProductCategories() {
           </div>
           <SectionHeading className="mx-auto mt-3 max-w-xl">What Do We Trade?</SectionHeading>
           <p className="mx-auto mt-3 max-w-lg text-sm text-muted md:text-base">
-            Here are the categories we work with closely — checked, handled, and ready to move.
+            Here are the categories we work with closely, checked, handled, and ready to move.
           </p>
         </Reveal>
       </div>

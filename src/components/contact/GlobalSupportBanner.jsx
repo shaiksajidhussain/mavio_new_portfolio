@@ -8,7 +8,7 @@ const { support } = contactPage
 
 export default function GlobalSupportBanner() {
   return (
-    <section className="border-t border-line bg-bg-muted py-16 themeblack:bg-bg-muted md:py-24">
+    <section className="border-t border-line bg-bg-muted py-16 md:py-24">
       <div className="container-px mx-auto grid max-w-container gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
         <Reveal as="div" stagger={0}>
           <SectionLabel>Our Global Support</SectionLabel>

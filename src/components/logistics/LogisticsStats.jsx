@@ -12,7 +12,7 @@ export default function LogisticsStats() {
   const chipsRef = useRef([])
 
   return (
-    <section className="relative overflow-hidden bg-navy py-16 dark:bg-navy-deep themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-navy py-16 dark:bg-navy-deep md:py-24">
       <span className="pointer-events-none absolute right-[8%] top-[14%] hidden sm:block">
         <Plane
           aria-hidden

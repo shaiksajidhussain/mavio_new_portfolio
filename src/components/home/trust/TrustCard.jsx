@@ -1,33 +1,33 @@
-import { useRef, useState } from 'react'
+// import { useRef, useState } from 'react'
 
 export default function TrustCard({ step, className = '' }) {
-  const videoRef = useRef(null)
-  const [playing, setPlaying] = useState(false)
+  // const videoRef = useRef(null)
+  // const [playing, setPlaying] = useState(false)
 
-  const play = () => {
-    const video = videoRef.current
-    if (!video) return
-    const run = video.play()
-    if (run?.catch) run.catch(() => {})
-    setPlaying(true)
-  }
+  // const play = () => {
+  //   const video = videoRef.current
+  //   if (!video) return
+  //   const run = video.play()
+  //   if (run?.catch) run.catch(() => {})
+  //   setPlaying(true)
+  // }
 
-  const stop = () => {
-    const video = videoRef.current
-    if (video) {
-      video.pause()
-      video.currentTime = 0
-    }
-    setPlaying(false)
-  }
+  // const stop = () => {
+  //   const video = videoRef.current
+  //   if (video) {
+  //     video.pause()
+  //     video.currentTime = 0
+  //   }
+  //   setPlaying(false)
+  // }
 
   return (
     <article
       className={`group relative overflow-hidden rounded-[1.75rem] ${className}`}
-      onMouseEnter={play}
-      onMouseLeave={stop}
-      onFocus={play}
-      onBlur={stop}
+      // onMouseEnter={play}
+      // onMouseLeave={stop}
+      // onFocus={play}
+      // onBlur={stop}
     >
       <img
         src={step.image}
@@ -35,11 +35,9 @@ export default function TrustCard({ step, className = '' }) {
         data-no-dim
         loading="eager"
         decoding="async"
-        className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-105 ${
-          playing ? 'opacity-0' : 'opacity-100'
-        }`}
+        className="absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-105"
       />
-      <video
+      {/* <video
         ref={videoRef}
         muted
         loop
@@ -50,7 +48,7 @@ export default function TrustCard({ step, className = '' }) {
         }`}
       >
         <source src={step.video} type="video/mp4" />
-      </video>
+      </video> */}
       <div className="absolute inset-0 bg-black/50 transition-colors duration-500 group-hover:bg-black/28" />
       <div className="relative flex h-full flex-col justify-end p-5 md:p-6">
         <p className="font-display text-[11px] tracking-[0.22em] text-gold transition-colors duration-300 group-hover:text-gold-bright">
@@ -64,4 +62,3 @@ export default function TrustCard({ step, className = '' }) {
     </article>
   )
 }
-

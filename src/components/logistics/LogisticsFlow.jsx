@@ -491,7 +491,7 @@ export default function LogisticsFlow() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-bg py-16 themeblack:bg-black md:py-24">
+    <section ref={sectionRef} className="bg-bg py-16 md:py-24">
       <div className="container-px mx-auto max-w-[1600px]">
         <div data-flow-head>
           <SectionLabel>Our Export Process</SectionLabel>

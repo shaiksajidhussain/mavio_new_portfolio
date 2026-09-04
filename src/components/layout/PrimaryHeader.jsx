@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { ChevronDown, Instagram, Linkedin, Menu, X } from 'lucide-react'
+import { ChevronDown, Facebook, Instagram, Linkedin, Menu, Twitter, X, Youtube } from 'lucide-react'
 import { nav, secondaryHeader } from '../../data/siteContent'
 import Button from '../ui/Button'
 import ThemeToggle from '../ui/ThemeToggle'
 import { ScrollTrigger } from '../../lib/gsap'
 import logoMavio from '../../assets/logo-mavio.svg'
 
-const socialIcons = { LinkedIn: Linkedin, Instagram: Instagram }
+const socialIcons = { LinkedIn: Linkedin, Instagram: Instagram, Facebook: Facebook, X: Twitter, YouTube: Youtube }
 const NAV_BG = '#021528'
 
 const linkClass = ({ isActive }) =>

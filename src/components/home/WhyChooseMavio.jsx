@@ -29,7 +29,7 @@ export default function WhyChooseMavio() {
   }, [role])
 
   return (
-    <section className="relative mb-6 overflow-hidden rounded-3xl border border-line bg-bg-muted container-px mx-auto max-w-container py-16 shadow-card themeblack:bg-black md:mb-10 md:py-20">
+    <section className="relative mb-6 overflow-hidden rounded-3xl border border-line bg-bg-muted container-px mx-auto max-w-container py-16 shadow-card md:mb-10 md:py-20">
       <RouteBackground />
 
       <span className="pointer-events-none absolute right-[6%] top-[10%] hidden sm:block">

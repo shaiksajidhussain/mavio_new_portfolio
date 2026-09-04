@@ -7,7 +7,7 @@ const { heading, body, image, imageAlt } = qualityCompliancePage.inspectionTesti
 
 export default function InspectionTesting() {
   return (
-    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 md:py-24">
       <RouteBackground />
       <div className="container-px relative mx-auto max-w-container">
         <QualityFeatureRow

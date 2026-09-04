@@ -30,7 +30,7 @@ export default function EthicalTrade() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden bg-bg-muted py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg-muted py-16 md:py-24">
       <RouteBackground flip />
       <div className="container-px relative mx-auto grid max-w-container gap-10 md:grid-cols-2 md:items-center">
         <Reveal stagger={0}>

@@ -84,7 +84,7 @@ export default function LeadForm() {
       {success ? (
         <div className="mt-8 flex flex-col items-start gap-3 rounded-2xl border border-line bg-bg-muted p-6">
           <CheckCircle2 className="text-bay" size={28} />
-          <p className="font-display text-lg font-semibold text-ink">Thanks — we’ve got it.</p>
+          <p className="font-display text-lg font-semibold text-ink">Thanks. We’ve got it.</p>
           <p className="text-sm text-muted">
             Our team will reach out to {answers.email || 'you'} shortly.
           </p>
@@ -95,7 +95,7 @@ export default function LeadForm() {
       ) : (
         <>
           <div className="mt-6">
-            <p className="eyebrow text-muted">Step 1 — Select role</p>
+            <p className="eyebrow text-muted">Step 1. Select role</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {leadFormConfig.roles.map((r) => (
                 <button
@@ -115,7 +115,7 @@ export default function LeadForm() {
           {role && (
             <div className="mt-8">
               <p className="eyebrow text-muted">
-                Step 2 — {step + 1} of {fields.length}
+                Step 2. {step + 1} of {fields.length}
               </p>
 
               {Object.entries(answers).length > 0 && (

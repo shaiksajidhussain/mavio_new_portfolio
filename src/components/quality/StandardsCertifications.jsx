@@ -19,7 +19,7 @@ export default function StandardsCertifications() {
   const loop = [...accreditations, ...accreditations]
 
   return (
-    <section className="relative overflow-hidden border-y border-line bg-bg-muted py-16 themeblack:bg-black md:py-20">
+    <section className="relative overflow-hidden border-y border-line bg-bg-muted py-16 md:py-20">
       <RouteBackground />
       <div className="container-px mx-auto max-w-container">
         <Reveal stagger={0}>

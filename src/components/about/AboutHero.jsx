@@ -37,7 +37,6 @@ export default function AboutHero() {
         />
       </div>
       <div className="absolute inset-0 -z-10 bg-black/50" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep via-navy-deep/20 to-transparent" />
 
       <div className="container-px relative mx-auto w-full max-w-container pb-16 pt-[7.5rem] md:pb-20">
         <Reveal stagger={0.1} className="max-w-3xl">

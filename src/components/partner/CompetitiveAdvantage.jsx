@@ -82,7 +82,7 @@ export default function CompetitiveAdvantage() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-bg py-16 themeblack:bg-black md:py-24">
+    <section className="relative overflow-hidden bg-bg py-16 md:py-24">
       <RouteBackground flip />
       <div className="container-px relative mx-auto max-w-container">
         <Reveal stagger={0} className="text-center">
