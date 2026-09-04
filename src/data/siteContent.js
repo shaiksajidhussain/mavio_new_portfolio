@@ -209,7 +209,7 @@ export const productCatalogue = {
     name: 'Fresh Agriculture',
     intro:
       'Fresh produce is a race against time. Our job is to protect the product from farm to shipment — careful selection, sorting, packing, and coordinated movement, every step of the way.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/indian-farmer-standing-his-field.avif',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/indian-farmer-standing-his-field_6_11zon.webp',
     products: [
       {
         name: 'Green Chillies',
@@ -272,7 +272,7 @@ export const productCategories = [
       'Fresh agricultural commodities sourced and graded at origin — green chillies, ginger, onion, and fruits & vegetables prepared for export markets.',
     color: 'bay',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/indian-farmer-standing-his-field.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/indian-farmer-standing-his-field_6_11zon.webp',
   },
   {
     slug: 'spices',
@@ -282,7 +282,7 @@ export const productCategories = [
       'Export-grade spices coordinated for heat, colour, and specification — with red chilli as a core line for buyers who need consistent quality shipment after shipment.',
     color: 'gold-deep',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/variety-spices-.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/variety-spices-_10_11zon.webp',
   },
   {
     slug: 'chemicals',
@@ -292,7 +292,7 @@ export const productCategories = [
       'Industrial chemicals supplied with clear usage guidance and HSN documentation — including IPA, Acetone, and Toluene for manufacturing and processing applications.',
     color: 'paprika',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/chemical-storage_2.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/chemical-storage_2_1_11zon.webp',
   },
 ]
 
@@ -306,7 +306,7 @@ export const productCatalog = {
       description:
         'Fresh green chillies sourced for export grade — graded for size, colour, and firmness, packed for cold-chain transit to destination markets.',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/agri/green-pepper-vegetables-white.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/agri/green-pepper-vegetables-white_5_11zon.webp',
       variants: [
         {
           name: 'Fresh Green Chilli',
@@ -321,7 +321,7 @@ export const productCatalog = {
       description:
         'Fresh and dried ginger coordinated from reliable growing regions, prepared to the size, moisture, and packing format required for the destination market.',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/agri/ginger_1.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/agri/ginger_1_4_11zon.webp',
       variants: [
         {
           name: 'Fresh / Dried Ginger',
@@ -336,7 +336,7 @@ export const productCatalog = {
       description:
         'Export onions graded for size and shelf life, packed in mesh bags or cartons suited to long-haul transit and destination retail or foodservice use.',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/agri/red-onion-white-background.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/agri/red-onion-white-background_9_11zon.webp',
       variants: [
         {
           name: 'Red Onion',
@@ -368,7 +368,7 @@ export const productCatalog = {
       description:
         'Dried red chilli sourced for heat, colour, and export packing — coordinated for buyers who need consistent specification across recurring shipments.',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/spices/dry-red-pepper-white-background.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/spices/dry-red-pepper-white-background_2_11zon.webp',
       variants: [
         {
           name: 'Dried Red Chilli',
@@ -386,7 +386,7 @@ export const productCatalog = {
         'Isopropyl alcohol (IPA) used in sanitizer and related industrial applications. HSN Code: 29051220.',
       usage: 'Sanitizer and related industrial applications',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/chemicals/IPA.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/chemicals/IPA_7_11zon.webp',
       variants: [
         {
           name: 'Industrial / Sanitizer Grade IPA',
@@ -402,7 +402,7 @@ export const productCatalog = {
         'Acetone used in the making of paints, nail polish remover, and textile industry applications. HSN Code: 29141100.',
       usage: 'Paints, nail polish remover, textile industry',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/chemicals/full-frame-shot-building.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/chemicals/warehouse-with-blue-industrial-metal-barrels_12_11zon.webp',
       variants: [
         {
           name: 'Industrial Grade Acetone',
@@ -418,7 +418,7 @@ export const productCatalog = {
         'Toluene used as a paint thinner, high-octane fuel additive, and cleaning solvent. HSN Code: 29023000.',
       usage: 'Paint thinner, high-octane fuel additives, cleaning',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/chemicals/warehouse-with-blue-industrial-metal-barrels.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/chemicals/full-frame-shot-building_3_11zon.webp',
       variants: [
         {
           name: 'Industrial Grade Toluene',
@@ -521,10 +521,10 @@ export const about = {
   headingAccent: 'problem.',
   body: 'Across global sourcing, too much still depends on assumptions — trusting the quality, waiting for updates, and hoping every step stays on schedule. When one part falls out of place, the entire process becomes uncertain and difficult to manage. Mavio Global was built to bring more certainty to that journey — with better sourcing, verified quality, clear visibility, and a more connected way of moving products from origin to destination.',
   image:
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/about_us/indian-exports.avif',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/indian-exports_14_11zon.webp',
   imageAlt: 'Indian exports prepared for global markets',
   secondaryImage:
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/our+response/16196946_375-mj-1289-fon-l.avif',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/16196946_375-mj-1289-fon-l_13_11zon.webp',
   secondaryImageAlt: 'Coordinated trade operations from origin to destination',
   highlights: [
     '100% Live Shipment Tracking',
@@ -539,13 +539,13 @@ export const productsPage = {
     eyebrow: 'Quality assured, globally sourced',
     heading: 'Explore Our Premium Product Portfolio',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/hero+section/Agri_1.avif',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/hero+section/Agri_1_11zon.webp',
     overviewTitle: 'Products We Export',
     overviewBody:
       'Mavio Global is a supplier of agricultural commodities, seafood, and specialty chemicals from India. We work with a carefully selected network of growers and processors, coordinating quality checks, documentation, and logistics so every shipment meets destination-market standards.',
   },
   hero: {
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/hero+section/Agri_1.avif',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/hero+section/Agri_1_11zon.webp',
   },
 }
 
@@ -554,26 +554,26 @@ export const aboutPage = {
     eyebrow: 'About Us',
     heading: 'A connected journey for global buyers sourcing from India.',
     body: 'Mavio was founded on a simple observation: international trade gets difficult when responsibility is fragmented. A buyer might know exactly what product they need, and still have to navigate sourcing, quality checks, packaging, documentation, customs, freight, and delivery as separate problems, with separate people.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/about_us/indian-exports.avif',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/indian-exports_14_11zon.webp',
   },
   story: [
     'Mavio was founded on a simple observation: international trade gets difficult when responsibility is fragmented. A buyer might know exactly what product they need, and still have to navigate sourcing, quality checks, packaging, documentation, customs, freight, and delivery as separate problems, with separate people.',
     'We built Mavio Global to make that journey connected instead. We bring together procurement, quality coordination, trade documentation, logistics, and digital visibility into one organised experience for global buyers sourcing from India. Our goal was never just to sell an Indian product — it\'s to build confidence around the entire transaction.',
   ],
   storyImages: [
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/the_problem/problem_33.avif',
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/our+response/16196946_375-mj-1289-fon-l.avif',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/problem_33_15_11zon.webp',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/16196946_375-mj-1289-fon-l_13_11zon.webp',
   ],
   visionMission: {
     vision: {
       title: 'Vision',
       body: 'To build a connected global trade ecosystem where quality products move across borders with greater visibility, dependable execution, and lasting trust.',
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/vision+%26+mission/vision_2.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/vision_2_11_11zon.webp',
     },
     mission: {
       title: 'Mission',
       body: 'To empower global businesses with greater confidence in cross-border trade by connecting sourcing, quality, coordination, and logistics into one transparent journey.',
-      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/vision+%26+mission/mission.avif',
+      image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/mission_8_11zon.webp',
     },
   },
   belief: {
@@ -661,7 +661,7 @@ export const partnerPage = {
     ],
     close: ['Partner with Mavio Global.', 'Take your capabilities to the world.'],
     cta: { label: 'Become a Partner', to: '#become-a-partner' },
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/partners+with+us/business-people-shaking-hands-close-up-hand-shake-successful-negotiate-businessman-agreement-success-contract.avif',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/partners+with+us/business-people-shaking-hands-close-up-hand-shake-successful-negotiate-businessman-agreement-success-contract_2_11zon.jpg',
     imageAlt: 'Business partners shaking hands on a successful agreement',
     buyer: {
       image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
@@ -1106,7 +1106,7 @@ export const accreditationsPage = {
     eyebrow: 'Accreditations & Proof',
     heading: 'Proof Behind the Promise',
     body: 'International trade runs on documentation and evidence, not adjectives. We present relevant certifications, registrations, laboratory reports, inspection records, and compliance documentation transparently — for the products and markets they apply to.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/hero+section/1.avif',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/APEDA_3_11zon.jpg',
     imageAlt: 'Compliance documents and certificates on a desk',
   },
   badges: [
@@ -1135,7 +1135,7 @@ export const accreditationsPage = {
       title: 'FSSAI Licensed',
       subtitle: 'Food Safety and Standards Authority of India',
       watermark:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/FSSAI.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/FSSAI_4_11zon.jpg',
       body: "FSSAI licensing is the foundational food safety authorization for all food businesses in India. It ensures that every product handled, processed, and exported by Mavio Global meets India's domestic food safety standards, which are aligned with Codex Alimentarius principles.",
       issuingBody: 'Ministry of Health & Family Welfare, Government of India',
       scope: 'All Food & Agricultural Products',
@@ -1145,7 +1145,7 @@ export const accreditationsPage = {
       title: 'IEC — DGFT',
       subtitle: 'Importer Exporter Code',
       watermark:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/IEC+-+DGFT.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/IEC+-+DGFT_6_11zon.jpg',
       body: 'The Importer Exporter Code (IEC) is the primary business identification number required for any entity conducting international trade from India. Issued by DGFT, it is mandatory for all export shipments, customs clearance, and foreign exchange transactions. Mavio Global holds an active IEC enabling seamless cross-border trade.',
       issuingBody: 'Directorate General of Foreign Trade, Ministry of Commerce',
       scope: 'All Import & Export Transactions',
@@ -1155,7 +1155,7 @@ export const accreditationsPage = {
       title: 'GST',
       subtitle: 'GST Registration & Registration Cum Membership Certificate',
       watermark:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/GST.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/GST_5_11zon.jpg',
       body: "GST registration ensures Mavio Global is fully compliant with India's Goods and Services Tax framework, enabling smooth domestic procurement and input tax credit on exports. The RCMC (Registration Cum Membership Certificate) from the relevant Export Promotion Council authorizes us to avail export incentives and schemes under India's Foreign Trade Policy.",
       issuingBody: 'GSTN / Export Promotion Councils, Government of India',
       scope: 'Tax Compliance · Export Incentives · FTP Benefits',
@@ -1165,7 +1165,7 @@ export const accreditationsPage = {
       title: 'APEDA Registered',
       subtitle: 'Agricultural & Processed Food Products Export Development Authority',
       watermark:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/APEDA.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/APEDA_3_11zon.jpg',
       body: "APEDA registration is mandatory for exporters of scheduled agricultural and processed food products from India. It authorizes Mavio Global to export commodities including fresh fruits, vegetables, cereals, and processed foods to global markets, and enables access to APEDA's quality development and market promotion schemes.",
       issuingBody: 'Ministry of Commerce & Industry, Government of India',
       scope: 'Fresh Produce · Spices · Cereals · Processed Foods',
@@ -1175,7 +1175,7 @@ export const accreditationsPage = {
       title: 'MPEDA Registered',
       subtitle: 'Marine Products Export Development Authority',
       watermark:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/MPEDA.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/MPEDA_7_11zon.jpg',
       body: 'MPEDA registration is the primary authorization required for any Indian entity exporting marine products. It ensures our shrimp and seafood exports meet the hygiene, traceability, and species-compliance requirements of importing countries including the EU, USA, and Japan.',
       issuingBody: 'Ministry of Commerce & Industry, Government of India',
       scope: 'Shrimps · Prawns · Seafood',
@@ -1817,7 +1817,7 @@ export const contactPage = {
   confirmation:
     "Thank you. Your requirement has reached the Mavio Global team. We'll review the details and contact you with the next step.",
   image:
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/contact/6c8d27ad-1149-492d-91d2-234fe4be42e1.avif',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/contact/6c8d27ad-1149-492d-91d2-234fe4be42e1_10_11zon.jpg',
   fields: [
     { key: 'name', label: 'Name', type: 'text', placeholder: 'Full name', required: true },
     { key: 'email', label: 'Work Email', type: 'email', placeholder: 'you@company.com', required: true },
