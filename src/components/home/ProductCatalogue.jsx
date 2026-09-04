@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { productCatalogue, productCategories } from '../../data/siteContent'
@@ -8,34 +8,11 @@ import SectionHeading from '../ui/SectionHeading'
 import SectionLabel from '../ui/SectionLabel'
 
 function CategoryImage({ items, active }) {
-  const containerRef = useRef(null)
-  const cursorRef = useRef(null)
-  const [showCursor, setShowCursor] = useState(false)
   const activeItem = items[active]
   const href = activeItem ? `/products/${activeItem.slug}` : '/products'
 
-  const onMove = useCallback((e) => {
-    const el = cursorRef.current
-    if (!el) return
-    const rect = containerRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    el.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`
-  }, [])
-
   return (
-    <Link
-      to={href}
-      ref={containerRef}
-      className="group relative block overflow-hidden rounded-2xl"
-      style={{ cursor: 'none' }}
-      onMouseEnter={(e) => {
-        setShowCursor(true)
-        onMove(e)
-      }}
-      onMouseMove={onMove}
-      onMouseLeave={() => setShowCursor(false)}
-    >
+    <Link to={href} className="group relative block overflow-hidden rounded-2xl">
       <div className="relative h-72 w-full sm:h-[26rem] lg:h-[560px]">
         {items.map((item, i) =>
           Math.abs(active - i) <= 1 || i === active ? (
@@ -51,19 +28,6 @@ function CategoryImage({ items, active }) {
             />
           ) : null
         )}
-      </div>
-
-      <div
-        ref={cursorRef}
-        className={`pointer-events-none absolute left-0 top-0 z-50 flex h-20 w-20 items-center justify-center rounded-full bg-gold-gradient shadow-lg transition-opacity duration-200 ${
-          showCursor ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
-        <span className="text-center text-[11px] font-bold uppercase leading-tight tracking-wide text-navy-deep">
-          View
-          <br />
-          Products
-        </span>
       </div>
     </Link>
   )
