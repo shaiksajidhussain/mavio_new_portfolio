@@ -3,16 +3,13 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
-import { FontProvider } from './context/FontContext.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <FontProvider>
           <App />
-        </FontProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>

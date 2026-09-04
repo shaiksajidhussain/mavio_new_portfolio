@@ -23,9 +23,9 @@ export default {
         bay: '#6b7b4f',
       },
       fontFamily: {
-        display: ['var(--font-family)', '"DM Sans"', 'sans-serif'],
-        body: ['var(--font-family)', '"DM Sans"', 'sans-serif'],
-        mono: ['var(--font-family)', '"DM Sans"', 'sans-serif'],
+        display: ['"Albert Sans"', 'sans-serif'],
+        body: ['"Albert Sans"', 'sans-serif'],
+        mono: ['"Albert Sans"', 'sans-serif'],
       },
       maxWidth: {
         container: '1400px',

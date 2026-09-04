@@ -4,7 +4,6 @@ import { ChevronDown, Instagram, Linkedin, Menu, X } from 'lucide-react'
 import { nav, secondaryHeader } from '../../data/siteContent'
 import Button from '../ui/Button'
 import ThemeToggle from '../ui/ThemeToggle'
-import FontSwitcher from '../ui/FontSwitcher'
 import { ScrollTrigger } from '../../lib/gsap'
 import logoMavio from '../../assets/logo-mavio.svg'
 
@@ -130,7 +129,6 @@ export default function PrimaryHeader() {
             </nav>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              <FontSwitcher tone="light" className="hidden lg:flex" />
               <ThemeToggle tone="light" className="hidden sm:flex" />
               <button
                 type="button"
@@ -230,7 +228,6 @@ export default function PrimaryHeader() {
           </nav>
           <div className="mt-4 flex items-center gap-3 pb-2">
             <ThemeToggle tone="light" />
-            <FontSwitcher tone="light" />
             <Button to="/partner-with-us" variant="primary" className="rounded-full" onClick={() => setMobileOpen(false)}>
               Partner With Us
             </Button>

@@ -89,18 +89,6 @@
   }
 }
 
-.custom-cursor-active,
-.custom-cursor-active * {
-  cursor: none !important;
-}
-
-.custom-cursor-active input,
-.custom-cursor-active textarea,
-.custom-cursor-active select,
-.custom-cursor-active [contenteditable] {
-  cursor: auto !important;
-}
-
 * {
   border-color: rgb(var(--line) / 1);
 }
@@ -112,7 +100,7 @@ html {
 body {
   background-color: rgb(var(--bg));
   color: rgb(var(--ink));
-  font-family: var(--font-family, 'DM Sans', sans-serif);
+  font-family: 'Albert Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -144,7 +132,7 @@ body {
 }
 
 .eyebrow {
-  font-family: var(--font-family, 'DM Sans', sans-serif);
+  font-family: 'Albert Sans', sans-serif;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 0.72rem;
