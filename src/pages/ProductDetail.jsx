@@ -55,8 +55,7 @@ export default function ProductDetail() {
             className="h-full w-full scale-110 object-cover"
           />
         </div>
-        <div className="absolute inset-0 -z-10 bg-black/50" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/85 via-transparent to-black/30" />
+        <div className="absolute inset-0 -z-10 bg-black/25" />
 
         <div className="container-px relative mx-auto w-full max-w-container pb-14 pt-40 md:pb-16">
           <Link

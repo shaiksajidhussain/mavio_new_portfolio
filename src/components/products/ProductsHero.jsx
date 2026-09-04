@@ -19,8 +19,7 @@ export default function ProductsHero({ category = null }) {
           className="h-full w-full object-cover transition-opacity duration-500"
         />
       </div>
-      <div className="absolute inset-0 -z-10 bg-black/50" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/80 via-transparent to-black/25" />
+      <div className="absolute inset-0 -z-10 bg-black/25" />
 
       <div className="container-px relative mx-auto flex w-full max-w-container flex-col pb-14 pt-[8rem] md:pb-16">
         {isCatalogue ? (

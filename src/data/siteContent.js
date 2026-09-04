@@ -175,7 +175,7 @@ export const productCatalogue = {
     products: [
       {
         name: 'Teja S17 Red Chilli',
-        image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/teja+s17-red-chilli-500x500.avif',
+        image: 'http://mavioglobal.s3.eu-north-1.amazonaws.com/products/spices/teja-s17-dry-red-chilli_11zon.jpg',
         body: 'A high-pungency chilli variety grown in the Guntur belt of Andhra Pradesh, prized globally for its sharp heat and deep red colour. Teja S17 is widely used in chilli powder production, oleoresin extraction, and sauce manufacturing where consistent Scoville strength matters. We grade for colour value, moisture, and pungency before every shipment, and pack to protect colour and heat retention through transit — critical for buyers running continuous production lines.',
       },
       {
@@ -209,7 +209,7 @@ export const productCatalogue = {
     name: 'Fresh Agriculture',
     intro:
       'Fresh produce is a race against time. Our job is to protect the product from farm to shipment — careful selection, sorting, packing, and coordinated movement, every step of the way.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/indian-farmer-standing-his-field_6_11zon.webp',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/happy-indian-farmer-with-fresh-greens-lush-field.jpg',
     products: [
       {
         name: 'Green Chillies',
@@ -272,7 +272,7 @@ export const productCategories = [
       'Fresh agricultural commodities sourced and graded at origin — green chillies, ginger, onion, and fruits & vegetables prepared for export markets.',
     color: 'bay',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/indian-farmer-standing-his-field_6_11zon.webp',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/happy-indian-farmer-with-fresh-greens-lush-field.jpg',
   },
   {
     slug: 'spices',
@@ -282,7 +282,7 @@ export const productCategories = [
       'Export-grade spices coordinated for heat, colour, and specification — Teja S17, Byadgi, stem and stemless chilli, chilli powder, turmeric finger, and turmeric powder.',
     color: 'gold-deep',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/variety-spices-_10_11zon.webp',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/variety-spices-_11zon.jpg',
   },
   {
     slug: 'chemicals',
@@ -292,7 +292,7 @@ export const productCategories = [
       'Industrial chemicals supplied with clear usage guidance and HSN documentation — including IPA, Acetone, and Toluene for manufacturing and processing applications.',
     color: 'paprika',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/chemical-storage_2_1_11zon.webp',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/chemical-storage_2.png',
   },
 ]
 
@@ -369,7 +369,7 @@ export const productCatalog = {
         'A high-pungency chilli variety grown in the Guntur belt of Andhra Pradesh, prized globally for its sharp heat and deep red colour. Teja S17 is widely used in chilli powder production, oleoresin extraction, and sauce manufacturing where consistent Scoville strength matters. We grade for colour value, moisture, and pungency before every shipment, and pack to protect colour and heat retention through transit — critical for buyers running continuous production lines.',
       usage: 'Chilli powder production, oleoresin extraction, and sauce manufacturing',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/teja+s17-red-chilli-500x500.avif',
+        'http://mavioglobal.s3.eu-north-1.amazonaws.com/products/spices/teja-s17-dry-red-chilli_11zon.jpg',
       variants: [
         {
           name: 'Teja S17',
@@ -620,7 +620,7 @@ export const productsPage = {
     eyebrow: 'Quality assured, globally sourced',
     heading: 'Explore Our Premium Product Portfolio',
     image:
-      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/hero+section/Agri_1_11zon.webp',
+      'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/hero+section/Agri_1.avif',
     overviewTitle: 'Products We Export',
     overviewBody:
       'Mavio Global is a supplier of agricultural commodities, seafood, and specialty chemicals from India. We work with a carefully selected network of growers and processors, coordinating quality checks, documentation, and logistics so every shipment meets destination-market standards.',
@@ -635,14 +635,14 @@ export const aboutPage = {
     eyebrow: 'About Us',
     heading: 'A connected journey for global buyers sourcing from India.',
     body: 'Mavio was founded on a simple observation: international trade gets difficult when responsibility is fragmented. A buyer might know exactly what product they need, and still have to navigate sourcing, quality checks, packaging, documentation, customs, freight, and delivery as separate problems, with separate people.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/indian-exports_14_11zon.webp',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/indian-exports.png',
   },
   story: [
     'Mavio was founded on a simple observation: international trade gets difficult when responsibility is fragmented. A buyer might know exactly what product they need, and still have to navigate sourcing, quality checks, packaging, documentation, customs, freight, and delivery as separate problems, with separate people.',
     'We built Mavio Global to make that journey connected instead. We bring together procurement, quality coordination, trade documentation, logistics, and digital visibility into one organised experience for global buyers sourcing from India. Our goal was never just to sell an Indian product — it\'s to build confidence around the entire transaction.',
   ],
   storyImages: [
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/problem_33_15_11zon.webp',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/problem_33.png',
     'https://mavioglobal.s3.eu-north-1.amazonaws.com/About/16196946_375-mj-1289-fon-l_13_11zon.webp',
   ],
   visionMission: {
@@ -742,7 +742,7 @@ export const partnerPage = {
     ],
     close: ['Partner with Mavio Global.', 'Take your capabilities to the world.'],
     cta: { label: 'Become a Partner', to: '#become-a-partner' },
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/partners+with+us/business-people-shaking-hands-close-up-hand-shake-successful-negotiate-businessman-agreement-success-contract_2_11zon.jpg',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/partners+with+us/businessmen-handshake-business-meeting-partnership-concept-copy-space.jpg',
     imageAlt: 'Business partners shaking hands on a successful agreement',
     buyer: {
       image: 'https://images.unsplash.com/photo-1784914184990-aaaf0e6c81fe?auto=format&fit=crop&w=2200&q=80',
@@ -1187,7 +1187,7 @@ export const accreditationsPage = {
     eyebrow: 'Accreditations & Proof',
     heading: 'Proof Behind the Promise',
     body: 'International trade runs on documentation and evidence, not adjectives. We present relevant certifications, registrations, laboratory reports, inspection records, and compliance documentation transparently — for the products and markets they apply to.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/hero+section/1_9_11zon.jpg',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/hero+section/1_11zon.jpg',
     imageAlt: 'Gold wax seal and stamp on a sealed envelope',
   },
   badges: [
@@ -1898,7 +1898,7 @@ export const contactPage = {
   confirmation:
     "Thank you. Your requirement has reached the Mavio Global team. We'll review the details and contact you with the next step.",
   image:
-    'https://mavioglobal.s3.eu-north-1.amazonaws.com/contact/6c8d27ad-1149-492d-91d2-234fe4be42e1_10_11zon.jpg',
+    'https://mavioglobal.s3.eu-north-1.amazonaws.com/contact/6c8d27ad-1149-492d-91d2-234fe4be42e1.avif',
   fields: [
     { key: 'name', label: 'Name', type: 'text', placeholder: 'Full name', required: true },
     { key: 'email', label: 'Work Email', type: 'email', placeholder: 'you@company.com', required: true },

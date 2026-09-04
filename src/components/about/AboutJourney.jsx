@@ -50,6 +50,15 @@ export default function AboutJourney() {
             }
           )
         })
+
+        gsap.utils.toArray('[data-story-card]').forEach((card) => {
+          const img = card.querySelector('img')
+          if (!img) return
+          const enter = () => gsap.to(img, { scale: 1.08, duration: 0.9, ease: 'power2.out', overwrite: 'auto' })
+          const leave = () => gsap.to(img, { scale: 1, duration: 0.9, ease: 'power2.inOut', overwrite: 'auto' })
+          card.addEventListener('mouseenter', enter)
+          card.addEventListener('mouseleave', leave)
+        })
       }
 
       const mm = gsap.matchMedia()
@@ -146,15 +155,17 @@ export default function AboutJourney() {
                   }`}
                 >
                   <Reveal y={48} scale={0.96} delay={0.05}>
-                    <div className="group relative aspect-[16/11] overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]">
+                    <div
+                      data-story-card
+                      className="relative aspect-[16/11] overflow-hidden rounded-[1.5rem] md:rounded-[1.75rem]"
+                    >
                       <SmartImage
                         data-story-img
                         src={storyImages[i] || storyImages[0]}
                         alt=""
                         data-no-dim
-                        className="h-full w-full origin-center object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="h-full w-full origin-center object-cover will-change-transform"
                       />
-                      <div className="absolute inset-0 bg-black/75 transition-colors duration-500 group-hover:bg-black/60" />
                     </div>
                   </Reveal>
                   <Reveal

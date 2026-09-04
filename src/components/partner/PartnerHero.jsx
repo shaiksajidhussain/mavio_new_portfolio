@@ -11,9 +11,9 @@ export default function PartnerHero() {
   return (
     <section className="relative -mt-[4.5rem] flex min-h-[70svh] items-end overflow-hidden md:min-h-[78svh]">
       <div className="absolute inset-0 -z-20 overflow-hidden">
-        <img src={image} alt={imageAlt} fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
+        <img src={image} alt={imageAlt} data-no-dim fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
       </div>
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy-deep via-navy-deep/80 to-navy-deep/10" />
+      <div className="absolute inset-0 -z-10 bg-black/50" />
 
       <div className="container-px relative mx-auto w-full max-w-container pb-16 pt-[8rem] md:pb-20">
         <p className="gold-text eyebrow">{eyebrow}</p>

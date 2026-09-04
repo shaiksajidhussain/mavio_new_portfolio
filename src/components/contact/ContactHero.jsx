@@ -12,8 +12,7 @@ export default function ContactHero() {
       <div className="absolute inset-0 -z-20">
         <img src={image} alt="" data-no-dim fetchPriority="high" decoding="async" className="h-full w-full object-cover" />
       </div>
-      <div className="absolute inset-0 -z-10 bg-black/50" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-black/25" />
+      <div className="absolute inset-0 -z-10 bg-black/25" />
 
       <div className="container-px relative mx-auto w-full max-w-container pb-16 pt-[8rem] md:pb-20">
         <p className="gold-text eyebrow">Contact</p>
