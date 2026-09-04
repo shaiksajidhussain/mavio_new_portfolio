@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useEnquiryModal } from '../../../context/EnquiryModalContext'
 import Button from '../../ui/Button'
-import { productCategories, productCatalog, productCatalogue } from '../../../data/siteContent'
+import { productCategories, productCatalog } from '../../../data/siteContent'
 
 export function useIsLg() {
   const [isLg, setIsLg] = useState(() =>
@@ -33,15 +33,6 @@ export function useProductSection(activeSlug) {
 
 export function productsForCategory(slug) {
   if (!slug) return []
-  if (slug === 'spices' && productCatalogue.spices?.products?.length) {
-    return productCatalogue.spices.products.map((item) => ({
-      slug: null,
-      name: item.name,
-      description: item.body,
-      image: item.image,
-      categorySlug: 'spices',
-    }))
-  }
   const category = productCategories.find((c) => c.slug === slug)
   return (productCatalog[slug] || []).map((item) => ({
     ...item,

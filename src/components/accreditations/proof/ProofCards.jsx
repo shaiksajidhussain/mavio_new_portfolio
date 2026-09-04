@@ -17,41 +17,42 @@ export default function ProofCards() {
               </span>
             </div>
 
-            {item.watermark ? (
-              <div className="flex items-center justify-center px-6 py-8">
+            <div className="relative flex flex-1 flex-col p-5 md:p-6">
+              {item.watermark ? (
                 <img
-                  src={item.watermark}
-                  alt={item.code}
+                  src={item.watermark.trim()}
+                  alt=""
+                  aria-hidden
                   loading="lazy"
                   decoding="async"
-                  className="h-24 w-auto max-w-[10rem] object-contain mix-blend-multiply md:h-32 md:max-w-[12rem]"
+                  className="pointer-events-none absolute inset-0 z-0 m-auto h-[70%] w-auto max-w-[72%] object-contain opacity-[0.12] mix-blend-multiply dark:opacity-[0.2] dark:mix-blend-screen dark:invert"
                 />
-              </div>
-            ) : null}
+              ) : null}
 
-            <div className="flex flex-1 flex-col p-5 md:p-6">
-              <h3 className="font-display text-lg font-semibold text-ink md:text-xl">{item.title}</h3>
-              <p className="mt-1 text-xs font-medium text-gold-deep md:text-sm">{item.subtitle}</p>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">{item.body}</p>
+              <div className="relative z-10 flex flex-1 flex-col">
+                <h3 className="font-display text-lg font-semibold text-ink md:text-xl">{item.title}</h3>
+                <p className="mt-1 text-xs font-medium text-gold-deep md:text-sm">{item.subtitle}</p>
+                <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">{item.body}</p>
 
-              <div className="mt-5 space-y-3 border-t border-line pt-5">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-deep">
-                    Issuing Body
-                  </p>
-                  <p className="mt-1.5 text-xs leading-relaxed text-ink md:text-sm">{item.issuingBody}</p>
-                </div>
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-deep">Scope</p>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {scopeTags(item.scope).map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-full bg-bg-muted px-2.5 py-1 text-[11px] font-medium text-ink"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                <div className="mt-5 space-y-3 border-t border-line pt-5">
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-deep">
+                      Issuing Body
+                    </p>
+                    <p className="mt-1.5 text-xs leading-relaxed text-ink md:text-sm">{item.issuingBody}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold-deep">Scope</p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {scopeTags(item.scope).map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-bg-muted px-2.5 py-1 text-[11px] font-medium text-ink"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

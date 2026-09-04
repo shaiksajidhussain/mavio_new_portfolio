@@ -394,7 +394,11 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
         const fadeAt = draw + stagger * Math.max(paths.length - 1, 0) + 0.75
 
         const tl = gsap.timeline({
-          paused: true,
+          scrollTrigger: {
+            trigger: host,
+            start: 'top 78%',
+            once: true,
+          },
         })
 
         tl.to(paths, {
@@ -418,28 +422,6 @@ function ChoroplethMap({ countryToRegion, marketRegions }) {
             { opacity: 0, duration: 0.9, ease: 'power2.inOut' },
             fadeAt
           )
-
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: host,
-            start: 'top 78%',
-            end: 'bottom 20%',
-            onEnter: () => tl.restart(),
-            onEnterBack: () => tl.restart(),
-            onLeave: () => {
-              tl.pause()
-              gsap.set(paths, { attr: { 'stroke-dashoffset': 1 }, opacity: 1 })
-              gsap.set(dots, { opacity: 0 })
-              gsap.set(glows, { opacity: 0 })
-            },
-            onLeaveBack: () => {
-              tl.pause()
-              gsap.set(paths, { attr: { 'stroke-dashoffset': 1 }, opacity: 1 })
-              gsap.set(dots, { opacity: 0 })
-              gsap.set(glows, { opacity: 0 })
-            },
-          },
-        })
       }, host)
       return true
     }

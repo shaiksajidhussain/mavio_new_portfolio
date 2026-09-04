@@ -279,7 +279,7 @@ export const productCategories = [
     name: 'Spices',
     tagline: 'Checked, handled and ready to move.',
     description:
-      'Export-grade spices coordinated for heat, colour, and specification — with red chilli as a core line for buyers who need consistent quality shipment after shipment.',
+      'Export-grade spices coordinated for heat, colour, and specification — Teja S17, Byadgi, stem and stemless chilli, chilli powder, turmeric finger, and turmeric powder.',
     color: 'gold-deep',
     image:
       'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/products+we+export/variety-spices-_10_11zon.webp',
@@ -362,17 +362,98 @@ export const productCatalog = {
   ],
   spices: [
     {
-      slug: 'red-chilli',
-      name: 'Red Chilli',
+      slug: 'teja-s17-red-chilli',
+      name: 'Teja S17 Red Chilli',
       hsCode: '0904.21',
       description:
-        'Dried red chilli sourced for heat, colour, and export packing — coordinated for buyers who need consistent specification across recurring shipments.',
+        'A high-pungency chilli variety grown in the Guntur belt of Andhra Pradesh, prized globally for its sharp heat and deep red colour. Teja S17 is widely used in chilli powder production, oleoresin extraction, and sauce manufacturing where consistent Scoville strength matters. We grade for colour value, moisture, and pungency before every shipment, and pack to protect colour and heat retention through transit — critical for buyers running continuous production lines.',
+      usage: 'Chilli powder production, oleoresin extraction, and sauce manufacturing',
       image:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/products/spices/dry-red-pepper-white-background_2_11zon.webp',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/teja+s17-red-chilli-500x500.avif',
       variants: [
         {
-          name: 'Dried Red Chilli',
-          description: 'Whole or stemless pods graded for pungency and colour value, packed for export.',
+          name: 'Teja S17',
+          description: 'Graded for colour value, moisture, and pungency, then packed to protect heat and colour through transit.',
+        },
+      ],
+    },
+    {
+      slug: 'byadgi-chilli',
+      name: 'Byadgi Chilli',
+      hsCode: '0904.21',
+      description:
+        "Grown primarily in Karnataka, Byadgi chilli is known for its deep red colour and mild-to-moderate heat, making it the preferred choice for colour-focused applications — oleoresin, natural food colouring, and culinary blends where visual richness matters more than intensity. We select for skin thickness and colour extraction potential, and grade every lot to match the buyer's end-use specification.",
+      usage: 'Oleoresin, natural food colouring, and culinary blends',
+      image:
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/byadgi-chilli_2_4_11zon.webp',
+      variants: [
+        {
+          name: 'Byadgi Chilli',
+          description: 'Selected for skin thickness and colour extraction potential, graded to the buyer’s end-use specification.',
+        },
+      ],
+    },
+    {
+      slug: 'stem-and-stemless-chilli',
+      name: 'Stem and Stemless Chilli',
+      hsCode: '0904.21',
+      description:
+        'Available in both whole-stem and destemmed formats to match different processing lines — destemmed for direct powder production, stemmed for buyers who process at their own facility. Sorting and stem-removal are carried out to consistent standards, so every container matches the grade a buyer has already approved.',
+      usage: 'Powder production and further processing',
+      image:
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/stem+and+stemless+chilli_1_13_11zon.webp',
+      variants: [
+        {
+          name: 'Stem / Stemless',
+          description: 'Whole-stem or destemmed chilli, sorted to a consistent approved grade for each container.',
+        },
+      ],
+    },
+    {
+      slug: 'chilli-powder',
+      name: 'Chilli Powder',
+      hsCode: '0904.22',
+      description:
+        "Ground to order from selected chilli varieties, with colour value, mesh size, and moisture content controlled to buyer specification. Whether the requirement is culinary-grade heat or industrial colour extraction, grinding and packing are matched to the product's final application.",
+      usage: 'Culinary heat and industrial colour extraction',
+      image:
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/red-chilli-powder-with-dried-red-chillies_9_11zon.webp',
+      variants: [
+        {
+          name: 'Ground Chilli Powder',
+          description: 'Mesh size, colour value, and moisture controlled to the agreed specification before packing.',
+        },
+      ],
+    },
+    {
+      slug: 'turmeric-finger',
+      name: 'Turmeric Finger',
+      hsCode: '0910.30',
+      description:
+        "Whole, unpeeled turmeric rhizomes sourced from India's major turmeric belts, valued for curcumin content, colour, and aroma. Turmeric finger is dried and graded before shipment, with curcumin percentage tested where required — an essential detail for buyers in pharmaceutical, nutraceutical, and premium culinary markets.",
+      usage: 'Pharmaceutical, nutraceutical, and premium culinary markets',
+      image:
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/turmeric-finger_15_11zon.webp',
+      variants: [
+        {
+          name: 'Dried Turmeric Finger',
+          description: 'Dried and graded whole rhizomes, with curcumin tested where the buyer specification requires it.',
+        },
+      ],
+    },
+    {
+      slug: 'turmeric-powder',
+      name: 'Turmeric Powder',
+      hsCode: '0910.30',
+      description:
+        'Finely ground from selected turmeric fingers, with curcumin content, colour, and fineness matched to the buyer’s requirement — from standard culinary grade to high-curcumin variants for health and wellness applications. Every batch is tested before packing to confirm it meets the agreed specification.',
+      usage: 'Culinary grade and high-curcumin health applications',
+      image:
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/homepage/product_catelogue/turmeric-powder-fresh-turmeric-wooden-spoon-with-green-leaf-old-wooden-table-herbs-are-native-southeast-asia_16_11zon.webp',
+      variants: [
+        {
+          name: 'Ground Turmeric Powder',
+          description: 'Ground from selected fingers and tested for curcumin, colour, and fineness before packing.',
         },
       ],
     },
@@ -1106,8 +1187,8 @@ export const accreditationsPage = {
     eyebrow: 'Accreditations & Proof',
     heading: 'Proof Behind the Promise',
     body: 'International trade runs on documentation and evidence, not adjectives. We present relevant certifications, registrations, laboratory reports, inspection records, and compliance documentation transparently — for the products and markets they apply to.',
-    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/APEDA_3_11zon.jpg',
-    imageAlt: 'Compliance documents and certificates on a desk',
+    image: 'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/hero+section/1_9_11zon.jpg',
+    imageAlt: 'Gold wax seal and stamp on a sealed envelope',
   },
   badges: [
     'APEDA',
@@ -1125,7 +1206,7 @@ export const accreditationsPage = {
       title: 'Spice Board of India',
       subtitle: 'Spice Board of India — Registered Exporter',
       watermark:
-        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/SBI.avif',
+        'https://mavioglobal.s3.eu-north-1.amazonaws.com/Accreditations+%26+certifications/compilance+registry_watermarks/SBI_8_11zon.jpg',
       body: 'The Spice Board of India is the statutory body regulating the export of spices from India. As a registered exporter, Mavio Global is authorized to export all major spice categories including chilli, turmeric, pepper, and cardamom, with quality backed by Spice Board certification.',
       issuingBody: 'Ministry of Commerce & Industry, Government of India',
       scope: 'Red Chilli · Turmeric · Black Pepper · Cardamom · All Major Spices',
